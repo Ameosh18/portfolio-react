@@ -119,6 +119,11 @@ function Plane({ project, index, z }) {
       style={{
         z,
         y: translateY,
+        width: "320px",
+        height: "420px",
+        borderRadius: "24px",
+        overflow: "hidden",
+        cursor: "pointer",
       }}
       whileHover={{
         scale: 1.05,
@@ -128,13 +133,6 @@ function Plane({ project, index, z }) {
         type: "spring",
         stiffness: 300,
         damping: 20,
-      }}
-      className="relative shrink-0 cursor-pointer"
-      style={{
-        width: "320px",
-        height: "420px",
-        borderRadius: "24px",
-        overflow: "hidden",
       }}
     >
       {project.image ? (
