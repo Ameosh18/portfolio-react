@@ -8,7 +8,7 @@ export default function LoadingScreen({ onComplete }) {
     const timer = setTimeout(() => {
       setIsVisible(false)
       onComplete?.()
-    }, 2400)
+    }, 3200)
 
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -19,7 +19,7 @@ export default function LoadingScreen({ onComplete }) {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.5, delay: 2.3 }}
+      transition={{ duration: 0.5, delay: 3.1 }}
       style={{
         position: 'fixed',
         top: 0,
@@ -39,36 +39,36 @@ export default function LoadingScreen({ onComplete }) {
         <div
           style={{
             fontSize: 'clamp(48px, 10vw, 96px)',
-            fontFamily: '"Playfair Display", serif',
-            fontWeight: 600,
+            fontFamily: '"DM Sans", sans-serif',
+            fontWeight: 500,
             color: 'rgba(255, 255, 255, 0.1)',
             letterSpacing: '-0.02em',
             userSelect: 'none',
             whiteSpace: 'nowrap',
           }}
         >
-          LOADING
+          LOADING...
         </div>
 
         {/* Animated fill overlay */}
         <motion.div
           initial={{ clipPath: 'inset(0 100% 0 0)' }}
           animate={{ clipPath: 'inset(0 0% 0 0)' }}
-          transition={{ duration: 2, ease: 'easeInOut' }}
+          transition={{ duration: 2.8, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
             fontSize: 'clamp(48px, 10vw, 96px)',
-            fontFamily: '"Playfair Display", serif',
-            fontWeight: 600,
+            fontFamily: '"DM Sans", sans-serif',
+            fontWeight: 500,
             color: 'var(--accent)',
             letterSpacing: '-0.02em',
             userSelect: 'none',
             whiteSpace: 'nowrap',
           }}
         >
-          LOADING
+          LOADING...
         </motion.div>
       </div>
     </motion.div>
