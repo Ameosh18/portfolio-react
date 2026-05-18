@@ -477,10 +477,9 @@ export default function StackedGallery() {
         height: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-end",
-        paddingRight: IS_MOBILE ? "20px" : IS_TABLET ? "60px" : "80px",
+        justifyContent: "center",
         perspective: PERSP,
-        perspectiveOrigin: IS_MOBILE ? "50% 40%" : IS_TABLET ? "65% 35%" : "75% 35%",
+        perspectiveOrigin: PX_ORG,
       }}>
         {/* Planes container */}
         <div style={{
