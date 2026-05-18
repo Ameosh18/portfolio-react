@@ -47,17 +47,14 @@ export default function CustomCursor() {
       <div ref={arrowRef} className="custom-cursor-arrow" aria-hidden="true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="26"
-          height="30"
-          viewBox="0 0 26 30"
+          width="28"
+          height="28"
+          viewBox="0 0 100 100"
           fill="none"
         >
           <path
-            d="M2 2 L2 25 L9 18 L24 18 Z"
+            d="M4 1 L97 45 L52 54 L36 99 Z"
             fill="var(--accent)"
-            stroke="rgba(0,0,0,0.35)"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
           />
         </svg>
       </div>
