@@ -40,7 +40,7 @@ export default function LoadingScreen({ onComplete }) {
           style={{
             fontSize: 'clamp(48px, 10vw, 96px)',
             fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 500,
+            fontWeight: 700,
             color: 'rgba(255, 255, 255, 0.1)',
             letterSpacing: '-0.02em',
             userSelect: 'none',
@@ -82,7 +82,7 @@ export default function LoadingScreen({ onComplete }) {
             left: 0,
             fontSize: 'clamp(48px, 10vw, 96px)',
             fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 500,
+            fontWeight: 700,
             color: 'var(--accent)',
             letterSpacing: '-0.02em',
             userSelect: 'none',
