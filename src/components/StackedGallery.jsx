@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   motion,
   AnimatePresence,
@@ -40,16 +41,22 @@ const PERSP   = IS_MOBILE ? "1000px"  : IS_TABLET ? "1400px"  : "2000px"
 const PX_ORG  = IS_MOBILE ? "50% 50%" : "5% 50%"
 const CONT_TY = IS_MOBILE ? 40        : IS_TABLET ? 70        : 100
 
+// ── Hover lift constants — "pulling a file from the stack" ─────────────────
+const HOVER_LIFT_Y   = IS_MOBILE ? -30 : -72   // card rises upward
+const HOVER_Z        = IS_MOBILE ? 60  : 150   // card comes toward viewer
+const HOVER_ROTATE_Y = IS_MOBILE ? -50 : -14   // card flattens as pulled out
+const SPRING_CFG     = { stiffness: 280, damping: 26, mass: 0.6 }
+
 // ── Carousel constants ─────────────────────────────────────────────────────
-const ROTATE_Y     = -50
-const WHEEL_SPEED  = IS_MOBILE ? 0.18 : 0.28
-const TOUCH_SPEED  = IS_MOBILE ? 0.55 : 0.7
-const COPIES       = 2
-const N            = 5
-const TOTAL        = N * COPIES
-const WRAP_DIST    = TOTAL * STEP_X
-const CENTER_IDX   = N
-const INIT_OFFSET  = -CENTER_IDX * STEP_X
+const ROTATE_Y    = -50
+const WHEEL_SPEED = IS_MOBILE ? 0.18 : 0.28
+const TOUCH_SPEED = IS_MOBILE ? 0.55 : 0.7
+const COPIES      = 2
+const N           = 5
+const TOTAL       = N * COPIES
+const WRAP_DIST   = TOTAL * STEP_X
+const CENTER_IDX  = N
+const INIT_OFFSET = -CENTER_IDX * STEP_X
 
 // ── Projects ───────────────────────────────────────────────────────────────
 const projects = [
@@ -124,7 +131,7 @@ function getBrightness(wx) {
 }
 
 // ── Card visual ────────────────────────────────────────────────────────────
-function CardFace({ card, isDark }) {
+function CardFace({ card, isDark, isHovered }) {
   const panelH = CARD_H - IMG_H + 24
 
   const panel = isDark
@@ -132,7 +139,18 @@ function CardFace({ card, isDark }) {
     : { bg: "linear-gradient(180deg, #F0EDE8 0%, #E8E4DE 100%)", cat: "#999", title: "#1A1A1A", summary: "#666", sep: "rgba(0,0,0,0.1)", num: "#1A1A1A", muted: "#999", year: "#555", border: "rgba(0,0,0,0.07)" }
 
   return (
-    <div style={{ width: CARD_W, height: CARD_H, position: "relative", borderRadius: 24, overflow: "hidden", background: isDark ? "#111" : "#E8E4DE" }}>
+    <div style={{
+      width: CARD_W,
+      height: CARD_H,
+      position: "relative",
+      borderRadius: 24,
+      overflow: "hidden",
+      background: isDark ? "#111" : "#E8E4DE",
+      boxShadow: isHovered
+        ? "0 48px 96px rgba(0,0,0,0.7), 0 16px 32px rgba(0,0,0,0.5)"
+        : "0 8px 24px rgba(0,0,0,0.25)",
+      transition: "box-shadow 0.4s ease",
+    }}>
 
       {/* ── Top image section ── */}
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: IMG_H, overflow: "hidden" }}>
@@ -180,8 +198,6 @@ function CardFace({ card, isDark }) {
         flexDirection: "column",
         boxSizing: "border-box",
       }}>
-
-        {/* Category */}
         <div style={{
           fontSize: IS_MOBILE ? 9 : 10,
           letterSpacing: "0.12em",
@@ -192,8 +208,6 @@ function CardFace({ card, isDark }) {
         }}>
           {card.category}
         </div>
-
-        {/* Title */}
         <div style={{
           fontSize: IS_MOBILE ? 16 : 20,
           fontWeight: 700,
@@ -205,8 +219,6 @@ function CardFace({ card, isDark }) {
         }}>
           {card.title}
         </div>
-
-        {/* Summary */}
         <div style={{
           fontSize: IS_MOBILE ? 10 : 12,
           color: panel.summary,
@@ -215,11 +227,7 @@ function CardFace({ card, isDark }) {
         }}>
           {card.summary}
         </div>
-
-        {/* Spacer */}
         <div style={{ flex: 1 }} />
-
-        {/* ── Bottom stats row ── */}
         <div style={{
           display: "flex",
           justifyContent: "space-between",
@@ -255,98 +263,137 @@ function CardFace({ card, isDark }) {
 }
 
 // ── Hover detail panel ─────────────────────────────────────────────────────
-function HoverLabel({ card }) {
+function HoverPanel({ card, onEnter, onLeave }) {
+  const navigate = useNavigate()
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -16 }}
+      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
       style={{
         position: "absolute",
-        left: CARD_W + 16,
+        left: CARD_W + 28,
         top: "50%",
         transform: "translateY(-50%)",
-        pointerEvents: "none",
         display: "flex",
         alignItems: "flex-start",
+        pointerEvents: "auto",
+        width: 300,
       }}
     >
-      {/* Animated horizontal line */}
+      {/* Connecting line */}
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         exit={{ scaleX: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         style={{
-          width: IS_MOBILE ? 40 : 80,
-          height: 1,
-          background: "rgba(255,255,255,0.6)",
+          width: 64,
+          height: 1.5,
+          background: "rgba(255,255,255,0.65)",
           transformOrigin: "left",
           flexShrink: 0,
-          marginTop: 8,
+          marginTop: 13,
         }}
       />
 
-      {/* Details below the line */}
+      {/* Content block */}
       <motion.div
-        initial={{ opacity: 0, x: -8 }}
+        initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -8 }}
-        transition={{ duration: 0.2, delay: 0.15 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25, delay: 0.1 }}
         style={{
-          marginLeft: 12,
+          marginLeft: 18,
           display: "flex",
           flexDirection: "column",
-          gap: 4,
+          gap: 6,
         }}
       >
+        {/* Eyebrow */}
         <div style={{
-          fontSize: 9,
+          fontSize: 10,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(255,255,255,0.45)",
           fontFamily: '"DM Sans", sans-serif',
+          lineHeight: 1,
         }}>
           {card.num} · {card.category}
         </div>
+
+        {/* Title */}
         <div style={{
-          fontSize: IS_MOBILE ? 13 : 16,
-          fontWeight: 600,
-          color: "white",
+          fontSize: IS_TABLET ? 18 : 22,
+          fontWeight: 700,
+          color: "rgba(255,255,255,0.96)",
           fontFamily: '"DM Sans", sans-serif',
-          letterSpacing: "-0.01em",
-          lineHeight: 1.2,
+          letterSpacing: "-0.02em",
+          lineHeight: 1.15,
           whiteSpace: "nowrap",
         }}>
           {card.title}
         </div>
-        {/* Horizontal divider */}
+
+        {/* Divider */}
         <div style={{
-          width: IS_MOBILE ? 100 : 160,
+          width: 200,
           height: 1,
-          background: "rgba(255,255,255,0.15)",
-          marginBlock: 2,
+          background: "rgba(255,255,255,0.12)",
+          marginTop: 2,
+          marginBottom: 2,
         }} />
+
+        {/* Summary */}
         <div style={{
-          fontSize: IS_MOBILE ? 10 : 12,
-          color: "rgba(255,255,255,0.5)",
+          fontSize: IS_TABLET ? 12 : 13,
+          color: "rgba(255,255,255,0.62)",
           fontFamily: '"DM Sans", sans-serif',
-          lineHeight: 1.5,
-          maxWidth: IS_MOBILE ? 160 : 220,
+          lineHeight: 1.6,
+          maxWidth: 260,
         }}>
           {card.summary}
         </div>
-        {card.href && (
+
+        {/* CTA button */}
+        {card.href ? (
+          <button
+            onClick={() => navigate(card.href)}
+            style={{
+              marginTop: 10,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+              fontFamily: '"DM Sans", sans-serif',
+              color: "#0A0A0A",
+              background: "var(--accent, #C8A97E)",
+              border: "none",
+              borderRadius: 100,
+              padding: "10px 20px",
+              width: "fit-content",
+              whiteSpace: "nowrap",
+            }}
+          >
+            View Case Study →
+          </button>
+        ) : (
           <div style={{
-            fontSize: 10,
-            letterSpacing: "0.1em",
+            marginTop: 10,
+            fontSize: 11,
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            color: "rgba(200,169,126,0.8)",
+            color: "rgba(255,255,255,0.22)",
             fontFamily: '"DM Sans", sans-serif',
-            marginTop: 4,
           }}>
-            View case study →
+            Coming soon
           </div>
         )}
       </motion.div>
@@ -356,35 +403,49 @@ function HoverLabel({ card }) {
 
 // ── Plane (3D card in space) ───────────────────────────────────────────────
 function Plane({ card, index, offset, isDark }) {
+  const navigate = useNavigate()
   const [isHovered, setIsHovered] = useState(false)
-  const [isActive,  setIsActive]  = useState(false)
+  const leaveTimer = useRef(null)
 
+  // Scroll-driven position
   const x     = useTransform(offset, (off) => wrapValue(index * STEP_X + off))
   const baseY = useTransform(x, (v) => (v / STEP_X) * STEP_Y)
   const baseZ = useTransform(x, (v) => (v / STEP_X) * STEP_Z)
   const filter = useTransform(x, (v) => `brightness(${getBrightness(v).toFixed(3)})`)
 
-  const hoverZTarget  = useMotionValue(0)
-  const hoverZSpring  = useSpring(hoverZTarget,  { stiffness: 350, damping: 32 })
-  const hoverRYTarget = useMotionValue(ROTATE_Y)
-  const hoverRYSpring = useSpring(hoverRYTarget, { stiffness: 350, damping: 32 })
+  // Hover-driven springs — "pulling a file from the stack"
+  const liftTarget  = useMotionValue(0)
+  const liftSpring  = useSpring(liftTarget, SPRING_CFG)
+  const fwdTarget   = useMotionValue(0)
+  const fwdSpring   = useSpring(fwdTarget, SPRING_CFG)
+  const rotTarget   = useMotionValue(ROTATE_Y)
+  const rotSpring   = useSpring(rotTarget, SPRING_CFG)
 
-  const effectiveZ = useTransform([baseZ, hoverZSpring], ([bz, hz]) => bz + hz)
+  const effectiveY = useTransform([baseY, liftSpring], ([by, lift]) => by + lift)
+  const effectiveZ = useTransform([baseZ, fwdSpring],  ([bz, fwd])  => bz + fwd)
 
-  useMotionValueEvent(x, "change", (v) => {
-    setIsActive(Math.abs(v) < STEP_X * 0.5)
-  })
+  useMotionValueEvent(x, "change", () => {})  // keep subscription alive for wrapValue
 
-  const onHoverStart = () => {
+  const handleEnter = () => {
+    if (leaveTimer.current) { clearTimeout(leaveTimer.current); leaveTimer.current = null }
+    if (isHovered) return
     setIsHovered(true)
-    hoverZTarget.set(IS_MOBILE ? 60 : 120)
-    hoverRYTarget.set(-22)
+    liftTarget.set(HOVER_LIFT_Y)
+    fwdTarget.set(HOVER_Z)
+    rotTarget.set(HOVER_ROTATE_Y)
   }
 
-  const onHoverEnd = () => {
-    setIsHovered(false)
-    hoverZTarget.set(0)
-    hoverRYTarget.set(ROTATE_Y)
+  const handleLeave = () => {
+    leaveTimer.current = setTimeout(() => {
+      setIsHovered(false)
+      liftTarget.set(0)
+      fwdTarget.set(0)
+      rotTarget.set(ROTATE_Y)
+    }, 120)
+  }
+
+  const handleCardClick = () => {
+    if (card.href) navigate(card.href)
   }
 
   return (
@@ -392,19 +453,24 @@ function Plane({ card, index, offset, isDark }) {
       style={{
         position: "absolute",
         x,
-        y: baseY,
+        y: effectiveY,
         z: effectiveZ,
-        rotateY: hoverRYSpring,
+        rotateY: rotSpring,
         filter,
         willChange: "transform",
-        cursor: card.href ? "pointer" : "default",
       }}
-      onHoverStart={onHoverStart}
-      onHoverEnd={onHoverEnd}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
     >
-      <CardFace card={card} isDark={isDark} />
+      {/* Card */}
+      <div
+        onClick={handleCardClick}
+        style={{ cursor: card.href ? "pointer" : "default" }}
+      >
+        <CardFace card={card} isDark={isDark} isHovered={isHovered} />
+      </div>
 
-      {/* Index above card */}
+      {/* Index label above card */}
       <div style={{
         position: "absolute",
         top: -22,
@@ -414,13 +480,15 @@ function Plane({ card, index, offset, isDark }) {
         letterSpacing: "0.06em",
         fontFamily: '"DM Sans", sans-serif',
         userSelect: "none",
+        pointerEvents: "none",
       }}>
         {card.num}
       </div>
 
+      {/* Hover panel — desktop only */}
       <AnimatePresence>
         {isHovered && !IS_MOBILE && (
-          <HoverLabel card={card} />
+          <HoverPanel card={card} onEnter={handleEnter} onLeave={handleLeave} />
         )}
       </AnimatePresence>
     </motion.div>
@@ -432,7 +500,6 @@ export default function StackedGallery() {
   const isDark = useIsDark()
   const containerRef = useRef(null)
 
-  // targetOffset accumulates raw input; offset smooths it with a spring
   const targetOffset = useMotionValue(INIT_OFFSET)
   const offset = useSpring(targetOffset, { damping: 36, stiffness: 160, mass: 0.7 })
 
@@ -449,7 +516,6 @@ export default function StackedGallery() {
       targetOffset.set(targetOffset.get() - e.deltaY * WHEEL_SPEED)
     }
 
-    // Touch support
     let touchStartY = 0
     const onTouchStart = (e) => { touchStartY = e.touches[0].clientY }
     const onTouchMove = (e) => {
@@ -481,7 +547,7 @@ export default function StackedGallery() {
         overflow: "hidden",
       }}
     >
-      {/* Scroll hint - bottom right */}
+      {/* Scroll hint */}
       <div style={{
         position: "absolute",
         zIndex: 50,
@@ -493,6 +559,7 @@ export default function StackedGallery() {
         color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
         fontFamily: '"DM Sans", sans-serif',
         userSelect: "none",
+        pointerEvents: "none",
       }}>
         scroll to explore
       </div>
@@ -507,7 +574,6 @@ export default function StackedGallery() {
         perspective: PERSP,
         perspectiveOrigin: PX_ORG,
       }}>
-        {/* Planes container */}
         <div style={{
           position: "relative",
           transformStyle: "preserve-3d",
