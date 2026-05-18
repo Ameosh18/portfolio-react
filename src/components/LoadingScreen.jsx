@@ -15,6 +15,8 @@ export default function LoadingScreen({ onComplete }) {
 
   if (!isVisible) return null
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -32,13 +34,14 @@ export default function LoadingScreen({ onComplete }) {
         justifyContent: 'center',
         zIndex: 9999,
         pointerEvents: 'none',
+        padding: isMobile ? '20px' : '0',
       }}
     >
-      <div style={{ position: 'relative', height: 80 }}>
+      <div style={{ position: 'relative', height: 'auto', minHeight: isMobile ? 60 : 80 }}>
         {/* Base text (outline) */}
         <div
           style={{
-            fontSize: 'clamp(48px, 10vw, 96px)',
+            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
             fontFamily: '"DM Sans", sans-serif',
             fontWeight: 700,
             color: 'rgba(255, 255, 255, 0.1)',
@@ -47,7 +50,7 @@ export default function LoadingScreen({ onComplete }) {
             whiteSpace: 'nowrap',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.1em',
+            gap: isMobile ? '0.08em' : '0.1em',
           }}
         >
           LOADING
@@ -80,7 +83,7 @@ export default function LoadingScreen({ onComplete }) {
             position: 'absolute',
             top: 0,
             left: 0,
-            fontSize: 'clamp(48px, 10vw, 96px)',
+            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
             fontFamily: '"DM Sans", sans-serif',
             fontWeight: 700,
             color: 'var(--accent)',
@@ -89,7 +92,7 @@ export default function LoadingScreen({ onComplete }) {
             whiteSpace: 'nowrap',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.1em',
+            gap: isMobile ? '0.08em' : '0.1em',
           }}
         >
           LOADING
