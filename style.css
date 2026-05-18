@@ -2850,36 +2850,16 @@ body { cursor: none; }
   padding: 20px;
 }
 
-/* Shell: relative container for main card + floating button tab */
-.name-popup-shell {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-}
-
-/* Main glass card — with concave notch at bottom-right */
 .name-popup-card {
-  --notch-r: 145px;
+  width: 100%;
+  max-width: 460px;
   border-radius: 24px;
   background: rgba(17, 17, 17, 0.72);
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 44px 40px;
-  /* Extra bottom padding so content clears the notch area */
-  padding-bottom: calc(28px + var(--notch-r) * 0.42);
+  padding: 44px 40px 36px;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(var(--accent-rgb), 0.08);
-  /* Concave circular notch at bottom-right corner */
-  mask: radial-gradient(
-    circle var(--notch-r) at 100% 100%,
-    transparent calc(var(--notch-r) - 1px),
-    black var(--notch-r)
-  );
-  -webkit-mask: radial-gradient(
-    circle var(--notch-r) at 100% 100%,
-    transparent calc(var(--notch-r) - 1px),
-    black var(--notch-r)
-  );
 }
 
 /* Light theme: use white (not cream) for cleaner glass effect */
@@ -2950,59 +2930,56 @@ body { cursor: none; }
   box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
 }
 
+.name-popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .name-popup-disclaimer {
   font-size: 12px;
   color: var(--muted-strong);
   opacity: 0.65;
+  flex-shrink: 0;
 }
 
-/* Floating button tab — sits inside the notch, IS the primary CTA */
-.name-popup-btn-tab {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+.name-popup-btn {
+  padding: 13px 26px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
   background: var(--accent);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 14px;
-  padding: 14px 22px;
+  color: var(--bg);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
-  color: var(--bg);
   letter-spacing: 0.02em;
-  cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.35);
+  flex-shrink: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3);
 }
 
-.name-popup-btn-tab:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.45);
+.name-popup-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
-.name-popup-btn-tab:active:not(:disabled) { transform: translateY(0); }
+.name-popup-btn:active:not(:disabled) { transform: translateY(0); }
 
-.name-popup-btn-tab:disabled {
-  opacity: 0.4;
+.name-popup-btn:disabled {
+  opacity: 0.38;
   cursor: not-allowed;
 }
 
-.name-popup-btn-tab:focus-visible {
+.name-popup-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
-/* ── MOBILE: remove notch, stack button below card ── */
-@media (max-width: 520px) {
-  .name-popup-shell {
-    max-width: 100%;
-  }
-
+@media (max-width: 480px) {
   .name-popup-card {
-    mask: none;
-    -webkit-mask: none;
     padding: 36px 28px 32px;
     border-radius: 20px;
   }
@@ -3011,17 +2988,16 @@ body { cursor: none; }
     font-size: clamp(24px, 7vw, 30px);
   }
 
-  .name-popup-body {
-    font-size: 15px;
+  .name-popup-body { font-size: 15px; }
+
+  .name-popup-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
-  .name-popup-btn-tab {
-    position: static;
-    display: block;
-    width: 100%;
+  .name-popup-btn {
     text-align: center;
-    margin-top: 20px;
-    border-radius: 12px;
     box-shadow: none;
   }
 }
