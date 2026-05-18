@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import StackedGallery from '../components/StackedGallery'
 
 export default function WorkPage() {
   useEffect(() => {
@@ -17,7 +18,9 @@ export default function WorkPage() {
   }, [])
 
   return (
-    <main className="work-page">
+    <>
+      <StackedGallery />
+      <main className="work-page">
       <div className="work-page-header">
         <div className="work-page-header-inner">
           <span className="work-eyebrow">Portfolio</span>
@@ -150,5 +153,6 @@ export default function WorkPage() {
         </div>
       </section>
     </main>
+    </>
   )
 }
