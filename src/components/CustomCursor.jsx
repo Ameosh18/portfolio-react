@@ -3,7 +3,7 @@ import { useName } from '../context/NameContext'
 
 export default function CustomCursor() {
   const { name } = useName()
-  const dotRef = useRef(null)
+  const arrowRef = useRef(null)
   const tooltipRef = useRef(null)
   const posRef = useRef({ x: -200, y: -200 })
   const rafRef = useRef(null)
@@ -21,9 +21,9 @@ export default function CustomCursor() {
         rafRef.current = requestAnimationFrame(() => {
           rafRef.current = null
           const { x, y } = posRef.current
-          if (dotRef.current) {
-            dotRef.current.style.left = x + 'px'
-            dotRef.current.style.top = y + 'px'
+          if (arrowRef.current) {
+            arrowRef.current.style.left = x + 'px'
+            arrowRef.current.style.top = y + 'px'
           }
           if (tooltipRef.current) {
             tooltipRef.current.style.left = x + 'px'
@@ -44,9 +44,25 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div ref={dotRef} className="custom-cursor-dot" />
+      <div ref={arrowRef} className="custom-cursor-arrow" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="24"
+          viewBox="0 0 20 24"
+          fill="none"
+        >
+          <path
+            d="M2 2L2 19L6.5 14L10.5 22.5L13 21.5L9 13L17 13L2 2Z"
+            fill="var(--accent)"
+            stroke="rgba(0,0,0,0.28)"
+            strokeWidth="0.9"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
       {name && (
-        <div ref={tooltipRef} className="custom-cursor-tooltip">
+        <div ref={tooltipRef} className="custom-cursor-tooltip" aria-hidden="true">
           {name}&nbsp;<span className="you-badge">(You)</span>
         </div>
       )}
