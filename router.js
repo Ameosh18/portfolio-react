@@ -78,7 +78,8 @@
     if (loadingOverlay) loadingOverlay.classList.add('active');
 
     try {
-      const response = await fetch(fileName);
+      const basePath = window.location.pathname.includes('/portfolio-react/') ? '/portfolio-react/' : '/';
+      const response = await fetch(basePath + fileName);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
       const html = await response.text();
