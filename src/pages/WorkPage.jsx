@@ -1,25 +1,6 @@
-import { useEffect } from 'react'
-import StackedGallery from '../components/StackedGallery'
-
 export default function WorkPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    const reveals = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
-
-    reveals.forEach(el => observer.observe(el))
-    return () => reveals.forEach(el => observer.unobserve(el))
-  }, [])
-
   return (
     <>
-      <StackedGallery />
       <main className="work-page">
       <div className="work-page-header">
         <div className="work-page-header-inner">
