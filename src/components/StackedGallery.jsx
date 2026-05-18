@@ -33,12 +33,12 @@ const VW = typeof window !== "undefined" ? window.innerWidth : 1440
 const IS_MOBILE = VW < 640
 const IS_TABLET = VW >= 640 && VW < 1024
 
-const CARD_W  = IS_MOBILE ? 200  : IS_TABLET ? 260  : 320
-const CARD_H  = IS_MOBILE ? 268  : IS_TABLET ? 348  : 428
-const IMG_H   = IS_MOBILE ? 96   : IS_TABLET ? 124  : 160  // top image section
-const STEP_X  = IS_MOBILE ? 160  : IS_TABLET ? 200  : 240
-const STEP_Y  = IS_MOBILE ? -56  : IS_TABLET ? -70  : -84
-const STEP_Z  = IS_MOBILE ? -192 : IS_TABLET ? -240 : -288
+const CARD_W  = IS_MOBILE ? 230  : IS_TABLET ? 310  : 380
+const CARD_H  = IS_MOBILE ? 310  : IS_TABLET ? 415  : 520
+const IMG_H   = IS_MOBILE ? 110  : IS_TABLET ? 150  : 200  // top image section
+const STEP_X  = IS_MOBILE ? 185  : IS_TABLET ? 240  : 320
+const STEP_Y  = IS_MOBILE ? -65  : IS_TABLET ? -85  : -110
+const STEP_Z  = IS_MOBILE ? -220 : IS_TABLET ? -290 : -380
 const PX_ORG  = IS_MOBILE ? "50% 40%" : IS_TABLET ? "40% 35%" : "50% 35%"
 const PERSP   = IS_MOBILE ? "1000px"  : IS_TABLET ? "1400px"  : "2000px"
 const CONT_TY = IS_MOBILE ? 40        : IS_TABLET ? 70        : 100
@@ -46,11 +46,11 @@ const CONT_TY = IS_MOBILE ? 40        : IS_TABLET ? 70        : 100
 // ── Carousel constants ─────────────────────────────────────────────────────
 const ROTATE_Y      = -50
 const SPEED_FACTOR  = IS_MOBILE ? 0.25 : 0.4
-const COPIES        = 4
+const COPIES        = 2
 const N             = 5          // number of projects
-const TOTAL         = N * COPIES // 20 cards
+const TOTAL         = N * COPIES // 10 cards
 const WRAP_DIST     = TOTAL * STEP_X
-const CENTER_IDX    = N + 3      // index 8 → digisense (2nd copy)
+const CENTER_IDX    = N          // index 5 → digisense (2nd copy, first card)
 const INIT_OFFSET   = -CENTER_IDX * STEP_X
 
 // ── Projects ───────────────────────────────────────────────────────────────
