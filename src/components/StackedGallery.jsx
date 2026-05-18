@@ -444,18 +444,6 @@ export default function StackedGallery() {
       }}
     >
       <div style={{
-        position: "absolute", zIndex: 50,
-        bottom: IS_MOBILE ? 16 : "3vw",
-        right: IS_MOBILE ? 16 : "3vw",
-        fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase",
-        color: isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
-        fontFamily: '"DM Sans", sans-serif',
-        userSelect: "none", pointerEvents: "none",
-      }}>
-        scroll to explore
-      </div>
-
-      <div style={{
         width: "100%", height: "100%",
         display: "flex", alignItems: "center", justifyContent: "center",
         perspective: PERSP, perspectiveOrigin: PX_ORG,
