@@ -8,7 +8,7 @@ import './App.css'
 
 function AppContent() {
   const location = useLocation()
-  const hideFooter = location.pathname === '/work'
+  const hideFooter = location.pathname.includes('/work')
 
   return (
     <>
