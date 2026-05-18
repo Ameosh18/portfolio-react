@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   motion,
   AnimatePresence,
@@ -6,9 +6,6 @@ import {
   useMotionValueEvent,
   useSpring,
   useTransform,
-  useVelocity,
-  useScroll,
-  useAnimationFrame,
 } from "motion/react"
 import DigiSenseHero from "../../digisense_hero_image.png"
 
@@ -35,23 +32,24 @@ const IS_TABLET = VW >= 640 && VW < 1024
 
 const CARD_W  = IS_MOBILE ? 230  : IS_TABLET ? 310  : 380
 const CARD_H  = IS_MOBILE ? 310  : IS_TABLET ? 415  : 520
-const IMG_H   = IS_MOBILE ? 110  : IS_TABLET ? 150  : 200  // top image section
+const IMG_H   = IS_MOBILE ? 110  : IS_TABLET ? 150  : 200
 const STEP_X  = IS_MOBILE ? 185  : IS_TABLET ? 240  : 320
 const STEP_Y  = IS_MOBILE ? -65  : IS_TABLET ? -85  : -110
 const STEP_Z  = IS_MOBILE ? -220 : IS_TABLET ? -290 : -380
-const PX_ORG  = IS_MOBILE ? "50% 40%" : IS_TABLET ? "40% 35%" : "50% 35%"
 const PERSP   = IS_MOBILE ? "1000px"  : IS_TABLET ? "1400px"  : "2000px"
+const PX_ORG  = IS_MOBILE ? "50% 50%" : "5% 50%"
 const CONT_TY = IS_MOBILE ? 40        : IS_TABLET ? 70        : 100
 
 // ── Carousel constants ─────────────────────────────────────────────────────
-const ROTATE_Y      = -50
-const SPEED_FACTOR  = IS_MOBILE ? 0.25 : 0.4
-const COPIES        = 2
-const N             = 5          // number of projects
-const TOTAL         = N * COPIES // 10 cards
-const WRAP_DIST     = TOTAL * STEP_X
-const CENTER_IDX    = N          // index 5 → digisense (2nd copy, first card)
-const INIT_OFFSET   = -CENTER_IDX * STEP_X
+const ROTATE_Y     = -50
+const WHEEL_SPEED  = IS_MOBILE ? 0.18 : 0.28
+const TOUCH_SPEED  = IS_MOBILE ? 0.55 : 0.7
+const COPIES       = 2
+const N            = 5
+const TOTAL        = N * COPIES
+const WRAP_DIST    = TOTAL * STEP_X
+const CENTER_IDX   = N
+const INIT_OFFSET  = -CENTER_IDX * STEP_X
 
 // ── Projects ───────────────────────────────────────────────────────────────
 const projects = [
@@ -127,7 +125,7 @@ function getBrightness(wx) {
 
 // ── Card visual ────────────────────────────────────────────────────────────
 function CardFace({ card, isDark }) {
-  const panelH = CARD_H - IMG_H + 24 // overlap 24px
+  const panelH = CARD_H - IMG_H + 24
 
   const panel = isDark
     ? { bg: "linear-gradient(180deg, #1c1c1e 0%, #141414 100%)", cat: "#666", title: "white", summary: "#888", sep: "rgba(255,255,255,0.07)", num: "white", muted: "#555", year: "#aaa", border: "rgba(255,255,255,0.06)" }
@@ -361,19 +359,16 @@ function Plane({ card, index, offset, isDark }) {
   const [isHovered, setIsHovered] = useState(false)
   const [isActive,  setIsActive]  = useState(false)
 
-  // Scroll-driven base position
   const x     = useTransform(offset, (off) => wrapValue(index * STEP_X + off))
   const baseY = useTransform(x, (v) => (v / STEP_X) * STEP_Y)
   const baseZ = useTransform(x, (v) => (v / STEP_X) * STEP_Z)
   const filter = useTransform(x, (v) => `brightness(${getBrightness(v).toFixed(3)})`)
 
-  // Hover-driven additive lift
   const hoverZTarget  = useMotionValue(0)
   const hoverZSpring  = useSpring(hoverZTarget,  { stiffness: 350, damping: 32 })
   const hoverRYTarget = useMotionValue(ROTATE_Y)
   const hoverRYSpring = useSpring(hoverRYTarget, { stiffness: 350, damping: 32 })
 
-  // Combined z = scroll z + hover lift
   const effectiveZ = useTransform([baseZ, hoverZSpring], ([bz, hz]) => bz + hz)
 
   useMotionValueEvent(x, "change", (v) => {
@@ -407,7 +402,6 @@ function Plane({ card, index, offset, isDark }) {
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
     >
-      {/* Card face */}
       <CardFace card={card} isDark={isDark} />
 
       {/* Index above card */}
@@ -424,7 +418,6 @@ function Plane({ card, index, offset, isDark }) {
         {card.num}
       </div>
 
-      {/* Hover detail label (replaces active label) */}
       <AnimatePresence>
         {isHovered && !IS_MOBILE && (
           <HoverLabel card={card} />
@@ -437,24 +430,57 @@ function Plane({ card, index, offset, isDark }) {
 // ── Main export ────────────────────────────────────────────────────────────
 export default function StackedGallery() {
   const isDark = useIsDark()
-  const offset = useMotionValue(INIT_OFFSET)
-  const { scrollY }     = useScroll()
-  const scrollVelocity  = useVelocity(scrollY)
-  const smoothVelocity  = useSpring(scrollVelocity, { damping: 50, stiffness: 400 })
+  const containerRef = useRef(null)
+
+  // targetOffset accumulates raw input; offset smooths it with a spring
+  const targetOffset = useMotionValue(INIT_OFFSET)
+  const offset = useSpring(targetOffset, { damping: 36, stiffness: 160, mass: 0.7 })
 
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-  useAnimationFrame((_, delta) => {
-    if (prefersReduced) return
-    const v = smoothVelocity.get()
-    offset.set(offset.get() - v * (delta / 1000) * SPEED_FACTOR)
-  })
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el || prefersReduced) return
+
+    const onWheel = (e) => {
+      e.preventDefault()
+      targetOffset.set(targetOffset.get() - e.deltaY * WHEEL_SPEED)
+    }
+
+    // Touch support
+    let touchStartY = 0
+    const onTouchStart = (e) => { touchStartY = e.touches[0].clientY }
+    const onTouchMove = (e) => {
+      e.preventDefault()
+      const dy = touchStartY - e.touches[0].clientY
+      touchStartY = e.touches[0].clientY
+      targetOffset.set(targetOffset.get() - dy * TOUCH_SPEED)
+    }
+
+    el.addEventListener("wheel", onWheel, { passive: false })
+    el.addEventListener("touchstart", onTouchStart, { passive: true })
+    el.addEventListener("touchmove", onTouchMove, { passive: false })
+
+    return () => {
+      el.removeEventListener("wheel", onWheel)
+      el.removeEventListener("touchstart", onTouchStart)
+      el.removeEventListener("touchmove", onTouchMove)
+    }
+  }, [targetOffset, prefersReduced])
 
   return (
-    <div style={{ width: "100%", height: "100%", background: isDark ? "#0A0A0A" : "#F7F4F0", position: "relative", overflow: "hidden" }}>
-
+    <div
+      ref={containerRef}
+      style={{
+        width: "100%",
+        height: "100%",
+        background: isDark ? "#0A0A0A" : "#F7F4F0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       {/* Scroll hint - bottom right */}
       <div style={{
         position: "absolute",
