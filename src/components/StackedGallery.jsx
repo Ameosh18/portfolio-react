@@ -477,7 +477,7 @@ export default function StackedGallery() {
         height: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         perspective: PERSP,
         perspectiveOrigin: PX_ORG,
       }}>
