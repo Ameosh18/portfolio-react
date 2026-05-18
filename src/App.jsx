@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { NameProvider } from './context/NameContext'
 import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import CustomCursor from './components/CustomCursor'
 import './App.css'
 
 function AppContent() {
@@ -12,6 +14,7 @@ function AppContent() {
 
   return (
     <>
+      <CustomCursor />
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -26,8 +29,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/portfolio-react/">
-      <AppContent />
-    </BrowserRouter>
+    <NameProvider>
+      <BrowserRouter basename="/portfolio-react/">
+        <AppContent />
+      </BrowserRouter>
+    </NameProvider>
   )
 }

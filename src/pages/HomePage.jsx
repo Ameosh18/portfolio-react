@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DigiSenseHero from '../../digisense_hero_image.png'
 import LoadingScreen from '../components/LoadingScreen'
+import NamePopup from '../components/NamePopup'
+import { useName } from '../context/NameContext'
 
 export default function HomePage() {
   const [showLoading, setShowLoading] = useState(true)
+  const [showPopup, setShowPopup] = useState(false)
+  const { name } = useName()
 
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal')
@@ -24,7 +28,11 @@ export default function HomePage() {
 
   return (
     <>
-      <LoadingScreen onComplete={() => setShowLoading(false)} />
+      <LoadingScreen onComplete={() => {
+        setShowLoading(false)
+        if (!name) setTimeout(() => setShowPopup(true), 400)
+      }} />
+      <NamePopup show={showPopup} onClose={() => setShowPopup(false)} />
       <main id="home-view">
         {/* HERO */}
       <section className="hero" id="hero">
