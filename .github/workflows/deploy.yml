@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - claude/debug-github-pages-Z0NXF
   pull_request:
     branches:
       - main
