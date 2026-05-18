@@ -1,5 +1,3 @@
-"use client"
-
 import {
   motion,
   useScroll,
@@ -74,8 +72,17 @@ export default function StackedGallery() {
   )
 
   return (
-    <div className="min-h-[300vh] bg-black">
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center" style={{ perspective: "2000px" }}>
+    <div style={{ minHeight: "300vh", backgroundColor: "#000" }}>
+      <div style={{
+        position: "sticky",
+        top: 0,
+        height: "100vh",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        perspective: "2000px",
+      }}>
         <motion.div
           style={{
             rotateX,
@@ -122,23 +129,46 @@ function Plane({ project, index, z }) {
         stiffness: 300,
         damping: 20,
       }}
-      className="relative w-[320px] h-[420px] rounded-3xl overflow-hidden shrink-0 cursor-pointer"
+      className="relative shrink-0 cursor-pointer"
+      style={{
+        width: "320px",
+        height: "420px",
+        borderRadius: "24px",
+        overflow: "hidden",
+      }}
     >
       {project.image ? (
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         />
       ) : (
-        <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900" />
+        <div style={{
+          width: "100%",
+          height: "100%",
+          background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
+        }} />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)",
+      }} />
 
-      <div className="absolute bottom-6 left-6 text-white">
-        <div className="text-xl font-semibold">{project.title}</div>
-        <div className="text-sm text-gray-300">{project.subtitle}</div>
+      <div style={{
+        position: "absolute",
+        bottom: "24px",
+        left: "24px",
+        color: "white",
+      }}>
+        <div style={{ fontSize: "20px", fontWeight: "600" }}>{project.title}</div>
+        <div style={{ fontSize: "14px", color: "#d1d5db" }}>{project.subtitle}</div>
       </div>
     </motion.div>
   )
