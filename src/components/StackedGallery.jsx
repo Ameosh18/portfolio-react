@@ -145,6 +145,7 @@ function CardFace({ card, isDark, isHovered }) {
       position: "relative",
       borderRadius: 24,
       overflow: "hidden",
+      isolation: "isolate",
       background: isDark ? "#111" : "#E8E4DE",
       boxShadow: isHovered
         ? "0 56px 100px rgba(0,0,0,0.75), 0 20px 40px rgba(0,0,0,0.5)"
@@ -349,7 +350,7 @@ function Plane({ card, index, offset, isDark, isBlurred, onEnter, onClear }) {  
     >
       {/* De-emphasise non-hovered cards — opacity only, no filter inside preserve-3d */}
       <div style={{
-        opacity: isBlurred ? 0.28 : 1,
+        opacity: isBlurred ? 0.82 : 1,
         transition: "opacity 0.4s ease",
         pointerEvents: isBlurred ? "none" : "auto",
       }}>
