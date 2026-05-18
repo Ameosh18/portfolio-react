@@ -55,19 +55,19 @@ export default function LoadingScreen({ onComplete }) {
         >
           LOADING
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
           >
             .
           </motion.span>
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
           >
             .
           </motion.span>
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
           >
             .
@@ -97,19 +97,19 @@ export default function LoadingScreen({ onComplete }) {
         >
           LOADING
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
           >
             .
           </motion.span>
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
           >
             .
           </motion.span>
           <motion.span
-            animate={{ opacity: [0.4, 1, 0.4] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
           >
             .
