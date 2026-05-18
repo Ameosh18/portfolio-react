@@ -1,8 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DigiSenseHero from '../../digisense_hero_image.png'
+import LoadingScreen from '../components/LoadingScreen'
 
 export default function HomePage() {
+  const [showLoading, setShowLoading] = useState(true)
+
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal')
     if (reveals.length === 0) return
@@ -20,8 +23,10 @@ export default function HomePage() {
   }, [])
 
   return (
-    <main id="home-view">
-      {/* HERO */}
+    <>
+      <LoadingScreen onComplete={() => setShowLoading(false)} />
+      <main id="home-view">
+        {/* HERO */}
       <section className="hero" id="hero">
         <div className="hero-grid-highlight"></div>
 
@@ -350,6 +355,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   )
 }
