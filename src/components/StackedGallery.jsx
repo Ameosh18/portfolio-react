@@ -426,7 +426,7 @@ function Plane({ card, index, offset, isDark }) {
 
       {/* Hover detail label (replaces active label) */}
       <AnimatePresence>
-        {(isHovered || isActive) && !IS_MOBILE && (
+        {isHovered && !IS_MOBILE && (
           <HoverLabel card={card} />
         )}
       </AnimatePresence>
@@ -477,9 +477,10 @@ export default function StackedGallery() {
         height: "100%",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
+        paddingRight: IS_MOBILE ? "20px" : IS_TABLET ? "60px" : "80px",
         perspective: PERSP,
-        perspectiveOrigin: PX_ORG,
+        perspectiveOrigin: IS_MOBILE ? "50% 40%" : IS_TABLET ? "65% 35%" : "75% 35%",
       }}>
         {/* Planes container */}
         <div style={{
