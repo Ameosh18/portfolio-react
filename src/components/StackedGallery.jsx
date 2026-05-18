@@ -455,37 +455,6 @@ export default function StackedGallery() {
   return (
     <div style={{ width: "100%", height: "100%", background: isDark ? "#0A0A0A" : "#F7F4F0", position: "relative", overflow: "hidden" }}>
 
-      {/* Header — top left */}
-      <div style={{
-        position: "absolute",
-        zIndex: 50,
-        top: IS_MOBILE ? 72 : "max(80px, 3vw)",
-        left: IS_MOBILE ? 20 : "3vw",
-        color: isDark ? "white" : "#1A1A1A",
-        lineHeight: 0.92,
-        letterSpacing: "-0.02em",
-        fontFamily: '"Playfair Display", serif',
-        fontWeight: "normal",
-        userSelect: "none",
-      }}>
-        <div style={{ fontSize: IS_MOBILE ? "clamp(24px, 8vw, 36px)" : "clamp(32px, 5vw, 64px)", marginLeft: IS_MOBILE ? 0 : "4vw" }}>
-          SELECTED WORK
-        </div>
-        <div style={{ fontSize: IS_MOBILE ? "clamp(24px, 8vw, 36px)" : "clamp(32px, 5vw, 64px)" }}>
-          {N} PROJECTS
-          <sup style={{
-            fontSize: "0.38em",
-            fontWeight: 600,
-            letterSpacing: "normal",
-            position: "relative",
-            top: "0.6em",
-            marginLeft: 4,
-          }}>
-            {String(N).padStart(2, "0")}
-          </sup>
-        </div>
-      </div>
-
       {/* Scroll hint — bottom right */}
       <div style={{
         position: "absolute",
@@ -516,7 +485,7 @@ export default function StackedGallery() {
         <div style={{
           position: "relative",
           transformStyle: "preserve-3d",
-          transform: `translateY(${CONT_TY}px)`,
+          transform: `translateX(${-CARD_W / 2}px) translateY(${CONT_TY}px)`,
         }}>
           {CARDS.map((card, i) => (
             <Plane
