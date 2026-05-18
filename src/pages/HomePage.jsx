@@ -8,6 +8,7 @@ import { useName } from '../context/NameContext'
 export default function HomePage() {
   const [showLoading, setShowLoading] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
+  const [contentReady, setContentReady] = useState(false)
   const { name } = useName()
 
   useEffect(() => {
@@ -30,10 +31,17 @@ export default function HomePage() {
     <>
       <LoadingScreen onComplete={() => {
         setShowLoading(false)
-        if (!name) setTimeout(() => setShowPopup(true), 400)
+        if (!name) {
+          setTimeout(() => setShowPopup(true), 400)
+        } else {
+          setContentReady(true)
+        }
       }} />
-      <NamePopup show={showPopup} onClose={() => setShowPopup(false)} />
-      <main id="home-view">
+      <NamePopup show={showPopup} onClose={() => {
+        setShowPopup(false)
+        setContentReady(true)
+      }} />
+      <main id="home-view" className={contentReady ? '' : 'content-blurred'}>
         {/* HERO */}
       <section className="hero" id="hero">
         <div className="hero-grid-highlight"></div>
