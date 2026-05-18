@@ -1,0 +1,121 @@
+import { useEffect, useState } from 'react'
+import { motion } from 'motion/react'
+
+export default function LoadingScreen({ onComplete }) {
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false)
+      onComplete?.()
+    }, 3200)
+
+    return () => clearTimeout(timer)
+  }, [onComplete])
+
+  if (!isVisible) return null
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
+
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.5, delay: 3.1 }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'var(--bg)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+        pointerEvents: 'none',
+        padding: isMobile ? '20px' : '0',
+      }}
+    >
+      <div style={{ position: 'relative', height: 'auto', minHeight: isMobile ? 60 : 80 }}>
+        {/* Base text (outline) */}
+        <div
+          style={{
+            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
+            fontFamily: '"DM Sans", sans-serif',
+            fontWeight: 700,
+            color: 'rgba(255, 255, 255, 0.1)',
+            letterSpacing: '-0.02em',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: isMobile ? '0.08em' : '0.1em',
+          }}
+        >
+          LOADING
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          >
+            .
+          </motion.span>
+        </div>
+
+        {/* Animated fill overlay */}
+        <motion.div
+          initial={{ clipPath: 'inset(0 100% 0 0)' }}
+          animate={{ clipPath: 'inset(0 0% 0 0)' }}
+          transition={{ duration: 2.8, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
+            fontFamily: '"DM Sans", sans-serif',
+            fontWeight: 700,
+            color: 'var(--accent)',
+            letterSpacing: '-0.02em',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: isMobile ? '0.08em' : '0.1em',
+          }}
+        >
+          LOADING
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          >
+            .
+          </motion.span>
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
