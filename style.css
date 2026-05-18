@@ -2774,8 +2774,12 @@ body.menu-open #site-nav {
 }
 
 /* ── CUSTOM CURSOR ── */
-body { cursor: none; }
-@media (pointer: coarse) { body { cursor: auto; } }
+body,
+body * { cursor: none !important; }
+@media (pointer: coarse) {
+  body,
+  body * { cursor: auto !important; }
+}
 
 .custom-cursor-arrow {
   position: fixed;
@@ -2819,7 +2823,8 @@ body { cursor: none; }
 }
 
 @media (forced-colors: active) {
-  body { cursor: auto; }
+  body,
+  body * { cursor: auto !important; }
   .custom-cursor-arrow,
   .custom-cursor-tooltip { display: none; }
 }
