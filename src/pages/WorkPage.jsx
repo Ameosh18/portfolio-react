@@ -1,4 +1,23 @@
+import { useEffect } from 'react'
+import StackedGallery from '../components/StackedGallery'
+
 export default function WorkPage() {
+  useEffect(() => {
+    const reveals = document.querySelectorAll('.reveal')
+    if (reveals.length === 0) return
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
+
+    reveals.forEach(el => observer.observe(el))
+    return () => reveals.forEach(el => observer.unobserve(el))
+  }, [])
+
   return (
     <>
       <main className="work-page">
@@ -11,68 +30,8 @@ export default function WorkPage() {
         </div>
       </div>
 
-      {/* Featured work chapters */}
-      <section className="work-chapter">
-        <div className="chapter-bg" style={{backgroundImage: 'url(digisense_hero_image.png)'}}></div>
-        <div className="chapter-overlay"></div>
-        <div className="chapter-content">
-          <span className="chapter-number reveal">01</span>
-          <h2 className="chapter-title reveal reveal-1">DiGiSense</h2>
-          <p className="chapter-subtitle reveal reveal-2">Connected Vehicle Telematics Platform</p>
-          <div className="chapter-tags reveal reveal-3">
-            <span className="chapter-tag">IoT</span>
-            <span className="chapter-tag">Telematics</span>
-            <span className="chapter-tag">Systems Design</span>
-            <span className="chapter-tag">Mahindra</span>
-          </div>
-          <div className="chapter-metrics reveal reveal-4">
-            <div className="chapter-metric">
-              <span className="c-metric-val">100K+</span>
-              <span className="c-metric-lbl">Connected Vehicles</span>
-            </div>
-            <div className="chapter-metric">
-              <span className="c-metric-val">Rural & Commercial</span>
-              <span className="c-metric-lbl">Fleet Coverage</span>
-            </div>
-            <div className="chapter-metric">
-              <span className="c-metric-val">Redesigned</span>
-              <span className="c-metric-lbl">From Ground Up</span>
-            </div>
-          </div>
-          <a href="/digisense" className="chapter-cta reveal reveal-5">View Case Study →</a>
-        </div>
-      </section>
-
-      <section className="work-chapter">
-        <div className="chapter-bg" style={{backgroundColor: 'var(--surface)'}}></div>
-        <div className="chapter-overlay"></div>
-        <div className="chapter-content">
-          <span className="chapter-number reveal">02</span>
-          <h2 className="chapter-title reveal reveal-1">NETSCOUT PFS ONE</h2>
-          <p className="chapter-subtitle reveal reveal-2">Enterprise Network Visibility Platform</p>
-          <div className="chapter-tags reveal reveal-3">
-            <span className="chapter-tag">Cybersecurity</span>
-            <span className="chapter-tag">Enterprise SaaS</span>
-            <span className="chapter-tag">Systems Design</span>
-            <span className="chapter-tag">NETSCOUT</span>
-          </div>
-          <div className="chapter-metrics reveal reveal-4">
-            <div className="chapter-metric">
-              <span className="c-metric-val">Global</span>
-              <span className="c-metric-lbl">Enterprise Data Centres</span>
-            </div>
-            <div className="chapter-metric">
-              <span className="c-metric-val">3</span>
-              <span className="c-metric-lbl">Roles Unified in One Platform</span>
-            </div>
-            <div className="chapter-metric">
-              <span className="c-metric-val">Legacy</span>
-              <span className="c-metric-lbl">System Completely Redesigned</span>
-            </div>
-          </div>
-          <a href="/pfsone" className="chapter-cta reveal reveal-5">View Case Study →</a>
-        </div>
-      </section>
+      {/* Featured work - 3D Stacked Gallery */}
+      <StackedGallery />
 
       {/* Also Notable */}
       <section className="also-notable">
