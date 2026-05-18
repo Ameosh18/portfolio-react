@@ -45,9 +45,30 @@ export default function LoadingScreen({ onComplete }) {
             letterSpacing: '-0.02em',
             userSelect: 'none',
             whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.1em',
           }}
         >
-          LOADING...
+          LOADING
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          >
+            .
+          </motion.span>
         </div>
 
         {/* Animated fill overlay */}
@@ -66,9 +87,30 @@ export default function LoadingScreen({ onComplete }) {
             letterSpacing: '-0.02em',
             userSelect: 'none',
             whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.1em',
           }}
         >
-          LOADING...
+          LOADING
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          >
+            .
+          </motion.span>
         </motion.div>
       </div>
     </motion.div>
