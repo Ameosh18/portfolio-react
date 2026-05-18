@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
@@ -6,9 +6,12 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import './App.css'
 
-export default function App() {
+function AppContent() {
+  const location = useLocation()
+  const hideFooter = location.pathname === '/work'
+
   return (
-    <BrowserRouter basename="/portfolio-react/">
+    <>
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -16,7 +19,15 @@ export default function App() {
         <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
         <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
       </Routes>
-      <Footer />
+      {!hideFooter && <Footer />}
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename="/portfolio-react/">
+      <AppContent />
     </BrowserRouter>
   )
 }
