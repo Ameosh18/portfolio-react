@@ -310,7 +310,7 @@ function HoverLabel({ card }) {
           color: "rgba(255,255,255,0.4)",
           fontFamily: '"DM Sans", sans-serif',
         }}>
-          {card.num} — {card.category}
+          {card.num} · {card.category}
         </div>
         <div style={{
           fontSize: IS_MOBILE ? 13 : 16,
@@ -455,7 +455,7 @@ export default function StackedGallery() {
   return (
     <div style={{ width: "100%", height: "100%", background: isDark ? "#0A0A0A" : "#F7F4F0", position: "relative", overflow: "hidden" }}>
 
-      {/* Scroll hint — bottom right */}
+      {/* Scroll hint - bottom right */}
       <div style={{
         position: "absolute",
         zIndex: 50,

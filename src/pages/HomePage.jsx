@@ -115,7 +115,7 @@ export default function HomePage() {
           </h1>
           <p className="hero-subheadline reveal reveal-4">UX Strategy · Systems Design · AI/ML Product Design</p>
           <p className="hero-body reveal reveal-5">
-            From connected tractors in rural India to enterprise SaaS platforms —
+            From connected tractors in rural India to enterprise SaaS platforms,
             I work at the intersection of strategic thinking, systems design,
             and measurable human behaviour. Every engagement starts with
             a hard problem and ends with a number that moved.
@@ -183,7 +183,7 @@ export default function HomePage() {
 
         <Link to="/digisense" className="work-card reveal reveal-0">
           <div className="work-card-image">
-            <img src={DigiSenseHero} alt="DiGiSense — Connected Vehicle Telematics Platform" />
+            <img src={DigiSenseHero} alt="DiGiSense: Connected Vehicle Telematics Platform" />
           </div>
           <div className="work-card-content">
             <span className="work-card-badge">Case Study</span>
@@ -192,8 +192,8 @@ export default function HomePage() {
             <div className="work-card-divider"></div>
             <p className="work-card-description">
               Redesigned Mahindra's IoT telematics platform serving 100,000+ connected
-              vehicles across rural and commercial fleets — turning fragmented real-time
-              data into actionable insights — reducing operator decision time and driving
+              vehicles across rural and commercial fleets, turning fragmented real-time
+              data into actionable insights and reducing operator decision time and driving
               measurable gains in fleet uptime and fuel efficiency.
             </p>
             <div className="work-card-meta">
@@ -224,7 +224,7 @@ export default function HomePage() {
             <p className="work-card-subtitle">Enterprise Network Visibility Platform</p>
             <div className="work-card-divider"></div>
             <p className="work-card-description">
-              Redesigned NETSCOUT's nGenius Packet Flow Switch management interface — replacing a legacy system with a
+              Redesigned NETSCOUT's nGenius Packet Flow Switch management interface, replacing a legacy system with a
               lifecycle-based navigation architecture that gave network administrators staged topology publishing,
               perspective-based navigation, and role-differentiated access across enterprise data centres worldwide.
             </p>

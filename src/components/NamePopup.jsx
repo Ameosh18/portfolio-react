@@ -66,10 +66,10 @@ export default function NamePopup({ show, onClose }) {
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="name-popup-eyebrow" aria-hidden="true">A quick hello</p>
-            <h2 className="name-popup-headline" id="popup-title">Before we begin—</h2>
+            <p className="name-popup-eyebrow" aria-hidden="true">One quick thing</p>
+            <h2 className="name-popup-headline" id="popup-title">Glad you're here.</h2>
             <p className="name-popup-body">
-              Every great collaboration starts with an introduction. I'd love to know who's stepping into my work today — it'll make this feel a little more like it was made just for you.
+              I'd love to know who's exploring my work. Just your name. That's all.
             </p>
             <div className="name-popup-field">
               <label htmlFor="popup-name-input" className="name-popup-label">

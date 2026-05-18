@@ -2803,8 +2803,8 @@ body { cursor: none; }
   font-weight: 500;
   color: var(--text);
   white-space: nowrap;
-  /* Offset from arrow tip: right and slightly down */
-  transform: translate(20px, 4px);
+  /* Offset from arrow tip: clears the 28px arrow body + breathing space */
+  transform: translate(36px, 2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   will-change: left, top;
 }
