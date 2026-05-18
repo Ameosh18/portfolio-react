@@ -199,8 +199,26 @@ function CardFace({ card, isDark, isHovered }) {
 }
 
 // ── Hover detail panel ─────────────────────────────────────────────────────
-function HoverPanel({ card, onEnter, onLeave }) {
+function HoverPanel({ card, isDark, onEnter, onLeave }) {
   const navigate = useNavigate()
+
+  const c = isDark
+    ? {
+        line:       "rgba(255,255,255,0.65)",
+        eyebrow:    "rgba(255,255,255,0.45)",
+        title:      "rgba(255,255,255,0.96)",
+        divider:    "rgba(255,255,255,0.12)",
+        summary:    "rgba(255,255,255,0.62)",
+        comingSoon: "rgba(255,255,255,0.28)",
+      }
+    : {
+        line:       "rgba(0,0,0,0.45)",
+        eyebrow:    "#777777",
+        title:      "#1A1A1A",
+        divider:    "rgba(0,0,0,0.1)",
+        summary:    "#5A5A5A",
+        comingSoon: "#AAAAAA",
+      }
 
   return (
     <motion.div
@@ -226,7 +244,7 @@ function HoverPanel({ card, onEnter, onLeave }) {
         animate={{ scaleX: 1 }}
         exit={{ scaleX: 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        style={{ width: 64, height: 1.5, background: "rgba(255,255,255,0.65)", transformOrigin: "left", flexShrink: 0, marginTop: 13 }}
+        style={{ width: 64, height: 1.5, background: c.line, transformOrigin: "left", flexShrink: 0, marginTop: 13 }}
       />
 
       <motion.div
@@ -236,14 +254,14 @@ function HoverPanel({ card, onEnter, onLeave }) {
         transition={{ duration: 0.25, delay: 0.1 }}
         style={{ marginLeft: 18, display: "flex", flexDirection: "column", gap: 6 }}
       >
-        <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", fontFamily: '"DM Sans", sans-serif', lineHeight: 1 }}>
+        <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: c.eyebrow, fontFamily: '"DM Sans", sans-serif', lineHeight: 1 }}>
           {card.num} · {card.category}
         </div>
-        <div style={{ fontSize: IS_TABLET ? 18 : 22, fontWeight: 700, color: "rgba(255,255,255,0.96)", fontFamily: '"DM Sans", sans-serif', letterSpacing: "-0.02em", lineHeight: 1.15, whiteSpace: "nowrap" }}>
+        <div style={{ fontSize: IS_TABLET ? 18 : 22, fontWeight: 700, color: c.title, fontFamily: '"DM Sans", sans-serif', letterSpacing: "-0.02em", lineHeight: 1.15, whiteSpace: "nowrap" }}>
           {card.title}
         </div>
-        <div style={{ width: 200, height: 1, background: "rgba(255,255,255,0.12)", marginTop: 2, marginBottom: 2 }} />
-        <div style={{ fontSize: IS_TABLET ? 12 : 13, color: "rgba(255,255,255,0.62)", fontFamily: '"DM Sans", sans-serif', lineHeight: 1.6, maxWidth: 260 }}>
+        <div style={{ width: 200, height: 1, background: c.divider, marginTop: 2, marginBottom: 2 }} />
+        <div style={{ fontSize: IS_TABLET ? 12 : 13, color: c.summary, fontFamily: '"DM Sans", sans-serif', lineHeight: 1.6, maxWidth: 260 }}>
           {card.summary}
         </div>
         {card.href ? (
@@ -261,7 +279,7 @@ function HoverPanel({ card, onEnter, onLeave }) {
             View Case Study →
           </button>
         ) : (
-          <div style={{ marginTop: 10, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", fontFamily: '"DM Sans", sans-serif' }}>
+          <div style={{ marginTop: 10, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: c.comingSoon, fontFamily: '"DM Sans", sans-serif' }}>
             Coming soon
           </div>
         )}
@@ -271,7 +289,7 @@ function HoverPanel({ card, onEnter, onLeave }) {
 }
 
 // ── Plane (3D card in space) ───────────────────────────────────────────────
-function Plane({ card, index, offset, isDark, isBlurred, onEnter, onClear }) {
+function Plane({ card, index, offset, isDark, isBlurred, onEnter, onClear }) {  // isDark forwarded to HoverPanel
   const navigate = useNavigate()
   const [isHovered, setIsHovered] = useState(false)
   const leaveTimer = useRef(null)
@@ -329,11 +347,10 @@ function Plane({ card, index, offset, isDark, isBlurred, onEnter, onClear }) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      {/* Blurrable card region */}
+      {/* De-emphasise non-hovered cards — opacity only, no filter inside preserve-3d */}
       <div style={{
-        filter: isBlurred ? "blur(4px)" : "blur(0px)",
-        opacity: isBlurred ? 0.38 : 1,
-        transition: "filter 0.4s ease, opacity 0.4s ease",
+        opacity: isBlurred ? 0.28 : 1,
+        transition: "opacity 0.4s ease",
         pointerEvents: isBlurred ? "none" : "auto",
       }}>
         <div onClick={() => card.href && navigate(card.href)} style={{ cursor: card.href ? "pointer" : "default" }}>
@@ -352,7 +369,7 @@ function Plane({ card, index, offset, isDark, isBlurred, onEnter, onClear }) {
       {/* Hover panel — always full opacity, not inside blur wrapper */}
       <AnimatePresence>
         {isHovered && !IS_MOBILE && (
-          <HoverPanel card={card} onEnter={handleEnter} onLeave={handleLeave} />
+          <HoverPanel card={card} isDark={isDark} onEnter={handleEnter} onLeave={handleLeave} />
         )}
       </AnimatePresence>
     </motion.div>
