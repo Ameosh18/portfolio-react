@@ -36,6 +36,28 @@ export default function WorkPage() {
         <div style={{ flex: 1, minHeight: 0 }}>
           <StackedGallery />
         </div>
+
+        <div style={{
+          flexShrink: 0,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "12px 24px",
+          borderTop: "1px solid var(--border)",
+        }}>
+          <div className="availability-status">
+            <span className="pulse-dot" aria-hidden="true" />
+            <span style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--muted)", textTransform: "uppercase", fontFamily: "var(--font-body)" }}>
+              Available for projects
+            </span>
+          </div>
+          <a
+            href="mailto:ameya.kulkarni@outlook.com"
+            style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.1em", color: "var(--accent)", textDecoration: "none", textTransform: "uppercase", fontFamily: "var(--font-body)" }}
+          >
+            Get in touch ↗
+          </a>
+        </div>
       </div>
     )
   }
