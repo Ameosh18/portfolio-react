@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   motion,
   AnimatePresence,
@@ -126,18 +127,21 @@ function getBrightness(wx) {
 }
 
 // ── Card visual ────────────────────────────────────────────────────────────
-function CardFace({ card, isDark }) {
-  const panelH = CARD_H - IMG_H + 24 // overlap 24px
+function CardFace({ card, isDark, w: wProp, h: hProp, imgH: imgHProp }) {
+  const cw = wProp ?? CARD_W
+  const ch = hProp ?? CARD_H
+  const ih = imgHProp ?? IMG_H
+  const panelH = ch - ih + 24
 
   const panel = isDark
     ? { bg: "linear-gradient(180deg, #1c1c1e 0%, #141414 100%)", cat: "#666", title: "white", summary: "#888", sep: "rgba(255,255,255,0.07)", num: "white", muted: "#555", year: "#aaa", border: "rgba(255,255,255,0.06)" }
     : { bg: "linear-gradient(180deg, #F0EDE8 0%, #E8E4DE 100%)", cat: "#999", title: "#1A1A1A", summary: "#666", sep: "rgba(0,0,0,0.1)", num: "#1A1A1A", muted: "#999", year: "#555", border: "rgba(0,0,0,0.07)" }
 
   return (
-    <div style={{ width: CARD_W, height: CARD_H, position: "relative", borderRadius: 24, overflow: "hidden", background: isDark ? "#111" : "#E8E4DE" }}>
+    <div style={{ width: cw, height: ch, position: "relative", borderRadius: 24, overflow: "hidden", background: isDark ? "#111" : "#E8E4DE" }}>
 
       {/* ── Top image section ── */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: IMG_H, overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: ih, overflow: "hidden" }}>
         {card.image ? (
           <img
             src={card.image}
@@ -434,23 +438,155 @@ function Plane({ card, index, offset, isDark }) {
   )
 }
 
+// ── Mobile: flat horizontal swipe carousel ────────────────────────────────
+function MobileCarousel({ isDark }) {
+  const navigate     = useNavigate()
+  const [current, setCurrent] = useState(0)
+  const containerRef = useRef(null)
+  const [containerH, setContainerH] = useState(
+    typeof window !== "undefined" ? window.innerHeight * 0.72 : 480
+  )
+  const touchStartX = useRef(0)
+  const touchStartY = useRef(0)
+  const N_CARDS = projects.length
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const obs = new ResizeObserver(([e]) => setContainerH(e.contentRect.height))
+    obs.observe(el)
+    setContainerH(el.offsetHeight)
+    return () => obs.disconnect()
+  }, [])
+
+  const vw = typeof window !== "undefined" ? window.innerWidth : 375
+
+  // Space consumed by CTA row, dots row, gaps, and padding
+  const RESERVED = 120
+  const ASPECT   = 520 / 380
+  const cardW = Math.min(vw - 48, Math.round((containerH - RESERVED) / ASPECT))
+  const cardH = Math.round(cardW * ASPECT)
+  const imgH  = Math.round(cardH * (200 / 520))
+
+  const gap     = 16
+  const slide   = cardW + gap
+  const targetX = -(current * slide) + (vw / 2 - cardW / 2)
+
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+    touchStartY.current = e.touches[0].clientY
+  }
+  const onTouchEnd = (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    const dy = e.changedTouches[0].clientY - touchStartY.current
+    if (Math.abs(dx) < Math.abs(dy) * 1.2) return
+    if (dx < -44 && current < N_CARDS - 1) setCurrent(c => c + 1)
+    else if (dx > 44 && current > 0) setCurrent(c => c - 1)
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        width: "100%", height: "100%",
+        display: "flex", flexDirection: "column", alignItems: "center",
+        gap: 16, paddingTop: 8, paddingBottom: 16, boxSizing: "border-box",
+      }}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Cards strip */}
+      <div style={{ width: "100%", overflow: "hidden", flexShrink: 0 }}>
+        <motion.div
+          animate={{ x: targetX }}
+          transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.7 }}
+          style={{ display: "flex", gap }}
+        >
+          {projects.map((card, i) => (
+            <motion.div
+              key={card.id}
+              animate={{ opacity: i === current ? 1 : 0.42, scale: i === current ? 1 : 0.9 }}
+              transition={{ duration: 0.3 }}
+              style={{ flexShrink: 0, width: cardW }}
+            >
+              <CardFace card={card} isDark={isDark} w={cardW} h={cardH} imgH={imgH} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* CTA row */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: cardW, flexShrink: 0 }}
+        >
+          {projects[current].href ? (
+            <button
+              onClick={() => navigate(projects[current].href)}
+              style={{
+                fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase",
+                fontWeight: 600, fontFamily: '"DM Sans", sans-serif',
+                color: "#0A0A0A", background: "var(--accent, #C8A97E)",
+                border: "none", borderRadius: 100, padding: "10px 20px", whiteSpace: "nowrap", cursor: "pointer",
+              }}
+            >
+              View Case Study →
+            </button>
+          ) : (
+            <span style={{ fontSize: 11, color: "var(--muted)", fontFamily: '"DM Sans", sans-serif', letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              Coming soon
+            </span>
+          )}
+          <span style={{ fontSize: 12, color: "var(--muted-strong)", fontFamily: '"DM Sans", sans-serif', letterSpacing: "0.04em", fontVariantNumeric: "tabular-nums" }}>
+            {String(current + 1).padStart(2, "0")} / {String(N_CARDS).padStart(2, "0")}
+          </span>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Pill dots */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+        {projects.map((_, i) => (
+          <motion.button
+            key={i}
+            onClick={() => setCurrent(i)}
+            animate={{
+              width: i === current ? 22 : 5,
+              background: i === current ? "var(--accent, #C8A97E)" : isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)",
+            }}
+            transition={{ duration: 0.25 }}
+            style={{ height: 4, borderRadius: 2, border: "none", padding: 0, flexShrink: 0, minWidth: 5, cursor: "pointer" }}
+            aria-label={`Go to project ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ── Main export ────────────────────────────────────────────────────────────
 export default function StackedGallery() {
-  const isDark = useIsDark()
-  const offset = useMotionValue(INIT_OFFSET)
-  const { scrollY }     = useScroll()
-  const scrollVelocity  = useVelocity(scrollY)
-  const smoothVelocity  = useSpring(scrollVelocity, { damping: 50, stiffness: 400 })
+  const isDark         = useIsDark()
+  const offset         = useMotionValue(INIT_OFFSET)
+  const { scrollY }    = useScroll()
+  const scrollVelocity = useVelocity(scrollY)
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 })
 
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
   useAnimationFrame((_, delta) => {
-    if (prefersReduced) return
+    if (IS_MOBILE || prefersReduced) return
     const v = smoothVelocity.get()
     offset.set(offset.get() - v * (delta / 1000) * SPEED_FACTOR)
   })
+
+  if (IS_MOBILE) return <MobileCarousel isDark={isDark} />
 
   return (
     <div style={{ width: "100%", height: "100%", background: isDark ? "#0A0A0A" : "#F7F4F0", position: "relative", overflow: "hidden" }}>
@@ -459,8 +595,8 @@ export default function StackedGallery() {
       <div style={{
         position: "absolute",
         zIndex: 50,
-        bottom: IS_MOBILE ? 16 : "3vw",
-        right: IS_MOBILE ? 16 : "3vw",
+        bottom: "3vw",
+        right: "3vw",
         fontSize: 9,
         letterSpacing: "0.14em",
         textTransform: "uppercase",
