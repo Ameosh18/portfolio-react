@@ -24,7 +24,7 @@ export default function WorkPage() {
     return (
       <div style={{ height: "100dvh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
         <div style={{ height: 72, flexShrink: 0 }} />
-        <div style={{ padding: "12px 24px 8px", flexShrink: 0, pointerEvents: "none", userSelect: "none" }}>
+        <div style={{ padding: "12px 24px 20px", flexShrink: 0, pointerEvents: "none", userSelect: "none" }}>
           <div className="section-eyebrow"><span>Selected Work</span></div>
           <h1 className="section-title" style={{ fontSize: "clamp(30px, 8vw, 40px)", marginTop: 8 }}>
             Case Studies.
@@ -42,7 +42,7 @@ export default function WorkPage() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "12px 24px",
+          padding: "16px 24px",
           borderTop: "1px solid var(--border)",
         }}>
           <div className="availability-status">
