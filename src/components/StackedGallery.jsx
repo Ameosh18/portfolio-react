@@ -361,17 +361,36 @@ function Plane({ card, index, offset, isDark, isTablet, isBlurred, onEnter, onCl
 
 // ── Mobile: flat horizontal swipe carousel ────────────────────────────────
 function MobileCarousel({ isDark }) {
-  const navigate = useNavigate()
+  const navigate     = useNavigate()
   const [current, setCurrent] = useState(0)
+  const containerRef = useRef(null)
+  const [containerH, setContainerH] = useState(
+    typeof window !== "undefined" ? window.innerHeight * 0.72 : 480
+  )
   const touchStartX = useRef(0)
   const touchStartY = useRef(0)
   const N_CARDS = projects.length
 
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const obs = new ResizeObserver(([e]) => setContainerH(e.contentRect.height))
+    obs.observe(el)
+    setContainerH(el.offsetHeight)
+    return () => obs.disconnect()
+  }, [])
+
   const vw = typeof window !== "undefined" ? window.innerWidth : 375
-  const cardW = Math.min(vw - 48, 300)
+
+  // Reserved: CTA row (44) + dots (20) + gaps/padding (56)
+  const RESERVED = 120
+  const ASPECT   = 520 / 380
+  const cardW = Math.min(vw - 48, Math.round((containerH - RESERVED) / ASPECT))
+  const cardH = Math.round(cardW * ASPECT)
+  const imgH  = Math.round(cardH * (200 / 520))
+
   const gap   = 16
   const slide = cardW + gap
-  // Spring offset to keep active card centered
   const targetX = -(current * slide) + (vw / 2 - cardW / 2)
 
   const onTouchStart = (e) => {
@@ -381,18 +400,15 @@ function MobileCarousel({ isDark }) {
   const onTouchEnd = (e) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current
     const dy = e.changedTouches[0].clientY - touchStartY.current
-    // Ignore if more vertical than horizontal
     if (Math.abs(dx) < Math.abs(dy) * 1.2) return
     if (dx < -44 && current < N_CARDS - 1) setCurrent(c => c + 1)
     else if (dx > 44 && current > 0) setCurrent(c => c - 1)
   }
 
-  const cardH = Math.round(cardW * (520 / 380))
-  const imgH  = Math.round(cardW * (200 / 380))
-
   return (
     <div
-      style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 20, paddingBottom: 24, boxSizing: "border-box" }}
+      ref={containerRef}
+      style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, paddingTop: 8, paddingBottom: 16, boxSizing: "border-box" }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
