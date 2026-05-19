@@ -362,6 +362,7 @@ function HoverLabel({ card }) {
 
 // ── Plane (3D card in space) ───────────────────────────────────────────────
 function Plane({ card, index, offset, isDark }) {
+  const navigate    = useNavigate()
   const [isHovered, setIsHovered] = useState(false)
   const [isActive,  setIsActive]  = useState(false)
 
@@ -408,6 +409,7 @@ function Plane({ card, index, offset, isDark }) {
         willChange: "transform",
         cursor: card.href ? "pointer" : "default",
       }}
+      onClick={() => { if (card.href) navigate(card.href) }}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
     >
