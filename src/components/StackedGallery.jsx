@@ -363,34 +363,31 @@ function Plane({ card, index, offset, isDark, isTablet, isBlurred, onEnter, onCl
 function MobileCarousel({ isDark }) {
   const navigate     = useNavigate()
   const [current, setCurrent] = useState(0)
-  const containerRef = useRef(null)
-  const [containerH, setContainerH] = useState(
-    typeof window !== "undefined" ? window.innerHeight * 0.72 : 480
+  const stripRef     = useRef(null)
+  const [stripH, setStripH] = useState(
+    typeof window !== "undefined" ? window.innerHeight * 0.55 : 380
   )
-  const touchStartX = useRef(0)
-  const touchStartY = useRef(0)
+  const touchStartX  = useRef(0)
+  const touchStartY  = useRef(0)
   const N_CARDS = projects.length
 
   useEffect(() => {
-    const el = containerRef.current
+    const el = stripRef.current
     if (!el) return
-    const obs = new ResizeObserver(([e]) => setContainerH(e.contentRect.height))
+    const obs = new ResizeObserver(([e]) => setStripH(e.contentRect.height))
     obs.observe(el)
-    setContainerH(el.offsetHeight)
+    setStripH(el.offsetHeight)
     return () => obs.disconnect()
   }, [])
 
-  const vw = typeof window !== "undefined" ? window.innerWidth : 375
+  const vw    = typeof window !== "undefined" ? window.innerWidth : 375
+  const ASPECT = 520 / 380
+  const cardH  = stripH
+  const cardW  = Math.min(vw - 48, Math.round(stripH / ASPECT))
+  const imgH   = Math.round(cardH * (200 / 520))
 
-  // Reserved: CTA row (44) + dots (20) + gaps/padding (56)
-  const RESERVED = 120
-  const ASPECT   = 520 / 380
-  const cardW = Math.min(vw - 48, Math.round((containerH - RESERVED) / ASPECT))
-  const cardH = Math.round(cardW * ASPECT)
-  const imgH  = Math.round(cardH * (200 / 520))
-
-  const gap   = 16
-  const slide = cardW + gap
+  const gap     = 16
+  const slide   = cardW + gap
   const targetX = -(current * slide) + (vw / 2 - cardW / 2)
 
   const onTouchStart = (e) => {
@@ -407,17 +404,16 @@ function MobileCarousel({ isDark }) {
 
   return (
     <div
-      ref={containerRef}
       style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, paddingTop: 8, paddingBottom: 16, boxSizing: "border-box" }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Cards strip */}
-      <div style={{ width: "100%", overflow: "hidden", flexShrink: 0 }}>
+      {/* Cards strip — flex:1 so it absorbs all remaining height */}
+      <div ref={stripRef} style={{ width: "100%", overflow: "hidden", flex: 1, minHeight: 0 }}>
         <motion.div
           animate={{ x: targetX }}
           transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.7 }}
-          style={{ display: "flex", gap: gap }}
+          style={{ display: "flex", gap }}
         >
           {projects.map((card, i) => (
             <motion.div

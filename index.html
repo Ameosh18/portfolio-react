@@ -11,7 +11,8 @@
         if (p.p !== undefined) {
           var path = '/' + p.p.replace(/~and~/g, '&');
           var search = p.q ? '?' + p.q.replace(/~and~/g, '&') : '';
-          window.history.replaceState(null, null, window.location.pathname + path + search + window.location.hash);
+          var base = window.location.pathname.replace(/\/$/, '');
+          window.history.replaceState(null, null, base + path + search + window.location.hash);
         }
       })();
     </script>
