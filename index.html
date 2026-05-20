@@ -2,6 +2,20 @@
 <html lang="en">
   <head>
     <script>if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+    <script>
+      // Restore path redirected by 404.html
+      (function() {
+        var p = window.location.search.slice(1).split('&').reduce(function(q, s) {
+          var kv = s.split('='); q[decodeURIComponent(kv[0])] = decodeURIComponent(kv.slice(1).join('=').replace(/~and~/g, '&')); return q;
+        }, {});
+        if (p.p !== undefined) {
+          var path = '/' + p.p.replace(/~and~/g, '&');
+          var search = p.q ? '?' + p.q.replace(/~and~/g, '&') : '';
+          var base = window.location.pathname.replace(/\/$/, '');
+          window.history.replaceState(null, null, base + path + search + window.location.hash);
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +25,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
       rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
     <div id="root"></div>

@@ -422,6 +422,7 @@ body.menu-open #site-nav {
 .mobile-menu-links a .menu-arrow {
   font-family: var(--font-body);
   font-size: clamp(20px, 5vw, 24px);
+  font-weight: 700;
   color: var(--accent);
   opacity: 0.7;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2770,5 +2771,239 @@ body.menu-open #site-nav {
     bottom: 16px;
     left: 16px;
     right: 16px;
+  }
+}
+
+/* ── CUSTOM CURSOR ── */
+body,
+body * { cursor: none !important; }
+@media (pointer: coarse) {
+  body,
+  body * { cursor: auto !important; }
+}
+
+.custom-cursor-arrow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  /* Tip of arrow is the hotspot — no centering offset */
+  will-change: left, top;
+}
+
+.custom-cursor-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 13px;
+  border-radius: 100px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  /* Offset from arrow tip: clears the 28px arrow body + breathing space */
+  transform: translate(36px, 2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  will-change: left, top;
+}
+
+.custom-cursor-tooltip .you-badge {
+  color: var(--accent);
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-arrow,
+  .custom-cursor-tooltip { display: none; }
+}
+
+@media (forced-colors: active) {
+  body,
+  body * { cursor: auto !important; }
+  .custom-cursor-arrow,
+  .custom-cursor-tooltip { display: none; }
+}
+
+/* ── NAME POPUP ── */
+
+/* Blurred homepage content while popup is open */
+#home-view {
+  transition: filter 0.5s ease;
+}
+
+#home-view.content-blurred {
+  filter: blur(14px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.name-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.name-popup-card {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 24px;
+  background: rgba(17, 17, 17, 0.72);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 44px 40px 36px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(var(--accent-rgb), 0.08);
+}
+
+/* Light theme: use white (not cream) for cleaner glass effect */
+[data-theme="light"] .name-popup-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(var(--accent-rgb), 0.10);
+}
+
+.name-popup-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.name-popup-headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 38px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.name-popup-body {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+/* Visible label above input (WCAG) */
+.name-popup-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.name-popup-field {
+  margin-bottom: 24px;
+}
+
+.name-popup-input {
+  width: 100%;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  border-radius: 12px;
+  padding: 15px 18px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  caret-color: var(--accent);
+}
+
+.name-popup-input::placeholder { color: var(--muted-strong); }
+
+.name-popup-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
+}
+
+.name-popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.name-popup-disclaimer {
+  font-size: 12px;
+  color: var(--muted-strong);
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+.name-popup-btn {
+  padding: 13px 26px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.3);
+}
+
+.name-popup-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.name-popup-btn:active:not(:disabled) { transform: translateY(0); }
+
+.name-popup-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.name-popup-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .name-popup-card {
+    padding: 36px 28px 32px;
+    border-radius: 20px;
+  }
+
+  .name-popup-headline {
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .name-popup-body { font-size: 15px; }
+
+  .name-popup-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .name-popup-btn {
+    text-align: center;
+    box-shadow: none;
   }
 }
