@@ -979,9 +979,11 @@
   border-radius: 8px;
   width: 100%;
   max-width: 1100px;
+  height: 90vh;
   max-height: 90vh;
   display: grid;
   grid-template-columns: 3fr 2fr;
+  grid-template-rows: 1fr;
   overflow: hidden;
   position: relative;
   transform: translateY(16px);
@@ -1064,7 +1066,6 @@
   gap: 20px;
   overflow-y: auto;
   min-height: 0;
-  max-height: 90vh;
   scrollbar-width: thin;
   scrollbar-color: rgba(200,169,126,0.2) transparent;
 }
@@ -1340,7 +1341,7 @@
   .screen-annotations { grid-template-columns: 1fr; }
   .tension-block { grid-template-columns: 1fr; gap: 32px; }
   .artifact-grid { grid-template-columns: 1fr; }
-  .artifact-modal-inner { grid-template-columns: 1fr; max-height: 95vh; }
+  .artifact-modal-inner { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: 95vh; max-height: 95vh; }
   .artifact-modal-image { min-height: 280px; border-right: none; border-bottom: 1px solid var(--border); }
   .cs-digisense .research-stats { grid-template-columns: repeat(3, 1fr); }
   .cs-pfsone .research-stats { grid-template-columns: repeat(2, 1fr); }
