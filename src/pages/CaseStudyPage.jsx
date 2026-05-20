@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
+import DigiSensePage from './DigiSensePage'
+import PfsOnePage from './PfsOnePage'
+import '../case-study.css'
 
 export default function CaseStudyPage({ caseId }) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [caseId])
 
-  return (
-    <div style={{ padding: '100px 40px', textAlign: 'center' }}>
-      <h1>Case Study: {caseId}</h1>
-      <p>Case study content coming soon...</p>
-    </div>
-  )
+  if (caseId === 'digisense') return <DigiSensePage />
+  if (caseId === 'pfsone') return <PfsOnePage />
+  return null
 }
