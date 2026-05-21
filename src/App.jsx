@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { NameProvider } from './context/NameContext'
 import HomePage from './pages/HomePage'
+import HomePageV2 from './pages/HomePageV2'
 import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
 import Nav from './components/Nav'
@@ -18,6 +19,7 @@ function AppContent() {
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/v2" element={<HomePageV2 />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
         <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
