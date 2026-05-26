@@ -1271,6 +1271,8 @@ body.menu-open #site-nav {
 /* ── FEATURED WORK ── */
 .featured-work {
   background: var(--bg);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 120px 80px;
   border-top: 1px solid var(--border);
   display: flex;
