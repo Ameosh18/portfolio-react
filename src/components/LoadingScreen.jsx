@@ -28,6 +28,8 @@ export default function LoadingScreen({ onComplete }) {
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
 
+  const barWidth = isMobile ? 'clamp(280px, 85vw, 400px)' : 'clamp(300px, 50vw, 500px)'
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -46,67 +48,76 @@ export default function LoadingScreen({ onComplete }) {
         justifyContent: 'center',
         zIndex: 9999,
         pointerEvents: 'none',
-        gap: isMobile ? '32px' : '40px',
         padding: isMobile ? '20px' : '0',
       }}
     >
-      {/* Progress Bar Container */}
-      <div
-        style={{
-          width: isMobile ? 'clamp(280px, 85vw, 400px)' : 'clamp(300px, 50vw, 500px)',
-          height: '12px',
-          background: 'var(--border)',
-          borderRadius: '12px',
-          overflow: 'hidden',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-        }}
-      >
-        {/* Animated Fill */}
-        <motion.div
-          initial={{ width: '0%' }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 2.4, ease: 'easeInOut' }}
-          style={{
-            height: '100%',
-            background: 'var(--accent)',
-            borderRadius: '12px',
-          }}
-        />
-      </div>
-
-      {/* Loading Text with Dots */}
+      {/* Container for bar and text - aligned to left */}
       <div
         style={{
           display: 'flex',
-          alignItems: 'center',
-          gap: isMobile ? '0.12em' : '0.15em',
-          fontSize: isMobile ? 'clamp(12px, 3vw, 16px)' : 'clamp(14px, 3.5vw, 18px)',
-          fontFamily: '"DM Sans", sans-serif',
-          fontWeight: 600,
-          color: 'var(--text)',
-          letterSpacing: '0.06em',
-          userSelect: 'none',
+          flexDirection: 'column',
+          gap: '6px',
+          width: barWidth,
         }}
       >
+        {/* Progress Bar Container */}
+        <div
+          style={{
+            width: '100%',
+            height: '12px',
+            background: 'var(--border)',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          {/* Animated Fill */}
+          <motion.div
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 2.4, ease: 'easeInOut' }}
+            style={{
+              height: '100%',
+              background: 'var(--accent)',
+              borderRadius: '12px',
+            }}
+          />
+        </div>
+
+        {/* Loading Text with Dots */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: isMobile ? '0.12em' : '0.15em',
+            fontSize: isMobile ? 'clamp(12px, 3vw, 16px)' : 'clamp(14px, 3.5vw, 18px)',
+            fontFamily: '"DM Sans", sans-serif',
+            fontWeight: 600,
+            color: 'var(--text)',
+            letterSpacing: '0.06em',
+            userSelect: 'none',
+          }}
+        >
         LOADING
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          .
-        </motion.span>
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-        >
-          .
-        </motion.span>
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-        >
-          .
-        </motion.span>
+          <motion.span
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+          >
+            .
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+          >
+            .
+          </motion.span>
+        </div>
       </div>
     </motion.div>
   )
