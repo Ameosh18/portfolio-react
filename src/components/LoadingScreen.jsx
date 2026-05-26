@@ -19,7 +19,7 @@ export default function LoadingScreen({ onComplete }) {
     const timer = setTimeout(() => {
       setIsVisible(false)
       onComplete?.()
-    }, 2000)
+    }, 2800)
 
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -32,7 +32,7 @@ export default function LoadingScreen({ onComplete }) {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.5, delay: 1.9 }}
+      transition={{ duration: 0.5, delay: 2.7 }}
       style={{
         position: 'fixed',
         top: 0,
@@ -62,16 +62,7 @@ export default function LoadingScreen({ onComplete }) {
             display: 'flex',
             alignItems: 'center',
             gap: isMobile ? '0.08em' : '0.1em',
-            textShadow: `
-              -2px -2px 0 var(--accent),
-              2px -2px 0 var(--accent),
-              -2px 2px 0 var(--accent),
-              2px 2px 0 var(--accent),
-              -1px 0 0 var(--accent),
-              1px 0 0 var(--accent),
-              0 -1px 0 var(--accent),
-              0 1px 0 var(--accent)
-            `,
+            WebkitTextStroke: '2.2px var(--accent)',
           }}
         >
           LOADING
@@ -99,7 +90,7 @@ export default function LoadingScreen({ onComplete }) {
         <motion.div
           initial={{ clipPath: 'inset(0 100% 0 0)' }}
           animate={{ clipPath: 'inset(0 0% 0 0)' }}
-          transition={{ duration: 1.8, ease: 'easeInOut' }}
+          transition={{ duration: 2.4, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             top: 0,
@@ -114,16 +105,7 @@ export default function LoadingScreen({ onComplete }) {
             display: 'flex',
             alignItems: 'center',
             gap: isMobile ? '0.08em' : '0.1em',
-            textShadow: `
-              -2px -2px 0 var(--accent),
-              2px -2px 0 var(--accent),
-              -2px 2px 0 var(--accent),
-              2px 2px 0 var(--accent),
-              -1px 0 0 var(--accent),
-              1px 0 0 var(--accent),
-              0 -1px 0 var(--accent),
-              0 1px 0 var(--accent)
-            `,
+            WebkitTextStroke: '2.2px var(--accent)',
           }}
         >
           LOADING
