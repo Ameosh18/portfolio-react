@@ -1098,6 +1098,8 @@ body.menu-open #site-nav {
   background: var(--surface);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 60px 80px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1530,6 +1532,8 @@ body.menu-open #site-nav {
 /* ── AI WORKFLOW PREVIEW ── */
 .ai-workflow {
   background: var(--bg);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 120px 80px;
   border-top: 1px solid var(--border);
 }
@@ -1817,6 +1821,8 @@ body.menu-open #site-nav {
 .metrics {
   background: var(--surface);
   border-top: 1px solid var(--border);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 120px 80px;
 }
 
@@ -1955,6 +1961,8 @@ body.menu-open #site-nav {
 .about-preview {
   background: var(--bg);
   border-top: 1px solid var(--border);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 120px 80px;
 }
 
@@ -2061,6 +2069,8 @@ body.menu-open #site-nav {
 .cta-section {
   background: var(--surface);
   border-top: 1px solid var(--border);
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 140px 80px;
   display: flex;
   flex-direction: column;
