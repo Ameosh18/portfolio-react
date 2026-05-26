@@ -2,18 +2,29 @@ import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 
 export default function LoadingScreen({ onComplete }) {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
+  const [shouldRender, setShouldRender] = useState(true)
 
   useEffect(() => {
+    const hasShown = sessionStorage.getItem('loadingShown')
+    if (hasShown) {
+      setShouldRender(false)
+      onComplete?.()
+      return
+    }
+
+    setIsVisible(true)
+    sessionStorage.setItem('loadingShown', 'true')
+
     const timer = setTimeout(() => {
       setIsVisible(false)
       onComplete?.()
-    }, 3200)
+    }, 2000)
 
     return () => clearTimeout(timer)
   }, [onComplete])
 
-  if (!isVisible) return null
+  if (!shouldRender) return null
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
 
@@ -21,7 +32,7 @@ export default function LoadingScreen({ onComplete }) {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.5, delay: 3.1 }}
+      transition={{ duration: 0.5, delay: 1.9 }}
       style={{
         position: 'fixed',
         top: 0,
@@ -38,19 +49,29 @@ export default function LoadingScreen({ onComplete }) {
       }}
     >
       <div style={{ position: 'relative', height: 'auto', minHeight: isMobile ? 60 : 80 }}>
-        {/* Base text (outline) */}
+        {/* Base text (white with golden outline) */}
         <div
           style={{
             fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
             fontFamily: '"DM Sans", sans-serif',
             fontWeight: 700,
-            color: 'rgba(255, 255, 255, 0.1)',
+            color: 'var(--text)',
             letterSpacing: '-0.02em',
             userSelect: 'none',
             whiteSpace: 'nowrap',
             display: 'flex',
             alignItems: 'center',
             gap: isMobile ? '0.08em' : '0.1em',
+            textShadow: `
+              -2px -2px 0 var(--accent),
+              2px -2px 0 var(--accent),
+              -2px 2px 0 var(--accent),
+              2px 2px 0 var(--accent),
+              -1px 0 0 var(--accent),
+              1px 0 0 var(--accent),
+              0 -1px 0 var(--accent),
+              0 1px 0 var(--accent)
+            `,
           }}
         >
           LOADING
@@ -74,11 +95,11 @@ export default function LoadingScreen({ onComplete }) {
           </motion.span>
         </div>
 
-        {/* Animated fill overlay */}
+        {/* Animated golden fill overlay */}
         <motion.div
           initial={{ clipPath: 'inset(0 100% 0 0)' }}
           animate={{ clipPath: 'inset(0 0% 0 0)' }}
-          transition={{ duration: 2.8, ease: 'easeInOut' }}
+          transition={{ duration: 1.8, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             top: 0,
@@ -93,6 +114,16 @@ export default function LoadingScreen({ onComplete }) {
             display: 'flex',
             alignItems: 'center',
             gap: isMobile ? '0.08em' : '0.1em',
+            textShadow: `
+              -2px -2px 0 var(--accent),
+              2px -2px 0 var(--accent),
+              -2px 2px 0 var(--accent),
+              2px 2px 0 var(--accent),
+              -1px 0 0 var(--accent),
+              1px 0 0 var(--accent),
+              0 -1px 0 var(--accent),
+              0 1px 0 var(--accent)
+            `,
           }}
         >
           LOADING
