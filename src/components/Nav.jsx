@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import AKLogo from '../../AKlogo.png'
 
 const links = [
@@ -45,8 +45,8 @@ export default function Nav() {
         </Link>
 
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/work">Work</Link></li>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/work">Work</NavLink></li>
           <li><a href="/#ai-workflow">AI Workflow</a></li>
           <li><a href="/#about">About</a></li>
           <li><a href="/#contact" className="cta">Let's Talk →</a></li>
@@ -94,13 +94,13 @@ export default function Nav() {
           {links.map(({ num, label, to, href }) => (
             <li key={num}>
               {to ? (
-                <Link to={to} onClick={close}>
+                <NavLink to={to} onClick={close}>
                   <span className="menu-item-label">
                     <span className="menu-num">{num}</span>
                     {label}
                   </span>
                   <span className="menu-arrow" aria-hidden="true">↗</span>
-                </Link>
+                </NavLink>
               ) : (
                 <a href={href} onClick={close}>
                   <span className="menu-item-label">

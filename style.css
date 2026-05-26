@@ -392,7 +392,8 @@ body.menu-open #site-nav {
 }
 
 .mobile-menu-links a:hover,
-.mobile-menu-links a:active {
+.mobile-menu-links a:active,
+.mobile-menu-links a.active {
   color: var(--accent);
 }
 
@@ -403,7 +404,8 @@ body.menu-open #site-nav {
 }
 
 .mobile-menu-links a:hover .menu-item-label,
-.mobile-menu-links a:active .menu-item-label {
+.mobile-menu-links a:active .menu-item-label,
+.mobile-menu-links a.active .menu-item-label {
   transform: translateX(12px);
 }
 
@@ -430,7 +432,8 @@ body.menu-open #site-nav {
 }
 
 .mobile-menu-links a:hover .menu-arrow,
-.mobile-menu-links a:active .menu-arrow {
+.mobile-menu-links a:active .menu-arrow,
+.mobile-menu-links a.active .menu-arrow {
   opacity: 1;
   transform: translate(6px, -6px) scale(1.1);
 }
