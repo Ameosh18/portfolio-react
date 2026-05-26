@@ -10,12 +10,8 @@ export default function CustomCursor() {
   const [isTouch, setIsTouch] = useState(false)
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      setIsTouch(true)
-      return
-    }
-
     const onMove = (e) => {
+      setIsTouch(false)
       posRef.current = { x: e.clientX, y: e.clientY }
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(() => {
@@ -33,9 +29,13 @@ export default function CustomCursor() {
       }
     }
 
+    const onTouchStart = () => setIsTouch(true)
+
     window.addEventListener('mousemove', onMove)
+    window.addEventListener('touchstart', onTouchStart)
     return () => {
       window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('touchstart', onTouchStart)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [])
