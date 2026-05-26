@@ -41,93 +41,72 @@ export default function LoadingScreen({ onComplete }) {
         height: '100%',
         background: 'var(--bg)',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 9999,
         pointerEvents: 'none',
+        gap: isMobile ? '32px' : '40px',
         padding: isMobile ? '20px' : '0',
       }}
     >
-      <div style={{ position: 'relative', height: 'auto', minHeight: isMobile ? 60 : 80 }}>
-        {/* Base text (white with golden outline) */}
-        <div
-          style={{
-            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
-            fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 700,
-            color: 'var(--text)',
-            letterSpacing: '-0.02em',
-            userSelect: 'none',
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-            gap: isMobile ? '0.08em' : '0.1em',
-            WebkitTextStroke: '2.2px var(--accent)',
-          }}
-        >
-          LOADING
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            .
-          </motion.span>
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-          >
-            .
-          </motion.span>
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          >
-            .
-          </motion.span>
-        </div>
-
-        {/* Animated golden fill overlay */}
+      {/* Progress Bar Container */}
+      <div
+        style={{
+          width: isMobile ? 'clamp(280px, 85vw, 400px)' : 'clamp(300px, 50vw, 500px)',
+          height: '12px',
+          background: 'var(--border)',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        {/* Animated Fill */}
         <motion.div
-          initial={{ clipPath: 'inset(0 100% 0 0)' }}
-          animate={{ clipPath: 'inset(0 0% 0 0)' }}
+          initial={{ width: '0%' }}
+          animate={{ width: '100%' }}
           transition={{ duration: 2.4, ease: 'easeInOut' }}
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(48px, 10vw, 96px)',
-            fontFamily: '"DM Sans", sans-serif',
-            fontWeight: 700,
-            color: 'var(--accent)',
-            letterSpacing: '-0.02em',
-            userSelect: 'none',
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-            gap: isMobile ? '0.08em' : '0.1em',
-            WebkitTextStroke: '2.2px var(--accent)',
+            height: '100%',
+            background: 'var(--accent)',
+            borderRadius: '12px',
           }}
+        />
+      </div>
+
+      {/* Loading Text with Dots */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: isMobile ? '0.12em' : '0.15em',
+          fontSize: isMobile ? 'clamp(12px, 3vw, 16px)' : 'clamp(14px, 3.5vw, 18px)',
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: 600,
+          color: 'var(--text)',
+          letterSpacing: '0.06em',
+          userSelect: 'none',
+        }}
+      >
+        LOADING
+        <motion.span
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          LOADING
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            .
-          </motion.span>
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-          >
-            .
-          </motion.span>
-          <motion.span
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          >
-            .
-          </motion.span>
-        </motion.div>
+          .
+        </motion.span>
+        <motion.span
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+        >
+          .
+        </motion.span>
+        <motion.span
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+        >
+          .
+        </motion.span>
       </div>
     </motion.div>
   )
