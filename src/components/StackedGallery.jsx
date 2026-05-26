@@ -64,10 +64,10 @@ const ROTATE_Y     = IS_TABLET ? -38 : -50
 const HOVER_LIFT_Y = IS_TABLET ? -55 : -112
 const HOVER_Z      = IS_TABLET ? 110 : 230
 const HOVER_RY     = IS_TABLET ? -16 : -10
-const SPRING_CFG   = { stiffness: 260, damping: 24, mass: 0.65 }
+const SPRING_CFG   = { stiffness: 320, damping: 20, mass: 0.55 }
 
-const WHEEL_SPEED = IS_TABLET ? 0.22 : 0.28
-const TOUCH_SPEED = 0.7
+const WHEEL_SPEED = IS_TABLET ? 0.4 : 0.5
+const TOUCH_SPEED = 0.8
 const COPIES      = 2
 const N           = 5
 const TOTAL       = N * COPIES
@@ -501,7 +501,7 @@ function ThreeDCarousel({ isDark, isTablet }) {
   }, [])
 
   const targetOffset = useMotionValue(INIT_OFFSET)
-  const offset = useSpring(targetOffset, { damping: 36, stiffness: 160, mass: 0.7 })
+  const offset = useSpring(targetOffset, { damping: 28, stiffness: 220, mass: 0.6 })
 
   const prefersReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
