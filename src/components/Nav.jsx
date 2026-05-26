@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AKLogo from '../../AKlogo.png'
 
 const links = [
+  { num: "00", label: "Home",        to: "/",             href: null },
   { num: "01", label: "Work",        to: "/work",         href: null },
   { num: "02", label: "AI Workflow", to: null,            href: "/#ai-workflow" },
   { num: "03", label: "About",       to: null,            href: "/#about" },
@@ -44,6 +45,7 @@ export default function Nav() {
         </Link>
 
         <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/work">Work</Link></li>
           <li><a href="/#ai-workflow">AI Workflow</a></li>
           <li><a href="/#about">About</a></li>
