@@ -6,6 +6,10 @@ export default function DigiSensePage() {
   const [imgError, setImgError] = useState(false)
 
   useEffect(() => {
+    console.log('DigiSense page loaded - breadcrumb should be visible')
+  }, [])
+
+  useEffect(() => {
     const reveals = document.querySelectorAll('.cs-digisense .reveal')
     const observer = new IntersectionObserver(
       (entries) => {
