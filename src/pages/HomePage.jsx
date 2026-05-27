@@ -307,10 +307,12 @@ export default function HomePage() {
             <p className="metric-label">Design Systems Built</p>
             <p className="metric-context">Tokens, components, documentation, accessibility audits</p>
           </div>
-          <div className="metric-card">
+          <div className="metric-card is-wide">
             <div className="metric-number">35<span className="suffix">%</span></div>
-            <p className="metric-label">Avg User Engagement Lift</p>
-            <p className="metric-context">Measured across product launches and redesigns</p>
+            <div>
+              <p className="metric-label">Avg User Engagement Lift</p>
+              <p className="metric-context">Measured across product launches and redesigns</p>
+            </div>
           </div>
         </div>
       </section>

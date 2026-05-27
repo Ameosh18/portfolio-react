@@ -24,16 +24,14 @@
 }
 
 .breadcrumb-nav {
-  padding: 0 80px;
+  padding: 0 var(--grid-margin);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
   font-size: 14px;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
   font-weight: 500;
-  position: relative;
 }
 
 .breadcrumb-nav a {
@@ -58,9 +56,9 @@
 
 /* ── SHARED LAYOUT ── */
 .cs-page .container {
-  max-width: 1440px;
+  max-width: var(--grid-max);
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 var(--grid-margin);
 }
 
 .cs-page .section-label {
@@ -1365,8 +1363,6 @@
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .cs-page .container { padding: 0 40px; }
-  .breadcrumb-nav { padding: 0 40px; }
   .cs-digisense .hero { grid-template-columns: 1fr; }
   .cs-digisense .hero-image { display: none; }
   .cs-digisense .hero-content { }
@@ -1390,8 +1386,6 @@
 }
 
 @media (max-width: 768px) {
-  .cs-page .container { padding: 0 24px; }
-  .breadcrumb-nav { padding: 0 24px; font-size: 11px; }
   .cs-breadcrumb { padding: 12px 0; }
   .cs-digisense .hero-content,
   .cs-pfsone .hero-content { }
@@ -1451,8 +1445,6 @@
 }
 
 @media (max-width: 480px) {
-  .cs-page .container { padding: 0 20px; }
-  .breadcrumb-nav { padding: 0 20px; font-size: 11px; }
   .cs-breadcrumb { padding: 10px 0; }
   .cs-digisense .hero-content,
   .cs-pfsone .hero-content { }

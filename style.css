@@ -64,6 +64,17 @@
   --scrollbar-hover: rgba(122, 94, 52, 0.45);
 }
 
+/* ── Grid System Tokens ── */
+:root {
+  --grid-gutter: 24px;
+  --grid-margin: 80px;
+  --grid-max:    1440px;
+}
+
+@media (max-width: 1024px) { :root { --grid-margin: 40px; --grid-gutter: 20px; } }
+@media (max-width: 768px)  { :root { --grid-margin: 24px; --grid-gutter: 16px; } }
+@media (max-width: 480px)  { :root { --grid-margin: 20px; --grid-gutter: 12px; } }
+
 *,
 *::before,
 *::after {
@@ -95,6 +106,48 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── GRID SYSTEM ── */
+.grid-container {
+  max-width: var(--grid-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gutter);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gutter);
+}
+
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-12 { grid-column: span 12; }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 12; }
+}
+
+@media (max-width: 768px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
 
 /* ── THEME TOGGLE ── */
@@ -1833,8 +1886,16 @@ body.menu-open #site-nav {
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gutter);
+}
+
+.metric-card.is-wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 40px;
 }
 
 .metric-card {
@@ -1936,6 +1997,12 @@ body.menu-open #site-nav {
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+  }
+
+  .metric-card.is-wide {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .metric-card.is-hero .metric-number {
