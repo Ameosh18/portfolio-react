@@ -13,14 +13,17 @@
   transform: none;
 }
 
+.cs-page {
+  padding-top: 72px;
+}
+
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
   background: var(--bg);
   border-bottom: 2px solid var(--accent);
   padding: 16px 0;
-  margin-top: 72px;
   position: relative;
-  z-index: 10;
+  z-index: 50;
 }
 
 .breadcrumb-nav {
