@@ -313,7 +313,218 @@ Disclaimer:  "Only for this session"
 
 ---
 
-## 12. What NOT to Do
+## 13. Case Study Hero Section — Template
+
+Every case study page follows this standard hero pattern. Copy it exactly when adding a new case study.
+
+### Hero Layout Types
+
+**Type A: Two-column with image** (use when you have a strong hero image)
+- Left column (58%): narrative content + meta
+- Right column (42%): full-height edge-to-edge image
+- Example: DigiSense
+
+**Type B: Single-column text only** (use when no strong image exists)
+- Full-width hero with max-width 840px content, left-aligned
+- Example: PFS ONE
+
+---
+
+### JSX Structure — Type A (with image)
+
+```jsx
+{/* BREADCRUMB */}
+<section className="cs-breadcrumb">
+  <div className="breadcrumb-nav">
+    <Link to="/portfolio-react/work">Work</Link>
+    <span className="separator">/</span>
+    <span className="current">Project Name</span>
+  </div>
+</section>
+
+{/* HERO */}
+<section className="hero">
+  <div className="hero-content">
+    <div className="section-label reveal">
+      <span>Case Study 0X</span>
+    </div>
+    <h1 className="hero-headline reveal">
+      One strong sentence that frames the problem as tension or discovery.
+    </h1>
+    <p className="hero-subheadline reveal">One short italic line that hooks the reader.</p>
+    <div className="hero-meta reveal">
+      <div className="hero-meta-item">
+        <span className="hero-meta-label">Role</span>
+        <span className="hero-meta-value">Lead UX Designer</span>
+      </div>
+      <div className="hero-meta-item">
+        <span className="hero-meta-label">Platform</span>
+        <span className="hero-meta-value">iOS · Android · Web</span>
+      </div>
+      <div className="hero-meta-item">
+        <span className="hero-meta-label">Timeline</span>
+        <span className="hero-meta-value">Year</span>
+      </div>
+      <div className="hero-meta-item">
+        <span className="hero-meta-label">Studio</span>
+        <span className="hero-meta-value">Studio Name</span>
+      </div>
+    </div>
+  </div>
+  <div className="hero-image">
+    {imgError ? (
+      <div className="hero-image-placeholder"><span>Project Name</span></div>
+    ) : (
+      <img src={heroImg} alt="[descriptive alt text]" onError={() => setImgError(true)} />
+    )}
+  </div>
+  <div className="scroll-indicator">
+    <span>Scroll to explore</span>
+  </div>
+</section>
+```
+
+### JSX Structure — Type B (text only)
+
+```jsx
+{/* BREADCRUMB */}
+<section className="cs-breadcrumb">
+  <div className="breadcrumb-nav">
+    <Link to="/portfolio-react/work">Work</Link>
+    <span className="separator">/</span>
+    <span className="current">Project Name</span>
+  </div>
+</section>
+
+{/* HERO */}
+<section className="hero">
+  <div className="hero-content">
+    <div className="section-label reveal">
+      <span>Case Study 0X</span>
+    </div>
+    <h1 className="hero-headline reveal">
+      One strong sentence that frames the problem as tension or discovery.
+    </h1>
+    <p className="hero-subheadline reveal">Supporting sentence expanding on the stakes.</p>
+    <p className="hero-tagline reveal">Optional: one italic closer that draws the reader in.</p>
+    <div className="hero-meta reveal">
+      {/* same meta items as Type A */}
+    </div>
+  </div>
+  <div className="scroll-indicator">
+    <span>Scroll to explore</span>
+  </div>
+</section>
+```
+
+---
+
+### Required CSS for each new case study
+
+Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
+
+```css
+/* ── [PROJECT NAME] hero ── */
+
+/* Type A (with image): */
+.cs-[slug] .hero {
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  align-items: center;
+}
+.cs-[slug] .hero-content {
+  padding: 120px var(--grid-margin) 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cs-[slug] .hero-image {
+  height: 100vh;
+  background: var(--surface);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cs-[slug] .hero-image img {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
+}
+.cs-[slug] .hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 1.07;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.cs-[slug] .hero-subheadline {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.5vw, 34px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 48px;
+  line-height: 1.3;
+}
+
+/* Responsive for Type A: */
+@media (max-width: 1024px) {
+  .cs-[slug] .hero { grid-template-columns: 1fr; }
+  .cs-[slug] .hero-image { display: none; }
+  .cs-[slug] .hero-content { padding: 80px var(--grid-margin); }
+}
+@media (max-width: 768px)  { .cs-[slug] .hero-content { padding: 64px var(--grid-margin) 60px; } }
+@media (max-width: 480px)  { .cs-[slug] .hero-content { padding: 48px var(--grid-margin) 52px; } }
+
+/* Type B (text only): */
+.cs-[slug] .hero {
+  display: flex;
+  align-items: center;
+  padding: 120px var(--grid-margin) 100px;
+}
+.cs-[slug] .hero-content {
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+/* Responsive for Type B: */
+@media (max-width: 1024px) { .cs-[slug] .hero { padding: 80px var(--grid-margin); } }
+@media (max-width: 768px)  { .cs-[slug] .hero { min-height: auto; padding: 64px var(--grid-margin) 60px; } }
+@media (max-width: 480px)  { .cs-[slug] .hero { padding: 48px var(--grid-margin) 52px; } }
+```
+
+---
+
+### Registering a new case study
+
+1. **Create** `src/pages/[ProjectName]Page.jsx` — copy DigiSensePage.jsx or PfsOnePage.jsx as template.
+2. **Add route** in `src/App.jsx`:
+   ```jsx
+   import [ProjectName]Page from './pages/[ProjectName]Page'
+   // inside Routes:
+   <Route path="/[slug]" element={<[ProjectName]Page />} />
+   ```
+3. **Add to Work gallery** in `src/components/StackedGallery.jsx` — add a card entry to `CARDS`.
+4. **Update Nav** active detection — add `'/[slug]'` to the `CASE_STUDY_PATHS` array in `src/components/Nav.jsx`.
+5. **Add breadcrumb current label** in the new page: `<span className="current">Display Name</span>`.
+6. **Never use `<nav>` for breadcrumbs** — use `<div className="breadcrumb-nav">`. The global `nav { position: fixed }` rule in `style.css` would break it.
+
+### Hero copywriting guidelines
+
+- **Headline**: One sentence framing the *problem as a discovery question or tension*. Not a project title. Not a tagline. A narrative hook.
+- **Subheadline**: One italic sentence — either the scale of the problem, the emotional stakes, or the resolution hint.
+- **Case study number**: Sequential label (Case Study 01, 02, ...) — accent colored, uppercase, small.
+- **Meta strip** (required 4 fields): Role, Platform, Timeline, Studio/Client.
+- **No em dashes** anywhere — see rule in section 7.
+
+---
+
+## 14. What NOT to Do
 
 - **Never hardcode hex colours** — always use CSS variables.
 - **Never use em dashes (`—`)** anywhere.
