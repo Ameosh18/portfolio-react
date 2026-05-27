@@ -27,8 +27,6 @@
 }
 
 .breadcrumb-nav {
-  max-width: 1440px;
-  margin: 0 auto;
   padding: 0 80px;
   display: flex;
   align-items: center;
@@ -92,7 +90,6 @@
 /* ── HERO: shared base ── */
 .cs-page .hero {
   min-height: 100vh;
-  padding-top: 72px;
   position: relative;
   overflow: hidden;
 }
