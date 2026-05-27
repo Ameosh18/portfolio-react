@@ -16,7 +16,7 @@
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
   background: var(--bg);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 2px solid var(--accent);
   padding: 16px 0;
   margin-top: 72px;
   position: relative;
