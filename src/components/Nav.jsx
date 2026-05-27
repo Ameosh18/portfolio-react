@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import AKLogo from '../../AKlogo.png'
 
 const links = [
@@ -10,9 +10,13 @@ const links = [
   { num: "04", label: "Let's Talk",  to: null,            href: "/#contact" },
 ]
 
+const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
+
 export default function Nav() {
   const [isDarkTheme, setIsDarkTheme] = useState(true)
   const [isMenuOpen, setIsMenuOpen]   = useState(false)
+  const location = useLocation()
+  const isOnCaseStudy = CASE_STUDY_PATHS.includes(location.pathname)
 
   useEffect(() => {
     const theme = localStorage.getItem('theme') || 'dark'
@@ -46,7 +50,7 @@ export default function Nav() {
 
         <ul className="nav-links">
           <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/work">Work</NavLink></li>
+          <li><NavLink to="/work" className={({ isActive }) => isActive || isOnCaseStudy ? 'active' : undefined}>Work</NavLink></li>
           <li><a href="/#ai-workflow">AI Workflow</a></li>
           <li><a href="/#about">About</a></li>
           <li><a href="/#contact" className="cta">Let's Talk →</a></li>

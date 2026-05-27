@@ -509,7 +509,18 @@ function ThreeDCarousel({ isDark, isTablet }) {
     const el = containerRef.current
     if (!el || prefersReduced) return
 
-    const onWheel = (e) => { e.preventDefault(); targetOffset.set(targetOffset.get() - e.deltaY * WHEEL_SPEED) }
+    const onWheel = (e) => {
+      e.preventDefault()
+      // Normalize deltaY across input devices:
+      // deltaMode=0 (pixels, trackpad) → use as-is
+      // deltaMode=1 (lines, mouse wheel) → multiply by 40 to match pixel magnitude
+      // deltaMode=2 (pages) → multiply by viewport height
+      const LINE_HEIGHT = 40
+      let delta = e.deltaY
+      if (e.deltaMode === 1) delta *= LINE_HEIGHT
+      else if (e.deltaMode === 2) delta *= window.innerHeight
+      targetOffset.set(targetOffset.get() - delta * WHEEL_SPEED)
+    }
     let touchStartY = 0
     const onTouchStart = (e) => { touchStartY = e.touches[0].clientY }
     const onTouchMove  = (e) => {
