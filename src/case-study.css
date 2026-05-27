@@ -20,10 +20,7 @@
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
   background: var(--bg);
-  border-bottom: 2px solid var(--accent);
   padding: 16px 0;
-  position: relative;
-  z-index: 50;
 }
 
 .breadcrumb-nav {
