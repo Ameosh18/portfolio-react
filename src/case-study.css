@@ -13,6 +13,48 @@
   transform: none;
 }
 
+/* ── BREADCRUMB NAVIGATION ── */
+.cs-breadcrumb {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 0;
+  margin-top: 72px;
+  position: relative;
+  z-index: 10;
+}
+
+.breadcrumb-nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.breadcrumb-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb-nav .separator {
+  color: var(--muted);
+  margin: 0 4px;
+}
+
+.breadcrumb-nav .current {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ── SHARED LAYOUT ── */
 .cs-page .container {
   max-width: 1440px;
@@ -1326,6 +1368,7 @@
 
 @media (max-width: 1024px) {
   .cs-page .container { padding: 0 40px; }
+  .breadcrumb-nav { padding: 0 40px; }
   .cs-digisense .hero { grid-template-columns: 1fr; }
   .cs-digisense .hero-image { display: none; }
   .cs-digisense .hero-content { padding: 120px 40px 80px; }
@@ -1350,6 +1393,8 @@
 
 @media (max-width: 768px) {
   .cs-page .container { padding: 0 24px; }
+  .breadcrumb-nav { padding: 0 24px; font-size: 11px; }
+  .cs-breadcrumb { padding: 12px 0; }
   .cs-digisense .hero-content,
   .cs-pfsone .hero-content { padding: 88px 24px 64px; }
   .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
@@ -1409,6 +1454,8 @@
 
 @media (max-width: 480px) {
   .cs-page .container { padding: 0 20px; }
+  .breadcrumb-nav { padding: 0 20px; font-size: 11px; }
+  .cs-breadcrumb { padding: 10px 0; }
   .cs-digisense .hero-content,
   .cs-pfsone .hero-content { padding: 80px 20px 56px; }
   .cs-digisense .hero-headline,

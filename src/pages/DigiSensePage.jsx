@@ -32,10 +32,18 @@ export default function DigiSensePage() {
 
   return (
     <div className="cs-page cs-digisense">
+      {/* BREADCRUMB */}
+      <section className="cs-breadcrumb">
+        <nav className="breadcrumb-nav">
+          <Link to="/portfolio-react/work">Work</Link>
+          <span className="separator">/</span>
+          <span className="current">DiGiSense</span>
+        </nav>
+      </section>
+
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-breadcrumb reveal">Work / DiGiSense</p>
           <div className="section-label reveal">
             <span>Case Study 01</span>
           </div>
