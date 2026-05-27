@@ -30,11 +30,13 @@
   padding: 0 80px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
   font-size: 14px;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
   font-weight: 500;
+  position: relative;
 }
 
 .breadcrumb-nav a {
@@ -113,7 +115,6 @@
 }
 
 .cs-digisense .hero-content {
-  padding: 80px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -180,7 +181,6 @@
 }
 
 .cs-pfsone .hero-content {
-  padding: 80px;
   max-width: 960px;
   display: flex;
   flex-direction: column;
@@ -1372,8 +1372,8 @@
   .breadcrumb-nav { padding: 0 40px; }
   .cs-digisense .hero { grid-template-columns: 1fr; }
   .cs-digisense .hero-image { display: none; }
-  .cs-digisense .hero-content { padding: 120px 40px 80px; }
-  .cs-pfsone .hero-content { padding: 120px 40px 80px; }
+  .cs-digisense .hero-content { }
+  .cs-pfsone .hero-content { }
   .two-col { grid-template-columns: 1fr; gap: 40px; }
   .stakeholder-grid { grid-template-columns: 1fr 1fr; }
   .insights-grid { grid-template-columns: 1fr; }
@@ -1397,7 +1397,7 @@
   .breadcrumb-nav { padding: 0 24px; font-size: 11px; }
   .cs-breadcrumb { padding: 12px 0; }
   .cs-digisense .hero-content,
-  .cs-pfsone .hero-content { padding: 88px 24px 64px; }
+  .cs-pfsone .hero-content { }
   .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-pfsone .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-digisense .hero-subheadline { font-size: clamp(20px, 4.5vw, 32px); }
@@ -1458,7 +1458,7 @@
   .breadcrumb-nav { padding: 0 20px; font-size: 11px; }
   .cs-breadcrumb { padding: 10px 0; }
   .cs-digisense .hero-content,
-  .cs-pfsone .hero-content { padding: 80px 20px 56px; }
+  .cs-pfsone .hero-content { }
   .cs-digisense .hero-headline,
   .cs-pfsone .hero-headline { font-size: clamp(28px, 7.5vw, 40px); }
   .cs-page .hero-meta { gap: 14px 20px; }
