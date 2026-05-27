@@ -6,10 +6,6 @@ export default function DigiSensePage() {
   const [imgError, setImgError] = useState(false)
 
   useEffect(() => {
-    console.log('DigiSense page loaded - breadcrumb should be visible')
-  }, [])
-
-  useEffect(() => {
     const reveals = document.querySelectorAll('.cs-digisense .reveal')
     const observer = new IntersectionObserver(
       (entries) => {
@@ -38,11 +34,11 @@ export default function DigiSensePage() {
     <div className="cs-page cs-digisense">
       {/* BREADCRUMB */}
       <section className="cs-breadcrumb">
-        <nav className="breadcrumb-nav">
+        <div className="breadcrumb-nav">
           <Link to="/portfolio-react/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">DiGiSense</span>
-        </nav>
+        </div>
       </section>
 
       {/* HERO */}

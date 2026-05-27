@@ -154,11 +154,11 @@ export default function PfsOnePage() {
 
       {/* BREADCRUMB */}
       <section className="cs-breadcrumb">
-        <nav className="breadcrumb-nav">
+        <div className="breadcrumb-nav">
           <Link to="/portfolio-react/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">PFS ONE</span>
-        </nav>
+        </div>
       </section>
 
       {/* HERO */}
