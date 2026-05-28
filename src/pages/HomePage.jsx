@@ -267,32 +267,51 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── CREDIBILITY STRIP ── */}
-        <section className="section" id="credibility">
+        {/* ── SPECIALIZATION & SCOPE ── */}
+        <section className="section specialization" id="specialization">
           <div className="container">
-            <div className="cred-grid reveal">
-              <div className="cred-cell">
-                <span className="cred-label">Experience</span>
-                <div className="cred-years">9.5<span>years</span></div>
-                <p className="cred-desc">UX strategy and systems design across enterprise and consumer products.</p>
+            <div className="spec-head reveal">
+              <span className="eyebrow">Where I've Driven Outcomes</span>
+            </div>
+            <div className="spec-grid">
+              <div className="spec-card bp-card reveal">
+                <div className="card-head"><span>Fintech & Security</span><span className="dot" /></div>
+                <div className="spec-label">Payment platforms · Cybersecurity UX · Compliance workflows</div>
+                <div className="spec-row">
+                  <span className="k">Shipped</span><span className="v">8 products</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Built</span><span className="v">Design token systems, component libraries that reduced design handoff by 40%</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Impact</span><span className="v">35%+ avg engagement across product launches</span>
+                </div>
               </div>
-              <div className="cred-cell">
-                <span className="cred-label">Companies</span>
-                <ul className="cred-list">
-                  {['Globant', 'Mahindra', 'Innoplexus', 'Ogee Studio', 'Extentia'].map((c) => <li key={c}>{c}</li>)}
-                </ul>
+              <div className="spec-card bp-card reveal">
+                <div className="card-head"><span>IoT & Connected Infrastructure</span><span className="dot" /></div>
+                <div className="spec-label">Connected vehicles · Real-time dashboards · Rural-first design</div>
+                <div className="spec-row">
+                  <span className="k">Shipped</span><span className="v">6 products serving 100K+ concurrent users</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Designed</span><span className="v">Cross-platform systems (iOS, Android, Web)</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Outcome</span><span className="v">Reduced operator decision time, improved fleet uptime metrics</span>
+                </div>
               </div>
-              <div className="cred-cell">
-                <span className="cred-label">Disciplines</span>
-                <ul className="cred-list">
-                  {['UX Strategy', 'Systems Design', 'AI/ML Product Design'].map((c) => <li key={c}>{c}</li>)}
-                </ul>
-              </div>
-              <div className="cred-cell">
-                <span className="cred-label">Focus Areas</span>
-                <ul className="cred-list">
-                  {['B2B SaaS', 'Fintech', 'Cybersecurity', 'Life Sciences', 'IoT'].map((c) => <li key={c}>{c}</li>)}
-                </ul>
+              <div className="spec-card bp-card reveal">
+                <div className="card-head"><span>Enterprise & Systems Design</span><span className="dot" /></div>
+                <div className="spec-label">Admin platforms · Data visualization · B2B workflows</div>
+                <div className="spec-row">
+                  <span className="k">Shipped</span><span className="v">11 products across 3 studios</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Led</span><span className="v">Cross-functional teams of 8+ across timezones</span>
+                </div>
+                <div className="spec-row">
+                  <span className="k">Built</span><span className="v">2 design systems adopted across product suites</span>
+                </div>
               </div>
             </div>
           </div>
@@ -384,7 +403,7 @@ export default function Homepage() {
               <div className="about-grid">
                 <div>
                   <span className="eyebrow a-eyebrow">About Me</span>
-                  <h2 className="a-title">A systems thinker who designs for impact</h2>
+                  <h2 className="a-title">Problem solver. System builder. Team player.</h2>
                 </div>
                 <div>
                   <p className="a-bio">With 9.5 years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>

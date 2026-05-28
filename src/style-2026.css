@@ -342,6 +342,16 @@ ul { list-style: none; }
 }
 .process-tagline p { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; }
 
+/* ── SPECIALIZATION & SCOPE ──────────────────────────────────────────────── */
+.specialization .spec-head { margin-bottom: clamp(32px, 4vw, 48px); }
+.spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+.spec-card { display: flex; flex-direction: column; }
+.spec-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+.spec-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 12px 0; gap: 16px; }
+.spec-row + .spec-row { border-top: 1px dashed var(--border-soft); }
+.spec-row .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
+.spec-row .v { font-size: 15px; color: var(--text); line-height: 1.5; }
+
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
 .footer { border-top: 1px solid var(--border); padding-block: clamp(48px, 6vw, 72px); }
 .footer-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 32px; align-items: start; }
