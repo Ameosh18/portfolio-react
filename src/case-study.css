@@ -174,6 +174,7 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  background: var(--bg);
 }
 
 /* ── DIGISENSE hero: 2-column grid ── */
