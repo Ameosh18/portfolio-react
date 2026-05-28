@@ -79,6 +79,8 @@ export default function ClickSpark({
 
       if (sparklesRef.current.length > 0) {
         animationFrameRef.current = requestAnimationFrame(animate)
+      } else {
+        animationFrameRef.current = null
       }
     }
 
