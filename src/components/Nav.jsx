@@ -105,10 +105,9 @@ export default function Nav() {
               </a>
             </li>
           ))}
-          <li>
-            <a href={RESUME_URL} download onClick={close}>
-              <span className="menu-item-label"><span className="menu-num">04</span>Download Resume</span>
-              <span className="menu-arrow" aria-hidden="true">↓</span>
+          <li className="menu-cta-item">
+            <a href={RESUME_URL} download className="menu-cta" onClick={close}>
+              Download Resume <span className="menu-cta-arrow" aria-hidden="true">↓</span>
             </a>
           </li>
         </ul>

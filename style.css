@@ -504,6 +504,46 @@ body.menu-open #site-nav {
   transform: translate(6px, -6px) scale(1.1);
 }
 
+/* Download Resume as a lime CTA button inside the mobile menu */
+.mobile-menu-links li.menu-cta-item {
+  overflow: visible;
+  border-bottom: none;
+  margin-top: 32px;
+}
+
+.mobile-menu-links a.menu-cta {
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding: 22px 24px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease),
+    opacity 0.5s ease;
+}
+
+.mobile-menu-links a.menu-cta:hover,
+.mobile-menu-links a.menu-cta:active {
+  background: #E2FF63;
+  color: var(--accent-ink);
+  transform: translateY(-2px);
+}
+
+.mobile-menu-links a.menu-cta .menu-cta-arrow {
+  font-weight: 700;
+  transition: transform 0.25s var(--ease);
+}
+
+.mobile-menu-links a.menu-cta:hover .menu-cta-arrow {
+  transform: translateY(3px);
+}
+
 .mobile-menu-footer {
   padding-top: 32px;
   display: flex;
