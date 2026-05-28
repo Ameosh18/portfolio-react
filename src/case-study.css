@@ -1,5 +1,12 @@
 /* ─── CASE STUDY STYLES ───────────────────────────────────────────────────── */
 
+/* Blueprint grid background */
+.cs-page {
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: fixed;
+}
+
 /* Override the animation-based .reveal from style.css for case study pages */
 .cs-page .reveal {
   opacity: 0;
@@ -11,6 +18,16 @@
 .cs-page .reveal.visible {
   opacity: 1;
   transform: none;
+}
+
+/* ── Section H2 Heading ── */
+.cs-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.5vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
 }
 
 /* ── BREADCRUMB NAVIGATION ── */
@@ -63,26 +80,61 @@
 
 .cs-page .section-label {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 32px;
 }
 
 .cs-page .section-label::before {
   content: '';
   display: block;
-  width: 40px;
-  height: 2px;
+  width: 22px;
+  height: 1px;
   background: var(--accent);
+  flex-shrink: 0;
 }
 
 .cs-page .section-label span {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   color: var(--accent);
   text-transform: uppercase;
 }
+
+/* ── Blueprint Frame & Ticks ── */
+.cs-page .bp-frame {
+  position: relative;
+}
+
+.cs-page .tick {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 300;
+  pointer-events: none;
+}
+
+.cs-page .tick::before,
+.cs-page .tick::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.cs-page .tick::before { width: 6px; height: 1px; }
+.cs-page .tick::after { width: 1px; height: 6px; }
+
+.cs-page .tick.tl { top: -8px; left: -8px; }
+.cs-page .tick.tr { top: -8px; right: -8px; transform: scaleX(-1); }
+.cs-page .tick.bl { bottom: -8px; left: -8px; transform: scaleY(-1); }
+.cs-page .tick.br { bottom: -8px; right: -8px; transform: scale(-1); }
 
 /* ── HERO: shared base ── */
 .cs-page .hero {
@@ -105,7 +157,7 @@
   right: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(200,169,126,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -173,7 +225,7 @@
   right: -200px;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(200,169,126,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -189,8 +241,7 @@
 .cs-pfsone .hero-tagline {
   font-family: var(--font-display);
   font-size: clamp(22px, 2.5vw, 34px);
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 600;
   color: var(--accent);
   margin-bottom: 48px;
   line-height: 1.3;
@@ -208,7 +259,7 @@
 .cs-digisense .hero-headline {
   font-family: var(--font-display);
   font-size: clamp(52px, 5.5vw, 80px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -218,7 +269,7 @@
 .cs-pfsone .hero-headline {
   font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 76px);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -228,8 +279,7 @@
 .cs-digisense .hero-subheadline {
   font-family: var(--font-display);
   font-size: clamp(28px, 2.8vw, 40px);
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 600;
   color: var(--accent);
   margin-bottom: 48px;
   line-height: 1.2;
@@ -238,9 +288,8 @@
 .cs-pfsone .hero-subheadline {
   font-family: var(--font-display);
   font-size: clamp(20px, 2.2vw, 30px);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--muted);
+  font-weight: 500;
+  color: var(--text-muted);
   margin-bottom: 24px;
   line-height: 1.5;
   max-width: 760px;
@@ -681,7 +730,7 @@
 }
 
 .insight-card:hover {
-  border-color: rgba(200,169,126,0.4);
+  border-color: rgba(var(--accent-rgb), 0.4);
   transform: translateY(-2px);
 }
 
@@ -786,7 +835,7 @@
 }
 
 .option-card.rejected { background: var(--bg); opacity: 0.5; }
-.option-card.chosen { background: var(--surface); border-color: rgba(200,169,126,0.3); }
+.option-card.chosen { background: var(--surface); border-color: rgba(var(--accent-rgb), 0.3); }
 
 .option-label {
   font-size: 10px;
@@ -923,15 +972,15 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(200,169,126,0.04) 0%, transparent 60%);
+  background: radial-gradient(circle at 80% 20%, rgba(var(--accent-rgb), 0.04) 0%, transparent 60%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s;
 }
 
 .artifact-card:hover {
-  border-color: rgba(200,169,126,0.5);
-  box-shadow: 0 8px 48px rgba(200,169,126,0.08);
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 8px 48px rgba(var(--accent-rgb), 0.08);
   transform: translateY(-2px);
 }
 
@@ -945,10 +994,10 @@
   letter-spacing: 0.12em;
   color: var(--accent);
   text-transform: uppercase;
-  background: rgba(200,169,126,0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   padding: 5px 10px;
   border-radius: 2px;
-  border: 1px solid rgba(200,169,126,0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
 }
 
 .artifact-card-expand {
@@ -1016,7 +1065,7 @@
 
 .artifact-modal-inner {
   background: var(--surface);
-  border: 1px solid rgba(200,169,126,0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   border-radius: 8px;
   width: 100%;
   max-width: 1100px;
@@ -1108,13 +1157,13 @@
   overflow-y: auto;
   min-height: 0;
   scrollbar-width: thin;
-  scrollbar-color: rgba(200,169,126,0.2) transparent;
+  scrollbar-color: rgba(var(--accent-rgb), 0.2) transparent;
 }
 
 .artifact-modal-annotations::-webkit-scrollbar { width: 4px; }
 .artifact-modal-annotations::-webkit-scrollbar-track { background: transparent; }
-.artifact-modal-annotations::-webkit-scrollbar-thumb { background: rgba(200,169,126,0.2); border-radius: 2px; }
-.artifact-modal-annotations::-webkit-scrollbar-thumb:hover { background: rgba(200,169,126,0.4); }
+.artifact-modal-annotations::-webkit-scrollbar-thumb { background: rgba(var(--accent-rgb), 0.2); border-radius: 2px; }
+.artifact-modal-annotations::-webkit-scrollbar-thumb:hover { background: rgba(var(--accent-rgb), 0.4); }
 
 .artifact-modal-title {
   font-family: var(--font-display);
@@ -1188,7 +1237,7 @@
   left: -300px;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(200,169,126,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -1207,7 +1256,7 @@
   transition: border-color 0.3s;
 }
 
-.ai-card:hover { border-color: rgba(200,169,126,0.3); }
+.ai-card:hover { border-color: rgba(var(--accent-rgb), 0.3); }
 
 .ai-card-num {
   font-family: var(--font-display);

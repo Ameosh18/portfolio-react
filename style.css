@@ -37,6 +37,11 @@
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-mono:    'Space Mono', monospace;
   --font-body:    'Inter', sans-serif;
+
+  /* ── Blueprint Layout & Animation ── */
+  --radius:       14px;
+  --radius-sm:    10px;
+  --ease:         cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme="light"] {

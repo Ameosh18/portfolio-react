@@ -140,7 +140,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>The Ecosystem</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Three stakeholders.<br />Three conflicting agendas.</h2>
+          <h2 className="cs-h2 reveal">Three stakeholders.<br />Three conflicting agendas.</h2>
           <p className="reveal" style={{ fontSize: '16px', color: 'var(--muted)', maxWidth: '640px', lineHeight: 1.8, marginBottom: 0 }}>DiGiSense wasn't a simple app with one type of user. It was a three-sided ecosystem ,  and each side wanted something fundamentally different.</p>
 
           <div className="stakeholder-grid reveal">
@@ -213,7 +213,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Research Approach</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>30 days. 5 locations.<br />44 interviews. 4 languages.</h2>
+          <h2 className="cs-h2 reveal">30 days. 5 locations.<br />44 interviews. 4 languages.</h2>
           <p className="reveal" style={{ fontSize: '16px', color: 'var(--muted)', maxWidth: '640px', lineHeight: 1.8 }}>This was the first bottom-up consumer research Mahindra had ever conducted for DiGiSense ,  everything before it had been assumption-driven.</p>
 
           <div className="research-stats reveal">
@@ -332,7 +332,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Key Insights</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Five insights that completely<br />reframed the design problem.</h2>
+          <h2 className="cs-h2 reveal">Five insights that completely<br />reframed the design problem.</h2>
 
           <div className="insights-grid">
             <div className="insight-card reveal">
@@ -394,7 +394,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Strategic Decisions</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Good design isn't about finding the perfect solution.<br />It's about making the right call when every option has a cost.</h2>
+          <h2 className="cs-h2 reveal">Good design isn't about finding the perfect solution.<br />It's about making the right call when every option has a cost.</h2>
 
           {/* Decision 1 */}
           <div className="decision-block">
@@ -506,7 +506,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Design Work</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Three screens. Each chosen not<br />because it looks good , <br />but because it shows a decision.</h2>
+          <h2 className="cs-h2 reveal">Three screens. Each chosen not<br />because it looks good , <br />but because it shows a decision.</h2>
 
           {/* Screen 1 */}
           <div className="screen-section">
@@ -582,7 +582,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>AI Opportunity Layer</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>This project was completed in 2018.<br />Here's how I'd approach it differently today.</h2>
+          <h2 className="cs-h2 reveal">This project was completed in 2018.<br />Here's how I'd approach it differently today.</h2>
 
           <div className="ai-opportunities">
             <div className="ai-card reveal">
@@ -614,7 +614,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Impact lives at three levels.</h2>
+          <h2 className="cs-h2 reveal">Impact lives at three levels.</h2>
 
           <div className="outcomes-grid">
             <div className="outcome-column reveal">
@@ -688,7 +688,7 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Reflection</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>The best designers aren't the ones who get everything right.<br />They're the ones who know exactly what they'd do differently.</h2>
+          <h2 className="cs-h2 reveal">The best designers aren't the ones who get everything right.<br />They're the ones who know exactly what they'd do differently.</h2>
 
           <div className="reflection-items">
             <div className="reflection-item">
