@@ -140,7 +140,7 @@ export default function Homepage() {
         setShowPopup(false);
         setContentReady(true);
       }} />
-      <div ref={rootRef} className={contentReady ? '' : 'content-blurred'}>
+      <div ref={rootRef} id="home-view" className={contentReady ? '' : 'content-blurred'}>
       {/* ── NAV ── */}
       <nav className="nav" id="nav">
         <div className="nav-inner">
