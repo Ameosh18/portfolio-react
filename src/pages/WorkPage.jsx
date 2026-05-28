@@ -63,7 +63,7 @@ export default function WorkPage() {
   }
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+    <div style={{ height: "100vh", width: "100vw", overflow: "hidden", position: "relative" }}>
       <div style={{
         position: "absolute",
         top: "calc(72px + 5vh)",
@@ -80,7 +80,9 @@ export default function WorkPage() {
           Scroll to explore
         </p>
       </div>
-      <StackedGallery />
+      <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
+        <StackedGallery />
+      </div>
     </div>
   )
 }
