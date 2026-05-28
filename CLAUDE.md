@@ -28,31 +28,53 @@ Built with React + Vite, deployed to GitHub Pages at `/portfolio-react/`.
 
 ---
 
-## 2. Design System — CSS Variables
+## 2. Design System — CSS Variables (Blueprint 2026)
 
 All colours and surfaces are defined as CSS custom properties.
 **Always use these variables. Never hardcode hex values in new code.**
 
+The site uses the **Blueprint 2026** design language: a dark, technical aesthetic with a
+lime accent on near-black, a faint blueprint grid background, and mono labels.
+**Dark theme is the launch theme.** A light variant exists in `style.css` but is still
+being verified for WCAG AA+ and should be treated as in-progress (see note below).
+
 ### Dark Theme (default, `:root`)
 ```css
---bg:              #0A0A0A
---surface:         #111111
---surface-raised:  #1A1A1A
---border:          #1F1F1F
---border-subtle:   #161616
+/* surfaces */
+--bg:              #0C0C0C   /* page background (near-black) */
+--surface:         #141414
+--surface-2:       #1C1C1C
+--surface-raised:  #1C1C1C
+--border:          #262626
+--border-soft:     #1E1E1E
+--border-subtle:   #1E1E1E
+
+/* text */
 --text:            #FFFFFF
---text-secondary:  #CCCCCC
---muted:           #AAAAAA
---muted-strong:    #888888
---accent:          #C8A97E   /* warm gold — primary brand colour */
---accent-rgb:      200, 169, 126
---accent-strong:   #D4B896
---card-bg:         rgba(17, 17, 17, 0.65)
---nav-bg:          rgba(10, 10, 10, 0.92)
---overlay-bg:      rgba(10, 10, 10, 0.97)
+--text-muted:      #C0C2B8   /* primary body / secondary text */
+--text-dim:        #7A7C74   /* meta, mono labels */
+--text-secondary:  #C0C2B8
+--muted:           #7A7C74
+--muted-strong:    #AAAAAA
+
+/* accent (lime) */
+--accent:          #D5FF40   /* lime — primary brand colour */
+--accent-rgb:      213, 255, 64
+--accent-dim:      #AECE34
+--accent-ink:      #0C0C0C   /* text/ink on top of lime fills */
+--accent-strong:   #D5FF40
+
+/* navigation + functional */
+--nav-bg:          rgba(12, 12, 12, 0.92)
+--overlay-bg:      rgba(12, 12, 12, 0.97)
+--card-bg:         rgba(20, 20, 20, 0.80)
+--dot-color:       #262626
+--image-bg:        #141414
+--scrollbar-thumb: rgba(213, 255, 64, 0.15)
+--scrollbar-hover: rgba(213, 255, 64, 0.30)
 ```
 
-### Light Theme (`[data-theme="light"]`)
+### Light Theme (`[data-theme="light"]`, in progress)
 ```css
 --bg:              #F7F4F0   /* warm cream — page background only */
 --surface:         #EDEAE5
@@ -63,7 +85,7 @@ All colours and surfaces are defined as CSS custom properties.
 --text-secondary:  #2E2E2E
 --muted:           #5A5A5A
 --muted-strong:    #777777
---accent:          #7A5E34   /* warm brown */
+--accent:          #7A5E34   /* warm brown (placeholder, not final) */
 --accent-rgb:      122, 94, 52
 --accent-strong:   #9A7A4A
 --card-bg:         rgba(237, 234, 229, 0.80)
@@ -71,33 +93,55 @@ All colours and surfaces are defined as CSS custom properties.
 --overlay-bg:      rgba(247, 244, 240, 0.97)
 ```
 
-### Light Theme Colour Rule
-> Use **white (`#FFFFFF` or `rgba(255,255,255,...)`)** for glass/card elements in light mode — NOT cream.
-> Cream (`#F7F4F0`) is for the page background only. White produces cleaner glassmorphism in light mode.
+> **Light theme status:** The Blueprint lime accent has not yet been re-tuned for a light
+> background. The values above are carried over from the previous warm-gold theme and are a
+> placeholder only. Build and verify the dark theme first; do not ship light as final until
+> its contrast is re-checked against WCAG AA+ with the new palette.
+
+### Grid + Layout Tokens
+```css
+--maxw:        1240px        /* content max width (style-2026.css) */
+--grid-max:    1440px        /* outer grid max (style.css) */
+--grid-margin: 80px          /* 40px ≤1024, 24px ≤768, 20px ≤480 */
+--grid-gutter: 24px          /* 20px ≤1024, 16px ≤768, 12px ≤480 */
+--gutter:      clamp(20px, 5vw, 64px)
+--nav-h:       72px
+--radius:      14px
+--radius-sm:   10px
+--ease:        cubic-bezier(0.22, 1, 0.36, 1)
+```
 
 ---
 
-## 3. Typography
+## 3. Typography (Blueprint 2026)
 
 ```css
---font-display: 'Playfair Display', Georgia, serif   /* headings, hero text */
---font-body:    'DM Sans', system-ui, sans-serif     /* all body copy, UI */
+--font-display: 'Bricolage Grotesque', sans-serif   /* headings, hero, big numbers (700/800) */
+--font-mono:    'Space Mono', monospace              /* eyebrows, labels, meta keys, taglines */
+--font-body:    'Inter', system-ui, sans-serif       /* all body copy, UI, paragraphs (400/500/600) */
 ```
 
-**Scale guidelines for popup/card content:**
-| Role | Size |
+Fonts are loaded via `<link>` in `index.html` (not injected at runtime) to avoid FOUC.
+Mono (`Space Mono`) is a core part of the aesthetic: eyebrows, key/value labels, and
+technical taglines all use it with wide tracking and uppercase.
+
+**Type scale (as implemented in `style-2026.css`):**
+| Role | Spec |
 |---|---|
-| Eyebrow label | 12px, `letter-spacing: 0.12em`, uppercase |
-| Headline | `clamp(28px, 6vw, 38px)`, Playfair Display |
-| Body copy | 16px, `line-height: 1.75` |
-| Input text | 16px |
-| Button | 14px, `font-weight: 600` |
-| Disclaimer / meta | 12px |
+| Eyebrow label | `--font-mono`, ~12px, `letter-spacing: 0.22em`, uppercase, lime |
+| Hero h1 | `--font-display`, `clamp(28px, 4.4vw, 56px)`, weight 800, `line-height: 1.0`, `letter-spacing: -0.025em` |
+| Section title | `--font-display`, `clamp(30px, 4.4vw, 54px)`, `letter-spacing: -0.02em` |
+| Lead paragraph | `--font-body`, `clamp(16px, 1.4vw, 19px)`, `line-height: 1.7`, `--text-muted` |
+| Body copy | `--font-body`, 16–17px, `line-height: 1.6–1.7` |
+| Big metric / number | `--font-display`, weight 800, `clamp(40px, 4.4vw, 60px)`, lime |
+| Meta key (k/label) | `--font-mono`, 10–12px, `letter-spacing: 0.15–0.2em`, uppercase, `--text-dim` |
+| Process tagline | `--font-mono`, ~13px, `letter-spacing: 0.03em`, `--text-muted` |
 
 **Typography rules:**
-- Use `var(--font-display)` for all headings and display text.
-- Use `var(--font-body)` for all UI, labels, body, and buttons.
-- Never use `font-size` below 12px for any visible text.
+- Use `var(--font-display)` (Bricolage Grotesque) for all headings, hero text, and large numbers.
+- Use `var(--font-mono)` (Space Mono) for eyebrows, key/value labels, meta, and technical taglines.
+- Use `var(--font-body)` (Inter) for all paragraphs, UI, and buttons.
+- Never use `font-size` below 10px for mono labels, and never below 12px for body text.
 - Increase font sizes when content feels small — default to comfortable reading sizes.
 
 ---
@@ -117,19 +161,19 @@ All colours and surfaces are defined as CSS custom properties.
 
 **Always follow WCAG 2.1 AA as a minimum. These rules are mandatory:**
 
-### Colour Contrast (WCAG 1.4.3)
-Minimum ratios — verified against the design system:
+### Colour Contrast (WCAG 1.4.3) — Blueprint 2026 (dark)
+Minimum ratios — verified against the dark Blueprint palette:
 | Text | Background | Ratio | Status |
 |---|---|---|---|
-| `#AAAAAA` (--muted dark) | `#111111` | 8.5:1 | AAA |
-| `#FFFFFF` (--text dark) | `#111111` | 21:1 | AAA |
-| `#C8A97E` (--accent dark) | `#111111` | 9.4:1 | AAA |
-| `#5A5A5A` (--muted light) | `#F7F4F0` | 6.6:1 | AA |
-| `#5A5A5A` (--muted light) | `#FFFFFF` | 7.1:1 | AA |
-| `#7A5E34` (--accent light) | `#F7F4F0` | 6.2:1 | AA |
-| `#0A0A0A` on `#C8A97E` (btn) | | 9.6:1 | AAA |
+| `#FFFFFF` (--text) | `#0C0C0C` (--bg) | ~20:1 | AAA |
+| `#C0C2B8` (--text-muted) | `#0C0C0C` | ~13:1 | AAA |
+| `#7A7C74` (--text-dim) | `#0C0C0C` | ~5.2:1 | AA |
+| `#D5FF40` (--accent) | `#0C0C0C` | ~16:1 | AAA |
+| `#0C0C0C` (--accent-ink) on `#D5FF40` (btn-primary) | | ~16:1 | AAA |
 
-> When adding new colour combinations, verify contrast before shipping.
+> `--text-dim` (`#7A7C74`) passes AA for normal text but is reserved for small mono meta
+> labels; do not use it for primary body copy. When adding new colour combinations, verify
+> contrast before shipping. Light-theme ratios are not re-verified yet (theme is in progress).
 
 ### Dialogs / Modals
 Every modal/dialog must have:
@@ -265,7 +309,7 @@ Disclaimer:  "Only for this session"
 
 ### Cursor Arrow
 - Shape: Traced 4-point dart cursor (`M4 1 L97 45 L52 54 L36 99 Z` in a `0 0 100 100` viewBox).
-- Size: `width="28" height="28"`.
+- Size: `width="20" height="20"` (matches standard OS cursor sizing).
 - Fill: `var(--accent)` — no stroke, no shadow.
 - Hotspot: top-left tip (no CSS `translate` offset — position is the tip).
 
@@ -313,9 +357,49 @@ Disclaimer:  "Only for this session"
 
 ---
 
+## 12. Blueprint Primitives (Blueprint 2026)
+
+The homepage is built from a small set of reusable "blueprint" primitives defined in
+`src/style-2026.css`. Reuse these classes instead of inventing new ones so the technical
+aesthetic stays consistent.
+
+| Class | Purpose | Notes |
+|---|---|---|
+| `.eyebrow` | Section label above titles | `--font-mono`, uppercase, `0.22em` tracking, lime; has a leading tick via `::before` |
+| `.bp-frame` | Wraps a block in a blueprint "frame" | Add four `.tick` children (`.tl .tr .bl .br`) for the corner `+` marks |
+| `.tick` | Corner crosshair marker | Renders a `+`; positioned with `.tl/.tr/.bl/.br` modifiers |
+| `.bp-rule` | Thin technical divider rule | Use between major blocks |
+| `.bp-num` | Monospace index number (01, 02…) | Pairs with process / list items |
+| `.bp-card` | Flat bordered card | `--surface` bg, `--border`, `--radius`; `.card-head` row with a lime `.dot` |
+| `.btn` | Base button | `--font-mono`-adjacent, pill/rounded; `.arrow` child slides on hover |
+| `.btn-primary` | Lime fill CTA | `background: var(--accent)`, `color: var(--accent-ink)`; hover lifts + brightens |
+| `.btn-ghost` | Bordered secondary CTA | `border: var(--border)`; hover borders + texts lime |
+
+**Cards are flat, not glass.** Blueprint 2026 uses bordered flat surfaces (`.bp-card`),
+not the glassmorphism recipe in Section 6. Use `--surface` / `--border` for cards on the
+homepage and any new Blueprint pages; the glass recipe applies only to legacy popup/dialog
+components (Name Popup, etc.).
+
+### Click Spark
+- `src/components/ClickSpark.jsx` renders a fixed full-viewport `<canvas>` (`pointer-events: none`,
+  `z-index: 99997`) that animates lime spark lines from each click point.
+- Mounted once in `App.jsx`, wrapping `<AppContent />`. Props: `sparkColor='#D5FF40'`,
+  `sparkSize=12`, `sparkRadius=20`, `sparkCount=8`, `duration=400`, `easing='ease-out'`.
+- Works alongside `CustomCursor` (cursor follows the mouse; sparks fire on click).
+
+---
+
 ## 13. Case Study Hero Section — Template
 
 Every case study page follows this standard hero pattern. Copy it exactly when adding a new case study.
+
+> **Blueprint 2026 note:** The display font is now `Bricolage Grotesque` (via `--font-display`),
+> not Playfair Display. The loaded font set has **no true italic axis**, so avoid
+> `font-style: italic` on display headings (it renders as faux-oblique). For the
+> `.hero-subheadline`, prefer weight/colour contrast (e.g. lime `--accent`, weight 600–700)
+> over italic. Case study pages still use the warm-gold-era hero CSS below; migrating their
+> heroes to the lime Blueprint palette is **Phase 3** and not done yet, so when you add a new
+> case study before then, expect to restyle its hero during that pass.
 
 ### Hero Layout Types
 
