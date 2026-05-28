@@ -164,9 +164,6 @@ export default function PfsOnePage() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <div className="section-label reveal">
-            <span>Case Study 02</span>
-          </div>
           <h1 className="hero-headline reveal">
             Network administrators don't get second chances.
           </h1>

@@ -44,9 +44,6 @@ export default function DigiSensePage() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <div className="section-label reveal">
-            <span>Case Study 01</span>
-          </div>
           <h1 className="hero-headline reveal">
             Mahindra had deployed connected technology across 28,000+ tractors in rural India. Most had stopped using it. Nobody knew why.
           </h1>

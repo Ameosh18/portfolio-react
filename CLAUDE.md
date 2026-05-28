@@ -345,9 +345,6 @@ Every case study page follows this standard hero pattern. Copy it exactly when a
 {/* HERO */}
 <section className="hero">
   <div className="hero-content">
-    <div className="section-label reveal">
-      <span>Case Study 0X</span>
-    </div>
     <h1 className="hero-headline reveal">
       One strong sentence that frames the problem as tension or discovery.
     </h1>
@@ -399,9 +396,6 @@ Every case study page follows this standard hero pattern. Copy it exactly when a
 {/* HERO */}
 <section className="hero">
   <div className="hero-content">
-    <div className="section-label reveal">
-      <span>Case Study 0X</span>
-    </div>
     <h1 className="hero-headline reveal">
       One strong sentence that frames the problem as tension or discovery.
     </h1>
