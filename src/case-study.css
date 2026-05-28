@@ -183,6 +183,15 @@
   align-items: center;
 }
 
+.cs-digisense .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
 .cs-digisense .hero::after {
   content: '';
   position: absolute;
@@ -256,7 +265,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
   pointer-events: none;
 }
@@ -1462,6 +1471,9 @@
 
 .cs-btn-arrow {
   display: inline-block;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1;
   transition: transform 0.25s var(--ease);
 }
 

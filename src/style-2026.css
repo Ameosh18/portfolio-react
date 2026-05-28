@@ -138,7 +138,12 @@ ul { list-style: none; }
               border-color .25s var(--ease), color .25s var(--ease);
   white-space: nowrap;
 }
-.btn .arrow { transition: transform .25s var(--ease); }
+.btn .arrow {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .25s var(--ease);
+}
 .btn:hover .arrow { transform: translateX(4px); }
 
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
@@ -408,7 +413,12 @@ ul { list-style: none; }
 .work-card-meta .m-k { display: block; margin-bottom: 4px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); }
 .work-card-meta .m-v { font-size: 13px; color: var(--text); }
 .work-card-cta { display: inline-flex; align-items: center; gap: 8px; padding-top: 14px; font-family: var(--font-mono); font-size: 13px; color: var(--accent); }
-.work-card-cta .arrow { transition: transform .25s var(--ease); }
+.work-card-cta .arrow {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .25s var(--ease);
+}
 .work-card:hover .work-card-cta .arrow { transform: translateX(4px); }
 
 /* ── MEASURED IMPACT ──────────────────────────────────────────────────────── */
@@ -439,7 +449,14 @@ ul { list-style: none; }
 .contact-link:hover { padding-left: 14px; color: var(--accent); }
 .contact-link .c-k { flex: none; width: 130px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
 .contact-link .c-v { flex: 1; font-family: var(--font-display); font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.01em; }
-.contact-link .c-arrow { color: var(--accent); font-size: 22px; transition: transform .25s var(--ease); }
+.contact-link .c-arrow {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform .25s var(--ease);
+}
 .contact-link:hover .c-arrow { transform: translate(4px, -4px); }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
