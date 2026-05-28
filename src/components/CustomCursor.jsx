@@ -47,8 +47,8 @@ export default function CustomCursor() {
       <div ref={arrowRef} className="custom-cursor-arrow" aria-hidden="true" style={{ transform: 'translate(-1.12px, -0.28px)' }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="24"
+          height="24"
           viewBox="0 0 100 100"
           fill="none"
         >
