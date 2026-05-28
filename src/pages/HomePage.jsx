@@ -2,17 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
+import akLogo from '/AKlogo.png';
+import digisenseHero from '/digisense_hero_image.png';
 import '../style-2026.css';
 
-/*
- * Homepage - React conversion of home-2026.html + home-2026.js.
- * Styling lives in style-2026.css (imported above).
- * Assets resolve from Vite's public/ folder (served at root). Drop
- * AKlogo.png and digisense_hero_image.png into public/, or replace these
- * constants with `import logo from './AKlogo.png'` style asset imports.
- */
-const LOGO = '/AKlogo.png';
-const DIGISENSE_IMG = '/digisense_hero_image.png';
+const LOGO = akLogo;
+const DIGISENSE_IMG = digisenseHero;
 
 const FONTS_HREF =
   'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap';
