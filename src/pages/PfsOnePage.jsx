@@ -248,7 +248,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>The Ecosystem</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>One product. Three roles.<br />Zero margin for error.</h2>
+          <h2 className="cs-h2 reveal">One product. Three roles.<br />Zero margin for error.</h2>
           <p className="reveal" style={{ fontSize: '16px', color: 'var(--muted)', maxWidth: '640px', lineHeight: 1.8, marginBottom: 0 }}>PFS ONE wasn't a single-user tool. It was a role-based system where different users had different access, different responsibilities, and fundamentally different mental models of what the product was for.</p>
 
           <div className="stakeholder-grid reveal">
@@ -319,7 +319,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Research Approach</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>One stakeholder. One year.<br />A domain we had to learn fast.</h2>
+          <h2 className="cs-h2 reveal">One stakeholder. One year.<br />A domain we had to learn fast.</h2>
           <p className="reveal" style={{ fontSize: '16px', color: 'var(--muted)', maxWidth: '640px', lineHeight: 1.8 }}>This project had no traditional user research phase. What it had instead was something equally demanding ,  deep domain immersion through a single, highly informed stakeholder channel.</p>
 
           <div className="research-stats reveal">
@@ -375,7 +375,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Key Insights</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Four insights that defined<br />the design problem.</h2>
+          <h2 className="cs-h2 reveal">Four insights that defined<br />the design problem.</h2>
 
           <div className="insights-grid">
             <div className="insight-card reveal">
@@ -427,7 +427,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Strategic Decisions</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Good design isn't about finding the perfect solution.<br />It's about making the right call when every option has a cost.</h2>
+          <h2 className="cs-h2 reveal">Good design isn't about finding the perfect solution.<br />It's about making the right call when every option has a cost.</h2>
 
           {/* Decision 1 */}
           <div className="decision-block">
@@ -539,7 +539,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Design Work</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Six flows. Each chosen because<br />it shows a decision, not just a screen.</h2>
+          <h2 className="cs-h2 reveal">Six flows. Each chosen because<br />it shows a decision, not just a screen.</h2>
 
           <div className="artifact-grid">
             {[
@@ -586,7 +586,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>AI Opportunity Layer</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>This project was completed in 2016.<br />Here's how I'd approach it differently today.</h2>
+          <h2 className="cs-h2 reveal">This project was completed in 2016.<br />Here's how I'd approach it differently today.</h2>
 
           <div className="ai-opportunities">
             <div className="ai-card reveal">
@@ -618,7 +618,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>Impact lives at three levels.</h2>
+          <h2 className="cs-h2 reveal">Impact lives at three levels.</h2>
 
           <div className="outcomes-grid">
             <div className="outcome-column reveal">
@@ -684,7 +684,7 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Reflection</span>
           </div>
-          <h2 className="reveal" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,3.5vw,52px)', fontWeight: 400, lineHeight: 1.15, letterSpacing: '-0.01em', marginBottom: '16px' }}>The best designers aren't the ones who get everything right.<br />They're the ones who know exactly what they'd do differently.</h2>
+          <h2 className="cs-h2 reveal">The best designers aren't the ones who get everything right.<br />They're the ones who know exactly what they'd do differently.</h2>
 
           <div className="reflection-items">
             <div className="reflection-item">
