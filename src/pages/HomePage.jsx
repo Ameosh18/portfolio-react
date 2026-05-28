@@ -104,7 +104,11 @@ export default function Homepage() {
   // Handle loading screen and name popup
   useEffect(() => {
     if (showLoading) return;
-    if (!name) {
+    // Skip the name popup on touchscreen / tablet + mobile breakpoints
+    const isTouchOrSmall =
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 1024px)').matches;
+    if (!name && !isTouchOrSmall) {
       setTimeout(() => setShowPopup(true), 400);
     } else {
       setContentReady(true);
