@@ -110,7 +110,7 @@
 }
 
 .cs-digisense .hero-content {
-  padding: 100px var(--grid-margin) 80px;
+  padding: 100px var(--grid-margin) 48px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -154,7 +154,7 @@
 .cs-pfsone .hero {
   display: flex;
   align-items: center;
-  padding: 100px var(--grid-margin) 80px;
+  padding: 100px var(--grid-margin) 48px;
 }
 
 .cs-pfsone .hero::before {

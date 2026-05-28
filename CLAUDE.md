@@ -427,7 +427,7 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
   align-items: center;
 }
 .cs-[slug] .hero-content {
-  padding: 100px var(--grid-margin) 80px;
+  padding: 100px var(--grid-margin) 48px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -476,7 +476,7 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 .cs-[slug] .hero {
   display: flex;
   align-items: center;
-  padding: 100px var(--grid-margin) 80px;
+  padding: 100px var(--grid-margin) 48px;
 }
 .cs-[slug] .hero-content {
   max-width: 840px;
