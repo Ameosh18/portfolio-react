@@ -1191,7 +1191,7 @@ body.menu-open #site-nav {
   margin-bottom: 20px;
 }
 
-/* Large number — cols 1 & 2 */
+/* Large number - cols 1 & 2 */
 .cred-number {
   font-family: var(--font-display);
   font-size: 48px;
@@ -1219,7 +1219,7 @@ body.menu-open #site-nav {
   line-height: 1.75;
 }
 
-/* Company name badges — col 2 */
+/* Company name badges - col 2 */
 .cred-companies {
   display: flex;
   flex-wrap: wrap;
@@ -1245,7 +1245,7 @@ body.menu-open #site-nav {
   border-color: rgba(var(--accent-rgb), 0.35);
 }
 
-/* Stacked list — cols 3 & 4 */
+/* Stacked list - cols 3 & 4 */
 .cred-list {
   display: flex;
   flex-direction: column;
@@ -1649,7 +1649,7 @@ body.menu-open #site-nav {
   padding-right: 0;
 }
 
-/* Arrowhead between each step — vertically centered in the step */
+/* Arrowhead between each step - vertically centered in the step */
 .workflow-step:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -1825,7 +1825,7 @@ body.menu-open #site-nav {
   cursor: pointer;
 }
 
-/* Inactive: dim text + border colours only — background stays solid so the line never bleeds through */
+/* Inactive: dim text + border colours only - background stays solid so the line never bleeds through */
 .workflow-step.is-inactive .step-number {
   border-color: rgba(var(--accent-rgb), 0.18);
   color: rgba(var(--accent-rgb), 0.18);
@@ -1920,7 +1920,7 @@ body.menu-open #site-nav {
   border-color: rgba(var(--accent-rgb), 0.3);
 }
 
-/* Hero card — only the number is larger; no permanent highlight */
+/* Hero card - only the number is larger; no permanent highlight */
 .metric-card.is-hero:hover {
   border-color: rgba(var(--accent-rgb), 0.4);
   box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.16);
@@ -1958,7 +1958,7 @@ body.menu-open #site-nav {
   gap: 3px;
 }
 
-/* Hero metric number — larger to anchor visual hierarchy */
+/* Hero metric number - larger to anchor visual hierarchy */
 .metric-card.is-hero .metric-number {
   font-size: 72px;
 }
@@ -2444,7 +2444,7 @@ body.menu-open #site-nav {
   will-change: opacity, transform;
 }
 
-/* ── ARTIFACT MODAL (shell-level — outside case-view) ── */
+/* ── ARTIFACT MODAL (shell-level - outside case-view) ── */
 :root {
   --pfs-bg: #0A0A0A;
   --pfs-surface: #111111;
@@ -2868,7 +2868,7 @@ body * { cursor: none !important; }
   position: fixed;
   pointer-events: none;
   z-index: 99999;
-  /* Tip of arrow is the hotspot — no centering offset */
+  /* Tip of arrow is the hotspot - no centering offset */
   will-change: left, top;
 }
 
