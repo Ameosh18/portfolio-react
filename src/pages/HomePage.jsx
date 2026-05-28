@@ -235,38 +235,6 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── AI-AUGMENTED DESIGN PROCESS ── */}
-        <section className="section process" id="process">
-          <div className="container">
-            <div className="process-head reveal">
-              <span className="eyebrow">Design Process</span>
-              <h2 className="section-title">AI-Augmented<br />Design Process</h2>
-              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
-            </div>
-
-            <div className="process-frame bp-frame reveal">
-              <Ticks />
-              {PROCESS_STEPS.map((step, i) => (
-                <div
-                  key={step.num}
-                  className={`pstep${i === activeStep ? ' is-active' : ''}`}
-                  onMouseEnter={() => { pausedRef.current = true; setActiveStep(i); }}
-                  onMouseLeave={() => { pausedRef.current = false; }}
-                >
-                  <div className="pstep-num">{step.num}</div>
-                  <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
-                  <div className="pstep-body"><h3>{step.title}</h3><p>{step.desc}</p></div>
-                </div>
-              ))}
-            </div>
-
-            <div className="process-tagline reveal">
-              <p>// Where you create differentiation: framing, insight, judgement</p>
-              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
-            </div>
-          </div>
-        </section>
-
         {/* ── SPECIALIZATION & SCOPE ── */}
         <section className="section specialization" id="specialization">
           <div className="container">
@@ -368,29 +336,34 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── MEASURED IMPACT ── */}
-        <section className="section impact" id="impact">
+        {/* ── HOW I WORK: AI-FLUENT PRACTICE ── */}
+        <section className="section process" id="process">
           <div className="container">
-            <div className="process-head reveal" style={{ marginBottom: 'clamp(32px,4vw,52px)' }}>
-              <span className="eyebrow">Outcomes</span>
-              <h2 className="section-title" style={{ marginTop: '14px' }}>Measured Impact</h2>
+            <div className="process-head reveal">
+              <span className="eyebrow">My Practice</span>
+              <h2 className="section-title">How I approach<br />design work today.</h2>
+              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
             </div>
-            <div className="impact-grid reveal">
-              {[
-                { i: '01', num: '25+', label: 'Projects Led', desc: 'Across B2B SaaS, Fintech, Cybersecurity, Life Sciences, IoT.' },
-                { i: '02', num: '15+', label: 'Cross-Functional Teams', desc: 'Average team size: 8+ members.' },
-                { i: '03', num: '4', label: 'Design Systems Built', desc: 'Tokens, components, documentation, accessibility audits.' },
-                { i: '04', num: '35%+', label: 'Avg Engagement Lift', desc: 'Measured across product launches and redesigns.' },
-              ].map((m) => (
-                <div className="impact-cell" key={m.i}>
-                  <span className="i-index">{m.i}</span>
-                  <div className="impact-stat">
-                    <div className="i-num">{m.num}</div>
-                    <div className="i-label">{m.label}</div>
-                    <p className="i-desc">{m.desc}</p>
-                  </div>
+
+            <div className="process-frame bp-frame reveal">
+              <Ticks />
+              {PROCESS_STEPS.map((step, i) => (
+                <div
+                  key={step.num}
+                  className={`pstep${i === activeStep ? ' is-active' : ''}`}
+                  onMouseEnter={() => { pausedRef.current = true; setActiveStep(i); }}
+                  onMouseLeave={() => { pausedRef.current = false; }}
+                >
+                  <div className="pstep-num">{step.num}</div>
+                  <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
+                  <div className="pstep-body"><h3>{step.title}</h3><p>{step.desc}</p></div>
                 </div>
               ))}
+            </div>
+
+            <div className="process-tagline reveal">
+              <p>// I use tools fluently because I've thought about the work first.</p>
+              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
             </div>
           </div>
         </section>
