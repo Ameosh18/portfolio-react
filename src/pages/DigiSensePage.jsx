@@ -35,7 +35,7 @@ export default function DigiSensePage() {
       {/* BREADCRUMB */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
-          <Link to="/portfolio-react/work">Work</Link>
+          <Link to="/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">DiGiSense</span>
         </div>
@@ -70,7 +70,11 @@ export default function DigiSensePage() {
             </div>
           </div>
         </div>
-        <div className="hero-image">
+        <div className="hero-image bp-frame">
+          <span className="tick tl" aria-hidden="true" />
+          <span className="tick tr" aria-hidden="true" />
+          <span className="tick bl" aria-hidden="true" />
+          <span className="tick br" aria-hidden="true" />
           {imgError ? (
             <div className="hero-image-placeholder">
               <span>DiGiSense</span>
@@ -721,7 +725,7 @@ export default function DigiSensePage() {
         <div className="container">
           <p className="reveal">Next Case Study</p>
           <h2 className="reveal">Coming Soon</h2>
-          <Link to="/" className="cs-btn reveal">← Back to Work</Link>
+          <Link to="/work" className="cs-btn reveal"><span className="cs-btn-arrow" aria-hidden="true">←</span> Back to Work</Link>
         </div>
       </section>
     </div>

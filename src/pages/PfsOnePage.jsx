@@ -155,7 +155,7 @@ export default function PfsOnePage() {
       {/* BREADCRUMB */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
-          <Link to="/portfolio-react/work">Work</Link>
+          <Link to="/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">PFS ONE</span>
         </div>
@@ -163,7 +163,11 @@ export default function PfsOnePage() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-content">
+        <div className="hero-content bp-frame">
+          <span className="tick tl" aria-hidden="true" />
+          <span className="tick tr" aria-hidden="true" />
+          <span className="tick bl" aria-hidden="true" />
+          <span className="tick br" aria-hidden="true" />
           <div className="section-label reveal">
             <span>Case Study 02</span>
           </div>
@@ -717,7 +721,7 @@ export default function PfsOnePage() {
         <div className="container">
           <p className="reveal">Next Case Study</p>
           <h2 className="reveal">Coming Soon</h2>
-          <Link to="/" className="cs-btn reveal">← Back to Work</Link>
+          <Link to="/work" className="cs-btn reveal"><span className="cs-btn-arrow" aria-hidden="true">←</span> Back to Work</Link>
         </div>
       </section>
     </div>
