@@ -43,7 +43,7 @@ function useBreakpoint() {
   return bp
 }
 
-// ── Static 3D constants (computed once — fine since 3D only runs on desktop/tablet) ──
+// ── Static 3D constants (computed once - fine since 3D only runs on desktop/tablet) ──
 const VW = typeof window !== "undefined" ? window.innerWidth : 1440
 const IS_MOBILE = VW < 640
 const IS_TABLET = VW >= 640 && VW < 1024
@@ -408,7 +408,7 @@ function MobileCarousel({ isDark }) {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Cards strip — flex:1 so it absorbs all remaining height */}
+      {/* Cards strip - flex:1 so it absorbs all remaining height */}
       <div ref={stripRef} style={{ width: "100%", overflow: "hidden", flex: 1, minHeight: 0 }}>
         <motion.div
           animate={{ x: targetX }}
@@ -428,7 +428,7 @@ function MobileCarousel({ isDark }) {
         </motion.div>
       </div>
 
-      {/* CTA row — switches with active card */}
+      {/* CTA row - switches with active card */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current}

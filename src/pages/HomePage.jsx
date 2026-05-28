@@ -5,7 +5,7 @@ import { useName } from '../context/NameContext';
 import '../style-2026.css';
 
 /*
- * Homepage — React conversion of home-2026.html + home-2026.js.
+ * Homepage - React conversion of home-2026.html + home-2026.js.
  * Styling lives in style-2026.css (imported above).
  * Assets resolve from Vite's public/ folder (served at root). Drop
  * AKlogo.png and digisense_hero_image.png into public/, or replace these
@@ -78,7 +78,7 @@ export default function Homepage() {
     const pre2 = Object.assign(document.createElement('link'), { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' });
     const css = Object.assign(document.createElement('link'), { id: 'home-2026-fonts', rel: 'stylesheet', href: FONTS_HREF });
     document.head.append(pre1, pre2, css);
-    document.title = 'Ameya Kulkarni — Lead UX Designer';
+    document.title = 'Ameya Kulkarni - Lead UX Designer';
   }, []);
 
   // Escape closes the mobile menu
@@ -144,7 +144,7 @@ export default function Homepage() {
       {/* ── NAV ── */}
       <nav className="nav" id="nav">
         <div className="nav-inner">
-          <a href="#top" className="nav-logo" aria-label="Ameya Kulkarni — home">
+          <a href="#top" className="nav-logo" aria-label="Ameya Kulkarni, home">
             <img src={LOGO} alt="" />
             <span className="wordmark">Ameya Kulkarni</span>
           </a>
@@ -246,7 +246,7 @@ export default function Homepage() {
             <div className="process-head reveal">
               <span className="eyebrow">Design Process</span>
               <h2 className="section-title">AI-Augmented<br />Design Process</h2>
-              <p className="lead">A process built for complexity, speed, and precision — where AI compounds judgement at every stage, not just the screens.</p>
+              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
             </div>
 
             <div className="process-frame bp-frame reveal">
@@ -323,7 +323,7 @@ export default function Homepage() {
                 <div className="work-card-body">
                   <span className="work-card-sub">Connected Vehicle Telematics Platform</span>
                   <h3 className="work-card-title">DiGiSense</h3>
-                  <p className="work-card-desc">Redesigned Mahindra's IoT telematics platform serving 100,000+ connected vehicles across rural and commercial fleets — turning fragmented real-time data into actionable insights, reducing operator decision time and driving measurable gains in fleet uptime and fuel efficiency.</p>
+                  <p className="work-card-desc">Redesigned Mahindra's IoT telematics platform serving 100,000+ connected vehicles across rural and commercial fleets, turning fragmented real-time data into actionable insights, reducing operator decision time and driving measurable gains in fleet uptime and fuel efficiency.</p>
                   <div className="work-card-meta">
                     <div><span className="m-k">Client</span><span className="m-v">Mahindra & Mahindra</span></div>
                     <div><span className="m-k">Domain</span><span className="m-v">IoT · Telematics</span></div>
@@ -341,7 +341,7 @@ export default function Homepage() {
                 <div className="work-card-body">
                   <span className="work-card-sub">Enterprise Network Visibility Platform</span>
                   <h3 className="work-card-title">NETSCOUT PFS ONE</h3>
-                  <p className="work-card-desc">Redesigned NETSCOUT's nGenius Packet Flow Switch management interface, replacing a legacy system with a lifecycle-based navigation architecture — giving network administrators staged topology publishing, perspective-based navigation, and role-differentiated access across enterprise data centres worldwide.</p>
+                  <p className="work-card-desc">Redesigned NETSCOUT's nGenius Packet Flow Switch management interface, replacing a legacy system with a lifecycle-based navigation architecture, giving network administrators staged topology publishing, perspective-based navigation, and role-differentiated access across enterprise data centres worldwide.</p>
                   <div className="work-card-meta">
                     <div><span className="m-k">Client</span><span className="m-v">NETSCOUT</span></div>
                     <div><span className="m-k">Domain</span><span className="m-v">Enterprise · Network</span></div>
