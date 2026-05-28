@@ -1,36 +1,42 @@
 :root {
-  /* ── Surfaces ── */
-  --bg:              #0A0A0A;
-  --surface:         #111111;
-  --surface-raised:  #1A1A1A;
-  --border:          #1F1F1F;
-  --border-subtle:   #161616;
+  /* ── Surfaces (Blueprint 2026) ── */
+  --bg:              #0C0C0C;
+  --surface:         #141414;
+  --surface-2:       #1C1C1C;
+  --surface-raised:  #1C1C1C;
+  --border:          #262626;
+  --border-soft:     #1E1E1E;
+  --border-subtle:   #1E1E1E;
 
-  /* ── Text ── */
+  /* ── Text (Blueprint 2026) ── */
   --text:            #FFFFFF;
-  --text-secondary:  #CCCCCC;
-  --muted:           #AAAAAA;
-  --muted-strong:    #888888;
+  --text-muted:      #C0C2B8;
+  --text-dim:        #7A7C74;
+  --text-secondary:  #C0C2B8;
+  --muted:           #7A7C74;
+  --muted-strong:    #AAAAAA;
 
-  /* ── Accent ── */
-  --accent:          #C8A97E;
-  --accent-rgb:      200, 169, 126;
-  --accent-strong:   #D4B896;
+  /* ── Accent (Blueprint 2026 - Lime) ── */
+  --accent:          #D5FF40;
+  --accent-rgb:      213, 255, 64;
+  --accent-ink:      #0C0C0C;
+  --accent-strong:   #D5FF40;
 
   /* ── Navigation ── */
-  --nav-bg:          rgba(10, 10, 10, 0.92);
-  --overlay-bg:      rgba(10, 10, 10, 0.97);
+  --nav-bg:          rgba(12, 12, 12, 0.92);
+  --overlay-bg:      rgba(12, 12, 12, 0.97);
 
   /* ── Functional ── */
-  --card-bg:         rgba(17, 17, 17, 0.65);
-  --dot-color:       #1A1A1A;
-  --image-bg:        #0D0D0D;
-  --scrollbar-thumb: rgba(200, 169, 126, 0.20);
-  --scrollbar-hover: rgba(200, 169, 126, 0.40);
+  --card-bg:         rgba(20, 20, 20, 0.80);
+  --dot-color:       #262626;
+  --image-bg:        #141414;
+  --scrollbar-thumb: rgba(213, 255, 64, 0.15);
+  --scrollbar-hover: rgba(213, 255, 64, 0.30);
 
-  /* ── Fonts ── */
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  /* ── Fonts (Blueprint 2026) ── */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+  --font-body:    'Inter', sans-serif;
 }
 
 [data-theme="light"] {

@@ -11,18 +11,19 @@ import './App.css'
 function AppContent() {
   const location = useLocation()
   const hideFooter = location.pathname.includes('/work')
+  const isHome = location.pathname === '/'
 
   return (
     <>
       <CustomCursor />
-      <Nav />
+      {!isHome && <Nav />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
         <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
       </Routes>
-      {!hideFooter && <Footer />}
+      {!hideFooter && !isHome && <Footer />}
     </>
   )
 }

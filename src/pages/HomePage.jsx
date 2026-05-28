@@ -1,379 +1,444 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import DigiSenseHero from '../../digisense_hero_image.png'
-import LoadingScreen from '../components/LoadingScreen'
-import NamePopup from '../components/NamePopup'
-import { useName } from '../context/NameContext'
+import { useEffect, useRef, useState } from 'react';
+import LoadingScreen from '../components/LoadingScreen';
+import NamePopup from '../components/NamePopup';
+import { useName } from '../context/NameContext';
+import '../style-2026.css';
 
-export default function HomePage() {
-  const [showLoading, setShowLoading] = useState(true)
-  const [showPopup, setShowPopup] = useState(false)
-  const [contentReady, setContentReady] = useState(false)
-  const { name } = useName()
+/*
+ * Homepage — React conversion of home-2026.html + home-2026.js.
+ * Styling lives in style-2026.css (imported above).
+ * Assets resolve from Vite's public/ folder (served at root). Drop
+ * AKlogo.png and digisense_hero_image.png into public/, or replace these
+ * constants with `import logo from './AKlogo.png'` style asset imports.
+ */
+const LOGO = '/AKlogo.png';
+const DIGISENSE_IMG = '/digisense_hero_image.png';
 
+const FONTS_HREF =
+  'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap';
+
+const PROCESS_STEPS = [
+  {
+    num: '01',
+    title: 'Understanding',
+    desc: 'Research isn\'t just interviews. I use Claude and ChatGPT to synthesize user feedback, competitive patterns, and domain research. Faster synthesis means I get to the strategic thinking sooner.',
+    icon: (
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><line x1="16" y1="16" x2="21" y2="21" /></svg>
+    ),
+  },
+  {
+    num: '02',
+    title: 'Exploring Ideas',
+    desc: 'Figma AI and Claude help me generate variations and test frameworks quickly. This isn\'t about volume. It\'s about exploring the space thoroughly before committing direction.',
+    icon: (
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="0.6" fill="currentColor" /></svg>
+    ),
+  },
+  {
+    num: '03',
+    title: 'Making & Testing',
+    desc: 'High-fidelity prototypes in Figma and Framer. The goal is fast feedback with users and stakeholders, not polished mockups for the shelf. Speed matters when you\'re learning.',
+    icon: (
+      <svg viewBox="0 0 24 24"><polygon points="12,3 19,7 19,17 12,21 5,17 5,7" /><line x1="12" y1="3" x2="12" y2="12" /></svg>
+    ),
+  },
+  {
+    num: '04',
+    title: 'Shipping & Learning',
+    desc: 'I track what actually happens post-launch: user behavior, engagement patterns, feedback. This informs the next iteration. The 35%+ engagement lifts? They come from this cycle, not luck.',
+    icon: (
+      <svg viewBox="0 0 24 24"><path d="M4 13l5 5L20 6" /></svg>
+    ),
+  },
+];
+
+const Ticks = () => (
+  <>
+    <span className="tick tl" /><span className="tick tr" />
+    <span className="tick bl" /><span className="tick br" />
+  </>
+);
+
+export default function Homepage() {
+  const rootRef = useRef(null);
+  const pausedRef = useRef(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+  const [showLoading, setShowLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [contentReady, setContentReady] = useState(false);
+  const { name } = useName();
+
+  const closeMenu = () => setMenuOpen(false);
+
+  // Inject Google Fonts once (idempotent)
   useEffect(() => {
-    const reveals = document.querySelectorAll('.reveal')
-    if (reveals.length === 0) return
+    if (document.getElementById('home-2026-fonts')) return;
+    const pre1 = Object.assign(document.createElement('link'), { rel: 'preconnect', href: 'https://fonts.googleapis.com' });
+    const pre2 = Object.assign(document.createElement('link'), { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' });
+    const css = Object.assign(document.createElement('link'), { id: 'home-2026-fonts', rel: 'stylesheet', href: FONTS_HREF });
+    document.head.append(pre1, pre2, css);
+    document.title = 'Ameya Kulkarni — Lead UX Designer';
+  }, []);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
+  // Escape closes the mobile menu
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, []);
 
-    reveals.forEach(el => observer.observe(el))
-    return () => reveals.forEach(el => observer.unobserve(el))
-  }, [])
+  // Lock body scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  // Scroll reveal
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = root.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // Process step auto-sequencer (pauses on hover)
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const id = setInterval(() => {
+      if (!pausedRef.current) setActiveStep((s) => (s + 1) % PROCESS_STEPS.length);
+    }, 2200);
+    return () => clearInterval(id);
+  }, []);
+
+  // Handle loading screen and name popup
+  useEffect(() => {
+    if (showLoading) return;
+    if (!name) {
+      setTimeout(() => setShowPopup(true), 400);
+    } else {
+      setContentReady(true);
+    }
+  }, [showLoading, name]);
 
   return (
     <>
-      <LoadingScreen onComplete={() => {
-        setShowLoading(false)
-        if (!name) {
-          setTimeout(() => setShowPopup(true), 400)
-        } else {
-          setContentReady(true)
-        }
-      }} />
+      <LoadingScreen onComplete={() => setShowLoading(false)} />
       <NamePopup show={showPopup} onClose={() => {
-        setShowPopup(false)
-        setContentReady(true)
+        setShowPopup(false);
+        setContentReady(true);
       }} />
-      <main id="home-view" className={contentReady ? '' : 'content-blurred'}>
-        {/* HERO */}
-      <section className="hero" id="hero">
-        <div className="hero-grid-highlight"></div>
-
-        {/* FLOATING CARDS */}
-        <div className="floating-card card-left" data-rotation="-4">
-          <div className="card-coord">
-            <span className="coord-x">X: 0</span>
-            <div className="coord-dot"></div>
-            <span className="coord-y">Y: 0</span>
-          </div>
-          <div className="card-inner">
-            <div className="card-header">UX Strategy</div>
-            <div className="card-diagram">
-              <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20,40 Q50,10 80,40 Q50,70 20,40" stroke="var(--border)" strokeWidth="1.5" fill="none" strokeDasharray="4,4" />
-                <circle cx="20" cy="40" r="4" fill="var(--accent)" />
-                <circle cx="50" cy="25" r="4" fill="var(--text)" />
-                <circle cx="80" cy="40" r="4" fill="var(--accent)" />
-                <circle cx="50" cy="55" r="4" fill="var(--muted)" />
-              </svg>
-            </div>
-            <div className="card-divider"></div>
-            <div className="card-details">
-              <div className="detail-row"><span>Research</span> <span className="badge">Generative</span></div>
-              <div className="detail-row"><span>Prototyping</span> <span className="badge">Hi-Fi</span></div>
-              <div className="detail-row"><span>Validation</span> <span className="badge">Usability</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="floating-card card-right" data-rotation="6">
-          <div className="card-coord">
-            <span className="coord-x">X: 0</span>
-            <div className="coord-dot"></div>
-            <span className="coord-y">Y: 0</span>
-          </div>
-          <div className="card-inner">
-            <div className="card-header">Performance Impact</div>
-            <div className="card-metric-group">
-              <div className="card-metric">+35<span style={{ fontSize: '0.6em' }}>%</span></div>
-              <div className="card-metric-label">User Engagement</div>
-            </div>
-            <div className="card-chart">
-              <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--accent)" />
-                    <stop offset="100%" stopColor="transparent" />
-                  </linearGradient>
-                </defs>
-                <path d="M0,45 L0,50 L100,50 L100,5 Z" fill="url(#chartGrad)" opacity="0.1" />
-                <path d="M0,45 Q20,40 30,30 T60,20 T100,5" stroke="var(--accent)" strokeWidth="2" fill="none" strokeLinecap="round" />
-                <circle cx="100" cy="5" r="3" fill="var(--text)" />
-              </svg>
-            </div>
-            <div className="card-divider"></div>
-            <div className="card-details">
-              <div className="detail-row"><span>Task Time</span> <span className="highlight">-2.5s</span></div>
-              <div className="detail-row"><span>Conversion</span> <span className="highlight">+12.4%</span></div>
-              <div className="detail-row"><span>Drop-off</span> <span className="highlight">-8.1%</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-content">
-          <p className="hero-eyebrow reveal reveal-0">Lead UX Designer · 9.5 Years</p>
-          <p className="hero-name reveal reveal-1">Ameya Kulkarni</p>
-          <h1 className="hero-headline reveal reveal-2">
-            I design complex systems that create measurable business outcomes.
-          </h1>
-          <p className="hero-subheadline reveal reveal-4">UX Strategy · Systems Design · AI/ML Product Design</p>
-          <p className="hero-body reveal reveal-5">
-            From connected tractors in rural India to enterprise SaaS platforms,
-            I work at the intersection of strategic thinking, systems design,
-            and measurable human behaviour. Every engagement starts with
-            a hard problem and ends with a number that moved.
-          </p>
-          <div className="hero-ctas reveal reveal-6">
-            <Link to="/digisense" className="btn-primary">
-              Explore DiGiSense Case Study →
-            </Link>
-            <a href="#contact" className="btn-secondary">Schedule a Conversation</a>
-          </div>
-        </div>
-
-        <div className="scroll-indicator reveal reveal-8">
-          <span>Scroll to Explore</span>
-        </div>
-      </section>
-
-      {/* CREDIBILITY STRIP */}
-      <div className="credibility-strip">
-        <div className="cred-item">
-          <span className="cred-label">Years of Experience</span>
-          <div className="cred-number">9<span className="cred-suffix">.5 yrs</span></div>
-          <p className="cred-detail">UX strategy and systems design across enterprise and consumer products</p>
-        </div>
-        <div className="cred-item">
-          <span className="cred-label">Companies</span>
-          <div className="cred-number">5<span className="cred-suffix">co.</span></div>
-          <div className="cred-companies">
-            <span className="company-badge">Globant</span>
-            <span className="company-badge">Mahindra</span>
-            <span className="company-badge">Innoplexus</span>
-            <span className="company-badge">Ogee Studio</span>
-            <span className="company-badge">Extentia</span>
-          </div>
-        </div>
-        <div className="cred-item">
-          <span className="cred-label">Design Disciplines</span>
-          <ul className="cred-list">
-            <li className="cred-list-item">UX Strategy</li>
-            <li className="cred-list-item">Systems Design</li>
-            <li className="cred-list-item">AI/ML Product Design</li>
+      <div ref={rootRef} className={contentReady ? '' : 'content-blurred'}>
+      {/* ── NAV ── */}
+      <nav className="nav" id="nav">
+        <div className="nav-inner">
+          <a href="#top" className="nav-logo" aria-label="Ameya Kulkarni — home">
+            <img src={LOGO} alt="" />
+            <span className="wordmark">Ameya Kulkarni</span>
+          </a>
+          <ul className="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" className="cta">Let's Talk →</a></li>
           </ul>
+          <button
+            className="nav-hamburger"
+            id="hamburger"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen(true)}
+          >
+            <span /><span /><span />
+          </button>
         </div>
-        <div className="cred-item">
-          <span className="cred-label">Key Focus Areas</span>
-          <ul className="cred-list">
-            <li className="cred-list-item">B2B SaaS</li>
-            <li className="cred-list-item">Fintech</li>
-            <li className="cred-list-item">Cybersecurity</li>
-            <li className="cred-list-item">Life Sciences</li>
-            <li className="cred-list-item">IoT</li>
-          </ul>
+      </nav>
+
+      {/* ── MOBILE MENU ── */}
+      <div
+        className={`mobile-menu${menuOpen ? ' open' : ''}`}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation"
+        aria-hidden={!menuOpen}
+      >
+        <button className="mobile-menu-close" id="menu-close" aria-label="Close menu" onClick={closeMenu}>×</button>
+        <ul className="mobile-menu-links">
+          {[
+            { href: '#work', num: '01', label: 'Work' },
+            { href: '#process', num: '02', label: 'Process' },
+            { href: '#about', num: '03', label: 'About' },
+            { href: '#contact', num: '04', label: 'Contact' },
+          ].map((item, i) => (
+            <li key={item.href}>
+              <a href={item.href} style={{ '--stagger': i + 1 }} onClick={closeMenu}>
+                <span className="label"><span className="menu-num">{item.num}</span>{item.label}</span>
+                <span className="arrow">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="mobile-menu-foot">
+          <span
+            className="dot"
+            style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 12px rgba(var(--accent-rgb),.6)' }}
+          />
+          Available to join your company
         </div>
       </div>
 
-      {/* FEATURED WORK */}
-      <section className="featured-work" id="work">
-        <div className="section-header">
-          <div className="section-eyebrow">
-            <span>Selected Work</span>
-            <h2 className="section-title">Featured Case Studies</h2>
-          </div>
-          <Link to="/work" className="view-all">View All Work</Link>
-        </div>
+      <main id="top">
+        {/* ── HERO ── */}
+        <section className="section hero" id="hero">
+          <div className="container">
+            <div className="hero-grid bp-frame">
+              <Ticks />
 
-        <Link to="/digisense" className="work-card reveal reveal-0">
-          <div className="work-card-image">
-            <img src={DigiSenseHero} alt="DiGiSense: Connected Vehicle Telematics Platform" />
-          </div>
-          <div className="work-card-content">
-            <span className="work-card-badge">Case Study</span>
-            <h3 className="work-card-title">DiGiSense</h3>
-            <p className="work-card-subtitle">Connected Vehicle Telematics Platform</p>
-            <div className="work-card-divider"></div>
-            <p className="work-card-description">
-              Redesigned Mahindra's IoT telematics platform serving 100,000+ connected
-              vehicles across rural and commercial fleets, turning fragmented real-time
-              data into actionable insights and reducing operator decision time and driving
-              measurable gains in fleet uptime and fuel efficiency.
-            </p>
-            <div className="work-card-meta">
-              <div className="work-meta-item">
-                <span className="work-meta-label">Client</span>
-                <span className="work-meta-value">Mahindra & Mahindra</span>
+              <div className="hero-copy reveal">
+                <span className="eyebrow">Lead UX Designer</span>
+                <h1>I design systems that help teams move faster and users get what they need.</h1>
+                <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
+                <p className="hero-about">I work at the intersection of strategy and systems. Over the past 9.5 years, I've shipped design systems that helped teams go faster, led teams across timezones, and consistently delivered products that move engagement metrics. I'm most energized when tackling complex domains: rural IoT, fintech compliance, enterprise infrastructure. This is where good design actually matters.</p>
+                <div className="hero-ctas">
+                  <a href="#work" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></a>
+                  <a href="#contact" className="btn btn-ghost">Schedule a Conversation</a>
+                </div>
               </div>
-              <div className="work-meta-item">
-                <span className="work-meta-label">Domain</span>
-                <span className="work-meta-value">IoT · Telematics</span>
-              </div>
-              <div className="work-meta-item">
-                <span className="work-meta-label">Role</span>
-                <span className="work-meta-value">Lead UX Designer</span>
+
+              <div className="hero-cards reveal">
+                <article className="bp-card">
+                  <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
+                  <div className="disc-row"><span className="k">Research</span><span className="v">Generative</span></div>
+                  <div className="disc-row"><span className="k">Prototyping</span><span className="v">Hi-Fi</span></div>
+                  <div className="disc-row"><span className="k">Validation</span><span className="v">Usability</span></div>
+                </article>
+                <article className="bp-card">
+                  <div className="card-head"><span>Performance Impact</span><span className="dot" /></div>
+                  <div className="metric-grid">
+                    <div className="metric-cell"><div className="num">+35%</div><div className="lbl">User Engagement</div></div>
+                    <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
+                    <div className="metric-cell"><div className="num">+12.4%</div><div className="lbl">Conversion</div></div>
+                    <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
+                  </div>
+                </article>
               </div>
             </div>
-            <span className="work-card-link">Read Case Study →</span>
           </div>
-        </Link>
+        </section>
 
-        <Link to="/pfsone" className="work-card">
-          <div className="work-card-image" style={{ background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '48px', fontWeight: '400', color: 'var(--border)', letterSpacing: '0.08em', opacity: '0.6' }}>PFS ONE</span>
-          </div>
-          <div className="work-card-content">
-            <span className="work-card-badge">Case Study</span>
-            <h3 className="work-card-title">NETSCOUT PFS ONE</h3>
-            <p className="work-card-subtitle">Enterprise Network Visibility Platform</p>
-            <div className="work-card-divider"></div>
-            <p className="work-card-description">
-              Redesigned NETSCOUT's nGenius Packet Flow Switch management interface, replacing a legacy system with a
-              lifecycle-based navigation architecture that gave network administrators staged topology publishing,
-              perspective-based navigation, and role-differentiated access across enterprise data centres worldwide.
-            </p>
-            <div className="work-card-meta">
-              <div className="work-meta-item">
-                <span className="work-meta-label">Client</span>
-                <span className="work-meta-value">NETSCOUT</span>
-              </div>
-              <div className="work-meta-item">
-                <span className="work-meta-label">Domain</span>
-                <span className="work-meta-value">Enterprise · Network</span>
-              </div>
-              <div className="work-meta-item">
-                <span className="work-meta-label">Role</span>
-                <span className="work-meta-value">UX Designer</span>
-              </div>
+        {/* ── AI-AUGMENTED DESIGN PROCESS ── */}
+        <section className="section process" id="process">
+          <div className="container">
+            <div className="process-head reveal">
+              <span className="eyebrow">Design Process</span>
+              <h2 className="section-title">AI-Augmented<br />Design Process</h2>
+              <p className="lead">A process built for complexity, speed, and precision — where AI compounds judgement at every stage, not just the screens.</p>
             </div>
-            <span className="work-card-link">Read Case Study →</span>
-          </div>
-        </Link>
-      </section>
 
-      {/* AI WORKFLOW PREVIEW */}
-      <section className="ai-workflow" id="ai-workflow">
-        <div className="section-header">
-          <div className="section-eyebrow">
-            <span>Design Process</span>
-            <h2 className="section-title">AI-Augmented Design Process</h2>
-          </div>
-        </div>
-        <div className="workflow-steps">
-          <div className="workflow-step is-active">
-            <div className="step-number">1</div>
-            <h3 className="step-title">Research &amp; Synthesis</h3>
-            <p className="step-desc">AI-powered data mining and pattern discovery across user feedback</p>
-          </div>
-          <div className="workflow-step">
-            <div className="step-number">2</div>
-            <h3 className="step-title">Strategic Thinking</h3>
-            <p className="step-desc">AI insight generation to uncover hidden user needs and market gaps</p>
-          </div>
-          <div className="workflow-step">
-            <div className="step-number">3</div>
-            <h3 className="step-title">Design &amp; Iteration</h3>
-            <p className="step-desc">AI-assisted prototyping and rapid testing of design variations</p>
-          </div>
-          <div className="workflow-step">
-            <div className="step-number">4</div>
-            <h3 className="step-title">Validation &amp; Launch</h3>
-            <p className="step-desc">AI-driven testing automation and performance monitoring</p>
-          </div>
-        </div>
-        <div className="workflow-cta">
-          <p className="workflow-cta-label">A process built for complexity, speed, and precision</p>
-          <a href="#ai-workflow" className="workflow-cta-link">Explore Full Process →</a>
-        </div>
-      </section>
+            <div className="process-frame bp-frame reveal">
+              <Ticks />
+              {PROCESS_STEPS.map((step, i) => (
+                <div
+                  key={step.num}
+                  className={`pstep${i === activeStep ? ' is-active' : ''}`}
+                  onMouseEnter={() => { pausedRef.current = true; setActiveStep(i); }}
+                  onMouseLeave={() => { pausedRef.current = false; }}
+                >
+                  <div className="pstep-num">{step.num}</div>
+                  <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
+                  <div className="pstep-body"><h3>{step.title}</h3><p>{step.desc}</p></div>
+                </div>
+              ))}
+            </div>
 
-      {/* METRICS / IMPACT */}
-      <section className="metrics" id="impact">
-        <div className="section-header">
-          <div className="section-eyebrow">
-            <span>Outcomes</span>
-            <h2 className="section-title">Measured Impact</h2>
-          </div>
-        </div>
-        <div className="metrics-grid">
-          <div className="metric-card is-hero">
-            <div className="metric-number">25<span className="suffix">+</span></div>
-            <p className="metric-label">Projects Led</p>
-            <p className="metric-context">Across B2B SaaS, Fintech, Cybersecurity, Life Sciences, IoT</p>
-          </div>
-          <div className="metric-card">
-            <div className="metric-number">15<span className="suffix">+</span></div>
-            <p className="metric-label">Cross-Functional Teams Managed</p>
-            <p className="metric-context">Average team size: 8+ members</p>
-          </div>
-          <div className="metric-card">
-            <div className="metric-number">4</div>
-            <p className="metric-label">Design Systems Built</p>
-            <p className="metric-context">Tokens, components, documentation, accessibility audits</p>
-          </div>
-          <div className="metric-card is-wide">
-            <div className="metric-number">35<span className="suffix">%</span></div>
-            <div>
-              <p className="metric-label">Avg User Engagement Lift</p>
-              <p className="metric-context">Measured across product launches and redesigns</p>
+            <div className="process-tagline reveal">
+              <p>// Where you create differentiation: framing, insight, judgement</p>
+              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ABOUT PREVIEW */}
-      <section className="about-preview" id="about">
-        <div className="about-inner">
-          <div className="section-eyebrow">
-            <span>About Me</span>
-          </div>
-          <h2 className="about-headline">A systems thinker who designs for impact</h2>
-          <div className="about-bio">
-            <p>
-              With 9.5 years across enterprise B2B SaaS, fintech, and emerging AI workflows,
-              I specialize in UX strategy and design systems that drive measurable outcomes.
-              I've shipped <strong>4+ design systems</strong>, led cross-functional teams of
-              <strong>8+</strong>, and consistently delivered <strong>35%+ engagement lifts</strong>
-              through strategic design decisions.
-            </p>
-          </div>
-          <div className="about-cta-row">
-            <a href="#about" className="about-cta-link">Read Full Story →</a>
-            <div className="about-cta-divider"></div>
-            <div className="availability-status">
-              <span className="pulse-dot"></span>
-              <span className="about-availability">Available to join your company</span>
+        {/* ── CREDIBILITY STRIP ── */}
+        <section className="section" id="credibility">
+          <div className="container">
+            <div className="cred-grid reveal">
+              <div className="cred-cell">
+                <span className="cred-label">Experience</span>
+                <div className="cred-years">9.5<span>years</span></div>
+                <p className="cred-desc">UX strategy and systems design across enterprise and consumer products.</p>
+              </div>
+              <div className="cred-cell">
+                <span className="cred-label">Companies</span>
+                <ul className="cred-list">
+                  {['Globant', 'Mahindra', 'Innoplexus', 'Ogee Studio', 'Extentia'].map((c) => <li key={c}>{c}</li>)}
+                </ul>
+              </div>
+              <div className="cred-cell">
+                <span className="cred-label">Disciplines</span>
+                <ul className="cred-list">
+                  {['UX Strategy', 'Systems Design', 'AI/ML Product Design'].map((c) => <li key={c}>{c}</li>)}
+                </ul>
+              </div>
+              <div className="cred-cell">
+                <span className="cred-label">Focus Areas</span>
+                <ul className="cred-list">
+                  {['B2B SaaS', 'Fintech', 'Cybersecurity', 'Life Sciences', 'IoT'].map((c) => <li key={c}>{c}</li>)}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA / CONTACT */}
-      <section className="cta-section" id="contact">
-        <div className="cta-inner">
-          <p className="cta-eyebrow">Get in Touch</p>
-          <h2 className="cta-headline">Let's build something great.</h2>
-          <p className="cta-sub">I'm open to lead, principal, and AI-focused UX roles.</p>
-          <a href="mailto:ameya@example.com" className="cta-btn">Schedule a Conversation →</a>
-          <div className="cta-links">
-            <a href="mailto:ameya@example.com" className="cta-link" aria-label="Send email">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2-8 5-8-5h16zm0 12H4V8.236l8 5 8-5V18z" />
-              </svg>
-              Email
-            </a>
-            <a href="https://linkedin.com/in/ameyakulkarni" className="cta-link" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M19.959 3H4.041C3.468 3 3 3.468 3 4.041v15.918C3 20.532 3.468 21 4.041 21h15.918C20.532 21 21 20.532 21 19.959V4.041C21 3.468 20.532 3 19.959 3zM8.877 17.5H6.386V9.82h2.491V17.5zM7.631 8.773a1.444 1.444 0 110-2.888 1.444 1.444 0 010 2.888zM17.5 17.5h-2.49v-3.778c0-.9-.016-2.059-1.254-2.059-1.255 0-1.448.981-1.448 1.994V17.5h-2.49V9.82h2.39v1.061h.034c.332-.63 1.144-1.294 2.354-1.294 2.518 0 2.982 1.657 2.982 3.812V17.5z" />
-              </svg>
-              LinkedIn
-            </a>
-            <a href="https://twitter.com/ameyakulkarni" className="cta-link" target="_blank" rel="noopener" aria-label="Twitter / X profile">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M18.244 2h3.308l-7.227 8.26L23 22h-6.655l-4.818-6.301L6.01 22H2.7l7.73-8.835L1 2h6.833l4.337 5.684L18.244 2zm-1.161 18h1.833L6.989 4H5.022L17.083 20z" />
-              </svg>
-              Twitter
-            </a>
+        {/* ── FEATURED WORK ── */}
+        <section className="section work" id="work">
+          <div className="container">
+            <div className="work-head reveal">
+              <div>
+                <span className="eyebrow">Selected Work</span>
+                <h2 className="section-title" style={{ marginTop: '14px' }}>Featured Case Studies</h2>
+              </div>
+              <a href="#work" className="btn btn-ghost">View All Work <span className="arrow">→</span></a>
+            </div>
+            <div className="work-grid">
+              <a href="#work" className="work-card reveal">
+                <div className="work-card-media">
+                  <img src={DIGISENSE_IMG} alt="DiGiSense connected vehicle telematics platform" />
+                  <span className="work-card-index">01</span>
+                  <span className="work-card-domain">IoT · Telematics</span>
+                </div>
+                <div className="work-card-body">
+                  <span className="work-card-sub">Connected Vehicle Telematics Platform</span>
+                  <h3 className="work-card-title">DiGiSense</h3>
+                  <p className="work-card-desc">Redesigned Mahindra's IoT telematics platform serving 100,000+ connected vehicles across rural and commercial fleets — turning fragmented real-time data into actionable insights, reducing operator decision time and driving measurable gains in fleet uptime and fuel efficiency.</p>
+                  <div className="work-card-meta">
+                    <div><span className="m-k">Client</span><span className="m-v">Mahindra & Mahindra</span></div>
+                    <div><span className="m-k">Domain</span><span className="m-v">IoT · Telematics</span></div>
+                    <div><span className="m-k">Role</span><span className="m-v">Lead UX Designer</span></div>
+                  </div>
+                  <span className="work-card-cta">Read Case Study <span className="arrow">→</span></span>
+                </div>
+              </a>
+              <a href="#work" className="work-card reveal">
+                <div className="work-card-media">
+                  <div className="ph"><span>NETSCOUT PFS ONE</span></div>
+                  <span className="work-card-index">02</span>
+                  <span className="work-card-domain">Enterprise · Network</span>
+                </div>
+                <div className="work-card-body">
+                  <span className="work-card-sub">Enterprise Network Visibility Platform</span>
+                  <h3 className="work-card-title">NETSCOUT PFS ONE</h3>
+                  <p className="work-card-desc">Redesigned NETSCOUT's nGenius Packet Flow Switch management interface, replacing a legacy system with a lifecycle-based navigation architecture — giving network administrators staged topology publishing, perspective-based navigation, and role-differentiated access across enterprise data centres worldwide.</p>
+                  <div className="work-card-meta">
+                    <div><span className="m-k">Client</span><span className="m-v">NETSCOUT</span></div>
+                    <div><span className="m-k">Domain</span><span className="m-v">Enterprise · Network</span></div>
+                    <div><span className="m-k">Role</span><span className="m-v">UX Designer</span></div>
+                  </div>
+                  <span className="work-card-cta">Read Case Study <span className="arrow">→</span></span>
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* ── MEASURED IMPACT ── */}
+        <section className="section impact" id="impact">
+          <div className="container">
+            <div className="process-head reveal" style={{ marginBottom: 'clamp(32px,4vw,52px)' }}>
+              <span className="eyebrow">Outcomes</span>
+              <h2 className="section-title" style={{ marginTop: '14px' }}>Measured Impact</h2>
+            </div>
+            <div className="impact-grid reveal">
+              {[
+                { i: '01', num: '25+', label: 'Projects Led', desc: 'Across B2B SaaS, Fintech, Cybersecurity, Life Sciences, IoT.' },
+                { i: '02', num: '15+', label: 'Cross-Functional Teams', desc: 'Average team size: 8+ members.' },
+                { i: '03', num: '4', label: 'Design Systems Built', desc: 'Tokens, components, documentation, accessibility audits.' },
+                { i: '04', num: '35%+', label: 'Avg Engagement Lift', desc: 'Measured across product launches and redesigns.' },
+              ].map((m) => (
+                <div className="impact-cell" key={m.i}>
+                  <span className="i-index">{m.i}</span>
+                  <div className="impact-stat">
+                    <div className="i-num">{m.num}</div>
+                    <div className="i-label">{m.label}</div>
+                    <p className="i-desc">{m.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── ABOUT PREVIEW ── */}
+        <section className="section about" id="about">
+          <div className="container">
+            <div className="about-frame bp-frame reveal">
+              <Ticks />
+              <div className="about-grid">
+                <div>
+                  <span className="eyebrow a-eyebrow">About Me</span>
+                  <h2 className="a-title">A systems thinker who designs for impact</h2>
+                </div>
+                <div>
+                  <p className="a-bio">With 9.5 years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
+                  <div className="about-cta-row">
+                    <a href="#about" className="btn btn-primary">Read Full Story <span className="arrow">→</span></a>
+                    <span className="status-pill"><span className="dot" />Available to join your company</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CONTACT ── */}
+        <section className="section contact" id="contact">
+          <div className="container">
+            <span className="eyebrow reveal">Get in Touch</span>
+            <h2 className="section-title reveal" style={{ marginTop: '16px' }}>I can help your team move faster and ship better products.</h2>
+            <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
+            <div className="contact-links reveal">
+              <a href="mailto:ameya@example.com" className="contact-link">
+                <span className="c-k">Email</span><span className="c-v">Schedule a Conversation</span><span className="c-arrow">↗</span>
+              </a>
+              <a href="https://linkedin.com/in/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
+                <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni</span><span className="c-arrow">↗</span>
+              </a>
+              <a href="https://twitter.com/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
+                <span className="c-k">Twitter / X</span><span className="c-v">twitter.com/ameyakulkarni</span><span className="c-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* ── FOOTER ── */}
+      <footer className="footer">
+        <div className="container footer-grid">
+          <div className="legal">© 2026 Ameya Kulkarni</div>
+          <div className="footer-explore">
+            <span className="exploring-label">Currently Exploring</span>
+            <p className="statement">AI-augmented design systems for distributed teams. Obsessed with the intersection of strategy, AI, and human-centered design.</p>
+          </div>
+          <div className="footer-contact">
+            <a href="#contact">Get in touch</a>
+            <a href="mailto:ameya@example.com" className="footer-email">ameya@example.com</a>
+          </div>
+        </div>
+      </footer>
+      </div>
     </>
-  )
+  );
 }
