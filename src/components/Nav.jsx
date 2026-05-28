@@ -1,76 +1,67 @@
 import { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AKLogo from '../../AKlogo.png'
 
-const links = [
-  { num: "00", label: "Home",        to: "/",             href: null },
-  { num: "01", label: "Work",        to: "/work",         href: null },
-  { num: "02", label: "AI Workflow", to: null,            href: "/#ai-workflow" },
-  { num: "03", label: "About",       to: null,            href: "/#about" },
-  { num: "04", label: "Let's Talk",  to: null,            href: "/#contact" },
-]
-
+const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
 export default function Nav() {
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
-  const [isMenuOpen, setIsMenuOpen]   = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
-  const isOnCaseStudy = CASE_STUDY_PATHS.includes(location.pathname)
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const theme = localStorage.getItem('theme') || 'dark'
-    if (theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light')
-      setIsDarkTheme(false)
-    }
-  }, [])
-
-  // Body class for z-index stacking (nav stays above overlay)
-  useEffect(() => {
-    document.body.classList.toggle('menu-open', isMenuOpen)
-    return () => document.body.classList.remove('menu-open')
-  }, [isMenuOpen])
-
-  const toggleTheme = () => {
-    const newTheme = isDarkTheme ? 'light' : 'dark'
-    localStorage.setItem('theme', newTheme)
-    document.documentElement.setAttribute('data-theme', newTheme)
-    setIsDarkTheme(!isDarkTheme)
-  }
+  const isHome = location.pathname === '/'
+  const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
 
   const close = () => setIsMenuOpen(false)
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', isMenuOpen)
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.classList.remove('menu-open')
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setIsMenuOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
+  const goToSection = (id) => (e) => {
+    e.preventDefault()
+    close()
+    if (isHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+    }
+  }
+
+  const sectionLinks = [
+    { num: '02', label: 'My Process', id: 'process' },
+    { num: '03', label: 'About Me', id: 'about' },
+  ]
+
   return (
     <>
-      <nav id="site-nav">
-        <Link to="/" className="nav-logo" onClick={close}>
-          <img src={AKLogo} alt="Ameya Kulkarni" className="nav-logo-img" />
-        </Link>
+      <nav className="nav" id="nav">
+        <div className="nav-inner">
+          <Link to="/" className="nav-logo" onClick={close} aria-label="Ameya Kulkarni, home">
+            <img src={AKLogo} alt="" />
+            <span className="wordmark">Ameya Kulkarni</span>
+          </Link>
 
-        <ul className="nav-links">
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/work" className={({ isActive }) => isActive || isOnCaseStudy ? 'active' : undefined}>Work</NavLink></li>
-          <li><a href="/#ai-workflow">AI Workflow</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact" className="cta">Let's Talk →</a></li>
-        </ul>
-
-        <div className="nav-actions">
-          <button className="theme-toggle" aria-label="Toggle colour theme" onClick={toggleTheme}>
-            <svg className="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
-            <svg className="icon-sun"  viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1"  x2="12" y2="3"  />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"  />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1"  y1="12" x2="3"  y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36" />
-              <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"  />
-            </svg>
-          </button>
+          <ul className="nav-links">
+            <li><Link to="/" className={isHome ? 'active' : undefined} onClick={close}>Home</Link></li>
+            <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
+            {sectionLinks.map(({ label, id }) => (
+              <li key={id}><a href={`#${id}`} onClick={goToSection(id)}>{label}</a></li>
+            ))}
+            <li><a href={RESUME_URL} download className="cta">Download Resume ↓</a></li>
+          </ul>
 
           <button
             className={`nav-hamburger${isMenuOpen ? ' is-open' : ''}`}
@@ -86,7 +77,6 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Always in DOM so CSS opacity transition works */}
       <div
         id="mobile-menu"
         className={`mobile-menu${isMenuOpen ? ' is-open' : ''}`}
@@ -95,27 +85,32 @@ export default function Nav() {
         aria-label="Navigation menu"
       >
         <ul className="mobile-menu-links">
-          {links.map(({ num, label, to, href }) => (
-            <li key={num}>
-              {to ? (
-                <NavLink to={to} onClick={close}>
-                  <span className="menu-item-label">
-                    <span className="menu-num">{num}</span>
-                    {label}
-                  </span>
-                  <span className="menu-arrow" aria-hidden="true">↗</span>
-                </NavLink>
-              ) : (
-                <a href={href} onClick={close}>
-                  <span className="menu-item-label">
-                    <span className="menu-num">{num}</span>
-                    {label}
-                  </span>
-                  <span className="menu-arrow" aria-hidden="true">↗</span>
-                </a>
-              )}
+          <li>
+            <Link to="/" className={isHome ? 'active' : undefined} onClick={close}>
+              <span className="menu-item-label"><span className="menu-num">00</span>Home</span>
+              <span className="menu-arrow" aria-hidden="true">↗</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>
+              <span className="menu-item-label"><span className="menu-num">01</span>Work</span>
+              <span className="menu-arrow" aria-hidden="true">↗</span>
+            </Link>
+          </li>
+          {sectionLinks.map(({ num, label, id }) => (
+            <li key={id}>
+              <a href={`#${id}`} onClick={goToSection(id)}>
+                <span className="menu-item-label"><span className="menu-num">{num}</span>{label}</span>
+                <span className="menu-arrow" aria-hidden="true">↗</span>
+              </a>
             </li>
           ))}
+          <li>
+            <a href={RESUME_URL} download onClick={close}>
+              <span className="menu-item-label"><span className="menu-num">04</span>Download Resume</span>
+              <span className="menu-arrow" aria-hidden="true">↓</span>
+            </a>
+          </li>
         </ul>
 
         <div className="mobile-menu-footer">

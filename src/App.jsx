@@ -17,7 +17,7 @@ function AppContent() {
   return (
     <>
       <CustomCursor />
-      {!isHome && <Nav />}
+      <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/work" element={<WorkPage />} />

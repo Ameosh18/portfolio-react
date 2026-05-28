@@ -212,11 +212,14 @@ ul { list-style: none; }
   transition: color .2s var(--ease), background .2s var(--ease);
 }
 .nav-links a:hover { color: var(--text); }
+.nav .nav-links a::after { display: none; }
+.nav .nav-links a.active { color: var(--accent); background: rgba(var(--accent-rgb),0.08); }
 .nav-links a.cta {
   font-family: var(--font-mono); font-size: 13px;
   color: var(--accent); border: 1px solid var(--border);
 }
 .nav-links a.cta:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),0.06); }
+.nav-links a.cta.active { background: rgba(var(--accent-rgb),0.06); }
 
 .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
 .nav-hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s var(--ease); }

@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
-import akLogo from '/AKlogo.png';
 import digisenseHero from '/digisense_hero_image.png';
 import '../style-2026.css';
 
-const LOGO = akLogo;
 const DIGISENSE_IMG = digisenseHero;
 
 const FONTS_HREF =
@@ -58,14 +56,11 @@ const Ticks = () => (
 export default function Homepage() {
   const rootRef = useRef(null);
   const pausedRef = useRef(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [contentReady, setContentReady] = useState(false);
   const { name } = useName();
-
-  const closeMenu = () => setMenuOpen(false);
 
   // Inject Google Fonts once (idempotent)
   useEffect(() => {
@@ -76,19 +71,6 @@ export default function Homepage() {
     document.head.append(pre1, pre2, css);
     document.title = 'Ameya Kulkarni - Lead UX Designer';
   }, []);
-
-  // Escape closes the mobile menu
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, []);
-
-  // Lock body scroll while the mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
 
   // Scroll reveal
   useEffect(() => {
@@ -137,66 +119,6 @@ export default function Homepage() {
         setContentReady(true);
       }} />
       <div ref={rootRef} id="home-view" className={contentReady ? '' : 'content-blurred'}>
-      {/* ── NAV ── */}
-      <nav className="nav" id="nav">
-        <div className="nav-inner">
-          <a href="#top" className="nav-logo" aria-label="Ameya Kulkarni, home">
-            <img src={LOGO} alt="" />
-            <span className="wordmark">Ameya Kulkarni</span>
-          </a>
-          <ul className="nav-links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact" className="cta">Let's Talk →</a></li>
-          </ul>
-          <button
-            className="nav-hamburger"
-            id="hamburger"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen(true)}
-          >
-            <span /><span /><span />
-          </button>
-        </div>
-      </nav>
-
-      {/* ── MOBILE MENU ── */}
-      <div
-        className={`mobile-menu${menuOpen ? ' open' : ''}`}
-        id="mobile-menu"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation"
-        aria-hidden={!menuOpen}
-      >
-        <button className="mobile-menu-close" id="menu-close" aria-label="Close menu" onClick={closeMenu}>×</button>
-        <ul className="mobile-menu-links">
-          {[
-            { href: '#work', num: '01', label: 'Work' },
-            { href: '#process', num: '02', label: 'Process' },
-            { href: '#about', num: '03', label: 'About' },
-            { href: '#contact', num: '04', label: 'Contact' },
-          ].map((item, i) => (
-            <li key={item.href}>
-              <a href={item.href} style={{ '--stagger': i + 1 }} onClick={closeMenu}>
-                <span className="label"><span className="menu-num">{item.num}</span>{item.label}</span>
-                <span className="arrow">↗</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="mobile-menu-foot">
-          <span
-            className="dot"
-            style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 12px rgba(var(--accent-rgb),.6)' }}
-          />
-          Available to join your company
-        </div>
-      </div>
-
       <main id="top">
         {/* ── HERO ── */}
         <section className="section hero" id="hero">
