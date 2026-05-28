@@ -207,7 +207,7 @@ export default function Homepage() {
                 <span className="eyebrow">Lead UX Designer</span>
                 <h1>I design systems that help teams move faster and users get what they need.</h1>
                 <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
-                <p className="hero-about">I work at the intersection of strategy and systems. Over the past 9.5 years, I've shipped design systems that helped teams go faster, led teams across timezones, and consistently delivered products that move engagement metrics. I'm most energized when tackling complex domains: rural IoT, fintech compliance, enterprise infrastructure. This is where good design actually matters.</p>
+                <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
                 <div className="hero-ctas">
                   <a href="#work" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></a>
                   <a href="#contact" className="btn btn-ghost">Schedule a Conversation</a>
