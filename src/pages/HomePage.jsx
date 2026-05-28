@@ -2,12 +2,17 @@ import { useEffect, useRef, useState } from 'react';
 import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
-import akLogo from '/AKlogo.png';
-import digisenseHero from '/digisense_hero_image.png';
 import '../style-2026.css';
 
-const LOGO = akLogo;
-const DIGISENSE_IMG = digisenseHero;
+/*
+ * Homepage - React conversion of home-2026.html + home-2026.js.
+ * Styling lives in style-2026.css (imported above).
+ * Assets resolve from Vite's public/ folder (served at root). Drop
+ * AKlogo.png and digisense_hero_image.png into public/, or replace these
+ * constants with `import logo from './AKlogo.png'` style asset imports.
+ */
+const LOGO = '/AKlogo.png';
+const DIGISENSE_IMG = '/digisense_hero_image.png';
 
 const FONTS_HREF =
   'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap';
@@ -207,7 +212,7 @@ export default function Homepage() {
                 <span className="eyebrow">Lead UX Designer</span>
                 <h1>I design systems that help teams move faster and users get what they need.</h1>
                 <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
-                <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
+                <p className="hero-about">I work at the intersection of strategy and systems. Over the past 9.5 years, I've shipped design systems that helped teams go faster, led teams across timezones, and consistently delivered products that move engagement metrics. I'm most energized when tackling complex domains: rural IoT, fintech compliance, enterprise infrastructure. This is where good design actually matters.</p>
                 <div className="hero-ctas">
                   <a href="#work" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></a>
                   <a href="#contact" className="btn btn-ghost">Schedule a Conversation</a>
@@ -231,6 +236,38 @@ export default function Homepage() {
                   </div>
                 </article>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── AI-AUGMENTED DESIGN PROCESS ── */}
+        <section className="section process" id="process">
+          <div className="container">
+            <div className="process-head reveal">
+              <span className="eyebrow">Design Process</span>
+              <h2 className="section-title">AI-Augmented<br />Design Process</h2>
+              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
+            </div>
+
+            <div className="process-frame bp-frame reveal">
+              <Ticks />
+              {PROCESS_STEPS.map((step, i) => (
+                <div
+                  key={step.num}
+                  className={`pstep${i === activeStep ? ' is-active' : ''}`}
+                  onMouseEnter={() => { pausedRef.current = true; setActiveStep(i); }}
+                  onMouseLeave={() => { pausedRef.current = false; }}
+                >
+                  <div className="pstep-num">{step.num}</div>
+                  <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
+                  <div className="pstep-body"><h3>{step.title}</h3><p>{step.desc}</p></div>
+                </div>
+              ))}
+            </div>
+
+            <div className="process-tagline reveal">
+              <p>// Where you create differentiation: framing, insight, judgement</p>
+              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
             </div>
           </div>
         </section>
@@ -336,34 +373,29 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── HOW I WORK: AI-FLUENT PRACTICE ── */}
-        <section className="section process" id="process">
+        {/* ── MEASURED IMPACT ── */}
+        <section className="section impact" id="impact">
           <div className="container">
-            <div className="process-head reveal">
-              <span className="eyebrow">My Practice</span>
-              <h2 className="section-title">How I approach<br />design work today.</h2>
-              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
+            <div className="process-head reveal" style={{ marginBottom: 'clamp(32px,4vw,52px)' }}>
+              <span className="eyebrow">Outcomes</span>
+              <h2 className="section-title" style={{ marginTop: '14px' }}>Measured Impact</h2>
             </div>
-
-            <div className="process-frame bp-frame reveal">
-              <Ticks />
-              {PROCESS_STEPS.map((step, i) => (
-                <div
-                  key={step.num}
-                  className={`pstep${i === activeStep ? ' is-active' : ''}`}
-                  onMouseEnter={() => { pausedRef.current = true; setActiveStep(i); }}
-                  onMouseLeave={() => { pausedRef.current = false; }}
-                >
-                  <div className="pstep-num">{step.num}</div>
-                  <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
-                  <div className="pstep-body"><h3>{step.title}</h3><p>{step.desc}</p></div>
+            <div className="impact-grid reveal">
+              {[
+                { i: '01', num: '25+', label: 'Projects Led', desc: 'Across B2B SaaS, Fintech, Cybersecurity, Life Sciences, IoT.' },
+                { i: '02', num: '15+', label: 'Cross-Functional Teams', desc: 'Average team size: 8+ members.' },
+                { i: '03', num: '4', label: 'Design Systems Built', desc: 'Tokens, components, documentation, accessibility audits.' },
+                { i: '04', num: '35%+', label: 'Avg Engagement Lift', desc: 'Measured across product launches and redesigns.' },
+              ].map((m) => (
+                <div className="impact-cell" key={m.i}>
+                  <span className="i-index">{m.i}</span>
+                  <div className="impact-stat">
+                    <div className="i-num">{m.num}</div>
+                    <div className="i-label">{m.label}</div>
+                    <p className="i-desc">{m.desc}</p>
+                  </div>
                 </div>
               ))}
-            </div>
-
-            <div className="process-tagline reveal">
-              <p>// I use tools fluently because I've thought about the work first.</p>
-              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
             </div>
           </div>
         </section>
