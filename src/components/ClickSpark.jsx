@@ -58,8 +58,7 @@ export default function ClickSpark({
 
         for (let i = 0; i < sparkCount; i++) {
           const angle = (i / sparkCount) * Math.PI * 2
-          const distance =
-            sparkRadius * scale + (Math.random() - 0.5) * sparkRadius * 0.3
+          const distance = sparkRadius * scale + sparkle.offsets[i]
           const x = sparkle.x + Math.cos(angle) * distance
           const y = sparkle.y + Math.sin(angle) * distance
 
@@ -84,10 +83,15 @@ export default function ClickSpark({
     }
 
     const handleClick = (e) => {
+      const offsets = Array.from({ length: sparkCount }, () =>
+        (Math.random() - 0.5) * sparkRadius * 0.3
+      )
+
       sparklesRef.current.push({
         x: e.clientX,
         y: e.clientY,
-        startTime: performance.now()
+        startTime: performance.now(),
+        offsets
       })
 
       if (!animationFrameRef.current) {
