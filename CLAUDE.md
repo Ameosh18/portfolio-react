@@ -320,8 +320,8 @@ Every case study page follows this standard hero pattern. Copy it exactly when a
 ### Hero Layout Types
 
 **Type A: Two-column with image** (use when you have a strong hero image)
-- Left column (58%): narrative content + meta
-- Right column (42%): full-height edge-to-edge image
+- Left column (75%): narrative content + meta
+- Right column (25%): full-height edge-to-edge image
 - Example: DigiSense
 
 **Type B: Single-column text only** (use when no strong image exists)
@@ -429,11 +429,11 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 /* Type A (with image): */
 .cs-[slug] .hero {
   display: grid;
-  grid-template-columns: 58fr 42fr;
+  grid-template-columns: 75fr 25fr;
   align-items: center;
 }
 .cs-[slug] .hero-content {
-  padding: 120px var(--grid-margin) 100px;
+  padding: 100px var(--grid-margin) 80px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -452,7 +452,7 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 }
 .cs-[slug] .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(44px, 5vw, 76px);
+  font-size: clamp(40px, 4.5vw, 68px);
   font-weight: 400;
   line-height: 1.07;
   letter-spacing: -0.02em;
@@ -461,7 +461,7 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 }
 .cs-[slug] .hero-subheadline {
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.5vw, 34px);
+  font-size: clamp(22px, 2.2vw, 34px);
   font-weight: 400;
   font-style: italic;
   color: var(--accent);
@@ -482,7 +482,7 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 .cs-[slug] .hero {
   display: flex;
   align-items: center;
-  padding: 120px var(--grid-margin) 100px;
+  padding: 100px var(--grid-margin) 80px;
 }
 .cs-[slug] .hero-content {
   max-width: 840px;
