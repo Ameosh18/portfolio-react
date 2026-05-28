@@ -384,6 +384,8 @@ nav {
 .mobile-menu.is-open {
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Nav sits above overlay so hamburger × is always clickable to close */
@@ -2446,7 +2448,6 @@ body.menu-open #site-nav {
 
 #home-view, #case-view {
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 /* ── ARTIFACT MODAL (shell-level - outside case-view) ── */

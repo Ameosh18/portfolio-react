@@ -232,7 +232,7 @@ ul { list-style: none; }
   opacity: 0; visibility: hidden;
   transition: transform .5s var(--ease), opacity .4s var(--ease), visibility .4s;
 }
-.mobile-menu.open { transform: translateY(0); opacity: 1; visibility: visible; }
+.mobile-menu.open { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
 .mobile-menu-close { position: absolute; top: 22px; right: var(--gutter); font-size: 30px; color: var(--text-muted); }
 .mobile-menu-links { display: flex; flex-direction: column; gap: 4px; }
 .mobile-menu-links a {
