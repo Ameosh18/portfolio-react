@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
@@ -209,7 +210,7 @@ export default function Homepage() {
                 <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
                 <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
                 <div className="hero-ctas">
-                  <a href="#work" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></a>
+                  <Link to="/digisense" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></Link>
                   <a href="#contact" className="btn btn-ghost">Schedule a Conversation</a>
                 </div>
               </div>
@@ -293,10 +294,10 @@ export default function Homepage() {
                 <span className="eyebrow">Selected Work</span>
                 <h2 className="section-title" style={{ marginTop: '14px' }}>Featured Case Studies</h2>
               </div>
-              <a href="#work" className="btn btn-ghost">View All Work <span className="arrow">→</span></a>
+              <Link to="/work" className="btn btn-ghost">View All Work <span className="arrow">→</span></Link>
             </div>
             <div className="work-grid">
-              <a href="#work" className="work-card reveal">
+              <Link to="/digisense" className="work-card reveal">
                 <div className="work-card-media">
                   <img src={DIGISENSE_IMG} alt="DiGiSense connected vehicle telematics platform" />
                   <span className="work-card-index">01</span>
@@ -313,8 +314,8 @@ export default function Homepage() {
                   </div>
                   <span className="work-card-cta">Read Case Study <span className="arrow">→</span></span>
                 </div>
-              </a>
-              <a href="#work" className="work-card reveal">
+              </Link>
+              <Link to="/pfsone" className="work-card reveal">
                 <div className="work-card-media">
                   <div className="ph"><span>NETSCOUT PFS ONE</span></div>
                   <span className="work-card-index">02</span>
@@ -331,7 +332,7 @@ export default function Homepage() {
                   </div>
                   <span className="work-card-cta">Read Case Study <span className="arrow">→</span></span>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
