@@ -114,6 +114,7 @@
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
   padding-top: 72px; /* accounts for fixed navbar height */
+  padding-bottom: 24px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   display: flex;
