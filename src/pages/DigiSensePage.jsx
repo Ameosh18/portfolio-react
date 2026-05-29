@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CaseStudyToggle from '../components/CaseStudyToggle'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
@@ -40,6 +41,8 @@ export default function DigiSensePage() {
           <span className="current">DiGiSense</span>
         </div>
       </section>
+
+      <CaseStudyToggle />
 
       {/* HERO */}
       <section className="hero">
