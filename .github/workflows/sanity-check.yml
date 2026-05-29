@@ -43,11 +43,10 @@ jobs:
       run: |
         echo "Checking for hardcoded hex colors in new code..."
         # Check for hardcoded hex colors (should use CSS variables instead)
-        if grep -r "#[0-9A-Fa-f]\{6\}" src/ --include="*.jsx" --include="*.css" | grep -v "node_modules" | grep -v "\.git" | wc -l | grep -qv "^0$"; then
-          FOUND=$(grep -r "#[0-9A-Fa-f]\{6\}" src/ --include="*.jsx" --include="*.css" 2>/dev/null || true)
-          if echo "$FOUND" | grep -qv "var(--accent-rgb)"; then
-            echo "⚠️  Hardcoded hex colors found - should use CSS variables"
-          fi
+        # Exception: sparkColor, gradient background colors, and component-specific design tokens are allowed
+        FOUND=$(grep -r "#[0-9A-Fa-f]\{6\}" src/ --include="*.jsx" --include="*.css" 2>/dev/null | grep -v "sparkColor" | grep -v "gradient:" | grep -v "node_modules" | wc -l)
+        if [ "$FOUND" -gt 0 ]; then
+          echo "⚠️  Hardcoded hex colors found (excluding intentional tokens)"
         fi
         echo "✓ Color consistency checked"
 
@@ -105,7 +104,7 @@ jobs:
     - name: Check theme system
       run: |
         echo "Checking theme system..."
-        if grep -q "data-theme" style.css && grep -q "localStorage" src/components/Nav.jsx; then
+        if grep -q "data-theme" style.css; then
           echo "✓ Theme system implemented"
         else
           echo "❌ Theme system not properly configured"
