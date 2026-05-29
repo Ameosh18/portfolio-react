@@ -1744,6 +1744,38 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Animated highlight background that slides between buttons */
+.cs-toggle-highlight {
+  position: absolute;
+  inset: 3px;
+  background: var(--bg);
+  border-radius: 28px;
+  border: 1px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  width: calc(50% - 3px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cs-toggle-pill.is-simple .cs-toggle-highlight {
+  left: 3px;
+}
+
+.cs-toggle-pill:not(.is-simple) .cs-toggle-highlight {
+  right: 3px;
+}
+
+/* Position buttons relative so highlight is behind them */
+.cs-toggle-pill {
+  position: relative;
+}
+
+.cs-toggle-pill-btn {
+  position: relative;
+  z-index: 1;
+}
+
+
 /* ─── CASE STUDY FEEDBACK PROMPT ──────────────────────────────────────── */
 
 .case-study-feedback {
