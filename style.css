@@ -2802,11 +2802,20 @@ body.menu-open #site-nav {
   justify-content: center;
 }
 
+.cs-content-loader::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.3);
+  z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
 /* Blur content when loading */
 html.is-loading main {
-  filter: blur(8px);
+  filter: blur(12px);
   pointer-events: none;
-  transition: filter 0.2s ease;
+  transition: filter 0.3s ease;
 }
 
 /* ── SCROLL VELOCITY GALLERY ── */

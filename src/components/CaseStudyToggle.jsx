@@ -27,11 +27,12 @@ export default function CaseStudyToggle() {
     localStorage.setItem('cs-view-mode', simple ? 'simple' : 'detailed')
     document.documentElement.classList.toggle('is-simple', simple)
 
-    // Hide loader after transition completes (800ms for the animation)
+<<<<<<< HEAD
+    // Simulate content loading with 1.2s delay for both simple and detailed views
     setTimeout(() => {
       setIsLoading(false)
       document.documentElement.classList.remove('is-loading')
-    }, 800)
+    }, 1200)
   }
 
   return (
