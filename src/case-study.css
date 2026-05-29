@@ -1656,23 +1656,23 @@
   color: var(--text);
 }
 
-/* Detailed button (left side) - active when NOT in simple mode */
-.cs-toggle-pill-btn.detailed-btn {
+/* Simple button (left side) - active when in simple mode */
+.cs-toggle-pill-btn.simple-btn {
   order: 1;
 }
 
-.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
+.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
   background: var(--bg);
   color: var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Simple button (right side) - active when in simple mode */
-.cs-toggle-pill-btn.simple-btn {
+/* Detailed button (right side) - active when NOT in simple mode */
+.cs-toggle-pill-btn.detailed-btn {
   order: 2;
 }
 
-.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
+.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
   background: var(--bg);
   color: var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
