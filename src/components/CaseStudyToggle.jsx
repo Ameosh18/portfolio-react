@@ -7,17 +7,10 @@ export default function CaseStudyToggle() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    const saved = localStorage.getItem('cs-view-mode')
-    // Default to simple if not set
-    const isSimpleMode = saved !== 'detailed'
-
-    // Initialize localStorage with default if empty
-    if (!saved) {
-      localStorage.setItem('cs-view-mode', 'simple')
-    }
-
-    setIsSimple(isSimpleMode)
-    document.documentElement.classList.toggle('is-simple', isSimpleMode)
+    // Always initialize to Simple view on mount
+    setIsSimple(true)
+    document.documentElement.classList.add('is-simple')
+    document.documentElement.classList.remove('is-detailed')
 
     const observer = new MutationObserver(() => {
       const isSimpleModeFromDOM = document.documentElement.classList.contains('is-simple')
@@ -32,8 +25,9 @@ export default function CaseStudyToggle() {
     document.documentElement.classList.add('is-loading')
     const simple = mode === 'simple'
     setIsSimple(simple)
-    localStorage.setItem('cs-view-mode', simple ? 'simple' : 'detailed')
+    // Update CSS classes for Simple/Detailed view without persisting to localStorage
     document.documentElement.classList.toggle('is-simple', simple)
+    document.documentElement.classList.toggle('is-detailed', !simple)
 
     // Simulate content loading with 1.2s delay for both simple and detailed views
     setTimeout(() => {
