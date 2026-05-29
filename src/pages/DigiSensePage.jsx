@@ -33,16 +33,15 @@ export default function DigiSensePage() {
 
   return (
     <div className="cs-page cs-digisense">
-      {/* BREADCRUMB */}
+      {/* BREADCRUMB + TOGGLE */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
           <Link to="/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">DiGiSense</span>
         </div>
+        <CaseStudyToggle />
       </section>
-
-      <CaseStudyToggle />
 
       {/* HERO */}
       <section className="hero">

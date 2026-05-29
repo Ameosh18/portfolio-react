@@ -68,10 +68,16 @@
   padding-top: 72px; /* accounts for fixed navbar height */
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+  gap: 24px;
 }
 
 .breadcrumb-nav {
-  padding: 12px var(--grid-margin);
+  padding: 12px 0;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1506,9 +1512,8 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding-top: 72px; }
-  .breadcrumb-nav { padding: 10px var(--grid-margin); }
-  .cs-page .hero { min-height: auto; }
+  .cs-breadcrumb { padding-top: 72px; padding-left: var(--grid-margin); padding-right: var(--grid-margin); }
+  .breadcrumb-nav { padding: 10px 0; }
   .cs-digisense .hero { min-height: auto; }
   .cs-digisense .hero-content { padding: 64px var(--grid-margin) 60px; }
   .cs-pfsone .hero { min-height: auto; padding: 64px var(--grid-margin) 60px; }
@@ -1568,8 +1573,8 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { padding-top: 72px; }
-  .breadcrumb-nav { padding: 10px var(--grid-margin); font-size: 11px; }
+  .cs-breadcrumb { padding-top: 72px; flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 12px; }
+  .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
   .cs-digisense .hero-content { padding: 48px var(--grid-margin) 52px; }
   .cs-pfsone .hero { padding: 48px var(--grid-margin) 52px; }
   .cs-digisense .hero-headline,
@@ -1618,24 +1623,23 @@
   .cs-toggle-btn { flex: 1; }
 }
 
-/* ─── SIMPLE / DETAILED TOGGLE ─────────────────────────────────────────── */
+/* ─── SIMPLE / DETAILED TOGGLE PILL ────────────────────────────────────── */
 
-.cs-toggle-bar {
+.cs-toggle-pill {
   display: flex;
-  gap: 24px;
-  padding: 16px var(--grid-margin);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 72px;
-  z-index: 90;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  padding: 3px;
+  flex-shrink: 0;
 }
 
-.cs-toggle-btn {
-  padding: 8px 16px;
+.cs-toggle-pill-btn {
+  flex: 1;
+  padding: 10px 20px;
   background: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
   color: var(--text-dim);
   font-family: var(--font-body);
   font-size: 12px;
@@ -1643,16 +1647,35 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 28px;
+  position: relative;
 }
 
-.cs-toggle-btn:hover {
-  color: var(--accent);
+.cs-toggle-pill-btn:hover {
+  color: var(--text);
 }
 
-.cs-toggle-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+/* Detailed button (left side) - active when NOT in simple mode */
+.cs-toggle-pill-btn.detailed-btn {
+  order: 1;
+}
+
+.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Simple button (right side) - active when in simple mode */
+.cs-toggle-pill-btn.simple-btn {
+  order: 2;
+}
+
+.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ─── SECTION VISIBILITY: SIMPLE MODE ─────────────────────────────────── */
@@ -1680,16 +1703,20 @@ html.is-simple .cs-page .artifact-card {
 
 /* Responsive: toggle at 480px and below */
 @media (max-width: 480px) {
-  .cs-toggle-bar {
-    position: relative;
-    top: auto;
+  .cs-breadcrumb {
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
   }
 
-  .cs-toggle-btn {
-    flex: 1;
-    padding: 12px 16px;
-    text-align: center;
+  .cs-toggle-pill {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .cs-toggle-pill-btn {
+    padding: 8px 16px;
+    font-size: 11px;
   }
 }

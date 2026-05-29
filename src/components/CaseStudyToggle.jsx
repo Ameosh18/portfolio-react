@@ -17,20 +17,24 @@ export default function CaseStudyToggle() {
   }
 
   return (
-    <div className="cs-toggle-bar">
+    <div className={`cs-toggle-pill ${isSimple ? 'is-simple' : ''}`} role="radiogroup" aria-label="View mode">
       <button
-        className={`cs-toggle-btn ${!isSimple ? 'active' : ''}`}
+        className="cs-toggle-pill-btn detailed-btn"
         onClick={() => toggleMode('detailed')}
         aria-pressed={!isSimple}
+        role="radio"
+        aria-checked={!isSimple}
       >
         Detailed
       </button>
       <button
-        className={`cs-toggle-btn ${isSimple ? 'active' : ''}`}
+        className="cs-toggle-pill-btn simple-btn"
         onClick={() => toggleMode('simple')}
         aria-pressed={isSimple}
+        role="radio"
+        aria-checked={isSimple}
       >
-        Simple / Skim
+        Skim
       </button>
     </div>
   )

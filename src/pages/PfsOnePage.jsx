@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CaseStudyToggle from '../components/CaseStudyToggle'
 
 const FLOW_DATA = {
   flow_01: {
@@ -152,13 +153,14 @@ export default function PfsOnePage() {
         </div>
       </div>
 
-      {/* BREADCRUMB */}
+      {/* BREADCRUMB + TOGGLE */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
           <Link to="/work">Work</Link>
           <span className="separator">/</span>
           <span className="current">PFS ONE</span>
         </div>
+        <CaseStudyToggle />
       </section>
 
       {/* HERO */}
