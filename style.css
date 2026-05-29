@@ -2806,9 +2806,9 @@ body.menu-open #site-nav {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(12, 12, 12, 0.3);
-  z-index: -1;
-  backdrop-filter: blur(2px);
+  background: rgba(12, 12, 12, 0.4);
+  z-index: 999;
+  pointer-events: none;
 }
 
 /* Blur content when loading */
