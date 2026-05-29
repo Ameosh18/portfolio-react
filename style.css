@@ -2788,33 +2788,35 @@ body.menu-open #site-nav {
 .loader-large { gap: 20px; }
 .loader-large .loader-text { font-size: 14px; }
 
+/* Backdrop overlay - sits behind loader */
+.cs-content-loader::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.4);
+  pointer-events: none;
+  z-index: 998;
+}
+
 /* Content loader - overlay variant for mode switches */
 .cs-content-loader {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 1001;
   padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.cs-content-loader::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(12, 12, 12, 0.4);
-  z-index: 999;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 /* Blur content when loading */
 html.is-loading main,
 html.is-loading section {
-  filter: blur(15px);
+  filter: blur(12px);
   pointer-events: none;
   transition: filter 0.3s ease;
 }
