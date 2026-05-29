@@ -113,15 +113,13 @@
 
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
-  padding-top: 72px; /* accounts for fixed navbar height */
-  padding-bottom: 24px;
+  padding: 20px var(--grid-margin);
+  margin-top: 72px; /* accounts for fixed navbar height */
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: var(--grid-margin);
-  padding-right: var(--grid-margin);
   gap: 24px;
 }
 
