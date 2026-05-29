@@ -1576,7 +1576,7 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding-top: 72px; padding-left: var(--grid-margin); padding-right: var(--grid-margin); }
+  .cs-breadcrumb { padding: 20px var(--grid-margin); margin-top: 72px; }
   .breadcrumb-nav { padding: 10px 0; }
   .cs-digisense .hero { min-height: auto; }
   .cs-digisense .hero-content { padding: 64px var(--grid-margin) 60px; }
@@ -1637,7 +1637,7 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { padding-top: 72px; flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 12px; }
+  .cs-breadcrumb { padding: 20px var(--grid-margin); margin-top: 72px; flex-direction: column; align-items: flex-start; gap: 12px; }
   .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
   .cs-digisense .hero-content { padding: 48px var(--grid-margin) 52px; }
   .cs-pfsone .hero { padding: 48px var(--grid-margin) 52px; }
@@ -1889,10 +1889,11 @@ html.is-simple .cs-page .artifact-card {
 /* Responsive: toggle at 480px and below */
 @media (max-width: 480px) {
   .cs-breadcrumb {
+    padding: 20px var(--grid-margin);
+    margin-top: 72px;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    padding-bottom: 12px;
   }
 
   .cs-toggle-pill {
