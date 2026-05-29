@@ -32,7 +32,10 @@ export default function Nav() {
 
   useEffect(() => {
     if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const timer = setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, 100)
+      return () => clearTimeout(timer)
     }
   }, [location.pathname])
 
