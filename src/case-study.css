@@ -1663,7 +1663,7 @@
 
 .cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
   background: var(--bg);
-  color: var(--text);
+  color: var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -1674,7 +1674,7 @@
 
 .cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
   background: var(--bg);
-  color: var(--text);
+  color: var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
