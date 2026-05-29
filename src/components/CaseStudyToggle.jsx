@@ -27,7 +27,6 @@ export default function CaseStudyToggle() {
     localStorage.setItem('cs-view-mode', simple ? 'simple' : 'detailed')
     document.documentElement.classList.toggle('is-simple', simple)
 
-<<<<<<< HEAD
     // Simulate content loading with 1.2s delay for both simple and detailed views
     setTimeout(() => {
       setIsLoading(false)
