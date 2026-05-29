@@ -20,6 +20,54 @@
   transform: none;
 }
 
+/* ─── ARROW RENDERING SYSTEM ─────────────────────────────────────────────── */
+/* Standardized arrow styling for consistent rendering across the app */
+/* Key: font-weight for crisp rendering, line-height: 1 to prevent vertical shift */
+
+.arrow-right {
+  display: inline-block;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow-left {
+  display: inline-block;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.arrow-external {
+  display: inline-block;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover animations for interactive arrows */
+.artifact-card:hover .arrow-right {
+  transform: translateX(3px);
+}
+
+.feedback-arrow {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+}
+
+.feedback-btn:hover .feedback-arrow {
+  transform: translateX(6px);
+}
+
 /* ── Section H2 Heading ── */
 .cs-h2 {
   font-family: var(--font-display);
@@ -1766,16 +1814,6 @@
   transform: translateY(0);
 }
 
-.feedback-arrow {
-  font-size: 14px;
-  font-weight: 600;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  display: inline-block;
-}
-
-.feedback-btn:hover .feedback-arrow {
-  transform: translateX(6px);
-}
 
 /* Hide feedback prompt when in detailed mode */
 html:not(.is-simple) .case-study-feedback {

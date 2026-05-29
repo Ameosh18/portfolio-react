@@ -570,7 +570,7 @@ export default function PfsOnePage() {
               >
                 <div className="artifact-card-top">
                   <span className="artifact-card-label">{card.label}</span>
-                  <span className="artifact-card-expand">Expand ↗</span>
+                  <span className="artifact-card-expand">Expand <span className="arrow-right" aria-hidden="true">→</span></span>
                 </div>
                 <p className="artifact-card-flow">{card.flow}</p>
                 <p className="artifact-card-hint">{card.hint}</p>
