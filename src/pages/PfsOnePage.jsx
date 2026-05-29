@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
+import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 
 const FLOW_DATA = {
   flow_01: {
@@ -714,6 +715,9 @@ export default function PfsOnePage() {
           </div>
         </div>
       </section>
+
+      {/* FEEDBACK PROMPT - SIMPLE MODE ONLY */}
+      <CaseStudyFeedbackPrompt />
 
       {/* NEXT CASE STUDY */}
       <section className="next-case">
