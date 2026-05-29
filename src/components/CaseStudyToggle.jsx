@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Loader from './Loader'
 
 export default function CaseStudyToggle() {
@@ -14,7 +14,6 @@ export default function CaseStudyToggle() {
     const observer = new MutationObserver(() => {
       const isSimpleMode = document.documentElement.classList.contains('is-simple')
       setIsSimple(isSimpleMode)
-      setIsLoading(false)
     })
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
     return () => observer.disconnect()
@@ -60,18 +59,19 @@ export default function CaseStudyToggle() {
         Detailed
       </button>
 
-      {/* Content loader overlay - appears during view mode transition */}
-      {isLoading && (
-        <motion.div
-          className="cs-content-loader"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Loader size="medium" showText={true} text="Loading..." />
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="cs-content-loader"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Loader size="medium" showText={true} text="Loading..." />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
