@@ -1750,12 +1750,14 @@
 }
 
 .feedback-arrow {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
 }
 
 .feedback-btn:hover .feedback-arrow {
-  transform: translate(4px, -4px);
+  transform: translateX(6px);
 }
 
 /* Hide feedback prompt when in detailed mode */

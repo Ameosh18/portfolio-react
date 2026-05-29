@@ -7,6 +7,13 @@ export default function CaseStudyToggle() {
     const saved = localStorage.getItem('cs-view-mode')
     if (saved === 'detailed') setIsSimple(false)
     document.documentElement.classList.toggle('is-simple', saved !== 'detailed')
+
+    const observer = new MutationObserver(() => {
+      const isSimpleMode = document.documentElement.classList.contains('is-simple')
+      setIsSimple(isSimpleMode)
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
   }, [])
 
   const toggleMode = (mode) => {

@@ -37,7 +37,7 @@ export default function CaseStudyFeedbackPrompt() {
             aria-label="Switch to detailed case study view"
           >
             <span>View Detailed Version</span>
-            <span className="feedback-arrow" aria-hidden="true">↗</span>
+            <span className="feedback-arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </div>
