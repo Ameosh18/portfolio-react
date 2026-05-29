@@ -21,13 +21,17 @@ export default function CaseStudyToggle() {
 
   const toggleMode = (mode) => {
     setIsLoading(true)
+    document.documentElement.classList.add('is-loading')
     const simple = mode === 'simple'
     setIsSimple(simple)
     localStorage.setItem('cs-view-mode', simple ? 'simple' : 'detailed')
     document.documentElement.classList.toggle('is-simple', simple)
 
-    // Hide loader after transition completes (800ms for the animation)
-    setTimeout(() => setIsLoading(false), 800)
+    // Simulate content loading with 1.2s delay for both simple and detailed views
+    setTimeout(() => {
+      setIsLoading(false)
+      document.documentElement.classList.remove('is-loading')
+    }, 1200)
   }
 
   return (
@@ -68,7 +72,7 @@ export default function CaseStudyToggle() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <Loader size="medium" showText={true} text="Loading..." />
+            <Loader size="medium" showText={false} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -2746,6 +2746,80 @@ body.menu-open #site-nav {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+<<<<<<< Updated upstream
+=======
+
+/* ── REUSABLE LOADER COMPONENT ── */
+/* Blueprint 2026 design system loader - use everywhere for loading states */
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.loader-spinner {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.loader-spinner circle {
+  stroke: var(--accent);
+}
+
+.loader-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Size variants */
+.loader-small { gap: 12px; }
+.loader-small .loader-text { font-size: 11px; }
+
+.loader-medium { gap: 16px; }
+.loader-medium .loader-text { font-size: 13px; }
+
+.loader-large { gap: 20px; }
+.loader-large .loader-text { font-size: 14px; }
+
+/* Content loader - overlay variant for mode switches */
+.cs-content-loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-content-loader::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 12, 12, 0.3);
+  z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+/* Blur content when loading */
+html.is-loading main {
+  filter: blur(12px);
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
 /* ── SCROLL VELOCITY GALLERY ── */
 
 .scroll-velocity-container {
