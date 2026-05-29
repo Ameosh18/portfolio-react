@@ -2813,16 +2813,11 @@ body.menu-open #site-nav {
   pointer-events: auto;
 }
 
-/* Blur content when loading */
-html.is-loading main,
-html.is-loading section {
-  filter: blur(12px);
+/* Subtle blur on content when loading - doesn't hide toggle or loader */
+html.is-loading main {
+  filter: blur(5px);
   pointer-events: none;
   transition: filter 0.3s ease;
-}
-
-html.is-loading body {
-  pointer-events: none;
 }
 
 /* ── SCROLL VELOCITY GALLERY ── */
