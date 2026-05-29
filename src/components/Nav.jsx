@@ -31,10 +31,10 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
-    if (isHome) {
-      requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }))
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-  }, [isHome])
+  }, [location.pathname])
 
   const goToSection = (id) => (e) => {
     e.preventDefault()
