@@ -92,6 +92,35 @@ jobs:
         fi
         echo "✓ Accessibility checks completed"
 
+    - name: Check arrow rendering
+      run: |
+        echo "Checking arrow rendering and consistency..."
+        # Check for arrow characters in case study UI elements
+        ARROWS_FOUND=0
+        if grep -q "feedback-arrow" src/components/CaseStudyFeedbackPrompt.jsx; then
+          echo "✓ Feedback prompt arrow styling present"
+          ARROWS_FOUND=$((ARROWS_FOUND + 1))
+        fi
+        if grep -q "→" src/components/CaseStudyFeedbackPrompt.jsx; then
+          echo "✓ Feedback button arrow character (→) present"
+          ARROWS_FOUND=$((ARROWS_FOUND + 1))
+        fi
+        if grep -q "feedback-arrow" src/case-study.css; then
+          echo "✓ Arrow animation/styling defined in CSS"
+          ARROWS_FOUND=$((ARROWS_FOUND + 1))
+        fi
+        # Check case study consistency: feedback prompt should use → (not ↗)
+        if grep -q "class=\"feedback-arrow\"" src/components/CaseStudyFeedbackPrompt.jsx && grep -q "→" src/components/CaseStudyFeedbackPrompt.jsx; then
+          echo "✓ Case study arrow rendering consistent (→)"
+          ARROWS_FOUND=$((ARROWS_FOUND + 1))
+        fi
+        # Note: ↗ arrows for external links in Nav, Footer, etc. are intentional and correct
+        if [ "$ARROWS_FOUND" -ge 3 ]; then
+          echo "✓ All arrow rendering checks passed"
+        else
+          echo "⚠️  Some arrow components may need attention"
+        fi
+
     - name: Check responsive design classes
       run: |
         echo "Checking responsive breakpoints..."
