@@ -2802,6 +2802,13 @@ body.menu-open #site-nav {
   justify-content: center;
 }
 
+/* Blur content when loading */
+html.is-loading main {
+  filter: blur(8px);
+  pointer-events: none;
+  transition: filter 0.2s ease;
+}
+
 /* ── SCROLL VELOCITY GALLERY ── */
 
 .scroll-velocity-container {
