@@ -2746,8 +2746,6 @@ body.menu-open #site-nav {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-<<<<<<< Updated upstream
-=======
 
 /* ── REUSABLE LOADER COMPONENT ── */
 /* Blueprint 2026 design system loader - use everywhere for loading states */
