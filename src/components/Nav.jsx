@@ -7,6 +7,7 @@ const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [shouldScroll, setShouldScroll] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -14,6 +15,10 @@ export default function Nav() {
   const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
 
   const close = () => setIsMenuOpen(false)
+
+  const scrollToTop = () => {
+    setShouldScroll(true)
+  }
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', isMenuOpen)
@@ -31,13 +36,14 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/' || shouldScroll) {
       const timer = setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
-      }, 100)
+        setShouldScroll(false)
+      }, 50)
       return () => clearTimeout(timer)
     }
-  }, [location.pathname])
+  }, [location.pathname, shouldScroll])
 
   const goToSection = (id) => (e) => {
     e.preventDefault()
@@ -58,13 +64,13 @@ export default function Nav() {
     <>
       <nav className="nav" id="nav">
         <div className="nav-inner">
-          <Link to="/" className="nav-logo" onClick={close} aria-label="Ameya Kulkarni, home">
+          <Link to="/" className="nav-logo" onClick={() => { close(); scrollToTop(); }} aria-label="Ameya Kulkarni, home">
             <img src={AKLogo} alt="" />
             <span className="wordmark">Ameya Kulkarni</span>
           </Link>
 
           <ul className="nav-links">
-            <li><Link to="/" className={isHome ? 'active' : undefined} onClick={close}>Home</Link></li>
+            <li><Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>Home</Link></li>
             <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
             {sectionLinks.map(({ label, id }) => (
               <li key={id}><a href={`#${id}`} onClick={goToSection(id)}>{label}</a></li>
@@ -95,7 +101,7 @@ export default function Nav() {
       >
         <ul className="mobile-menu-links">
           <li>
-            <Link to="/" className={isHome ? 'active' : undefined} onClick={close}>
+            <Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>
               <span className="menu-item-label"><span className="menu-num">00</span>Home</span>
               <span className="menu-arrow" aria-hidden="true">↗</span>
             </Link>
