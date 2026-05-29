@@ -1727,10 +1727,17 @@
   order: 1;
 }
 
-/* Active button styling removed — highlight background handles it */
+.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
+  color: var(--text);
+}
+
 /* Detailed button (right side) - active when NOT in simple mode */
 .cs-toggle-pill-btn.detailed-btn {
   order: 2;
+}
+
+.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
+  color: var(--text);
 }
 
 /* Animated highlight background that slides between buttons */

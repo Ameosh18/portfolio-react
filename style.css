@@ -2812,10 +2812,15 @@ body.menu-open #site-nav {
 }
 
 /* Blur content when loading */
-html.is-loading main {
-  filter: blur(12px);
+html.is-loading main,
+html.is-loading section {
+  filter: blur(15px);
   pointer-events: none;
   transition: filter 0.3s ease;
+}
+
+html.is-loading body {
+  pointer-events: none;
 }
 
 /* ── SCROLL VELOCITY GALLERY ── */
