@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
+import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
@@ -718,6 +719,9 @@ export default function DigiSensePage() {
           </div>
         </div>
       </section>
+
+      {/* FEEDBACK PROMPT - SIMPLE MODE ONLY */}
+      <CaseStudyFeedbackPrompt />
 
       {/* NEXT CASE STUDY */}
       <section className="next-case">
