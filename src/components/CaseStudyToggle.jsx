@@ -8,12 +8,20 @@ export default function CaseStudyToggle() {
 
   useEffect(() => {
     const saved = localStorage.getItem('cs-view-mode')
-    if (saved === 'detailed') setIsSimple(false)
-    document.documentElement.classList.toggle('is-simple', saved !== 'detailed')
+    // Default to simple if not set
+    const isSimpleMode = saved !== 'detailed'
+
+    // Initialize localStorage with default if empty
+    if (!saved) {
+      localStorage.setItem('cs-view-mode', 'simple')
+    }
+
+    setIsSimple(isSimpleMode)
+    document.documentElement.classList.toggle('is-simple', isSimpleMode)
 
     const observer = new MutationObserver(() => {
-      const isSimpleMode = document.documentElement.classList.contains('is-simple')
-      setIsSimple(isSimpleMode)
+      const isSimpleModeFromDOM = document.documentElement.classList.contains('is-simple')
+      setIsSimple(isSimpleModeFromDOM)
     })
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
     return () => observer.disconnect()
