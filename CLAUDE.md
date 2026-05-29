@@ -675,6 +675,41 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
 | **Theme** | Dark and light themes render correctly, toggle works |
 | **Assets** | Images load, no broken links, fonts load |
 
+### ⚠️ CRITICAL: Always Run the App & Do Runtime Verification
+
+**Before considering ANY work complete, you MUST:**
+
+1. **Start the dev server**: `npm run dev`
+2. **Navigate to the changed page/feature** in the browser (typically http://localhost:5173/portfolio-react/[page])
+3. **Visually test the feature** — do NOT rely on build passing alone:
+   - Interact with all new buttons, toggles, forms, inputs
+   - Test at minimum two breakpoints: 480px (mobile) and 1280px (desktop)
+   - Verify animations play smoothly (no jank, stuttering, or frozen states)
+   - Confirm text content is visible and readable
+   - Check that CSS styling is applied correctly (colors, spacing, borders)
+   - Test theme switching if applicable (dark and light modes)
+   - Verify hover states, focus states, and disabled states work
+4. **Check browser console** — no JavaScript errors or warnings
+5. **Run the build** — `npm run build` must succeed with no errors
+6. **Commit and push** to the feature branch only
+
+**Why this matters:**
+- Build success ≠ feature works. Syntax might be correct but logic broken.
+- CSS might parse but render incorrectly due to conflicts or missing variables.
+- Animations might compile but freeze or glitch at runtime.
+- Responsive design can't be verified without actually resizing the viewport.
+- Console errors indicate broken imports, missing dependencies, or runtime failures.
+
+**Red flags that mean your work is NOT done:**
+- ❌ Toggling a button doesn't change UI state
+- ❌ Animations don't play or freeze mid-animation
+- ❌ Layout breaks or shifts unexpectedly at any breakpoint
+- ❌ Text is invisible, overlapping, or clipped
+- ❌ Links don't navigate or buttons don't respond to clicks
+- ❌ Console shows any JavaScript errors or warnings
+- ❌ CSS changes don't take effect visually
+- ❌ Theme switch doesn't update colors/contrast
+
 ### Key Reminders
 
 - **Always create a feature branch** — never work on main directly
@@ -685,3 +720,4 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
 - **Descriptive commit messages** — help reviewers understand changes
 - **Never commit breaking changes** without running `npm run build` first.
 - **Never push to `main` without verifying the build is clean.**
+- **ALWAYS run the app in the browser and visually test before marking work complete** — builds passing is not proof that features work
