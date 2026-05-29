@@ -36,11 +36,6 @@ export default function Nav() {
     }
   }, [isHome])
 
-  const goHome = () => {
-    close()
-    navigate('/')
-  }
-
   const goToSection = (id) => (e) => {
     e.preventDefault()
     close()
@@ -60,13 +55,13 @@ export default function Nav() {
     <>
       <nav className="nav" id="nav">
         <div className="nav-inner">
-          <button className="nav-logo" onClick={goHome} aria-label="Ameya Kulkarni, home" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+          <Link to="/" className="nav-logo" onClick={close} aria-label="Ameya Kulkarni, home">
             <img src={AKLogo} alt="" />
             <span className="wordmark">Ameya Kulkarni</span>
-          </button>
+          </Link>
 
           <ul className="nav-links">
-            <li><button className={isHome ? 'active' : undefined} onClick={goHome} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit' }}>Home</button></li>
+            <li><Link to="/" className={isHome ? 'active' : undefined} onClick={close}>Home</Link></li>
             <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
             {sectionLinks.map(({ label, id }) => (
               <li key={id}><a href={`#${id}`} onClick={goToSection(id)}>{label}</a></li>
@@ -97,10 +92,10 @@ export default function Nav() {
       >
         <ul className="mobile-menu-links">
           <li>
-            <button className={isHome ? 'active' : undefined} onClick={goHome} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit', width: '100%', textAlign: 'left' }}>
+            <Link to="/" className={isHome ? 'active' : undefined} onClick={close}>
               <span className="menu-item-label"><span className="menu-num">00</span>Home</span>
               <span className="menu-arrow" aria-hidden="true">↗</span>
-            </button>
+            </Link>
           </li>
           <li>
             <Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>
