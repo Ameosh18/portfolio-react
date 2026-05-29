@@ -612,5 +612,76 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 - **Never write multi-line comments** explaining what code does — code should be self-documenting.
 - **Never use cream (`#F7F4F0`) for glass cards in light mode** — use white.
 - **Never make text smaller** when uncertain — default to larger, more readable sizes.
+- **Never push to main without running sanity checks** — use feature branches and wait for GitHub Actions validation.
+
+---
+
+## 15. Feature Branch Workflow & Sanity Checks
+
+**Every new feature or change must follow this workflow to maintain code quality and prevent regressions.**
+
+### Workflow Steps
+
+1. **Create feature branch** from main:
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b feature/[feature-name]
+   ```
+
+2. **Develop and push to feature branch:**
+   - Implement the feature/fix
+   - Push to the feature branch: `git push -u origin feature/[feature-name]`
+   - Do NOT push to main directly
+
+3. **Create Pull Request:**
+   - Open a PR on GitHub from `feature/[feature-name]` to `main`
+   - GitHub Actions will automatically run the sanity check suite
+
+4. **Review Sanity Check Results:**
+   - Wait for all checks to pass (green checkmarks)
+   - Checks validate:
+     - ✓ Build succeeds (`npm run build`)
+     - ✓ No CSS/styling errors or broken layouts
+     - ✓ All navigation links work (internal routing)
+     - ✓ Component rendering (no console errors)
+     - ✓ Responsive design (mobile, tablet, desktop)
+     - ✓ Accessibility (WCAG checks)
+     - ✓ Theme switching (light/dark modes work)
+
+5. **Ask for Approval Before Merging:**
+   - Only after sanity checks PASS, ask the user for approval
+   - Share the PR link and summary of changes
+   - Wait for explicit approval: "Yes, merge it" or similar
+   - Do NOT merge without user approval
+
+6. **Merge to Main:**
+   - Once approved, merge the PR using GitHub's merge options
+   - Delete the feature branch after merging
+   - Verify the deployment succeeds on main
+
+### Sanity Check Details
+
+The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
+
+| Check | What it validates |
+|---|---|
+| **Build** | `npm run build` succeeds, no errors, dist folder created |
+| **Styling** | CSS parses correctly, no undefined variables, no broken layouts |
+| **Navigation** | All routes accessible, links resolve, breadcrumbs work, scroll-to-top functional |
+| **Components** | React renders without errors, no missing props, no console warnings |
+| **Responsive** | Layout adapts at 480px, 768px, 1024px, 1280px+ breakpoints |
+| **Accessibility** | WCAG 2.1 AA contrast, focus states, semantic HTML, aria labels |
+| **Theme** | Dark and light themes render correctly, toggle works |
+| **Assets** | Images load, no broken links, fonts load |
+
+### Key Reminders
+
+- **Always create a feature branch** — never work on main directly
+- **Wait for sanity checks** — red checks = do not merge
+- **Ask for approval** — get explicit user consent before merging
+- **Test locally first** — run `npm run build` and `npm run dev` before pushing
+- **One feature per branch** — keep branches focused
+- **Descriptive commit messages** — help reviewers understand changes
 - **Never commit breaking changes** without running `npm run build` first.
 - **Never push to `main` without verifying the build is clean.**

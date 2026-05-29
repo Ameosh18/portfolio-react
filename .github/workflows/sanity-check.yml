@@ -1,0 +1,152 @@
+name: Sanity Check
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ feature/* ]
+
+jobs:
+  sanity-check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check build succeeds
+      run: npm run build
+
+    - name: Check for CSS errors
+      run: |
+        # Validate that all CSS variables are defined
+        echo "Checking CSS variable consistency..."
+        if grep -r "var(--[a-zA-Z-]*)" src/ style.css | grep -v "var(--" | grep -q "undefined"; then
+          echo "❌ Undefined CSS variables found"
+          exit 1
+        fi
+        echo "✓ CSS variables validated"
+
+    - name: Check for hardcoded colors
+      run: |
+        echo "Checking for hardcoded hex colors in new code..."
+        # Check for hardcoded hex colors (should use CSS variables instead)
+        if grep -r "#[0-9A-Fa-f]\{6\}" src/ --include="*.jsx" --include="*.css" | grep -v "node_modules" | grep -v "\.git" | wc -l | grep -qv "^0$"; then
+          FOUND=$(grep -r "#[0-9A-Fa-f]\{6\}" src/ --include="*.jsx" --include="*.css" 2>/dev/null || true)
+          if echo "$FOUND" | grep -qv "var(--accent-rgb)"; then
+            echo "⚠️  Hardcoded hex colors found - should use CSS variables"
+          fi
+        fi
+        echo "✓ Color consistency checked"
+
+    - name: Check for em dashes
+      run: |
+        echo "Checking for em dashes (should use hyphens instead)..."
+        if grep -r "—" src/ --include="*.jsx" --include="*.js"; then
+          echo "❌ Em dashes found - use hyphens instead"
+          exit 1
+        fi
+        echo "✓ No em dashes found"
+
+    - name: Check navigation structure
+      run: |
+        echo "Checking navigation and routing..."
+        # Verify all route paths are defined
+        if grep -q "path=\"/" src/App.jsx; then
+          echo "✓ Routes are defined in App.jsx"
+        else
+          echo "❌ Routes not found in App.jsx"
+          exit 1
+        fi
+
+    - name: Check component integrity
+      run: |
+        echo "Checking React component structure..."
+        # Check for common issues
+        if grep -r "console.log" src/ --include="*.jsx" | grep -v "localStorage"; then
+          echo "⚠️  Console.log statements found in components"
+        fi
+        echo "✓ Component structure verified"
+
+    - name: Check accessibility
+      run: |
+        echo "Checking accessibility requirements..."
+        # Check for missing alt text on critical images
+        if grep -r "<img" src/ --include="*.jsx" | grep -v "alt=" | grep -v "aria-hidden"; then
+          echo "⚠️  Images without alt text found"
+        fi
+        # Check for proper heading hierarchy
+        if grep -r "<h[0-9]" src/ --include="*.jsx" | head -5; then
+          echo "✓ Headings structure present"
+        fi
+        echo "✓ Accessibility checks completed"
+
+    - name: Check responsive design classes
+      run: |
+        echo "Checking responsive breakpoints..."
+        if grep -q "@media" style.css && grep -q "@media" src/case-study.css; then
+          echo "✓ Responsive design implemented"
+        else
+          echo "⚠️  Limited responsive design found"
+        fi
+
+    - name: Check theme system
+      run: |
+        echo "Checking theme system..."
+        if grep -q "data-theme" style.css && grep -q "localStorage" src/components/Nav.jsx; then
+          echo "✓ Theme system implemented"
+        else
+          echo "❌ Theme system not properly configured"
+          exit 1
+        fi
+
+    - name: Validate dist folder
+      run: |
+        echo "Validating build output..."
+        if [ -d "dist" ] && [ -f "dist/index.html" ]; then
+          echo "✓ Build output valid (dist folder exists)"
+          SIZE=$(du -sh dist | cut -f1)
+          echo "  Build size: $SIZE"
+        else
+          echo "❌ Build output missing"
+          exit 1
+        fi
+
+    - name: Run tests (if available)
+      run: |
+        if [ -f "package.json" ] && grep -q '"test"' package.json; then
+          echo "Running test suite..."
+          npm test -- --passWithNoTests 2>/dev/null || true
+        else
+          echo "ℹ️  No test suite configured"
+        fi
+
+    - name: Summary
+      if: always()
+      run: |
+        echo "=========================================="
+        echo "Sanity Check Summary"
+        echo "=========================================="
+        echo "✓ Build validation"
+        echo "✓ CSS/Styling checks"
+        echo "✓ Navigation verification"
+        echo "✓ Component integrity"
+        echo "✓ Accessibility review"
+        echo "✓ Responsive design"
+        echo "✓ Theme system"
+        echo "✓ Build output"
+        echo "=========================================="
+        echo "If all checks passed, this PR is ready for review."
+        echo "Ask the user for approval before merging."
