@@ -18,12 +18,14 @@ function AppContent() {
     <>
       <CustomCursor />
       <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
-        <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
-      </Routes>
+      <div id="page-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
+          <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
+        </Routes>
+      </div>
       {!hideFooter && !isHome && <Footer />}
     </>
   )
