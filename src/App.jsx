@@ -3,6 +3,7 @@ import { NameProvider } from './context/NameContext'
 import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
+import MyProcessPage from './pages/MyProcessPage'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
@@ -22,6 +23,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
+          <Route path="/my-process" element={<MyProcessPage />} />
           <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
           <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
         </Routes>

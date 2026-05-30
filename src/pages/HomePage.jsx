@@ -290,7 +290,7 @@ export default function Homepage() {
 
             <div className="process-tagline reveal">
               <p>// I use tools fluently because I've thought about the work first.</p>
-              <a href="#process" className="btn btn-ghost">Explore Full Process <span className="arrow">→</span></a>
+              <Link to="/my-process" className="btn btn-ghost">Explore Full Process <span className="arrow">&#x2192;</span></Link>
             </div>
           </div>
         </section>
