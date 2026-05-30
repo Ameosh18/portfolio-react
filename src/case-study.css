@@ -113,8 +113,13 @@
 
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
-  padding: 20px var(--gutter);
-  margin-top: 72px; /* accounts for fixed navbar height */
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 72px auto 0;
+  padding-top: 0;
+  padding-bottom: 24px;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -227,6 +232,9 @@
 
 /* ── HERO: shared base ── */
 .cs-page .hero {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -236,10 +244,8 @@
 /* ── DIGISENSE hero: 2-column grid ── */
 .cs-digisense .hero {
   display: grid;
-  grid-template-columns: 60fr 40fr;
+  grid-template-columns: 75fr 25fr;
   align-items: center;
-  gap: 24px;
-  min-height: auto;
 }
 
 .cs-digisense .hero::before {
@@ -263,21 +269,20 @@
 }
 
 .cs-digisense .hero-content {
-  padding: 0;
+  padding: 100px var(--gutter) 48px;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
 .cs-digisense .hero-image {
-  height: 420px;
+  height: 100vh;
   background: var(--surface);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: var(--radius);
 }
 
 .cs-digisense .hero-image img {
@@ -370,12 +375,12 @@
 
 .cs-digisense .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(40px, 4.5vw, 68px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .cs-pfsone .hero-headline {
@@ -389,19 +394,19 @@
 }
 
 .cs-digisense .hero-subheadline {
-  font-family: var(--font-body);
-  font-size: clamp(15px, 1.6vw, 20px);
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 600;
   color: var(--accent);
-  margin-bottom: 32px;
-  line-height: 1.6;
+  margin-bottom: 48px;
+  line-height: 1.2;
 }
 
 .cs-pfsone .hero-subheadline {
   font-family: var(--font-display);
   font-size: clamp(16px, 1.8vw, 26px);
   font-weight: 500;
-  color: var(--accent);
+  color: var(--text-muted);
   margin-bottom: 24px;
   line-height: 1.5;
   max-width: 760px;
@@ -409,8 +414,8 @@
 
 .cs-page .hero-meta {
   display: flex;
-  gap: 24px;
-  padding-top: 20px;
+  gap: 32px;
+  padding-top: 32px;
   border-top: 1px solid var(--border);
 }
 
@@ -1582,7 +1587,7 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding: 20px var(--gutter); }
+  .cs-breadcrumb { padding-top: 72px; padding-left: var(--gutter); padding-right: var(--gutter); }
   .breadcrumb-nav { padding: 10px 0; }
   .cs-digisense .hero { min-height: auto; }
   .cs-digisense .hero-content { padding: 64px var(--gutter) 60px; }
@@ -1643,7 +1648,7 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { margin-top: 72px; padding: 20px var(--gutter) 12px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cs-breadcrumb { padding-top: 72px; flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 12px; }
   .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
   .cs-digisense .hero-content { padding: 48px var(--gutter) 52px; }
   .cs-pfsone .hero { padding: 48px var(--gutter) 52px; }
@@ -1731,17 +1736,10 @@
   order: 1;
 }
 
-.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
-  color: var(--text);
-}
-
+/* Active button styling removed — highlight background handles it */
 /* Detailed button (right side) - active when NOT in simple mode */
 .cs-toggle-pill-btn.detailed-btn {
   order: 2;
-}
-
-.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
-  color: var(--text);
 }
 
 /* Animated highlight background that slides between buttons */
@@ -1753,7 +1751,7 @@
   border-radius: 28px;
   border: 1px solid var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  width: calc(50% - 1.5px);
+  width: calc(50% - 3px);
   z-index: 0;
   pointer-events: none;
 }
