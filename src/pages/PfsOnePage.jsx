@@ -174,10 +174,10 @@ export default function PfsOnePage() {
           <span className="tick bl" aria-hidden="true" />
           <span className="tick br" aria-hidden="true" />
           <h1 className="hero-headline reveal">
-            Network administrators don't get second chances.
+            {isSimple ? 'Redesigning visibility fabric for zero-margin-for-error infrastructure.' : 'Network administrators don\'t get second chances.'}
           </h1>
-          <p className="hero-subheadline reveal">One misconfigured topology. One unpublished change. One blind spot in the visibility fabric ,  and an entire security stack stops seeing the network it's supposed to protect.</p>
-          <p className="hero-tagline reveal">We had one year to redesign the system they trusted not to fail them.</p>
+          <p className="hero-subheadline reveal">{isSimple ? 'One misconfigured topology stops everything. A decade-old system needed complete rethinking.' : 'One misconfigured topology. One unpublished change. One blind spot in the visibility fabric ,  and an entire security stack stops seeing the network it\'s supposed to protect.'}</p>
+          {!isSimple && <p className="hero-tagline reveal">We had one year to redesign the system they trusted not to fail them.</p>}
           <div className="hero-meta reveal">
             <div className="hero-meta-item">
               <span className="hero-meta-label">Role</span>

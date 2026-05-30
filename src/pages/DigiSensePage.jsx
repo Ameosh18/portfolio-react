@@ -50,9 +50,9 @@ export default function DigiSensePage() {
       <section className="hero">
         <div className="hero-content">
           <h1 className="hero-headline reveal">
-            Mahindra had deployed connected technology across 28,000+ tractors in rural India. Most had stopped using it. Nobody knew why.
+            {isSimple ? 'Why 28,000+ farmers stopped using the app Mahindra built for them.' : 'Mahindra had deployed connected technology across 28,000+ tractors in rural India. Most had stopped using it. Nobody knew why.'}
           </h1>
-          <p className="hero-subheadline reveal">I spent 30 days finding out.</p>
+          <p className="hero-subheadline reveal">{isSimple ? 'A 30-day investigation into adoption failure.' : 'I spent 30 days finding out.'}</p>
           <div className="hero-meta reveal">
             <div className="hero-meta-item">
               <span className="hero-meta-label">Role</span>
