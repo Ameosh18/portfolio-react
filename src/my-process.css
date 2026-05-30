@@ -165,6 +165,17 @@
 .mp-section-head { margin-bottom: clamp(40px, 6vw, 72px); }
 .mp-section-head .section-title { margin-top: 16px; }
 
+/* Inset ticks so crosshairs have breathing room from the card edge */
+.mp-wf-block > .tick.tl { top: 12px;    left: 12px;   }
+.mp-wf-block > .tick.tr { top: 12px;    right: 12px;  }
+.mp-wf-block > .tick.bl { bottom: 12px; left: 12px;   }
+.mp-wf-block > .tick.br { bottom: 12px; right: 12px;  }
+
+.mp-philosophy-block > .tick.tl { top: 14px;    left: 14px;   }
+.mp-philosophy-block > .tick.tr { top: 14px;    right: 14px;  }
+.mp-philosophy-block > .tick.bl { bottom: 14px; left: 14px;   }
+.mp-philosophy-block > .tick.br { bottom: 14px; right: 14px;  }
+
 /* ── WORKFLOW BLOCKS ───────────────────────────────────────────────────────── */
 .mp-workflow { overflow: hidden; }
 
