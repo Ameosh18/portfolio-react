@@ -1599,10 +1599,10 @@
   .cs-digisense .hero { min-height: auto; }
   .cs-digisense .hero-content { padding: 64px 0 60px 0; }
   .cs-pfsone .hero { min-height: auto; padding: 64px var(--gutter) 60px; }
-  .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
-  .cs-pfsone .hero-headline { font-size: clamp(32px, 7vw, 52px); }
-  .cs-digisense .hero-subheadline { font-size: clamp(20px, 4.5vw, 32px); }
-  .cs-pfsone .hero-subheadline { font-size: clamp(16px, 3.5vw, 22px); }
+  .cs-digisense .hero-headline { font-size: clamp(28px, 5vw, 44px); }
+  .cs-pfsone .hero-headline { font-size: clamp(26px, 4.5vw, 40px); }
+  .cs-digisense .hero-subheadline { font-size: clamp(18px, 3.5vw, 28px); }
+  .cs-pfsone .hero-subheadline { font-size: clamp(14px, 2.8vw, 20px); }
   .cs-pfsone .hero-tagline { font-size: clamp(18px, 4vw, 26px); }
   .cs-page .hero-meta { flex-wrap: wrap; gap: 16px 32px; }
   .cs-page .scroll-indicator { display: none; }
@@ -1662,7 +1662,7 @@
   .cs-digisense .hero-content { padding: 48px 0 52px 0; }
   .cs-pfsone .hero { padding: 48px var(--gutter) 52px; }
   .cs-digisense .hero-headline,
-  .cs-pfsone .hero-headline { font-size: clamp(28px, 7.5vw, 40px); }
+  .cs-pfsone .hero-headline { font-size: clamp(24px, 6vw, 36px); }
   .cs-page .hero-meta { gap: 14px 20px; }
   .business-context { padding: 64px 0; }
   .stats-row { grid-template-columns: 1fr; }
@@ -1928,16 +1928,25 @@ html.is-simple .cs-page .artifact-card {
 /* Responsive: toggle at 480px and below */
 @media (max-width: 480px) {
   .cs-breadcrumb {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 20px var(--gutter);
+    grid-template-columns: var(--gutter) 1fr var(--gutter);
     margin-top: 72px;
+  }
+
+  .cs-breadcrumb .breadcrumb-nav {
+    grid-column: 2;
+    padding: 12px 0;
+    font-size: 11px;
+  }
+
+  .cs-breadcrumb > :last-child {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 12px 0;
+    margin-top: 8px;
   }
 
   .cs-toggle-pill {
     width: 100%;
-    align-self: stretch;
   }
 
   .cs-toggle-pill-btn {
