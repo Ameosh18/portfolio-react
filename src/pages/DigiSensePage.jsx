@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
+import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
   const [imgError, setImgError] = useState(false)
+  const isSimple = useCaseStudyMode()
 
   useEffect(() => {
     const reveals = document.querySelectorAll('.cs-digisense .reveal')
@@ -115,20 +117,38 @@ export default function DigiSensePage() {
                   <span className="stat-label">paid per farmer</span>
                 </div>
               </div>
-              <p className="reveal">DiGiSense was a telematics platform giving farmers real-time tracking, diagnostics, and fuel monitoring. Farmers paid ₹20,000+ for it. But 50% didn't know what features existed, and 29% abandoned the app entirely. The gap between what Mahindra had built and what farmers actually needed was massive.</p>
-              <div className="mandate-block reveal">
-                <h4>My Mandate</h4>
-                <p>Lead UX Designer · Extentia Experience Studio<br /><br />
-                Research 44 farmers across 5 states to find the root cause of adoption failure and design a solution that works for the farmer, the dealer, and Mahindra simultaneously.</p>
+
+              {isSimple ? (
+                <>
+                  <p className="reveal">DiGiSense was a telematics platform giving farmers real-time tracking, diagnostics, and fuel monitoring. Farmers paid ₹20,000+ for it. But 50% didn't know what features existed, and 29% abandoned the app entirely. The gap between what Mahindra had built and what farmers actually needed was massive.</p>
+                  <div className="mandate-block reveal">
+                    <h4>My Mandate</h4>
+                    <p>Lead UX Designer · Extentia Experience Studio<br /><br />
+                    Research 44 farmers across 5 states to find the root cause of adoption failure and design a solution that works for the farmer, the dealer, and Mahindra simultaneously.</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="reveal">DiGiSense was Mahindra's bet on the future of farming. A connected telematics platform embedded directly into their tractors ,  giving farmers real-time tracking, engine diagnostics, geofencing, and fuel monitoring through a mobile app and web dashboard.</p>
+                  <p className="reveal"><strong>On paper, it was a compelling product.</strong> In reality, it was quietly failing.</p>
+                  <p className="reveal">Farmers had paid ₹20,000+ for the technology. Dealers had sold it confidently. Mahindra had built a sophisticated platform designed to eventually drive predictive analytics, operational efficiency, and new revenue streams. But the data told a different story.</p>
+                  <div className="mandate-block reveal">
+                    <h4>My Mandate</h4>
+                    <p>Lead UX Designer · Extentia Experience Studio · Mahindra's design partner<br /><br />
+                    Research · Synthesis · Stakeholder Alignment · Design Delivery across mobile and web.<br /><br />
+                    <em>Why is a product that farmers say they like, failing to create meaningful engagement ,  and what will it take to fix that?</em></p>
+                  </div>
+                </>
+              )}
+
               </div>
-            </div>
             <div className="reveal">
               <div className="pull-quote">
                 <div className="section-label">
                   <span>The Stakes</span>
                 </div>
-                <blockquote>"Without adoption, there was no data. Without data, there was no platform."</blockquote>
-                <cite>The business case</cite>
+                <blockquote>{isSimple ? '"Without adoption, there was no data. Without data, there was no platform."' : '"Without adoption, there was no data. Without data, there was no platform. Without a platform, the entire strategic vision collapsed."'}</blockquote>
+                <cite>{isSimple ? 'The business case' : 'The business case for this project'}</cite>
               </div>
             </div>
           </div>
@@ -339,26 +359,78 @@ export default function DigiSensePage() {
             <div className="insight-card reveal">
               <div className="insight-number">01</div>
               <h3 className="insight-title">"The product farmers bought wasn't the product they got"</h3>
-              <p className="insight-body">The app showed only 4 of 16 features. The rest required a web dashboard—which farmers didn't have access to. This fragmentation destroyed trust.</p>
+              {isSimple ? (
+                <p className="insight-body">The app showed only 4 of 16 features. The rest required a web dashboard—which farmers didn't have access to. This fragmentation destroyed trust.</p>
+              ) : (
+                <>
+                  <p className="insight-body">The mobile app ,  the only surface farmers actually used ,  exposed just 4 of 16 features. The rest lived on a web dashboard. Farmers don't own laptops. The result: farmers felt misled. Not because Mahindra had lied, but because the product experience didn't match the promise made at the dealership.</p>
+                  <div className="insight-implication">
+                    <h5>Strategic Implication</h5>
+                    <p>Feature fragmentation wasn't a technical inconvenience ,  it was actively destroying trust at scale. Mobile parity wasn't a nice-to-have. It was the single most important business decision the product team could make.</p>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">02</div>
               <h3 className="insight-title">"For 29% of users, SMS was the entire product"</h3>
-              <p className="insight-body">Nearly a third never opened the app. They used only SMS alerts. Designing only for mobile meant ignoring 29% of actual users.</p>
+              {isSimple ? (
+                <p className="insight-body">Nearly a third never opened the app. They used only SMS alerts. Designing only for mobile meant ignoring 29% of actual users.</p>
+              ) : (
+                <>
+                  <p className="insight-body">Nearly a third of farmers had never opened the app. They received SMS alerts, acted on them, and considered themselves DiGiSense users. This wasn't laziness. For a farmer moving between fields with unreliable connectivity and a basic smartphone, SMS was genuinely the better tool.</p>
+                  <div className="insight-implication">
+                    <h5>Strategic Implication</h5>
+                    <p>Designing only for the app meant designing for 71% of users while ignoring 29%. The system needed to treat SMS as a first-class product surface ,  not a fallback.</p>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">03</div>
               <h3 className="insight-title">"The dealer was the forgotten product surface"</h3>
-              <p className="insight-body">Farmers learned about DiGiSense once, at purchase. After that: nothing. Dealers became support bottlenecks with no tools to help.</p>
+              {isSimple ? (
+                <p className="insight-body">Farmers learned about DiGiSense once, at purchase. After that: nothing. Dealers became support bottlenecks with no tools to help.</p>
+              ) : (
+                <>
+                  <p className="insight-body">Every farmer learned about DiGiSense exactly once ,  at the moment of tractor purchase. After that: nothing. When things broke, farmers came back to dealers. Dealers had no tools to help them. DiGiSense had become, in one dealer's words, "a burden we have to carry."</p>
+                  <div className="insight-implication">
+                    <h5>Strategic Implication</h5>
+                    <p>No amount of app redesign would fix adoption if the onboarding moment ,  which happened at the dealership, not in the app ,  remained broken.</p>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">04</div>
               <h3 className="insight-title">"Users were rural millennials, not traditional farmers"</h3>
-              <p className="insight-body">Active users were 18–38 years old, shaped by WhatsApp and YouTube. They expected intuitive design—not hand-holding.</p>
+              {isSimple ? (
+                <p className="insight-body">Active users were 18–38 years old, shaped by WhatsApp and YouTube. They expected intuitive design—not hand-holding.</p>
+              ) : (
+                <>
+                  <p className="insight-body">The farmers actually using the app were 18–38 years old. Their mental models were built on WhatsApp, YouTube, Paytm, and Facebook. They compared DiGiSense unfavourably to Facebook ,  not because they wanted entertainment, but because they expected the same intuitive, engaging experience.</p>
+                  <div className="insight-implication">
+                    <h5>Strategic Implication</h5>
+                    <p>The interface didn't need to educate users into a new paradigm. It needed to meet them inside the mental models they already had.</p>
+                  </div>
+                </>
+              )}
             </div>
+
+            {!isSimple && (
+              <div className="insight-card reveal" style={{ gridColumn: '1 / -1' }}>
+                <div className="insight-number">05</div>
+                <h3 className="insight-title">"The most impactful UX recommendation wasn't a screen"</h3>
+                <p className="insight-body" style={{ maxWidth: '720px' }}>DiGiSense devices were locked to Vodafone. But Jio dominated Punjab. Airtel dominated Telangana. BSNL was strongest in Nashik. The app appeared broken when tractors moved into low-coverage areas. Farmers lost trust in the product ,  assuming it had malfunctioned ,  when the real problem was a locked SIM card on a network with poor rural coverage.</p>
+                <div className="insight-implication">
+                  <h5>Strategic Implication</h5>
+                  <p>The highest-impact recommendation we made wasn't a redesigned screen. It was giving farmers the freedom to choose their own SIM card ,  a business infrastructure decision that sat entirely outside the design team's control. Making that recommendation, and building the case for it with research evidence, was one of the most important things we did on this project.</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -481,12 +553,12 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Design Work</span>
           </div>
-          <h2 className="cs-h2 reveal">Three core redesigns that moved adoption.</h2>
+          <h2 className="cs-h2 reveal">Three screens. Each chosen not<br />because it looks good , <br />but because it shows a decision.</h2>
 
           {/* Screen 1 */}
           <div className="screen-section">
             <h3 className="screen-title reveal">The Mobile Dashboard</h3>
-            <p className="screen-problem reveal">16 features with equal weight. No clear hierarchy. Farmers didn't know what mattered.</p>
+            <p className="screen-problem reveal">The existing app had no clear hierarchy. Farmers opened it and faced 16 features with equal visual weight ,  no sense of what mattered most or what to do first.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 01 · Mobile Dashboard</span>
               <div className="screen-placeholder">
@@ -496,15 +568,19 @@ export default function DigiSensePage() {
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>
-                <p>Prioritized 5 core features. Bottom nav mirrored WhatsApp—a mental model farmers already knew.</p>
+                <p>Reduced to <strong>5 prioritised elements</strong> ,  Live Tracking status, Fuel Level, Engine Hours, PTO Hours, and Recent Alerts. Everything else accessible but not competing for attention on first load.</p>
+              </div>
+              <div className="annotation">
+                <h5>The Annotation That Matters</h5>
+                <p><strong>"The bottom navigation mirrors WhatsApp's tab structure ,  deliberately."</strong> Farmers used WhatsApp daily. Matching that mental model reduced the learning curve to near zero.</p>
               </div>
             </div>
           </div>
 
           {/* Screen 2 */}
           <div className="screen-section">
-            <h3 className="screen-title reveal">Geofencing Flow</h3>
-            <p className="screen-problem reveal">37 clicks, 350 seconds, web-only. Farmers with no laptops couldn't access it.</p>
+            <h3 className="screen-title reveal">The Geofencing Flow</h3>
+            <p className="screen-problem reveal">The original geofencing flow required 37 clicks and 350 seconds. It was web-only ,  meaning farmers who didn't own laptops couldn't access it at all.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 02 · Geofencing Creation</span>
               <div className="screen-placeholder">
@@ -514,15 +590,19 @@ export default function DigiSensePage() {
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>
-                <p>Rebuilt as 3-step mobile flow. Satellite view as default so farmers without formal addresses could find their land.</p>
+                <p>Rebuilt as a native mobile flow ,  <strong>3 steps instead of 4 major stages.</strong> Satellite view as default. Two anchoring tools added: Locate My Tractor and Locate Me.</p>
+              </div>
+              <div className="annotation">
+                <h5>The Annotation That Matters</h5>
+                <p><strong>"Satellite view as default wasn't an aesthetic choice."</strong> It was the only way a farmer with no formal address could find his own land.</p>
               </div>
             </div>
           </div>
 
           {/* Screen 3 */}
           <div className="screen-section">
-            <h3 className="screen-title reveal">Live Tracking</h3>
-            <p className="screen-problem reveal">Static map required manual refresh. Broke trust in a product farmers were already skeptical of.</p>
+            <h3 className="screen-title reveal">Live Tracking + Location History</h3>
+            <p className="screen-problem reveal">Farmers used live tracking as their primary trust signal ,  not for navigation, but to confirm their driver was where they were supposed to be. The existing screen showed a static map that required manual refresh.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 03 · Location Services</span>
               <div className="screen-placeholder">
@@ -532,7 +612,11 @@ export default function DigiSensePage() {
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>
-                <p>Removed the refresh button. Made data feel automatic, not manual—repairing broken trust.</p>
+                <p>Unified Live Tracking and Location History into a <strong>single coherent surface</strong> ,  because farmers mentally thought of them as one thing: "where has my tractor been?"</p>
+              </div>
+              <div className="annotation">
+                <h5>The Annotation That Matters</h5>
+                <p><strong>"The refresh button was removed entirely."</strong> In a product that farmers had lost trust in, making data feel automatic ,  not manual ,  was a trust repair decision as much as a UX decision.</p>
               </div>
             </div>
           </div>
@@ -577,45 +661,108 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
           </div>
-          <h2 className="cs-h2 reveal">Three moves that changed adoption.</h2>
+          <h2 className="cs-h2 reveal">{isSimple ? 'Three moves that changed adoption.' : 'Impact lives at three levels.'}</h2>
 
           <div className="outcomes-grid">
             <div className="outcome-column reveal">
               <div className="outcome-column-header">
-                <h3>Design Wins</h3>
+                <h3>{isSimple ? 'Design Wins' : 'Research Impact'}</h3>
               </div>
-              <div className="outcome-item">
-                <strong>Geofencing: 37 clicks → 3 steps</strong>
-                Accessible to farmers without a laptop for the first time.
-              </div>
-              <div className="outcome-item">
-                <strong>Dashboard: 16 → 5 features</strong>
-                Simplified to match rural millennial mental models.
-              </div>
+              {isSimple ? (
+                <>
+                  <div className="outcome-item">
+                    <strong>Geofencing: 37 clicks → 3 steps</strong>
+                    Accessible to farmers without a laptop for the first time.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Dashboard: 16 → 5 features</strong>
+                    Simplified to match rural millennial mental models.
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="outcome-item">
+                    <strong>First-ever consumer research</strong>
+                    44 interviews across 4 states produced the first real picture of who DiGiSense users actually were ,  creating the knowledge foundation for all future product decisions.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Root cause identified</strong>
+                    Feature fragmentation identified as the structural root cause of adoption failure ,  a fixable problem that had previously been invisible.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Dealer surface surfaced</strong>
+                    The dealer experience identified as a broken product surface that no one had been treating as a design problem.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>4 personas created</strong>
+                    Astute Anil, Wishful Wasim, Simple Suresh, and Glad Gurpreet ,  giving the entire product team a shared language for talking about users for the first time.
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="outcome-column reveal">
               <div className="outcome-column-header">
-                <h3>Research Foundation</h3>
+                <h3>{isSimple ? 'Research Foundation' : 'Design Impact'}</h3>
               </div>
-              <div className="outcome-item">
-                <strong>Root cause identified</strong>
-                Feature fragmentation was the structural problem, not UX polish. Mobile parity wasn't optional.
-              </div>
-              <div className="outcome-item">
-                <strong>Dealer as a product surface</strong>
-                The adoption problem started at the dealership, not in the app.
-              </div>
+              {isSimple ? (
+                <>
+                  <div className="outcome-item">
+                    <strong>Root cause identified</strong>
+                    Feature fragmentation was the structural problem, not UX polish. Mobile parity wasn't optional.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Dealer as a product surface</strong>
+                    The adoption problem started at the dealership, not in the app.
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="outcome-item">
+                    <strong>Geofencing: 37 clicks → 3 steps</strong>
+                    Reduced from 37 clicks and 350 seconds to a 3-step mobile-native flow ,  making the feature accessible to farmers for the first time without a laptop.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Dashboard: 16 → 5 prioritised</strong>
+                    Restructured from 16 equally weighted features to 5 prioritised elements with progressive disclosure ,  matching the mental models of rural millennial users.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Location services unified</strong>
+                    Live tracking and location history combined into a single coherent surface ,  removing the manual refresh button entirely.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Alert system redesigned</strong>
+                    Colour coding and regional language readiness ,  enabling immediate comprehension in field conditions.
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="outcome-column reveal">
               <div className="outcome-column-header">
-                <h3>Strategic Shift</h3>
+                <h3>{isSimple ? 'Strategic Shift' : 'Strategic Impact'}</h3>
               </div>
-              <div className="outcome-item">
-                <strong>SIM card freedom</strong>
-                The single most impactful recommendation was giving farmers network choice—a business decision, not a design one.
-              </div>
+              {isSimple ? (
+                <div className="outcome-item">
+                  <strong>SIM card freedom</strong>
+                  The single most impactful recommendation was giving farmers network choice—a business decision, not a design one.
+                </div>
+              ) : (
+                <>
+                  <div className="outcome-item">
+                    <strong>SIM card freedom recommended</strong>
+                    A business infrastructure recommendation ,  giving farmers network choice ,  addressed the single most common complaint across all four states. No design deliverable attached. Pure strategic value.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Dealer portal concept</strong>
+                    Designed to enable confident live demos at point of sale and create a post-purchase follow-up system ,  reframing the entire adoption problem.
+                  </div>
+                  <div className="outcome-item">
+                    <strong>Adoption problem reframed</strong>
+                    Adoption wasn't failing because the app was bad. It was failing because the moment farmers first encountered DiGiSense was broken. Fixing that moment went well beyond the original design brief.
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -627,23 +774,48 @@ export default function DigiSensePage() {
           <div className="section-label reveal">
             <span>Reflection</span>
           </div>
-          <h2 className="cs-h2 reveal">What I'd do differently today.</h2>
+          <h2 className="cs-h2 reveal">{isSimple ? 'What I\'d do differently today.' : 'The best designers aren\'t the ones who get everything right.\nThey\'re the ones who know exactly what they\'d do differently.'}</h2>
 
           <div className="reflection-items">
             <div className="reflection-item">
               <span className="reflection-num reveal">01</span>
               <div className="reflection-content reveal">
-                <h3>Scope the dealer experience as a primary product, not an afterthought</h3>
-                <p>The dealer portal emerged late as a recommendation. It should have been workstream one. Farmers form their mental model in the first 10 minutes at dealership, not in the app.</p>
+                {isSimple ? (
+                  <h3>Scope the dealer experience as a primary product, not an afterthought</h3>
+                ) : (
+                  <h3>Instrument the product before designing for it</h3>
+                )}
+                {isSimple ? (
+                  <p>The dealer portal emerged late as a recommendation. It should have been workstream one. Farmers form their mental model in the first 10 minutes at dealership, not in the app.</p>
+                ) : (
+                  <p>Our feature awareness finding came from self-reporting. Farmers told us what they thought they knew. That's directionally useful but inherently imprecise. Today I would push for analytics instrumentation from day one ,  before research begins, not after. Actual usage data and interview data interrogating each other produces far stronger insight than either alone. Numbers in a research deck land differently than quotes.</p>
+                )}
               </div>
             </div>
             <div className="reflection-item">
               <span className="reflection-num reveal">02</span>
               <div className="reflection-content reveal">
-                <h3>Pair research with real usage analytics from day one</h3>
-                <p>We relied on farmer self-reporting. Pairing interviews with actual usage data would have surfaced patterns (like the SMS-only users) faster and stronger.</p>
+                {isSimple ? (
+                  <h3>Pair research with real usage analytics from day one</h3>
+                ) : (
+                  <h3>Treat the dealer experience as a primary product surface from the start</h3>
+                )}
+                {isSimple ? (
+                  <p>We relied on farmer self-reporting. Pairing interviews with actual usage data would have surfaced patterns (like the SMS-only users) faster and stronger.</p>
+                ) : (
+                  <p>The dealer portal concept emerged late in the project as a recommendation ,  almost an afterthought to the main app redesign. In hindsight, it should have been scoped as a core deliverable from the beginning. The trust gap between farmers and DiGiSense wasn't created in the app. It was created in the first 10 minutes at a dealership. If I were structuring this project today, the dealer onboarding tool would be workstream one ,  not an appendix to the final presentation.</p>
+                )}
               </div>
             </div>
+            {!isSimple && (
+              <div className="reflection-item">
+                <span className="reflection-num reveal">03</span>
+                <div className="reflection-content reveal">
+                  <h3>Use AI to pressure-test human synthesis</h3>
+                  <p>Four people doing manual affinity mapping across 44 interviews over four days is a significant undertaking ,  and a significant source of bias risk. By day three of synthesis, you're tired, pattern-locked, and unconsciously gravitating toward the insights that confirm what you already suspect. Today I would run AI-assisted qualitative analysis alongside manual synthesis ,  not to replace human judgement, but to challenge it. The goal isn't to automate insight. It's to make human insight more honest.</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
