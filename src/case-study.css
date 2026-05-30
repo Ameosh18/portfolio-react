@@ -1710,6 +1710,7 @@
 /* ─── SIMPLE / DETAILED TOGGLE PILL ────────────────────────────────────── */
 
 .cs-toggle-pill {
+  position: relative;
   display: flex;
   gap: 0;
   background: var(--surface);
@@ -1717,10 +1718,13 @@
   border-radius: 32px;
   padding: 3px;
   flex-shrink: 0;
+  width: fit-content;
 }
 
 .cs-toggle-pill-btn {
-  flex: 1;
+  position: relative;
+  z-index: 1;
+  flex: 0 1 auto;
   padding: 10px 20px;
   background: transparent;
   border: 1px solid transparent;
@@ -1733,25 +1737,21 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 28px;
-  position: relative;
 }
 
 .cs-toggle-pill-btn:hover {
   color: var(--text);
 }
 
-/* Simple button (left side) - active when in simple mode */
 .cs-toggle-pill-btn.simple-btn {
   order: 1;
 }
 
-/* Active button styling removed — highlight background handles it */
-/* Detailed button (right side) - active when NOT in simple mode */
 .cs-toggle-pill-btn.detailed-btn {
   order: 2;
 }
 
-/* Animated highlight background that slides between buttons */
+/* Animated highlight background */
 .cs-toggle-highlight {
   position: absolute;
   top: 3px;
@@ -1767,20 +1767,12 @@
 
 .cs-toggle-pill.is-simple .cs-toggle-highlight {
   left: 3px;
+  right: auto;
 }
 
 .cs-toggle-pill:not(.is-simple) .cs-toggle-highlight {
   right: 3px;
-}
-
-/* Position buttons relative so highlight is behind them */
-.cs-toggle-pill {
-  position: relative;
-}
-
-.cs-toggle-pill-btn {
-  position: relative;
-  z-index: 1;
+  left: auto;
 }
 
 /* ─── CASE STUDY FEEDBACK PROMPT ──────────────────────────────────────── */
@@ -1946,11 +1938,12 @@ html.is-simple .cs-page .artifact-card {
   }
 
   .cs-toggle-pill {
-    width: 100%;
+    width: auto;
   }
 
   .cs-toggle-pill-btn {
     padding: 8px 16px;
     font-size: 11px;
+    flex: 0 1 auto;
   }
 }
