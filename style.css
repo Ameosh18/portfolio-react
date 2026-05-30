@@ -2788,32 +2788,41 @@ body.menu-open #site-nav {
 .loader-large { gap: 20px; }
 .loader-large .loader-text { font-size: 14px; }
 
+/* Backdrop overlay - sits behind loader and covers entire viewport */
+.cs-content-loader::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 12, 12, 0.4);
+  pointer-events: none;
+  z-index: 998;
+}
+
 /* Content loader - overlay variant for mode switches */
 .cs-content-loader {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 1001;
   padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
 }
 
-.cs-content-loader::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(12, 12, 12, 0.3);
-  z-index: -1;
-  backdrop-filter: blur(2px);
-}
-
-/* Blur content when loading */
+/* Subtle blur on content when loading - doesn't hide toggle or loader */
 html.is-loading main {
-  filter: blur(12px);
+  filter: blur(8px);
+  pointer-events: none;
+  transition: filter 0.3s ease;
   pointer-events: none;
   transition: filter 0.3s ease;
 }
