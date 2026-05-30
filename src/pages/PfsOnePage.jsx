@@ -212,25 +212,22 @@ export default function PfsOnePage() {
               <div className="stats-row reveal">
                 <div className="stat-card">
                   <span className="stat-number">4</span>
-                  <span className="stat-label">lifecycle stages to navigate</span>
+                  <span className="stat-label">lifecycle stages</span>
                 </div>
                 <div className="stat-card">
                   <span className="stat-number">3</span>
-                  <span className="stat-label">distinct user roles</span>
+                  <span className="stat-label">user roles</span>
                 </div>
                 <div className="stat-card">
                   <span className="stat-number">1</span>
-                  <span className="stat-label">year to replace a decade-old interface</span>
+                  <span className="stat-label">year to redesign</span>
                 </div>
               </div>
-              <p className="reveal">NETSCOUT's nGenius Packet Flow Switch system was already deployed across enterprise data centres and central offices worldwide. Network administrators used it to manage visibility fabric ,  the infrastructure that routes traffic to monitoring and security tools. If the visibility fabric was misconfigured, security tools went blind. If security tools went blind, threats went undetected.</p>
-              <p className="reveal"><strong>The stakes were not abstract.</strong> They were operational.</p>
-              <p className="reveal">The existing interface was legacy ,  built for a different era of networking, a different scale of complexity, and a different expectation of what software should feel like. NETSCOUT needed a complete redesign. Not a reskin. A rethinking.</p>
+              <p className="reveal">NETSCOUT's PFS ONE system manages visibility fabric across enterprise data centers—the infrastructure that routes traffic to security and monitoring tools. One misconfigured topology means security tools go blind. The legacy interface was built for a different era. It needed a complete rethinking.</p>
               <div className="mandate-block reveal">
                 <h4>My Mandate</h4>
-                <p>UX Designer · Ogee Studio · NETSCOUT's design partner<br /><br />
-                Navigation Architecture · Topology Flow Design · Interaction Design for the Deploy Lifecycle.<br /><br />
-                <em>How do you design a system complex enough for expert users ,  without making complexity the experience?</em></p>
+                <p>UX Designer · Ogee Studio<br /><br />
+                Design a system complex enough for expert administrators, without making the complexity visible to users who don't need it.</p>
               </div>
             </div>
             <div className="reveal">
@@ -238,8 +235,8 @@ export default function PfsOnePage() {
                 <div className="section-label">
                   <span>The Stakes</span>
                 </div>
-                <blockquote>"This isn't a consumer app where a confused user abandons their cart. This is enterprise infrastructure where a confused administrator makes a change that takes down visibility across an entire data centre."</blockquote>
-                <cite>The framing that shaped every design decision</cite>
+                <blockquote>"One misconfiguration means visibility goes down across an entire data center."</blockquote>
+                <cite>Zero tolerance for error</cite>
               </div>
             </div>
           </div>
@@ -384,42 +381,26 @@ export default function PfsOnePage() {
           <div className="insights-grid">
             <div className="insight-card reveal">
               <div className="insight-number">01</div>
-              <h3 className="insight-title">"Experts aren't confused by complexity. They're frustrated by obscured state."</h3>
-              <p className="insight-body">Network administrators understood packet flows, port types, topology routing ,  deeply. What the legacy interface failed them on wasn't the complexity of the domain. It was the inability to see what state the system was in at any given moment. Was this topology published or not? Was this port configured or just staged? The system didn't make state visible ,  and invisible state, for an expert user, is dangerous.</p>
-              <div className="insight-implication">
-                <h5>Strategic Implication</h5>
-                <p>The design problem wasn't simplification. It was state visibility. Every navigation and topology decision had to make system state legible at a glance ,  without requiring the administrator to go looking for it.</p>
-              </div>
+              <h3 className="insight-title">"Experts don't need simplicity. They need state visibility."</h3>
+              <p className="insight-body">Administrators understood packet flows and topology routing deeply. What killed them was invisible state—not knowing if a topology was published or staged.</p>
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">02</div>
-              <h3 className="insight-title">"The left navigation tree was the entire mental model."</h3>
-              <p className="insight-body">In a lifecycle-based system managing hundreds of ports across multiple switches and geographic locations, the left panel wasn't just navigation ,  it was the administrator's cognitive map of the entire network. How resources were organised, grouped, and labelled in that panel directly shaped how administrators thought about and managed their infrastructure.</p>
-              <div className="insight-implication">
-                <h5>Strategic Implication</h5>
-                <p>Getting the navigation tree wrong didn't just create a usability problem. It created a mental model problem ,  one that would propagate through every interaction in the system.</p>
-              </div>
+              <h3 className="insight-title">"The left panel is the entire mental model."</h3>
+              <p className="insight-body">How resources are organized in the navigation tree directly shapes how administrators think about the network. Getting navigation wrong breaks the mental model.</p>
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">03</div>
-              <h3 className="insight-title">"Live changes and staged changes needed to be fundamentally separated."</h3>
-              <p className="insight-body">The legacy system conflated two things that expert users needed to keep distinct: what was configured and what was deployed. Administrators needed the ability to stage changes, validate them, and push them to infrastructure on their own schedule ,  especially ahead of maintenance windows. Collapsing this distinction into a single action was the root cause of the most critical usability failures in the old interface.</p>
-              <div className="insight-implication">
-                <h5>Strategic Implication</h5>
-                <p>The publish/unpublish workflow wasn't a feature. It was the central safety mechanism of the entire product. Designing it required understanding not just the interaction ,  but the operational context in which administrators would use it.</p>
-              </div>
+              <h3 className="insight-title">"Configuration and deployment must be separate workflows."</h3>
+              <p className="insight-body">Legacy system forced live changes only. Administrators needed staging, validation, and scheduling ahead of maintenance windows.</p>
             </div>
 
             <div className="insight-card reveal">
               <div className="insight-number">04</div>
-              <h3 className="insight-title">"Role-based access wasn't just a permissions problem ,  it was a navigation problem."</h3>
-              <p className="insight-body">Different user roles didn't just have different permissions. They had fundamentally different workflows, different entry points, and different definitions of what "the product" was. A Network Operator's product was the Monitor lifecycle. A Switch Configuration Manager's product was the Deploy lifecycle. Designing one navigation system that served all three roles without exposing irrelevant complexity to any of them was one of the hardest structural problems on the project.</p>
-              <div className="insight-implication">
-                <h5>Strategic Implication</h5>
-                <p>Navigation had to be role-aware from the first screen ,  not as a permissions gate, but as a genuine personalisation of the product experience based on what each role actually needed to accomplish.</p>
-              </div>
+              <h3 className="insight-title">"Role-based access is a navigation problem, not just permissions."</h3>
+              <p className="insight-body">Each role needs a different product surface. Network Operators need monitoring. Managers need configuration. Administrators need everything.</p>
             </div>
           </div>
         </div>
@@ -622,60 +603,44 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
           </div>
-          <h2 className="cs-h2 reveal">Impact lives at three levels.</h2>
+          <h2 className="cs-h2 reveal">Three architectural decisions that shipped.</h2>
 
           <div className="outcomes-grid">
             <div className="outcome-column reveal">
               <div className="outcome-column-header">
-                <h3>Research Impact</h3>
+                <h3>Navigation Architecture</h3>
               </div>
               <div className="outcome-item">
-                <strong>Domain model established</strong>
-                Extended stakeholder immersion through a single senior channel produced the first structured understanding of how network administrators thought about and managed visibility infrastructure ,  creating the design foundation for the entire product.
-              </div>
-              <div className="outcome-item">
-                <strong>Legacy failure modes identified</strong>
-                Reverse-engineering the old interface surfaced three critical workflow gaps: no staged publishing, no perspective-based navigation, no role-differentiated access ,  each of which became a core design workstream.
-              </div>
-              <div className="outcome-item">
-                <strong>Mental model documented</strong>
-                The left panel perspective system emerged directly from mapping how administrators organised their thinking about network resources ,  producing a navigation architecture grounded in cognitive reality rather than data structure.
-              </div>
-            </div>
-
-            <div className="outcome-column reveal">
-              <div className="outcome-column-header">
-                <h3>Design Impact</h3>
-              </div>
-              <div className="outcome-item">
-                <strong>Lifecycle navigation shipped</strong>
-                Configure · Deploy · Monitor · Inline ,  four lifecycle stages, each with dedicated context and tooling, delivered as the primary navigation architecture of the shipped product.
+                <strong>Lifecycle-based navigation shipped</strong>
+                Configure · Deploy · Monitor. Four distinct contexts with dedicated tooling.
               </div>
               <div className="outcome-item">
                 <strong>Perspective-based left panel shipped</strong>
-                Location · Logical · Filter · Template perspectives ,  giving administrators four cognitive lenses on the same resource hierarchy, confirmed in the shipped product datasheet.
-              </div>
-              <div className="outcome-item">
-                <strong>Staged topology publishing shipped</strong>
-                Two-state publish model with versioning, scheduling, and validation ,  moving administrators from live-only changes to a controlled, stageable deployment workflow.
-              </div>
-              <div className="outcome-item">
-                <strong>Role-based lifecycle access shipped</strong>
-                Navigation personalised by user role ,  confirmed in the shipped product, with Service Administrator, Switch Configuration Manager, and Network Operator roles each accessing a tailored product surface.
+                Location · Logical · Filter · Template. Administrators got four cognitive lenses on the same network.
               </div>
             </div>
 
             <div className="outcome-column reveal">
               <div className="outcome-column-header">
-                <h3>Strategic Impact</h3>
+                <h3>Safety Mechanisms</h3>
               </div>
               <div className="outcome-item">
-                <strong>A legacy product made future-ready</strong>
-                The redesign didn't just improve usability ,  it established an architectural foundation capable of supporting the product's evolution toward centralised management, inline toolchain configuration, and predictive monitoring.
+                <strong>Staged publishing with versioning</strong>
+                Two-state model moved admins from live-only to controlled, stageable deployment.
+              </div>
+              <div className="outcome-item">
+                <strong>Role-based lifecycle access</strong>
+                Each role (Operator, Manager, Administrator) gets a tailored product surface.
+              </div>
+            </div>
+
+            <div className="outcome-column reveal">
+              <div className="outcome-column-header">
+                <h3>Strategic Outcome</h3>
               </div>
               <div className="outcome-item">
                 <strong>Design as infrastructure</strong>
-                The navigation and topology systems we designed weren't screens ,  they were structural decisions that determined how the entire product could grow. The fact that they shipped without significant architectural change is the outcome that matters most.
+                Navigation and topology systems shipped as structural decisions, not UI polish. The architecture supported product evolution without rearchitecting.
               </div>
             </div>
           </div>
@@ -688,28 +653,21 @@ export default function PfsOnePage() {
           <div className="section-label reveal">
             <span>Reflection</span>
           </div>
-          <h2 className="cs-h2 reveal">The best designers aren't the ones who get everything right.<br />They're the ones who know exactly what they'd do differently.</h2>
+          <h2 className="cs-h2 reveal">What I'd do differently today.</h2>
 
           <div className="reflection-items">
             <div className="reflection-item">
               <span className="reflection-num reveal">01</span>
               <div className="reflection-content reveal">
-                <h3>Push harder for direct user access, even with expert users</h3>
-                <p>We learned the domain through a single stakeholder channel ,  which was the reality of this engagement. But I'd now push harder for even one or two observational sessions with working network administrators in their actual environment. Watching an expert work in a high-stakes operational context reveals things no requirement document can ,  the workarounds, the muscle memory, the moments of hesitation that signal where real friction lives.</p>
+                <h3>Push harder for direct user observation</h3>
+                <p>We learned through a single stakeholder channel. I'd now insist on even one or two sessions with working administrators in their environment. You can't capture workarounds and muscle memory from requirement documents.</p>
               </div>
             </div>
             <div className="reflection-item">
               <span className="reflection-num reveal">02</span>
               <div className="reflection-content reveal">
-                <h3>Design the onboarding to the mental model, not just the UI</h3>
-                <p>The perspective-based navigation and lifecycle model were the right architectural decisions. But they required administrators to learn a new mental model before they could use the product fluently. In hindsight, I'd invest significantly more in the first-use experience ,  not a tutorial, but a designed onboarding moment that introduces the lifecycle model in the context of a real task. The architecture was sound. The entry point needed more care.</p>
-              </div>
-            </div>
-            <div className="reflection-item">
-              <span className="reflection-num reveal">03</span>
-              <div className="reflection-content reveal">
-                <h3>Make the two-state model more forgiving</h3>
-                <p>The publish/unpublish system was the right answer to a real problem. But two-state models introduce cognitive load ,  administrators had to track not just what was configured, but what was deployed. Looking back, I'd explore whether the visual language could do more of that tracking work for the user ,  reducing the mental overhead of maintaining awareness of system state across a complex topology with dozens of entities in different publication states.</p>
+                <h3>Invest more in mental model onboarding</h3>
+                <p>The lifecycle model was the right architecture. But it required administrators to learn new thinking patterns. I'd design a more intentional first-use experience that introduces the model through real tasks, not tutorials.</p>
               </div>
             </div>
           </div>
