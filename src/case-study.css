@@ -1708,6 +1708,7 @@
   border-radius: 32px;
   padding: 3px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .cs-toggle-pill-btn {
@@ -1725,6 +1726,7 @@
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 28px;
   position: relative;
+  z-index: 1;
 }
 
 .cs-toggle-pill-btn:hover {
@@ -1736,10 +1738,17 @@
   order: 1;
 }
 
-/* Active button styling removed — highlight background handles it */
+.cs-toggle-pill.is-simple .cs-toggle-pill-btn.simple-btn {
+  color: var(--text);
+}
+
 /* Detailed button (right side) - active when NOT in simple mode */
 .cs-toggle-pill-btn.detailed-btn {
   order: 2;
+}
+
+.cs-toggle-pill:not(.is-simple) .cs-toggle-pill-btn.detailed-btn {
+  color: var(--text);
 }
 
 /* Animated highlight background that slides between buttons */
@@ -1751,7 +1760,7 @@
   border-radius: 28px;
   border: 1px solid var(--accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  width: calc(50% - 3px);
+  width: calc(50% - 1.5px);
   z-index: 0;
   pointer-events: none;
 }
@@ -1762,16 +1771,6 @@
 
 .cs-toggle-pill:not(.is-simple) .cs-toggle-highlight {
   right: 3px;
-}
-
-/* Position buttons relative so highlight is behind them */
-.cs-toggle-pill {
-  position: relative;
-}
-
-.cs-toggle-pill-btn {
-  position: relative;
-  z-index: 1;
 }
 
 /* ─── CASE STUDY FEEDBACK PROMPT ──────────────────────────────────────── */
