@@ -13,6 +13,7 @@ export default function Nav() {
 
   const isHome = location.pathname === '/'
   const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
+  const isProcess = location.pathname === '/my-process'
 
   const close = () => setIsMenuOpen(false)
 
@@ -56,7 +57,6 @@ export default function Nav() {
   }
 
   const sectionLinks = [
-    { num: '02', label: 'My Process', id: 'process' },
     { num: '03', label: 'About Me', id: 'about' },
   ]
 
@@ -72,6 +72,7 @@ export default function Nav() {
           <ul className="nav-links">
             <li><Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>Home</Link></li>
             <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
+            <li><Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>My Process</Link></li>
             {sectionLinks.map(({ label, id }) => (
               <li key={id}><a href={`#${id}`} onClick={goToSection(id)}>{label}</a></li>
             ))}
@@ -109,6 +110,12 @@ export default function Nav() {
           <li>
             <Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>
               <span className="menu-item-label"><span className="menu-num">01</span>Work</span>
+              <span className="menu-arrow" aria-hidden="true">↗</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>
+              <span className="menu-item-label"><span className="menu-num">02</span>My Process</span>
               <span className="menu-arrow" aria-hidden="true">↗</span>
             </Link>
           </li>
