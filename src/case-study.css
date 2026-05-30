@@ -115,15 +115,24 @@
 .cs-breadcrumb {
   width: 100%;
   margin-top: 72px;
-  padding: 20px var(--gutter);
+  padding: 0;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: var(--gutter) auto 1fr auto var(--gutter);
   align-items: center;
-  gap: 24px;
   position: relative;
   z-index: 50;
+}
+
+.cs-breadcrumb .breadcrumb-nav {
+  grid-column: 2;
+  padding: 20px 0;
+}
+
+.cs-breadcrumb > :last-child {
+  grid-column: 4;
+  padding: 20px 0;
 }
 
 .breadcrumb-nav {
@@ -1585,7 +1594,7 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding: 20px var(--gutter); }
+  .cs-breadcrumb { grid-template-columns: var(--gutter) auto 1fr auto var(--gutter); }
   .breadcrumb-nav { padding: 10px 0; }
   .cs-digisense .hero { min-height: auto; }
   .cs-digisense .hero-content { padding: 64px 0 60px 0; }
@@ -1646,7 +1655,9 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { padding: 12px var(--gutter); flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cs-breadcrumb { grid-template-columns: var(--gutter) 1fr var(--gutter); }
+  .cs-breadcrumb .breadcrumb-nav { grid-column: 2; padding: 12px 0; }
+  .cs-breadcrumb > :last-child { grid-column: 2; grid-row: 2; padding: 12px 0; margin-top: 8px; }
   .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
   .cs-digisense .hero-content { padding: 48px 0 52px 0; }
   .cs-pfsone .hero { padding: 48px var(--gutter) 52px; }
