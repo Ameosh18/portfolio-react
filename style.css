@@ -2788,11 +2788,16 @@ body.menu-open #site-nav {
 .loader-large { gap: 20px; }
 .loader-large .loader-text { font-size: 14px; }
 
-/* Backdrop overlay - sits behind loader */
+/* Backdrop overlay - sits behind loader and covers entire viewport */
 .cs-content-loader::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(12, 12, 12, 0.4);
   pointer-events: none;
   z-index: 998;
