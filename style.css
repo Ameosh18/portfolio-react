@@ -2819,7 +2819,8 @@ body.menu-open #site-nav {
 }
 
 /* Subtle blur on content when loading - doesn't hide toggle or loader */
-html.is-loading main {
+html.is-loading main,
+html.is-loading .cs-page {
   filter: blur(8px);
   pointer-events: none;
   transition: filter 0.3s ease;
