@@ -308,7 +308,7 @@ export default function Homepage() {
                 <div>
                   <p className="a-bio">With 9.5 years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
                   <div className="about-cta-row">
-                    <a href="#about" className="btn btn-primary">Read Full Story <span className="arrow">→</span></a>
+                    <Link to="/about" className="btn btn-primary">Read Full Story <span className="arrow">&#x2192;</span></Link>
                     <span className="status-pill"><span className="dot" />Available to join your company</span>
                   </div>
                 </div>

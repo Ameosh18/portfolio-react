@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
 import CaseStudyPage from './pages/CaseStudyPage'
 import MyProcessPage from './pages/MyProcessPage'
+import AboutPage from './pages/AboutPage'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
@@ -24,6 +25,7 @@ function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/my-process" element={<MyProcessPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
           <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
         </Routes>

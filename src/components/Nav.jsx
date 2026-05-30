@@ -14,6 +14,7 @@ export default function Nav() {
   const isHome = location.pathname === '/'
   const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
   const isProcess = location.pathname === '/my-process'
+  const isAbout = location.pathname === '/about'
 
   const close = () => setIsMenuOpen(false)
 
@@ -56,9 +57,7 @@ export default function Nav() {
     }
   }
 
-  const sectionLinks = [
-    { num: '03', label: 'About Me', id: 'about' },
-  ]
+  const sectionLinks = []
 
   return (
     <>
@@ -73,9 +72,7 @@ export default function Nav() {
             <li><Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>Home</Link></li>
             <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
             <li><Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>My Process</Link></li>
-            {sectionLinks.map(({ label, id }) => (
-              <li key={id}><a href={`#${id}`} onClick={goToSection(id)}>{label}</a></li>
-            ))}
+            <li><Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>About Me</Link></li>
             <li><a href={RESUME_URL} download className="cta">Download Resume ↓</a></li>
           </ul>
 
@@ -119,14 +116,12 @@ export default function Nav() {
               <span className="menu-arrow" aria-hidden="true">↗</span>
             </Link>
           </li>
-          {sectionLinks.map(({ num, label, id }) => (
-            <li key={id}>
-              <a href={`#${id}`} onClick={goToSection(id)}>
-                <span className="menu-item-label"><span className="menu-num">{num}</span>{label}</span>
-                <span className="menu-arrow" aria-hidden="true">↗</span>
-              </a>
-            </li>
-          ))}
+          <li>
+            <Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>
+              <span className="menu-item-label"><span className="menu-num">03</span>About Me</span>
+              <span className="menu-arrow" aria-hidden="true">↗</span>
+            </Link>
+          </li>
           <li className="menu-cta-item">
             <a href={RESUME_URL} download className="menu-cta" onClick={close}>
               Download Resume <span className="menu-cta-arrow" aria-hidden="true">↓</span>
