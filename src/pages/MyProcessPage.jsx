@@ -49,21 +49,6 @@ const WORKFLOW_STEPS = [
   },
 ]
 
-const PRACTICE_CASES = [
-  {
-    num: '01',
-    title: 'DiGiSense - Connected Vehicle Intelligence',
-    desc: 'AI-assisted synthesis compressed months of field research into structured insights, accelerating the strategy phase and surfacing patterns that manual review would have missed.',
-    href: '/digisense',
-  },
-  {
-    num: '02',
-    title: 'NETSCOUT PFS ONE - Enterprise Network Platform',
-    desc: 'Exploration covered 3x more flow alternatives than traditional methods. AI filtering narrowed options before any pixel was pushed, resulting in an architecture that shipped unchanged.',
-    href: '/pfsone',
-  },
-]
-
 const STACK_GROUPS = [
   { category: 'Research Intelligence',  tools: ['Claude', 'ChatGPT', 'Perplexity'] },
   { category: 'Systems and Mapping',    tools: ['Miro', 'FigJam'] },
@@ -202,37 +187,6 @@ export default function MyProcessPage() {
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-
-        {/* ── SEE IT IN PRACTICE ── */}
-        <section className="section mp-practice" aria-labelledby="mp-practice-heading">
-          <div className="container">
-            <div className="mp-section-head reveal">
-              <span className="eyebrow">Process in Practice</span>
-              <h2 id="mp-practice-heading" className="section-title">
-                See how the process<br />played out in real work.
-              </h2>
-            </div>
-
-            <div className="mp-practice-grid">
-              {PRACTICE_CASES.map((c, i) => (
-                <Link
-                  key={c.href}
-                  to={c.href}
-                  className="mp-practice-card bp-card reveal"
-                  style={{ transitionDelay: `${i * 0.1}s` }}
-                  aria-label={`View case study: ${c.title}`}
-                >
-                  <p className="mp-practice-meta">Case Study {c.num}</p>
-                  <h3 className="mp-practice-title">{c.title}</h3>
-                  <p className="mp-practice-desc">{c.desc}</p>
-                  <span className="mp-practice-link" aria-hidden="true">
-                    View Case Study &#x2192;
-                  </span>
-                </Link>
-              ))}
-            </div>
           </div>
         </section>
 
