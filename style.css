@@ -2818,8 +2818,9 @@ body.menu-open #site-nav {
   pointer-events: auto;
 }
 
-/* Subtle blur on routed page content when loading - doesn't hide toggle or loader */
-html.is-loading #page-content {
+/* Subtle blur on case study content when loading - excludes breadcrumb and loader */
+html.is-loading .cs-page > section:not(.cs-breadcrumb),
+html.is-loading .cs-page > div:not(.cs-breadcrumb) {
   filter: blur(8px);
   pointer-events: none;
   transition: filter 0.3s ease;
