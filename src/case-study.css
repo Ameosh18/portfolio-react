@@ -113,7 +113,7 @@
 
 /* ── BREADCRUMB NAVIGATION ── */
 .cs-breadcrumb {
-  padding: 20px var(--grid-margin);
+  padding: 20px var(--gutter);
   margin-top: 72px; /* accounts for fixed navbar height */
   background: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -161,9 +161,10 @@
 
 /* ── SHARED LAYOUT ── */
 .cs-page .container {
-  max-width: var(--grid-max);
-  margin: 0 auto;
-  padding: 0 var(--grid-margin);
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
 .cs-page .section-label {
@@ -317,7 +318,7 @@
 .cs-pfsone .hero {
   display: flex;
   align-items: center;
-  padding: 100px var(--grid-margin) 48px;
+  padding: 100px var(--gutter) 48px;
 }
 
 .cs-pfsone .hero::before {
@@ -436,7 +437,7 @@
 .cs-page .scroll-indicator {
   position: absolute;
   bottom: 40px;
-  left: var(--grid-margin);
+  left: var(--gutter);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1560,8 +1561,8 @@
 @media (max-width: 1024px) {
   .cs-digisense .hero { grid-template-columns: 1fr; }
   .cs-digisense .hero-image { display: none; }
-  .cs-digisense .hero-content { padding: 80px var(--grid-margin); }
-  .cs-pfsone .hero { padding: 80px var(--grid-margin); }
+  .cs-digisense .hero-content { padding: 80px var(--gutter); }
+  .cs-pfsone .hero { padding: 80px var(--gutter); }
   .two-col { grid-template-columns: 1fr; gap: 40px; }
   .stakeholder-grid { grid-template-columns: 1fr 1fr; }
   .insights-grid { grid-template-columns: 1fr; }
@@ -1581,11 +1582,11 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding: 20px var(--grid-margin); }
+  .cs-breadcrumb { padding: 20px var(--gutter); }
   .breadcrumb-nav { padding: 10px 0; }
   .cs-digisense .hero { min-height: auto; }
-  .cs-digisense .hero-content { padding: 64px var(--grid-margin) 60px; }
-  .cs-pfsone .hero { min-height: auto; padding: 64px var(--grid-margin) 60px; }
+  .cs-digisense .hero-content { padding: 64px var(--gutter) 60px; }
+  .cs-pfsone .hero { min-height: auto; padding: 64px var(--gutter) 60px; }
   .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-pfsone .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-digisense .hero-subheadline { font-size: clamp(20px, 4.5vw, 32px); }
@@ -1642,10 +1643,10 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { margin-top: 72px; padding: 20px var(--grid-margin) 12px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cs-breadcrumb { margin-top: 72px; padding: 20px var(--gutter) 12px; flex-direction: column; align-items: flex-start; gap: 12px; }
   .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
-  .cs-digisense .hero-content { padding: 48px var(--grid-margin) 52px; }
-  .cs-pfsone .hero { padding: 48px var(--grid-margin) 52px; }
+  .cs-digisense .hero-content { padding: 48px var(--gutter) 52px; }
+  .cs-pfsone .hero { padding: 48px var(--gutter) 52px; }
   .cs-digisense .hero-headline,
   .cs-pfsone .hero-headline { font-size: clamp(28px, 7.5vw, 40px); }
   .cs-page .hero-meta { gap: 14px 20px; }
@@ -1778,7 +1779,7 @@
 /* ─── CASE STUDY FEEDBACK PROMPT ──────────────────────────────────────── */
 
 .case-study-feedback {
-  padding: 80px var(--grid-margin) 100px;
+  padding: 80px var(--gutter) 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1853,7 +1854,7 @@ html:not(.is-simple) .case-study-feedback {
 /* Responsive */
 @media (max-width: 768px) {
   .case-study-feedback {
-    padding: 60px var(--grid-margin) 80px;
+    padding: 60px var(--gutter) 80px;
   }
 
   .feedback-container {
@@ -1872,7 +1873,7 @@ html:not(.is-simple) .case-study-feedback {
 
 @media (max-width: 480px) {
   .case-study-feedback {
-    padding: 48px var(--grid-margin) 60px;
+    padding: 48px var(--gutter) 60px;
   }
 
   .feedback-container {
@@ -1923,7 +1924,7 @@ html.is-simple .cs-page .artifact-card {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    padding: 20px var(--grid-margin);
+    padding: 20px var(--gutter);
     margin-top: 72px;
   }
 

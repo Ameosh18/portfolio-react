@@ -75,16 +75,14 @@
   --scrollbar-hover: rgba(122, 94, 52, 0.45);
 }
 
-/* ── Grid System Tokens ── */
+/* ── Grid System Tokens — Unified Fluid Layout ── */
 :root {
-  --grid-gutter: 24px;
-  --grid-margin: 80px;
-  --grid-max:    1440px;
+  --maxw:        1240px;                      /* unified max-width for all content */
+  --gutter:      clamp(20px, 5vw, 64px);     /* fluid horizontal margin/padding */
+  --grid-gutter: 24px;                        /* legacy: kept for backwards compatibility */
+  --grid-margin: var(--gutter);               /* legacy: aliased to new gutter system */
+  --grid-max:    var(--maxw);                 /* legacy: aliased to new maxw */
 }
-
-@media (max-width: 1024px) { :root { --grid-margin: 40px; --grid-gutter: 20px; } }
-@media (max-width: 768px)  { :root { --grid-margin: 24px; --grid-gutter: 16px; } }
-@media (max-width: 480px)  { :root { --grid-margin: 20px; --grid-gutter: 12px; } }
 
 *,
 *::before,
