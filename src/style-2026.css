@@ -97,10 +97,12 @@ ul { list-style: none; }
   gap: 10px;
 }
 .eyebrow::before {
-  content: "";
-  width: 22px; height: 1px;
-  background: var(--accent);
-  display: inline-block;
+  content: "//";
+  font-family: var(--font-mono);
+  color: var(--accent);
+  opacity: 0.55;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 
 .display {
