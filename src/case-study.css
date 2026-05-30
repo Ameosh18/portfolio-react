@@ -180,11 +180,12 @@
 }
 
 .cs-page .section-label::before {
-  content: '';
-  display: block;
-  width: 22px;
-  height: 1px;
-  background: var(--accent);
+  content: "//";
+  font-family: var(--font-mono);
+  color: var(--accent);
+  opacity: 0.55;
+  letter-spacing: 0;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
