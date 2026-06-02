@@ -9,7 +9,7 @@ import '../style-2026.css';
 const DIGISENSE_IMG = digisenseHero;
 
 const CLIENTS = [
-  { name: 'Globant',                         role: 'Senior UX Designer',          period: 'Aug 2020 – Present', tag: 'Enterprise · IoT · Fintech', logo: null },
+  { name: 'Globant',                         role: 'Senior UX Designer',          period: 'Aug 2020 – Present', tag: 'Enterprise · IoT · Fintech', logo: '/portfolio-react/GLOB.png' },
   { name: 'Thought-Craft',                  role: 'Sr. UX Consultant',            period: 'Mar 2020 – Aug 2020', tag: 'Innovation Lab · B2B',        logo: null },
   { name: 'Innoplexus',                      role: 'Sr. UX Designer',              period: 'Dec 2019 – Feb 2020', tag: 'AI · Pharma Data',             logo: null },
   { name: 'Ogee Studio',                     role: 'Sr. Interaction Designer',     period: 'Feb 2019 – Oct 2019', tag: 'Cybersecurity · B2B',          logo: null },
