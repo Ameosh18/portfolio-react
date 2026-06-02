@@ -132,7 +132,7 @@ export default function Homepage() {
 
               <div className="hero-copy reveal">
                 <span className="eyebrow">Lead UX Designer</span>
-                <h1>I design systems that help teams move faster and users get what they need.</h1>
+                <h1>I design where systems thinking, UX strategy,<br />and AI workflows meet.</h1>
                 <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
                 <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
                 <div className="hero-ctas">
