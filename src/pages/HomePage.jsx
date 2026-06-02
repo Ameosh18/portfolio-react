@@ -8,6 +8,14 @@ import '../style-2026.css';
 
 const DIGISENSE_IMG = digisenseHero;
 
+const CLIENTS = [
+  { name: 'Globant',                      tag: 'Enterprise · IoT · Fintech',  logo: null },
+  { name: 'Innoplexus',                   tag: 'AI · Pharma Data',             logo: null },
+  { name: 'Thought-Craft',               tag: 'Innovation Lab · B2B',         logo: null },
+  { name: 'Ogee Studio',                  tag: 'Cybersecurity · B2B',          logo: null },
+  { name: 'Extentia Information Technology', tag: 'Enterprise · B2B',         logo: null },
+];
+
 const FONTS_HREF =
   'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap';
 
@@ -162,52 +170,23 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── SPECIALIZATION & SCOPE ── */}
-        <section className="section specialization" id="specialization">
+        {/* ── COMPANIES ── */}
+        <section className="section clients" id="clients">
           <div className="container">
-            <div className="spec-head reveal">
-              <span className="eyebrow">Where I've Driven Outcomes</span>
+            <div className="clients-head reveal">
+              <span className="eyebrow">Companies I've Designed For</span>
+              <h2 className="section-title" style={{ marginTop: '14px' }}>Where I've built real products</h2>
             </div>
-            <div className="spec-grid">
-              <div className="spec-card bp-card reveal">
-                <div className="card-head"><span>Fintech & Security</span><span className="dot" /></div>
-                <div className="spec-label">Payment platforms · Cybersecurity UX · Compliance workflows</div>
-                <div className="spec-row">
-                  <span className="k">Shipped</span><span className="v">8 products</span>
+            <div className="clients-grid">
+              {CLIENTS.map((c) => (
+                <div key={c.name} className="client-chip reveal">
+                  {c.logo && (
+                    <img src={c.logo} alt={c.name + ' logo'} className="client-logo" />
+                  )}
+                  <div className="client-name">{c.name}</div>
+                  <div className="client-tag">{c.tag}</div>
                 </div>
-                <div className="spec-row">
-                  <span className="k">Built</span><span className="v">Design token systems, component libraries that reduced design handoff by 40%</span>
-                </div>
-                <div className="spec-row">
-                  <span className="k">Impact</span><span className="v">35%+ avg engagement across product launches</span>
-                </div>
-              </div>
-              <div className="spec-card bp-card reveal">
-                <div className="card-head"><span>IoT & Connected Infrastructure</span><span className="dot" /></div>
-                <div className="spec-label">Connected vehicles · Real-time dashboards · Rural-first design</div>
-                <div className="spec-row">
-                  <span className="k">Shipped</span><span className="v">6 products serving 100K+ concurrent users</span>
-                </div>
-                <div className="spec-row">
-                  <span className="k">Designed</span><span className="v">Cross-platform systems (iOS, Android, Web)</span>
-                </div>
-                <div className="spec-row">
-                  <span className="k">Outcome</span><span className="v">Reduced operator decision time, improved fleet uptime metrics</span>
-                </div>
-              </div>
-              <div className="spec-card bp-card reveal">
-                <div className="card-head"><span>Enterprise & Systems Design</span><span className="dot" /></div>
-                <div className="spec-label">Admin platforms · Data visualization · B2B workflows</div>
-                <div className="spec-row">
-                  <span className="k">Shipped</span><span className="v">11 products across 3 studios</span>
-                </div>
-                <div className="spec-row">
-                  <span className="k">Led</span><span className="v">Cross-functional teams of 8+ across timezones</span>
-                </div>
-                <div className="spec-row">
-                  <span className="k">Built</span><span className="v">2 design systems adopted across product suites</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>

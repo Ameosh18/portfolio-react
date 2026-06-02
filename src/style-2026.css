@@ -350,15 +350,79 @@ ul { list-style: none; }
 }
 .process-tagline p { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; }
 
-/* ── SPECIALIZATION & SCOPE ──────────────────────────────────────────────── */
-.specialization .spec-head { margin-bottom: clamp(32px, 4vw, 48px); }
-.spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
-.spec-card { display: flex; flex-direction: column; }
-.spec-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
-.spec-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 12px 0; gap: 16px; }
-.spec-row + .spec-row { border-top: 1px dashed var(--border-soft); }
-.spec-row .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
-.spec-row .v { font-size: 15px; color: var(--text); line-height: 1.5; }
+/* ── COMPANIES I'VE DESIGNED FOR ─────────────────────────────────────────── */
+.clients .clients-head { margin-bottom: clamp(32px, 4vw, 56px); }
+
+.clients-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.client-chip {
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.client-chip:hover {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background: var(--surface-2);
+}
+
+.client-logo {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 20px;
+  opacity: 0.85;
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .client-logo {
+  filter: brightness(0);
+}
+
+.client-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(18px, 1.8vw, 24px);
+  color: var(--text);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.client-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .client-chip { flex: 1 1 calc(50% - 16px); }
+}
+
+@media (max-width: 768px) {
+  .client-chip { flex: 1 1 calc(50% - 12px); padding: 22px 24px; }
+  .clients-grid { gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .client-chip { flex: 1 1 100%; }
+}
 
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
 .footer { border-top: 1px solid var(--border); padding-block: clamp(48px, 6vw, 72px); }
