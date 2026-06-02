@@ -9,11 +9,11 @@ import '../style-2026.css';
 const DIGISENSE_IMG = digisenseHero;
 
 const CLIENTS = [
-  { name: 'Globant',                      tag: 'Enterprise · IoT · Fintech',  logo: null },
-  { name: 'Innoplexus',                   tag: 'AI · Pharma Data',             logo: null },
-  { name: 'Thought-Craft',               tag: 'Innovation Lab · B2B',         logo: null },
-  { name: 'Ogee Studio',                  tag: 'Cybersecurity · B2B',          logo: null },
-  { name: 'Extentia Information Technology', tag: 'Enterprise · B2B',         logo: null },
+  { name: 'Globant',                         role: 'Senior UX Designer',          period: 'Aug 2020 – Present', tag: 'Enterprise · IoT · Fintech', logo: null },
+  { name: 'Thought-Craft',                  role: 'Sr. UX Consultant',            period: 'Mar 2020 – Aug 2020', tag: 'Innovation Lab · B2B',        logo: null },
+  { name: 'Innoplexus',                      role: 'Sr. UX Designer',              period: 'Dec 2019 – Feb 2020', tag: 'AI · Pharma Data',             logo: null },
+  { name: 'Ogee Studio',                     role: 'Sr. Interaction Designer',     period: 'Feb 2019 – Oct 2019', tag: 'Cybersecurity · B2B',          logo: null },
+  { name: 'Extentia Information Technology', role: 'UX Designer',                  period: 'Feb 2018 – Feb 2019', tag: 'Enterprise · B2B',             logo: null },
 ];
 
 const FONTS_HREF =
@@ -170,20 +170,25 @@ export default function Homepage() {
           </div>
         </section>
 
-        {/* ── COMPANIES ── */}
+        {/* ── EXPERIENCE SNAPSHOT ── */}
         <section className="section clients" id="clients">
           <div className="container">
             <div className="clients-head reveal">
-              <span className="eyebrow">Companies I've Designed For</span>
+              <span className="eyebrow">Experience Snapshot</span>
               <h2 className="section-title" style={{ marginTop: '14px' }}>Where I've built real products</h2>
             </div>
             <div className="clients-grid">
               {CLIENTS.map((c) => (
                 <div key={c.name} className="client-chip reveal">
-                  {c.logo && (
-                    <img src={c.logo} alt={c.name + ' logo'} className="client-logo" />
-                  )}
+                  <div className="client-chip-top">
+                    {c.logo
+                      ? <img src={c.logo} alt={c.name + ' logo'} className="client-logo" />
+                      : <div className="client-logo-placeholder" aria-hidden="true">{c.name.charAt(0)}</div>
+                    }
+                    <span className="client-period">{c.period}</span>
+                  </div>
                   <div className="client-name">{c.name}</div>
+                  <div className="client-role">{c.role}</div>
                   <div className="client-tag">{c.tag}</div>
                 </div>
               ))}

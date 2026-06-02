@@ -352,7 +352,7 @@ ul { list-style: none; }
 }
 .process-tagline p { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; }
 
-/* ── COMPANIES I'VE DESIGNED FOR ─────────────────────────────────────────── */
+/* ── EXPERIENCE SNAPSHOT ─────────────────────────────────────────────────── */
 .clients .clients-head { margin-bottom: clamp(32px, 4vw, 56px); }
 
 .clients-grid {
@@ -363,7 +363,7 @@ ul { list-style: none; }
 
 .client-chip {
   flex: 1 1 calc(33.333% - 16px);
-  min-width: 220px;
+  min-width: 240px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -379,38 +379,80 @@ ul { list-style: none; }
   background: var(--surface-2);
 }
 
+/* top row: logo/initial + period */
+.client-chip-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .client-logo {
-  height: 36px;
+  height: 32px;
   width: auto;
-  max-width: 140px;
+  max-width: 120px;
   object-fit: contain;
   object-position: left center;
-  margin-bottom: 20px;
-  opacity: 0.85;
+  opacity: 0.9;
   filter: brightness(0) invert(1);
 }
 
-[data-theme="light"] .client-logo {
-  filter: brightness(0);
+[data-theme="light"] .client-logo { filter: brightness(0); }
+
+.client-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-muted);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.client-period {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.4;
+  text-align: right;
 }
 
 .client-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(18px, 1.8vw, 24px);
+  font-size: clamp(17px, 1.6vw, 22px);
   color: var(--text);
   letter-spacing: -0.015em;
   line-height: 1.2;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+}
+
+.client-role {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 14px;
 }
 
 .client-tag {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
   line-height: 1.4;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-soft);
 }
 
 @media (max-width: 1024px) {
