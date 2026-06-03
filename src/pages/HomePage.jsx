@@ -158,18 +158,18 @@ export default function Homepage() {
                 {/* Cards floating upper-right */}
                 <div className="hero-cards">
                   <article className="bp-card">
-                    <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
-                    <div className="disc-row"><span className="k">Research</span><span className="v">Generative</span></div>
-                    <div className="disc-row"><span className="k">Prototyping</span><span className="v">Hi-Fi</span></div>
-                    <div className="disc-row"><span className="k">Validation</span><span className="v">Usability</span></div>
+                    <div className="card-head"><span>What I Do</span><span className="dot" /></div>
+                    <div className="disc-row"><span className="k">Domain</span><span className="v">Fintech · IoT · SaaS</span></div>
+                    <div className="disc-row"><span className="k">Focus</span><span className="v">Systems Design</span></div>
+                    <div className="disc-row"><span className="k">Experience</span><span className="v">9.5 yrs</span></div>
                   </article>
                   <article className="bp-card">
-                    <div className="card-head"><span>Performance Impact</span><span className="dot" /></div>
+                    <div className="card-head"><span>Impact</span><span className="dot" /></div>
                     <div className="metric-grid">
-                      <div className="metric-cell"><div className="num">+35%</div><div className="lbl">User Engagement</div></div>
+                      <div className="metric-cell"><div className="num">+35%</div><div className="lbl">Engagement</div></div>
                       <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
-                      <div className="metric-cell"><div className="num">+12.4%</div><div className="lbl">Conversion</div></div>
-                      <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
+                      <div className="metric-cell"><div className="num">+12%</div><div className="lbl">Conversion</div></div>
+                      <div className="metric-cell"><div className="num">-8%</div><div className="lbl">Drop-off</div></div>
                     </div>
                   </article>
                 </div>
