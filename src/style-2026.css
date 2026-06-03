@@ -710,7 +710,9 @@ ul { list-style: none; }
     display: grid;
     grid-template-columns: 1fr;
   }
-  .hero-visual .bp-card { min-width: 0; width: 100%; }
+  .hero-visual .bp-card { min-width: 0; width: 100%; overflow: hidden; }
+  .hero-visual .metric-grid { overflow: hidden; }
+  .hero-visual .metric-cell { min-width: 0; overflow: hidden; }
   .hero-visual .bp-card { padding: 10px 12px; }
   .disc-row .v { white-space: normal; word-break: break-word; font-size: 10px; }
   .disc-row .k { font-size: 9px; }
