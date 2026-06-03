@@ -683,7 +683,10 @@ ul { list-style: none; }
   .hero-cards { grid-template-columns: 1fr; }
   .pstep { grid-template-columns: 44px 1fr; }
   .pstep .pstep-icon { display: none; }
-  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer .footer-contact { text-align: center; align-items: center; }
+  .footer .legal { text-align: center; }
+  .footer .statement { text-align: center; }
   .cred-grid { grid-template-columns: 1fr; }
   .cred-cell { padding: 24px 0 !important; border-left: 0 !important; border-top: 1px dashed var(--border); }
   .cred-cell:first-child { padding-top: 0 !important; border-top: 0; }
