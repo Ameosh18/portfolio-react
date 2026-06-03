@@ -21,6 +21,13 @@ const ANIM_DURATION = 2.6
 function useConfetti() {
   const [particles, setParticles] = useState([])
 
+  // Clear particles if browser restores page from bfcache (back-forward navigation)
+  useEffect(() => {
+    const onPageShow = (e) => { if (e.persisted) setParticles([]) }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
+
   const fire = useCallback((originRect) => {
     const cx = originRect.left + originRect.width / 2
     const cy = originRect.top + originRect.height / 2
@@ -91,13 +98,9 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    // Trigger via anchor click in the same event tick — avoids popup blocker
-    const a = document.createElement('a')
-    a.href = RESUME_URL
-    a.download = 'Ameya_Kulkarni_Resume.pdf'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
+    // Open in new tab — user stays on this page so confetti plays fully.
+    // window.open is safe here because we're inside the direct click handler.
+    window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
   }, [fire])
 
   const isHome = location.pathname === '/'
