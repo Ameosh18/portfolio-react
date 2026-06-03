@@ -98,9 +98,15 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    // Open in new tab — user stays on this page so confetti plays fully.
-    // window.open is safe here because we're inside the direct click handler.
-    window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
+    const isMobile = window.matchMedia('(pointer: coarse)').matches
+    if (isMobile) {
+      // Open blank window synchronously (avoids Safari popup block),
+      // then navigate after confetti has burst and started falling.
+      const win = window.open('', '_blank', 'noopener,noreferrer')
+      setTimeout(() => { if (win) win.location.href = RESUME_URL }, 900)
+    } else {
+      window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
+    }
   }, [fire])
 
   const isHome = location.pathname === '/'
