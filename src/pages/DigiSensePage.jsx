@@ -360,7 +360,7 @@ export default function DigiSensePage() {
               <div className="insight-number">01</div>
               <h3 className="insight-title">"The product farmers bought wasn't the product they got"</h3>
               {isSimple ? (
-                <p className="insight-body">The app showed only 4 of 16 features. The rest required a web dashboard—which farmers didn't have access to. This fragmentation destroyed trust.</p>
+                <p className="insight-body">The app showed only 4 of 16 features. The rest required a web dashboard, which farmers didn't have access to. This fragmentation destroyed trust.</p>
               ) : (
                 <>
                   <p className="insight-body">The mobile app ,  the only surface farmers actually used ,  exposed just 4 of 16 features. The rest lived on a web dashboard. Farmers don't own laptops. The result: farmers felt misled. Not because Mahindra had lied, but because the product experience didn't match the promise made at the dealership.</p>
@@ -408,7 +408,7 @@ export default function DigiSensePage() {
               <div className="insight-number">04</div>
               <h3 className="insight-title">"Users were rural millennials, not traditional farmers"</h3>
               {isSimple ? (
-                <p className="insight-body">Active users were 18–38 years old, shaped by WhatsApp and YouTube. They expected intuitive design—not hand-holding.</p>
+                <p className="insight-body">Active users were 18–38 years old, shaped by WhatsApp and YouTube. They expected intuitive design, not hand-holding.</p>
               ) : (
                 <>
                   <p className="insight-body">The farmers actually using the app were 18–38 years old. Their mental models were built on WhatsApp, YouTube, Paytm, and Facebook. They compared DiGiSense unfavourably to Facebook ,  not because they wanted entertainment, but because they expected the same intuitive, engaging experience.</p>
@@ -745,7 +745,7 @@ export default function DigiSensePage() {
               {isSimple ? (
                 <div className="outcome-item">
                   <strong>SIM card freedom</strong>
-                  The single most impactful recommendation was giving farmers network choice—a business decision, not a design one.
+                  The single most impactful recommendation was giving farmers network choice, a business decision, not a design one.
                 </div>
               ) : (
                 <>

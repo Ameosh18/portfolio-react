@@ -9,6 +9,7 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ClickSpark from './components/ClickSpark'
+import ScrollToTopBtn from './components/ScrollToTopBtn'
 import './App.css'
 
 function AppContent() {
@@ -31,6 +32,7 @@ function AppContent() {
         </Routes>
       </div>
       {!hideFooter && !isHome && <Footer />}
+      <ScrollToTopBtn />
     </>
   )
 }

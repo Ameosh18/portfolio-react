@@ -2,7 +2,12 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # Deploy main (production) and any active feature branch (preview).
+    # When the feature branch merges into main, the next main push
+    # automatically restores the production build on Pages.
+    branches:
+      - main
+      - 'feature/**'
 
 permissions:
   contents: read
@@ -10,8 +15,10 @@ permissions:
   id-token: write
 
 concurrency:
+  # One deploy at a time. A newer push cancels an in-progress deploy
+  # from the same branch so Pages always reflects the latest commit.
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:

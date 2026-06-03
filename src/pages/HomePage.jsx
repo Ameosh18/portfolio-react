@@ -109,7 +109,6 @@ export default function Homepage() {
     return () => clearInterval(id);
   }, []);
 
-  // Handle loading screen and name popup
   useEffect(() => {
     if (showLoading) return;
     // Skip the name popup on touchscreen / tablet + mobile breakpoints
@@ -149,23 +148,41 @@ export default function Homepage() {
                 </div>
               </div>
 
-              <div className="hero-cards reveal">
-                <article className="bp-card">
-                  <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
-                  <div className="disc-row"><span className="k">Research</span><span className="v">Generative</span></div>
-                  <div className="disc-row"><span className="k">Prototyping</span><span className="v">Hi-Fi</span></div>
-                  <div className="disc-row"><span className="k">Validation</span><span className="v">Usability</span></div>
-                </article>
-                <article className="bp-card">
-                  <div className="card-head"><span>Performance Impact</span><span className="dot" /></div>
-                  <div className="metric-grid">
-                    <div className="metric-cell"><div className="num">+35%</div><div className="lbl">User Engagement</div></div>
-                    <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
-                    <div className="metric-cell"><div className="num">+12.4%</div><div className="lbl">Conversion</div></div>
-                    <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
-                  </div>
-                </article>
+              <div className="hero-visual reveal">
+                {/* Character image */}
+                <img
+                  src="/portfolio-react/hero.png"
+                  alt="Ameya Kulkarni 3D character"
+                  className="hero-char-img"
+                />
+                {/* Cards floating upper-right */}
+                <div className="hero-cards">
+                  <article className="bp-card">
+                    <div className="card-head"><span>Design Stack</span><span className="dot" /></div>
+                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Maze</span></div>
+                    <div className="disc-row"><span className="k">Method</span><span className="v">Lean UX · Agile</span></div>
+                    <div className="disc-row"><span className="k">Output</span><span className="v">End-to-End</span></div>
+                  </article>
+                  <article className="bp-card">
+                    <div className="card-head"><span>Impact</span><span className="dot" /></div>
+                    <div className="metric-grid">
+                      <div className="metric-cell"><div className="num">+35%</div><div className="lbl">Engagement</div></div>
+                      <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
+                      <div className="metric-cell"><div className="num">+12%</div><div className="lbl">Conversion</div></div>
+                      <div className="metric-cell"><div className="num">-8%</div><div className="lbl">Churn</div></div>
+                    </div>
+                  </article>
+                </div>
               </div>
+            </div>
+            <div className="scroll-hint" aria-hidden="true">
+              <span className="scroll-hint-label">Scroll to explore</span>
+              <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
+                <rect x="6.5" y="0" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+                <rect x="6.5" y="5" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.6"/>
+                <rect x="6.5" y="10" width="3" height="3" rx="1.5" fill="currentColor"/>
+                <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
           </div>
         </section>
@@ -309,13 +326,13 @@ export default function Homepage() {
             <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
             <div className="contact-links reveal">
               <a href="mailto:ameya@example.com" className="contact-link">
-                <span className="c-k">Email</span><span className="c-v">Schedule a Conversation</span><span className="c-arrow">↗</span>
+                <span className="c-k">Email</span><span className="c-v">Schedule a Conversation</span><span className="c-arrow">↗︎</span>
               </a>
               <a href="https://linkedin.com/in/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
-                <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni</span><span className="c-arrow">↗</span>
+                <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni</span><span className="c-arrow">↗︎</span>
               </a>
               <a href="https://twitter.com/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
-                <span className="c-k">Twitter / X</span><span className="c-v">twitter.com/ameyakulkarni</span><span className="c-arrow">↗</span>
+                <span className="c-k">Twitter / X</span><span className="c-v">twitter.com/ameyakulkarni</span><span className="c-arrow">↗︎</span>
               </a>
             </div>
           </div>
