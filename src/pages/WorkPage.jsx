@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import StackedGallery from '../components/StackedGallery'
+import { Link } from 'react-router-dom'
+import StackedGallery, { projects } from '../components/StackedGallery'
+import DigiSenseHero from '../../digisense_hero_image.png'
 import '../work.css'
 
 // ── Parallel activities data ───────────────────────────────────────────────
@@ -88,6 +90,56 @@ function BeyondSection() {
   )
 }
 
+// ── Desktop/tablet: flat scrollable work card grid ─────────────────────────
+function WorkCard({ card }) {
+  const inner = (
+    <>
+      <div className="work-card-media">
+        {card.image
+          ? <img src={card.image} alt={card.title} />
+          : <div className="ph"><span>{card.title}</span></div>
+        }
+        <span className="work-card-index">{card.num}</span>
+        <span className="work-card-domain">{card.category}</span>
+      </div>
+      <div className="work-card-body">
+        <span className="work-card-sub">{card.category}</span>
+        <h3 className="work-card-title">{card.title}</h3>
+        <p className="work-card-desc">{card.summary}</p>
+        <div className="work-card-meta">
+          <div><span className="m-k">Role</span><span className="m-v">Lead UX Designer</span></div>
+          <div><span className="m-k">Year</span><span className="m-v">{card.year}</span></div>
+          <div><span className="m-k">Status</span><span className="m-v">{card.href ? 'Case study' : 'Coming soon'}</span></div>
+        </div>
+        {card.href
+          ? <span className="work-card-cta">Read Case Study <span className="arrow">→</span></span>
+          : <span className="work-card-cta wk-coming-soon">Coming Soon</span>
+        }
+      </div>
+    </>
+  )
+
+  return card.href
+    ? <Link to={card.href} className="work-card">{inner}</Link>
+    : <div className="work-card wk-card-locked" aria-label={`${card.title} — coming soon`}>{inner}</div>
+}
+
+function DesktopWorkGrid() {
+  return (
+    <div className="wk-grid-wrap">
+      <div className="wk-grid-head">
+        <div className="section-eyebrow"><span>Selected Work</span></div>
+        <h1 className="section-title" style={{ fontSize: "clamp(40px, 5vw, 68px)", marginTop: 12 }}>
+          Case Studies.
+        </h1>
+      </div>
+      <div className="work-grid wk-work-grid">
+        {projects.map(card => <WorkCard key={card.id} card={card} />)}
+      </div>
+    </div>
+  )
+}
+
 // ── Page ───────────────────────────────────────────────────────────────────
 export default function WorkPage() {
   const bp = useBreakpoint()
@@ -114,7 +166,7 @@ export default function WorkPage() {
           </div>
         </div>
 
-        {/* Beyond section — scrollable below gallery */}
+        {/* Beyond section */}
         <BeyondSection />
 
         {/* Footer bar */}
@@ -144,28 +196,12 @@ export default function WorkPage() {
     )
   }
 
+  // Desktop + tablet: flat scrollable grid
   return (
-    <div style={{ background: "var(--bg)" }}>
-
-      {/* Gallery section — height-locked, scrolling handled inside StackedGallery */}
-      <div className="wk-gallery-section">
-        <div className="wk-title-overlay">
-          <div className="section-eyebrow"><span>Selected Work</span></div>
-          <h1 className="section-title" style={{ fontSize: "clamp(40px, 5vw, 68px)", marginTop: 12 }}>
-            Case Studies.
-          </h1>
-          <p style={{ marginTop: 20, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>
-            Scroll to navigate
-          </p>
-        </div>
-        <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
-          <StackedGallery />
-        </div>
-      </div>
-
-      {/* Beyond section — flows naturally below gallery */}
+    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+      <div style={{ height: 72 }} />
+      <DesktopWorkGrid />
       <BeyondSection />
-
     </div>
   )
 }

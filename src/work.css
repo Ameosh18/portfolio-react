@@ -1,30 +1,55 @@
 /* ── WORK PAGE ────────────────────────────────────────────────────────────── */
 
-/* Gallery viewport section (desktop + tablet) */
-.wk-gallery-section {
-  position: relative;
-  height: 100vh;
+/* ── DESKTOP / TABLET: scrollable grid layout ─────────────────────────────── */
+
+.wk-grid-wrap {
   width: 100%;
-  overflow: hidden;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-block: clamp(40px, 6vw, 80px) clamp(40px, 5vw, 64px);
 }
 
-/* Title overlay (desktop + tablet) */
-.wk-title-overlay {
-  position: absolute;
-  top: calc(72px + 5vh);
-  left: clamp(32px, 5vw, 80px);
-  z-index: 10;
-  pointer-events: none;
-  user-select: none;
+.wk-grid-head {
+  margin-bottom: clamp(32px, 4vw, 54px);
+}
+
+/* Extend the homepage work-grid to allow more than 2 cards (3-col on wide) */
+.wk-work-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Coming-soon card: muted, not interactive */
+.wk-card-locked {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.wk-card-locked:hover {
+  border-color: var(--border) !important;
+  transform: none !important;
+}
+
+.wk-coming-soon {
+  color: var(--text-dim) !important;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 14px;
 }
 
 /* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
 
 .wk-beyond {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
   padding-block: clamp(64px, 9vw, 120px);
-  padding-inline: clamp(32px, 5vw, 80px);
   border-top: 1px solid var(--border-soft);
-  background: var(--bg);
 }
 
 .wk-beyond-head {
@@ -67,16 +92,12 @@
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .wk-title-overlay {
-    left: clamp(24px, 4vw, 40px);
+  .wk-work-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .wk-beyond {
-    padding-inline: 24px;
-  }
-
   .wk-beyond-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -84,8 +105,8 @@
 }
 
 @media (max-width: 480px) {
+  .wk-grid-wrap,
   .wk-beyond {
-    padding-inline: 20px;
     padding-block: 48px;
   }
 }

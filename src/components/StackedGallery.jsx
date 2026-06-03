@@ -76,7 +76,7 @@ const CENTER_IDX  = N
 const INIT_OFFSET = -CENTER_IDX * STEP_X
 
 // ── Projects ───────────────────────────────────────────────────────────────
-const projects = [
+export const projects = [
   {
     id: "digisense",
     num: "01",
