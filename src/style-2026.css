@@ -695,12 +695,11 @@ ul { list-style: none; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
 
-  /* Narrower character on mobile so group fits + centers */
-  .hero-char-img { margin-left: 0; max-width: 66%; }
+  /* Bigger character on mobile - cards overlap behind it */
+  .hero-char-img { margin-left: 0; max-width: 82%; }
 
   .hero-visual { overflow: hidden; }
-  /* Cards stay inline (inherited from ≤1024 block), adjust for smaller screen */
-  .hero-visual .hero-cards { width: min(38vw, 140px); margin-left: -56px; padding-top: 20px; gap: 8px; }
+  .hero-visual .hero-cards { width: min(38vw, 140px); margin-left: -96px; padding-top: 20px; gap: 8px; }
   .hero-visual .bp-card { min-width: 0; width: 100%; }
   .hero-visual .bp-card { padding: 10px 12px; }
   .disc-row .v { white-space: normal; word-break: break-word; font-size: 10px; }
