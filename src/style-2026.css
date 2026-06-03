@@ -322,6 +322,7 @@ ul { list-style: none; }
   align-items: flex-end;
   justify-content: center;
   min-height: 580px;
+  overflow: visible;
 }
 
 /* Cards sit in DOM first — rendered behind the character */
@@ -351,16 +352,16 @@ ul { list-style: none; }
   align-items: flex-end;
   justify-content: center;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-video {
   width: auto;
-  height: 120%;
-  max-height: clamp(560px, 70vw, 800px);
+  height: auto;
+  max-height: clamp(560px, 70vw, 820px);
   object-fit: contain;
   display: block;
-  margin-bottom: -40px;
+  margin-bottom: -24px;
 }
 
 /* ── PROCESS (centerpiece blueprint list) ────────────────────────────────── */
