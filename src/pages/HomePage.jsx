@@ -329,6 +329,9 @@ export default function Homepage() {
               <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" className="contact-link">
                 <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni-ux</span><span className="c-arrow">↗︎</span>
               </a>
+              <a href="tel:+910000000000" className="contact-link">
+                <span className="c-k">Call</span><span className="c-v">+91 00000 00000</span><span className="c-arrow">↗︎</span>
+              </a>
             </div>
           </div>
         </section>
