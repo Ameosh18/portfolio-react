@@ -158,10 +158,10 @@ export default function Homepage() {
                 {/* Cards floating upper-right */}
                 <div className="hero-cards">
                   <article className="bp-card">
-                    <div className="card-head"><span>What I Do</span><span className="dot" /></div>
-                    <div className="disc-row"><span className="k">Domain</span><span className="v">Fintech · IoT · SaaS</span></div>
-                    <div className="disc-row"><span className="k">Focus</span><span className="v">Systems Design</span></div>
-                    <div className="disc-row"><span className="k">Experience</span><span className="v">9.5 yrs</span></div>
+                    <div className="card-head"><span>Design Stack</span><span className="dot" /></div>
+                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Maze · Miro</span></div>
+                    <div className="disc-row"><span className="k">Method</span><span className="v">Agile · Lean UX</span></div>
+                    <div className="disc-row"><span className="k">Output</span><span className="v">End-to-End</span></div>
                   </article>
                   <article className="bp-card">
                     <div className="card-head"><span>Impact</span><span className="dot" /></div>
