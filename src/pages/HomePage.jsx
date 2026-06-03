@@ -149,7 +149,13 @@ export default function Homepage() {
               </div>
 
               <div className="hero-visual reveal">
-                {/* Cards behind the character */}
+                {/* Character image */}
+                <img
+                  src="/portfolio-react/hero.png"
+                  alt="Ameya Kulkarni 3D character"
+                  className="hero-char-img"
+                />
+                {/* Cards floating upper-right */}
                 <div className="hero-cards">
                   <article className="bp-card">
                     <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
@@ -166,19 +172,6 @@ export default function Homepage() {
                       <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
                     </div>
                   </article>
-                </div>
-                {/* Character video in front of cards */}
-                <div className="hero-video-wrap">
-                  <video
-                    className="hero-video"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-hidden="true"
-                  >
-                    <source src="/portfolio-react/herovideo.MP4" type="video/mp4" />
-                  </video>
                 </div>
               </div>
             </div>

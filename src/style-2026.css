@@ -267,7 +267,7 @@ ul { list-style: none; }
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(32px, 5vw, 72px);
-  align-items: stretch;
+  align-items: center;
 }
 .hero-copy { max-width: 620px; }
 .hero h1 {
@@ -315,7 +315,7 @@ ul { list-style: none; }
 .metric-cell .num { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--accent); line-height: 1; }
 .metric-cell .lbl { margin-top: 8px; font-size: 12px; color: var(--text-muted); }
 
-/* ── HERO VIDEO (character visual) ──────────────────────────────────────── */
+/* ── HERO VISUAL (character + cards) ────────────────────────────────────── */
 .hero-visual {
   position: relative;
   display: flex;
@@ -324,44 +324,34 @@ ul { list-style: none; }
   overflow: visible;
 }
 
-/* Cards sit in DOM first — rendered behind the character */
+/* Character image — centered, full column height */
+.hero-char-img {
+  display: block;
+  width: auto;
+  height: clamp(460px, 72vh, 780px);
+  object-fit: contain;
+  object-position: bottom;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards floating upper-right of the column */
 .hero-visual .hero-cards {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 0;
-  right: -20px;
-  width: 220px;
+  right: 0;
+  width: 210px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
+  gap: 12px;
+  pointer-events: none;
 }
 
 .hero-visual .bp-card {
-  background: rgba(20, 20, 20, 0.82);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* Video wrapper sits in front of cards */
-.hero-video-wrap {
-  position: absolute;
-  inset: 0;
-  bottom: -40px;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.hero-video {
-  width: auto;
-  height: 100%;
-  min-height: clamp(400px, 65vh, 750px);
-  object-fit: contain;
-  display: block;
-  mix-blend-mode: screen;
+  background: rgba(20, 20, 20, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ── PROCESS (centerpiece blueprint list) ────────────────────────────────── */
