@@ -323,17 +323,14 @@ export default function Homepage() {
             <h2 className="section-title reveal" style={{ marginTop: '16px' }}>I can help your team move faster and ship better products.</h2>
             <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
             <div className="contact-cta reveal">
-              <a href="mailto:ameya.kulkarni@outlook.com" className="btn btn-primary">Schedule a Call <span className="arrow">→</span></a>
+              <a href="mailto:ameyakulkarni43@icloud.com" className="btn btn-primary">Schedule a Call <span className="arrow">→</span></a>
             </div>
             <div className="contact-links reveal">
-              <a href="mailto:ameya.kulkarni@outlook.com" className="contact-link">
-                <span className="c-k">Email</span><span className="c-v">ameya.kulkarni@outlook.com</span><span className="c-arrow">↗︎</span>
+              <a href="mailto:ameyakulkarni43@icloud.com" className="contact-link">
+                <span className="c-k">Email</span><span className="c-v">ameyakulkarni43@icloud.com</span><span className="c-arrow">↗︎</span>
               </a>
-              <a href="https://linkedin.com/in/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
-                <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni</span><span className="c-arrow">↗︎</span>
-              </a>
-              <a href="https://twitter.com/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
-                <span className="c-k">Twitter / X</span><span className="c-v">twitter.com/ameyakulkarni</span><span className="c-arrow">↗︎</span>
+              <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" className="contact-link">
+                <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni-ux</span><span className="c-arrow">↗︎</span>
               </a>
             </div>
           </div>
@@ -350,7 +347,7 @@ export default function Homepage() {
           </div>
           <div className="footer-contact">
             <a href="#contact">Get in touch</a>
-            <a href="mailto:ameya@example.com" className="footer-email">ameya@example.com</a>
+            <a href="mailto:ameyakulkarni43@icloud.com" className="footer-email">ameyakulkarni43@icloud.com</a>
           </div>
         </div>
       </footer>
