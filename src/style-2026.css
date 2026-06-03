@@ -643,7 +643,7 @@ ul { list-style: none; }
   .hero { padding-top: calc(var(--nav-h) + 80px); padding-bottom: 48px; }
   .hero-grid { grid-template-columns: 1fr; }
   /* Character visual above copy on tablet/mobile */
-  .hero-visual { order: -1; justify-content: center; }
+  .hero-visual { order: -1; justify-content: flex-start; }
   .hero-copy { order: 0; }
   .hero-char-img { margin-left: 0; }
   .hero-visual .hero-cards { width: 160px; top: 24px; right: 0; gap: 10px; }
@@ -683,24 +683,18 @@ ul { list-style: none; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
 
-  /* Reset character shift — no overflow on mobile */
-  .hero-char-img { margin-left: 0; }
+  /* Shift character left so cards have room on the right */
+  .hero-char-img { margin-left: -16px; }
 
-  /* Cards go below character in flow, side by side */
-  .hero-visual { flex-direction: column; align-items: center; overflow: hidden; }
-  .hero-visual .hero-cards {
-    position: static;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 16px;
-    padding: 0 16px;
-    box-sizing: border-box;
-  }
-  .hero-visual .bp-card { padding: 12px 14px; }
+  /* Keep cards absolutely positioned, clamp width to viewport */
+  .hero-visual { overflow: hidden; }
+  .hero-visual .hero-cards { width: min(42vw, 150px); top: 20px; right: 0; gap: 8px; overflow: hidden; }
+  .hero-visual .bp-card { min-width: 0; width: 100%; }
+  .hero-visual .bp-card { padding: 10px 12px; }
+  .disc-row .v { white-space: normal; word-break: break-word; font-size: 10px; }
+  .disc-row .k { font-size: 9px; }
   .metric-cell .num { font-size: 18px; }
-  .metric-cell .lbl { font-size: 9px; }
+  .metric-cell .lbl { font-size: 9px; white-space: normal; }
 }
 
 /* ── REDUCED MOTION ───────────────────────────────────────────────────────── */
