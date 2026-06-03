@@ -64,7 +64,7 @@ const METRICS = [
   { value: 'Human-led', label: 'Final decisions' },
 ]
 
-/* SVG paths from simple-icons v16 (bundled — no CDN dependency) */
+/* SVG paths from simple-icons v16 (bundled - no CDN dependency) */
 const TOOL_ICONS = {
   'Claude': {
     bg: '#C47E3C', fg: '#ffffff',
