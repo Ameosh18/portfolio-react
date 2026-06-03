@@ -361,7 +361,7 @@ ul { list-style: none; }
   object-fit: contain;
   display: block;
   margin-bottom: -24px;
-  mix-blend-mode: multiply;
+
 }
 
 /* ── PROCESS (centerpiece blueprint list) ────────────────────────────────── */
