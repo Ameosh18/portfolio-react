@@ -640,7 +640,7 @@ ul { list-style: none; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .hero { padding-top: calc(var(--nav-h) + 80px); padding-bottom: 48px; }
+  .hero { padding-top: calc(var(--nav-h) + 40px); padding-bottom: 48px; }
   .hero-grid { grid-template-columns: 1fr; }
   /* Character visual above copy on tablet/mobile - centered as a unit */
   .hero-visual { order: -1; justify-content: center; align-items: flex-end; }
@@ -690,7 +690,7 @@ ul { list-style: none; }
   .contact-link .c-k { width: auto; }
 }
 @media (max-width: 480px) {
-  .hero { padding-top: calc(var(--nav-h) + 56px); padding-bottom: 36px; }
+  .hero { padding-top: calc(var(--nav-h) + 24px); padding-bottom: 28px; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
