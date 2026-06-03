@@ -177,8 +177,7 @@ export default function Homepage() {
                     playsInline
                     aria-hidden="true"
                   >
-                    <source src="/portfolio-react/ameya_hero2.webm" type="video/webm" />
-                    <source src="/portfolio-react/ameya_hero.mp4" type="video/mp4" />
+                    <source src="/portfolio-react/hero_video.mp4" type="video/mp4" />
                   </video>
                 </div>
               </div>
