@@ -597,14 +597,9 @@ body.menu-open #site-nav {
   opacity: 0.75;
 }
 
-/* ── HERO ── */
+/* ── HERO ── (layout handled by style-2026.css) */
 .hero {
-  min-height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
-  padding-top: 72px;
-  overflow: hidden;
 }
 
 /* Dot grid background */
