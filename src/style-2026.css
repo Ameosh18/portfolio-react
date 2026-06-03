@@ -333,8 +333,10 @@ ul { list-style: none; }
   object-position: bottom;
   position: relative;
   z-index: 2;
-  /* shift left so cards have room to the right */
-  margin-left: clamp(-60px, -4vw, -20px);
+  margin-left: -30px;
+  /* fade out the left edge to kill any PNG border artifact */
+  -webkit-mask-image: linear-gradient(to right, transparent 0px, black 18px);
+  mask-image: linear-gradient(to right, transparent 0px, black 18px);
 }
 
 /* Cards floating upper-right of the column */
@@ -612,10 +614,9 @@ ul { list-style: none; }
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; }
   /* Character visual above copy on tablet/mobile */
-  .hero-visual { order: -1; justify-content: center; min-height: clamp(340px, 52vw, 520px); }
+  .hero-visual { order: -1; justify-content: center; }
   .hero-copy { order: 0; }
-  .hero-char-img { height: clamp(300px, 48vw, 500px); margin-left: 0; }
-  .hero-visual .hero-cards { width: 180px; top: 8px; right: 0; gap: 10px; }
+  .hero-visual .hero-cards { width: 170px; top: 8px; right: 0; gap: 10px; }
   .hero-cards { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer .footer-contact { text-align: left; grid-column: 1 / -1; }
@@ -650,9 +651,7 @@ ul { list-style: none; }
   .metric-grid { grid-template-columns: 1fr; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
-  .hero-char-img { height: clamp(260px, 60vw, 380px); }
   .hero-visual .hero-cards { width: 140px; top: 4px; gap: 8px; }
-  .hero-visual .hero-cards .card-head span { font-size: 10px; }
   .hero-visual .bp-card { padding: 10px 12px; }
   .metric-cell .num { font-size: 20px; }
   .metric-cell .lbl { font-size: 10px; }
