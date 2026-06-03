@@ -519,7 +519,7 @@ function ThreeDCarousel({ isDark, isTablet }) {
       let delta = e.deltaY
       if (e.deltaMode === 1) delta *= LINE_HEIGHT
       else if (e.deltaMode === 2) delta *= window.innerHeight
-      targetOffset.set(targetOffset.get() - delta * WHEEL_SPEED)
+      targetOffset.set(targetOffset.get() + delta * WHEEL_SPEED)
     }
     let touchStartY = 0
     const onTouchStart = (e) => { touchStartY = e.touches[0].clientY }
@@ -527,7 +527,7 @@ function ThreeDCarousel({ isDark, isTablet }) {
       e.preventDefault()
       const dy = touchStartY - e.touches[0].clientY
       touchStartY = e.touches[0].clientY
-      targetOffset.set(targetOffset.get() - dy * TOUCH_SPEED)
+      targetOffset.set(targetOffset.get() + dy * TOUCH_SPEED)
     }
 
     el.addEventListener("wheel", onWheel, { passive: false })
