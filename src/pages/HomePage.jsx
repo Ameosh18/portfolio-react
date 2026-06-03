@@ -324,7 +324,7 @@ export default function Homepage() {
             <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
             <div className="contact-links reveal">
               <a href="mailto:ameyakulkarni43@icloud.com" className="contact-link">
-                <span className="c-k">Email</span><span className="c-v">Schedule a Call</span><span className="c-arrow">↗︎</span>
+                <span className="c-k">Email</span><span className="c-v">ameyakulkarni43@icloud.com</span><span className="c-arrow">↗︎</span>
               </a>
               <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" className="contact-link">
                 <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni-ux</span><span className="c-arrow">↗︎</span>
