@@ -333,9 +333,8 @@ ul { list-style: none; }
   object-position: bottom;
   position: relative;
   z-index: 2;
-  filter: contrast(1.15) saturate(1.1) brightness(1.02);
-  image-rendering: high-quality;
-  -webkit-font-smoothing: antialiased;
+  margin-right: auto;
+  margin-left: -40px;
 }
 
 /* Cards floating upper-right of the column */
