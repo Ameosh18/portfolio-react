@@ -332,13 +332,14 @@ ul { list-style: none; }
   object-fit: contain;
   object-position: bottom;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  filter: contrast(1.08) saturate(1.15) brightness(1.05);
 }
 
 /* Cards floating upper-right of the column */
 .hero-visual .hero-cards {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 0;
   right: 0;
   width: 210px;
