@@ -333,7 +333,7 @@ ul { list-style: none; }
   object-position: bottom;
   position: relative;
   z-index: 2;
-  margin-left: -30px;
+  margin-left: -82px;
   /* fade out the left edge to kill any PNG border artifact */
   -webkit-mask-image: linear-gradient(to right, transparent 0px, black 18px);
   mask-image: linear-gradient(to right, transparent 0px, black 18px);
