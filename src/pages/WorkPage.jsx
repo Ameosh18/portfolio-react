@@ -25,19 +25,17 @@ function useBreakpoint() {
   return bp
 }
 
-// ── Beyond the brief panel ─────────────────────────────────────────────────
-function BeyondPanel({ asPanel }) {
+// ── Beyond the brief section ───────────────────────────────────────────────
+function BeyondSection({ sectionRef }) {
   return (
-    <section
-      className={asPanel ? "wk-beyond wk-beyond-panel" : "wk-beyond"}
-      aria-labelledby="beyond-heading"
-    >
+    <section ref={sectionRef} className="wk-beyond container" aria-labelledby="beyond-heading">
+
       <div className="wk-beyond-head">
         <span className="eyebrow">Beyond the brief</span>
         <h2
           id="beyond-heading"
           className="section-title"
-          style={{ marginTop: 14, fontSize: asPanel ? "clamp(22px, 2.4vw, 34px)" : "clamp(28px, 3.6vw, 48px)" }}
+          style={{ marginTop: 14, fontSize: "clamp(28px, 3.6vw, 48px)" }}
         >
           Other things I do.
         </h2>
@@ -87,8 +85,12 @@ function BeyondPanel({ asPanel }) {
 export default function WorkPage() {
   const bp = useBreakpoint()
   const isMobile = bp === "mobile"
+  const beyondRef = useRef(null)
 
-  // Mobile: swipe carousel + scrollable beyond section below
+  const scrollToBeyond = () =>
+    beyondRef.current?.scrollIntoView({ behavior: 'smooth' })
+
+  // Mobile: swipe carousel + Beyond section below on scroll
   if (isMobile) {
     return (
       <div style={{ background: "var(--bg)" }}>
@@ -107,7 +109,7 @@ export default function WorkPage() {
             <StackedGallery />
           </div>
         </div>
-        <BeyondPanel asPanel={false} />
+        <BeyondSection sectionRef={beyondRef} />
         <div style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
           padding: "16px 24px", borderTop: "1px solid var(--border)", background: "var(--bg)",
@@ -129,28 +131,41 @@ export default function WorkPage() {
     )
   }
 
-  // Desktop + tablet: side-by-side split - gallery left, beyond right
+  // Desktop + tablet: full-width gallery, scroll-down button, Beyond section below
   return (
-    <div className="wk-split">
+    <div style={{ background: "var(--bg)" }}>
 
-      {/* Left - stacked gallery */}
-      <div className="wk-gallery-panel">
-        <div className="wk-title-overlay">
+      {/* Gallery — full viewport, locked */}
+      <div className="wk-gallery-section">
+        <div className="wk-title-overlay container">
           <div className="section-eyebrow"><span>Selected Work</span></div>
-          <h1 className="section-title" style={{ fontSize: "clamp(36px, 3.6vw, 56px)", marginTop: 12 }}>
+          <h1 className="section-title" style={{ fontSize: "clamp(40px, 5vw, 68px)", marginTop: 12 }}>
             Case Studies.
           </h1>
-          <p style={{ marginTop: 16, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>
+          <p style={{ marginTop: 20, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>
             Scroll to explore
           </p>
         </div>
+
         <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
           <StackedGallery />
         </div>
+
+        {/* Scroll-down affordance — bottom-center of gallery viewport */}
+        <button
+          onClick={scrollToBeyond}
+          className="wk-scroll-down"
+          aria-label="Scroll to more content"
+        >
+          <span className="wk-scroll-down-label">More below</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 2v10M2 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       </div>
 
-      {/* Right - beyond panel */}
-      <BeyondPanel asPanel={true} />
+      {/* Beyond section — natural document flow below gallery */}
+      <BeyondSection sectionRef={beyondRef} />
 
     </div>
   )

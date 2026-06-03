@@ -1,35 +1,6 @@
 /* ── WORK PAGE ────────────────────────────────────────────────────────────── */
 
-/* ── DESKTOP: side-by-side split layout ──────────────────────────────────── */
-
-.wk-split {
-  display: grid;
-  grid-template-columns: 65fr 35fr;
-  height: 100vh;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-/* Left panel: gallery */
-.wk-gallery-panel {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  border-right: 1px solid var(--border-soft);
-}
-
-/* Title overlay - used by both desktop panel and tablet full-width gallery */
-.wk-title-overlay {
-  position: absolute;
-  top: calc(72px + 5vh);
-  left: clamp(24px, 4vw, 56px);
-  z-index: 10;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* ── TABLET: full-width gallery with section below ────────────────────────── */
-
+/* Full-viewport gallery section (desktop + tablet) */
 .wk-gallery-section {
   position: relative;
   height: 100vh;
@@ -37,42 +8,78 @@
   overflow: hidden;
 }
 
-/* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
-
-.wk-beyond {
-  width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  padding-block: clamp(64px, 9vw, 120px);
-  border-top: 1px solid var(--border-soft);
-  background: var(--bg);
+/* Title block sits in the grid — uses .container for left/right margins */
+.wk-title-overlay {
+  position: absolute;
+  top: calc(72px + 5vh);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
 }
 
-/* Right panel variant: fills the panel height, no border-top, centered */
-.wk-beyond-panel {
-  max-width: none;
-  margin-inline: 0;
-  padding-inline: clamp(28px, 3.5vw, 52px);
-  padding-block: 0;
-  border-top: none;
-  border-left: none;
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--bg);
+/* Scroll-down button — bottom-center of gallery */
+.wk-scroll-down {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(12, 12, 12, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: color 0.2s, border-color 0.2s;
+  animation: wk-bob 2.4s ease-in-out infinite;
+}
+
+.wk-scroll-down:hover,
+.wk-scroll-down:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.wk-scroll-down:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@keyframes wk-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(5px); }
+}
+
+/* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
+
+/* .container handles max-width + padding-inline (--maxw / --gutter) */
+.wk-beyond {
+  padding-block: clamp(64px, 9vw, 120px);
+  border-top: 1px solid var(--border-soft);
 }
 
 .wk-beyond-head {
-  margin-bottom: clamp(24px, 3vw, 40px);
+  margin-bottom: clamp(32px, 5vw, 56px);
+  max-width: 680px;
 }
 
 .wk-beyond-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 860px;
 }
 
 .wk-beyond-card {
@@ -90,8 +97,8 @@
 }
 
 .wk-beyond-tag {
-  margin-top: 16px;
-  padding-top: 10px;
+  margin-top: 20px;
+  padding-top: 12px;
   border-top: 1px dashed var(--border);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -100,25 +107,16 @@
   color: var(--text-dim);
 }
 
-/* ── TABLET: tighter split ratio ─────────────────────────────────────────── */
+/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 
-@media (max-width: 1023px) {
-  .wk-split {
-    grid-template-columns: 58fr 42fr;
-  }
-
-  .wk-beyond-panel {
-    padding-inline: clamp(20px, 3vw, 36px);
+@media (max-width: 768px) {
+  .wk-beyond-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
-/* ── MOBILE beyond section ────────────────────────────────────────────────── */
-
-@media (max-width: 639px) {
-  .wk-beyond-grid {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 480px) {
   .wk-beyond {
     padding-block: 48px;
   }
