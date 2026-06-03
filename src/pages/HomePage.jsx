@@ -64,6 +64,7 @@ const Ticks = () => (
 export default function Homepage() {
   const rootRef = useRef(null);
   const pausedRef = useRef(false);
+  const heroVideoRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
   const [showLoading, setShowLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -110,6 +111,35 @@ export default function Homepage() {
   }, []);
 
   // Handle loading screen and name popup
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+
+    const onLoaded = () => { video.currentTime = 0; };
+    video.addEventListener('loadedmetadata', onLoaded);
+
+    let rafId;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!video.duration) return;
+        const scrollY = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.min(scrollY / Math.max(maxScroll * 0.6, 1), 1);
+        video.currentTime = progress * video.duration;
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      video.removeEventListener('loadedmetadata', onLoaded);
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   useEffect(() => {
     if (showLoading) return;
     // Skip the name popup on touchscreen / tablet + mobile breakpoints
@@ -171,11 +201,11 @@ export default function Homepage() {
                 {/* Character video in front of cards */}
                 <div className="hero-video-wrap">
                   <video
+                    ref={heroVideoRef}
                     className="hero-video"
-                    autoPlay
-                    loop
                     muted
                     playsInline
+                    preload="auto"
                     aria-hidden="true"
                   >
                     <source src="/portfolio-react/ameya_hero2.webm" type="video/webm" />
