@@ -401,7 +401,7 @@ export default function PfsOnePage() {
               <div className="insight-number">01</div>
               <h3 className="insight-title">"Experts aren't confused by complexity. They're frustrated by obscured state."</h3>
               {isSimple ? (
-                <p className="insight-body">Administrators knew the domain deeply. The problem was invisible system state—was this topology published or staged? The system didn't surface clarity about state, and for expert users, invisible state is dangerous.</p>
+                <p className="insight-body">Administrators knew the domain deeply. The problem was invisible system state: was this topology published or staged? The system didn't surface clarity about state, and for expert users, invisible state is dangerous.</p>
               ) : (
                 <>
                   <p className="insight-body">Network administrators understood packet flows, port types, topology routing ,  deeply. What the legacy interface failed them on wasn't the complexity of the domain. It was the inability to see what state the system was in at any given moment. Was this topology published or not? Was this port configured or just staged? The system didn't make state visible ,  and invisible state, for an expert user, is dangerous.</p>
@@ -417,7 +417,7 @@ export default function PfsOnePage() {
               <div className="insight-number">02</div>
               <h3 className="insight-title">"The left navigation tree was the entire mental model."</h3>
               {isSimple ? (
-                <p className="insight-body">The left panel wasn't just navigation—it was the administrator's mental model of the network. How it was organized shaped how administrators thought about their infrastructure.</p>
+                <p className="insight-body">The left panel wasn't just navigation; it was the administrator's mental model of the network. How it was organized shaped how administrators thought about their infrastructure.</p>
               ) : (
                 <>
                   <p className="insight-body">In a lifecycle-based system managing hundreds of ports across multiple switches and geographic locations, the left panel wasn't just navigation ,  it was the administrator's cognitive map of the entire network. How resources were organised, grouped, and labelled in that panel directly shaped how administrators thought about and managed their infrastructure.</p>
@@ -672,11 +672,11 @@ export default function PfsOnePage() {
                 <>
                   <div className="outcome-item">
                     <strong>Lifecycle navigation shipped</strong>
-                    Configure · Deploy · Monitor—with dedicated context for each stage.
+                    Configure · Deploy · Monitor, with dedicated context for each stage.
                   </div>
                   <div className="outcome-item">
                     <strong>Perspective-based left panel shipped</strong>
-                    Location, Logical, Filter, Template—giving administrators multiple cognitive lenses.
+                    Location, Logical, Filter, Template, giving administrators multiple cognitive lenses.
                   </div>
                   <div className="outcome-item">
                     <strong>Staged publishing system shipped</strong>
@@ -801,7 +801,7 @@ export default function PfsOnePage() {
                   <h3>Design the onboarding to the mental model, not just the UI</h3>
                 )}
                 {isSimple ? (
-                  <p>The perspective-based navigation required administrators to learn a new mental model. I'd invest more in the first-use experience—not a tutorial, but a designed onboarding moment that introduces the model in context. The architecture was sound. The entry point needed more care.</p>
+                  <p>The perspective-based navigation required administrators to learn a new mental model. I'd invest more in the first-use experience: not a tutorial, but a designed onboarding moment that introduces the model in context. The architecture was sound. The entry point needed more care.</p>
                 ) : (
                   <p>The perspective-based navigation and lifecycle model were the right architectural decisions. But they required administrators to learn a new mental model before they could use the product fluently. In hindsight, I'd invest significantly more in the first-use experience ,  not a tutorial, but a designed onboarding moment that introduces the lifecycle model in the context of a real task. The architecture was sound. The entry point needed more care.</p>
                 )}
