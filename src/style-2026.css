@@ -322,6 +322,8 @@ ul { list-style: none; }
   align-items: flex-end;
   justify-content: center;
   overflow: visible;
+  /* clip only the left edge to hide any image background bleed */
+  clip-path: inset(0 -200px 0 0);
 }
 
 /* Character image — centered, full column height */
@@ -334,7 +336,8 @@ ul { list-style: none; }
   position: relative;
   z-index: 2;
   margin-right: auto;
-  margin-left: -40px;
+  margin-left: -120px;
+  transform: translateX(-20px);
 }
 
 /* Cards floating upper-right of the column */
