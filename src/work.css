@@ -1,44 +1,40 @@
 /* ── WORK PAGE ────────────────────────────────────────────────────────────── */
 
-/* ── DESKTOP / TABLET: scrollable grid layout ─────────────────────────────── */
+/* ── DESKTOP: side-by-side split layout ──────────────────────────────────── */
 
-.wk-grid-wrap {
+.wk-split {
+  display: grid;
+  grid-template-columns: 65fr 35fr;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Left panel: gallery */
+.wk-gallery-panel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid var(--border-soft);
+}
+
+/* Title overlay - used by both desktop panel and tablet full-width gallery */
+.wk-title-overlay {
+  position: absolute;
+  top: calc(72px + 5vh);
+  left: clamp(24px, 4vw, 56px);
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── TABLET: full-width gallery with section below ────────────────────────── */
+
+.wk-gallery-section {
+  position: relative;
+  height: 100vh;
   width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  padding-block: clamp(40px, 6vw, 80px) clamp(40px, 5vw, 64px);
-}
-
-.wk-grid-head {
-  margin-bottom: clamp(32px, 4vw, 54px);
-}
-
-/* Extend the homepage work-grid to allow more than 2 cards (3-col on wide) */
-.wk-work-grid {
-  grid-template-columns: 1fr 1fr;
-}
-
-/* Coming-soon card: muted, not interactive */
-.wk-card-locked {
-  cursor: default;
-  opacity: 0.6;
-}
-
-.wk-card-locked:hover {
-  border-color: var(--border) !important;
-  transform: none !important;
-}
-
-.wk-coming-soon {
-  color: var(--text-dim) !important;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  padding-top: 14px;
+  overflow: hidden;
 }
 
 /* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
@@ -50,18 +46,33 @@
   padding-inline: var(--gutter);
   padding-block: clamp(64px, 9vw, 120px);
   border-top: 1px solid var(--border-soft);
+  background: var(--bg);
+}
+
+/* Right panel variant: fills the panel height, no border-top, centered */
+.wk-beyond-panel {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(28px, 3.5vw, 52px);
+  padding-block: 0;
+  border-top: none;
+  border-left: none;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg);
 }
 
 .wk-beyond-head {
-  margin-bottom: clamp(32px, 5vw, 56px);
-  max-width: 680px;
+  margin-bottom: clamp(24px, 3vw, 40px);
 }
 
 .wk-beyond-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: 860px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .wk-beyond-card {
@@ -79,8 +90,8 @@
 }
 
 .wk-beyond-tag {
-  margin-top: 20px;
-  padding-top: 12px;
+  margin-top: 16px;
+  padding-top: 10px;
   border-top: 1px dashed var(--border);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -89,23 +100,27 @@
   color: var(--text-dim);
 }
 
-/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
+/* ── TABLET beyond section (full-width, below gallery) ───────────────────── */
 
-@media (max-width: 1024px) {
-  .wk-work-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1023px) {
+  .wk-beyond {
+    padding-block: clamp(48px, 7vw, 96px);
+  }
+
+  .wk-beyond-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 680px;
   }
 }
 
-@media (max-width: 768px) {
+/* ── MOBILE beyond section ────────────────────────────────────────────────── */
+
+@media (max-width: 639px) {
   .wk-beyond-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
-}
 
-@media (max-width: 480px) {
-  .wk-grid-wrap,
   .wk-beyond {
     padding-block: 48px;
   }
