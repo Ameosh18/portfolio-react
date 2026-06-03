@@ -87,7 +87,6 @@ function BeyondPanel({ asPanel }) {
 export default function WorkPage() {
   const bp = useBreakpoint()
   const isMobile = bp === "mobile"
-  const isTablet = bp === "tablet"
 
   // Mobile: swipe carousel + scrollable beyond section below
   if (isMobile) {
@@ -130,30 +129,7 @@ export default function WorkPage() {
     )
   }
 
-  // Tablet: stacked - gallery full-width then beyond below (normal scroll)
-  if (isTablet) {
-    return (
-      <div style={{ background: "var(--bg)" }}>
-        <div className="wk-gallery-section">
-          <div className="wk-title-overlay">
-            <div className="section-eyebrow"><span>Selected Work</span></div>
-            <h1 className="section-title" style={{ fontSize: "clamp(32px, 4vw, 54px)", marginTop: 12 }}>
-              Case Studies.
-            </h1>
-            <p style={{ marginTop: 16, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>
-              Scroll to explore
-            </p>
-          </div>
-          <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
-            <StackedGallery />
-          </div>
-        </div>
-        <BeyondPanel asPanel={false} />
-      </div>
-    )
-  }
-
-  // Desktop: side-by-side split - gallery left (65%), beyond right (35%)
+  // Desktop + tablet: side-by-side split - gallery left, beyond right
   return (
     <div className="wk-split">
 

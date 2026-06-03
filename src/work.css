@@ -100,17 +100,15 @@
   color: var(--text-dim);
 }
 
-/* ── TABLET beyond section (full-width, below gallery) ───────────────────── */
+/* ── TABLET: tighter split ratio ─────────────────────────────────────────── */
 
 @media (max-width: 1023px) {
-  .wk-beyond {
-    padding-block: clamp(48px, 7vw, 96px);
+  .wk-split {
+    grid-template-columns: 58fr 42fr;
   }
 
-  .wk-beyond-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    max-width: 680px;
+  .wk-beyond-panel {
+    padding-inline: clamp(20px, 3vw, 36px);
   }
 }
 
