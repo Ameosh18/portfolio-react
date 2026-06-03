@@ -695,24 +695,20 @@ ul { list-style: none; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
 
-  /* Mobile: character full-width on top, cards row below */
-  .hero-visual {
-    overflow: visible;
-    max-width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero-char-img { max-width: 90%; margin-left: 0; }
+  /* Mobile: character left, cards absolute on the right, character overlaps them */
+  .hero-visual { overflow: visible; max-width: 100%; flex-direction: row; align-items: flex-end; justify-content: flex-start; }
+  .hero-char-img { max-width: 75%; margin-left: -16px; flex-shrink: 0; }
   .hero-visual .hero-cards {
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: 0;
+    width: 130px;
     margin-left: 0;
-    padding-top: 16px;
-    margin-top: -48px; /* pull cards up slightly under character base */
-    z-index: 3;
+    padding-top: 0;
+    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
   }
   .hero-visual .bp-card { min-width: 0; width: 100%; }
   .hero-visual .bp-card { padding: 10px 12px; }
