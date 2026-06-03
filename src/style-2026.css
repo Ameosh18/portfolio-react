@@ -710,14 +710,14 @@ ul { list-style: none; }
     display: grid;
     grid-template-columns: 1fr;
   }
-  .hero-visual .bp-card { min-width: 0; width: 100%; overflow: hidden; }
-  .hero-visual .metric-grid { overflow: hidden; }
-  .hero-visual .metric-cell { min-width: 0; overflow: hidden; }
-  .hero-visual .bp-card { padding: 10px 12px; }
+  .hero-visual .bp-card { min-width: 0; width: 100%; overflow: hidden; padding: 10px 10px; }
+  /* Single column, right-aligned so numbers sit in the visible strip */
+  .hero-visual .metric-grid { grid-template-columns: 1fr; gap: 2px; overflow: hidden; }
+  .hero-visual .metric-cell { min-width: 0; overflow: hidden; text-align: right; padding: 6px 8px; }
+  .hero-visual .metric-cell .num { font-size: 15px; line-height: 1.1; }
+  .hero-visual .metric-cell .lbl { font-size: 8px; white-space: nowrap; margin-top: 1px; }
   .disc-row .v { white-space: normal; word-break: break-word; font-size: 10px; }
   .disc-row .k { font-size: 9px; }
-  .metric-cell .num { font-size: 18px; }
-  .metric-cell .lbl { font-size: 9px; white-space: normal; }
 }
 
 /* ── REDUCED MOTION ───────────────────────────────────────────────────────── */
