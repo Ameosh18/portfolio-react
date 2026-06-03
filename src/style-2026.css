@@ -315,6 +315,54 @@ ul { list-style: none; }
 .metric-cell .num { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--accent); line-height: 1; }
 .metric-cell .lbl { margin-top: 8px; font-size: 12px; color: var(--text-muted); }
 
+/* ── HERO VIDEO (character visual) ──────────────────────────────────────── */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 480px;
+}
+
+/* Cards sit in DOM first — rendered behind the character */
+.hero-visual .hero-cards {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 0;
+  width: 240px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.hero-visual .bp-card {
+  background: rgba(20, 20, 20, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Video wrapper sits in front of cards */
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: auto;
+  height: 100%;
+  max-height: clamp(460px, 56vw, 640px);
+  object-fit: contain;
+  display: block;
+  margin-bottom: -24px;
+}
+
 /* ── PROCESS (centerpiece blueprint list) ────────────────────────────────── */
 .process .process-head { max-width: 720px; margin-bottom: clamp(36px, 5vw, 60px); }
 .process .section-title { margin-top: 16px; }
@@ -570,6 +618,12 @@ ul { list-style: none; }
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; }
+  /* Video visual above copy on tablet/mobile */
+  .hero-visual { order: -1; min-height: clamp(300px, 50vw, 480px); }
+  .hero-copy { order: 0; }
+  .hero-video-wrap { position: absolute; inset: 0; height: 100%; }
+  .hero-video { height: 100%; margin-bottom: 0; }
+  .hero-visual .hero-cards { width: 200px; top: 12px; }
   .hero-cards { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer .footer-contact { text-align: left; grid-column: 1 / -1; }
@@ -604,6 +658,7 @@ ul { list-style: none; }
   .metric-grid { grid-template-columns: 1fr; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
+  .hero-visual .hero-cards { width: 150px; top: 8px; }
 }
 
 /* ── REDUCED MOTION ───────────────────────────────────────────────────────── */

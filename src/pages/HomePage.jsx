@@ -149,22 +149,38 @@ export default function Homepage() {
                 </div>
               </div>
 
-              <div className="hero-cards reveal">
-                <article className="bp-card">
-                  <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
-                  <div className="disc-row"><span className="k">Research</span><span className="v">Generative</span></div>
-                  <div className="disc-row"><span className="k">Prototyping</span><span className="v">Hi-Fi</span></div>
-                  <div className="disc-row"><span className="k">Validation</span><span className="v">Usability</span></div>
-                </article>
-                <article className="bp-card">
-                  <div className="card-head"><span>Performance Impact</span><span className="dot" /></div>
-                  <div className="metric-grid">
-                    <div className="metric-cell"><div className="num">+35%</div><div className="lbl">User Engagement</div></div>
-                    <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
-                    <div className="metric-cell"><div className="num">+12.4%</div><div className="lbl">Conversion</div></div>
-                    <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
-                  </div>
-                </article>
+              <div className="hero-visual reveal">
+                {/* Cards behind the character */}
+                <div className="hero-cards">
+                  <article className="bp-card">
+                    <div className="card-head"><span>UX Strategy</span><span className="dot" /></div>
+                    <div className="disc-row"><span className="k">Research</span><span className="v">Generative</span></div>
+                    <div className="disc-row"><span className="k">Prototyping</span><span className="v">Hi-Fi</span></div>
+                    <div className="disc-row"><span className="k">Validation</span><span className="v">Usability</span></div>
+                  </article>
+                  <article className="bp-card">
+                    <div className="card-head"><span>Performance Impact</span><span className="dot" /></div>
+                    <div className="metric-grid">
+                      <div className="metric-cell"><div className="num">+35%</div><div className="lbl">User Engagement</div></div>
+                      <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
+                      <div className="metric-cell"><div className="num">+12.4%</div><div className="lbl">Conversion</div></div>
+                      <div className="metric-cell"><div className="num">-8.1%</div><div className="lbl">Drop-off</div></div>
+                    </div>
+                  </article>
+                </div>
+                {/* Character video in front of cards */}
+                <div className="hero-video-wrap">
+                  <video
+                    className="hero-video"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-hidden="true"
+                  >
+                    <source src="/portfolio-react/ameya_hero.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </div>
             </div>
           </div>
