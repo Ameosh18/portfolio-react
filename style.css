@@ -282,6 +282,12 @@ nav {
 .nav-links .cta {
   color: var(--accent);
   opacity: 1;
+  /* button reset */
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .nav-links .cta::after {
@@ -514,7 +520,12 @@ body.menu-open #site-nav {
   margin-top: 32px;
 }
 
-.mobile-menu-links a.menu-cta {
+.mobile-menu-links a.menu-cta,
+.mobile-menu-links button.menu-cta {
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
   justify-content: center;
   gap: 12px;
   margin: 0;
@@ -532,13 +543,16 @@ body.menu-open #site-nav {
 }
 
 .mobile-menu-links a.menu-cta:hover,
-.mobile-menu-links a.menu-cta:active {
+.mobile-menu-links a.menu-cta:active,
+.mobile-menu-links button.menu-cta:hover,
+.mobile-menu-links button.menu-cta:active {
   background: #E2FF63;
   color: var(--accent-ink);
   transform: translateY(-2px);
 }
 
-.mobile-menu-links a.menu-cta .menu-cta-arrow {
+.mobile-menu-links a.menu-cta .menu-cta-arrow,
+.mobile-menu-links button.menu-cta .menu-cta-arrow {
   font-family: system-ui, -apple-system, Arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -546,7 +560,8 @@ body.menu-open #site-nav {
   line-height: 1;
 }
 
-.mobile-menu-links a.menu-cta:hover .menu-cta-arrow {
+.mobile-menu-links a.menu-cta:hover .menu-cta-arrow,
+.mobile-menu-links button.menu-cta:hover .menu-cta-arrow {
   transform: translateY(3px);
 }
 

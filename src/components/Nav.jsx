@@ -1,15 +1,84 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence } from 'motion/react'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
+
+const CONFETTI_COLORS = ['#D5FF40', '#FFFFFF', '#C0C2B8', '#7A7C74', '#D5FF40']
+
+function random(min, max) {
+  return Math.random() * (max - min) + min
+}
+
+function useConfetti() {
+  const [particles, setParticles] = useState([])
+
+  const fire = useCallback((originRect) => {
+    const cx = originRect.left + originRect.width / 2
+    const cy = originRect.top + originRect.height / 2
+    const newParticles = Array.from({ length: 40 }).map((_, i) => ({
+      id: i + Date.now(),
+      cx,
+      cy,
+      x: random(-160, 160),
+      y: random(-280, -80),
+      rotate: random(-360, 360),
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      delay: random(0, 0.18),
+    }))
+    setParticles(newParticles)
+    setTimeout(() => setParticles([]), 2200)
+  }, [])
+
+  return { particles, fire }
+}
+
+function ConfettiLayer({ particles }) {
+  return (
+    <AnimatePresence>
+      {particles.map((p) => (
+        <motion.span
+          key={p.id}
+          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0, scale: 1 }}
+          animate={{ opacity: 0, x: p.cx + p.x, y: p.cy + p.y, rotate: p.rotate, scale: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.8, delay: p.delay, ease: 'easeOut' }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: 10,
+            height: 10,
+            borderRadius: 2,
+            backgroundColor: p.color,
+            pointerEvents: 'none',
+            zIndex: 99996,
+          }}
+          aria-hidden="true"
+        />
+      ))}
+    </AnimatePresence>
+  )
+}
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [shouldScroll, setShouldScroll] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const { particles, fire } = useConfetti()
+
+  const handleDownload = useCallback((e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    fire(rect)
+    const isMobile = window.matchMedia('(pointer: coarse)').matches
+    const delay = isMobile ? 650 : 0
+    setTimeout(() => {
+      window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
+    }, delay)
+  }, [fire])
 
   const isHome = location.pathname === '/'
   const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
@@ -73,7 +142,7 @@ export default function Nav() {
             <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
             <li><Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>My Process</Link></li>
             <li><Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>About Me</Link></li>
-            <li><a href={RESUME_URL} download className="cta">Download Resume ↓</a></li>
+            <li><button onClick={handleDownload} className="cta">Download Resume ↓</button></li>
           </ul>
 
           <button
@@ -123,9 +192,9 @@ export default function Nav() {
             </Link>
           </li>
           <li className="menu-cta-item">
-            <a href={RESUME_URL} download className="menu-cta" onClick={close}>
+            <button className="menu-cta" onClick={(e) => { close(); handleDownload(e) }}>
               Download Resume <span className="menu-cta-arrow" aria-hidden="true">↓</span>
-            </a>
+            </button>
           </li>
         </ul>
 
@@ -139,6 +208,8 @@ export default function Nav() {
           </a>
         </div>
       </div>
+
+      <ConfettiLayer particles={particles} />
     </>
   )
 }
