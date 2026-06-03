@@ -101,25 +101,25 @@ export default function Nav() {
           <li>
             <Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>
               <span className="menu-item-label"><span className="menu-num">00</span>Home</span>
-              <span className="menu-arrow" aria-hidden="true">↗</span>
+              <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li>
             <Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>
               <span className="menu-item-label"><span className="menu-num">01</span>Work</span>
-              <span className="menu-arrow" aria-hidden="true">↗</span>
+              <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li>
             <Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>
               <span className="menu-item-label"><span className="menu-num">02</span>My Process</span>
-              <span className="menu-arrow" aria-hidden="true">↗</span>
+              <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li>
             <Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>
               <span className="menu-item-label"><span className="menu-num">03</span>About Me</span>
-              <span className="menu-arrow" aria-hidden="true">↗</span>
+              <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li className="menu-cta-item">
@@ -135,7 +135,7 @@ export default function Nav() {
             <span className="mobile-menu-footer-label">Available for projects</span>
           </div>
           <a href="mailto:ameya.kulkarni@outlook.com" className="mobile-menu-footer-cta" onClick={close}>
-            Get in touch ↗
+            Get in touch ↗︎
           </a>
         </div>
       </div>

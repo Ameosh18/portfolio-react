@@ -55,7 +55,7 @@ export default function WorkPage() {
             href="mailto:ameya.kulkarni@outlook.com"
             style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.1em", color: "var(--accent)", textDecoration: "none", textTransform: "uppercase", fontFamily: "var(--font-body)" }}
           >
-            Get in touch ↗
+            Get in touch ↗︎
           </a>
         </div>
       </div>

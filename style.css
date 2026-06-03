@@ -96,6 +96,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
+  overflow-x: hidden;
 }
 
 html::-webkit-scrollbar { width: 4px; }

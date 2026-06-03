@@ -24,7 +24,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="footer-contact-link"
           >
-            LinkedIn ↗
+            LinkedIn ↗︎
           </a>
           <a href="mailto:ameya.kulkarni@outlook.com" className="footer-email">
             ameya.kulkarni@outlook.com
