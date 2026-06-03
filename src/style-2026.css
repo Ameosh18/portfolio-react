@@ -286,8 +286,7 @@ ul { list-style: none; }
 }
 .hero-sub span { color: var(--accent); }
 .hero-about { margin-top: 24px; max-width: 540px; color: var(--text-muted); font-size: 17px; line-height: 1.7; }
-.hero-ctas,
-#home-view .hero-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; justify-content: flex-start; width: auto; }
+.hero-ctas { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; justify-content: flex-start; }
 .hero-avail { flex-shrink: 0; }
 
 /* hero cards (component styling from UI image) */
@@ -700,10 +699,8 @@ ul { list-style: none; }
 @media (max-width: 480px) {
   .hero { padding-top: var(--nav-h); padding-bottom: 24px; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
-  .hero-ctas,
-  #home-view .hero-ctas { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
-  .hero-ctas .btn,
-  #home-view .hero-ctas .btn { width: 100%; justify-content: flex-start; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
+  .hero-ctas .btn { width: 100%; justify-content: flex-start; }
   .hero-avail { align-self: flex-start; }
   .work-card-meta { grid-template-columns: 1fr; }
 
