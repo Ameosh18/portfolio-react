@@ -177,7 +177,7 @@ export default function Homepage() {
                     playsInline
                     aria-hidden="true"
                   >
-                    <source src="/portfolio-react/hero_video.mp4" type="video/mp4" />
+                    <source src="/portfolio-react/herovideo.MP4" type="video/mp4" />
                   </video>
                 </div>
               </div>

@@ -358,7 +358,7 @@ ul { list-style: none; }
 .hero-video {
   width: auto;
   height: 100%;
-  min-height: clamp(480px, 80vh, 900px);
+  min-height: clamp(400px, 65vh, 750px);
   object-fit: contain;
   display: block;
 }
