@@ -320,13 +320,11 @@ ul { list-style: none; }
   position: relative;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: visible;
-  /* clip only the left edge to hide any image background bleed */
-  clip-path: inset(0 -200px 0 0);
 }
 
-/* Character image — centered, full column height */
+/* Character image */
 .hero-char-img {
   display: block;
   width: auto;
@@ -335,9 +333,8 @@ ul { list-style: none; }
   object-position: bottom;
   position: relative;
   z-index: 2;
-  margin-right: auto;
-  margin-left: -120px;
-  transform: translateX(-20px);
+  /* shift left so cards have room to the right */
+  margin-left: clamp(-60px, -4vw, -20px);
 }
 
 /* Cards floating upper-right of the column */
@@ -614,13 +611,12 @@ ul { list-style: none; }
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; }
-  /* Video visual above copy on tablet/mobile */
-  .hero-visual { order: -1; min-height: clamp(300px, 50vw, 480px); }
+  /* Character visual above copy on tablet/mobile */
+  .hero-visual { order: -1; justify-content: center; min-height: clamp(340px, 52vw, 520px); }
   .hero-copy { order: 0; }
-  .hero-video-wrap { position: absolute; inset: 0; height: 100%; }
-  .hero-video { height: 100%; margin-bottom: 0; }
-  .hero-visual .hero-cards { width: 200px; top: 12px; }
-  .hero-cards { grid-template-columns: 1fr 1fr; }
+  .hero-char-img { height: clamp(300px, 48vw, 500px); margin-left: 0; }
+  .hero-visual .hero-cards { width: 180px; top: 8px; right: 0; gap: 10px; }
+  .hero-cards { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer .footer-contact { text-align: left; grid-column: 1 / -1; }
   .cred-grid { grid-template-columns: 1fr 1fr; gap: 0; }
@@ -654,7 +650,12 @@ ul { list-style: none; }
   .metric-grid { grid-template-columns: 1fr; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
-  .hero-visual .hero-cards { width: 150px; top: 8px; }
+  .hero-char-img { height: clamp(260px, 60vw, 380px); }
+  .hero-visual .hero-cards { width: 140px; top: 4px; gap: 8px; }
+  .hero-visual .hero-cards .card-head span { font-size: 10px; }
+  .hero-visual .bp-card { padding: 10px 12px; }
+  .metric-cell .num { font-size: 20px; }
+  .metric-cell .lbl { font-size: 10px; }
 }
 
 /* ── REDUCED MOTION ───────────────────────────────────────────────────────── */
