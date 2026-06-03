@@ -135,7 +135,7 @@ export default function WorkPage() {
   return (
     <div style={{ background: "var(--bg)" }}>
 
-      {/* Gallery — full viewport, locked */}
+      {/* Gallery - full viewport, locked */}
       <div className="wk-gallery-section">
         <div className="wk-title-overlay container">
           <div className="section-eyebrow"><span>Selected Work</span></div>
@@ -151,7 +151,7 @@ export default function WorkPage() {
           <StackedGallery />
         </div>
 
-        {/* Scroll-down affordance — bottom-center of gallery viewport */}
+        {/* Scroll-down affordance - bottom-center of gallery viewport */}
         <button
           onClick={scrollToBeyond}
           className="wk-scroll-down"
@@ -164,7 +164,7 @@ export default function WorkPage() {
         </button>
       </div>
 
-      {/* Beyond section — natural document flow below gallery */}
+      {/* Beyond section - natural document flow below gallery */}
       <BeyondSection sectionRef={beyondRef} />
 
     </div>
