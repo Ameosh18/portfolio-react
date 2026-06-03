@@ -1,0 +1,120 @@
+/* ── WORK PAGE ────────────────────────────────────────────────────────────── */
+
+/* Full-viewport gallery section (desktop + tablet) */
+.wk-gallery-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Title block sits in the grid — uses .container for left/right margins */
+.wk-title-overlay {
+  position: absolute;
+  top: calc(72px + 5vh);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Scroll-down button — bottom-center of gallery */
+.wk-scroll-down {
+  position: absolute;
+  bottom: clamp(28px, 4vh, 44px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: var(--accent);
+  border: none;
+  border-radius: 100px;
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 32px rgba(var(--accent-rgb), 0.35), 0 4px 16px rgba(0,0,0,0.4);
+  transition: box-shadow 0.2s, transform 0.2s;
+  animation: wk-bob 2.4s ease-in-out infinite;
+}
+
+.wk-scroll-down:hover {
+  box-shadow: 0 0 48px rgba(var(--accent-rgb), 0.55), 0 6px 24px rgba(0,0,0,0.5);
+  animation-play-state: paused;
+}
+
+.wk-scroll-down:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@keyframes wk-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(5px); }
+}
+
+/* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
+
+/* .container handles max-width + padding-inline (--maxw / --gutter) */
+.wk-beyond {
+  padding-block: clamp(64px, 9vw, 120px);
+  border-top: 1px solid var(--border-soft);
+}
+
+.wk-beyond-head {
+  margin-bottom: clamp(32px, 5vw, 56px);
+  max-width: 680px;
+}
+
+.wk-beyond-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 860px;
+}
+
+.wk-beyond-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.wk-beyond-desc {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.wk-beyond-tag {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .wk-beyond-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wk-beyond {
+    padding-block: 48px;
+  }
+}
