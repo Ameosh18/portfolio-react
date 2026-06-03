@@ -159,8 +159,8 @@ export default function Homepage() {
                 <div className="hero-cards">
                   <article className="bp-card">
                     <div className="card-head"><span>Design Stack</span><span className="dot" /></div>
-                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Maze · Miro</span></div>
-                    <div className="disc-row"><span className="k">Method</span><span className="v">Agile · Lean UX</span></div>
+                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Maze</span></div>
+                    <div className="disc-row"><span className="k">Method</span><span className="v">Lean UX · Agile</span></div>
                     <div className="disc-row"><span className="k">Output</span><span className="v">End-to-End</span></div>
                   </article>
                   <article className="bp-card">
@@ -169,7 +169,7 @@ export default function Homepage() {
                       <div className="metric-cell"><div className="num">+35%</div><div className="lbl">Engagement</div></div>
                       <div className="metric-cell"><div className="num">-2.5s</div><div className="lbl">Task Time</div></div>
                       <div className="metric-cell"><div className="num">+12%</div><div className="lbl">Conversion</div></div>
-                      <div className="metric-cell"><div className="num">-8%</div><div className="lbl">Drop-off</div></div>
+                      <div className="metric-cell"><div className="num">-8%</div><div className="lbl">Churn</div></div>
                     </div>
                   </article>
                 </div>
