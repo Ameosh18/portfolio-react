@@ -98,15 +98,15 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    const isMobile = window.matchMedia('(pointer: coarse)').matches
-    if (isMobile) {
-      // Open blank window synchronously (avoids Safari popup block),
-      // then navigate after confetti has burst and started falling.
-      const win = window.open('', '_blank', 'noopener,noreferrer')
-      setTimeout(() => { if (win) win.location.href = RESUME_URL }, 900)
-    } else {
-      window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
-    }
+    // Anchor click is synchronous with the user gesture on all browsers/devices.
+    // target="_blank" keeps the user on this page so confetti plays fully.
+    const a = document.createElement('a')
+    a.href = RESUME_URL
+    a.target = '_blank'
+    a.rel = 'noopener noreferrer'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
   }, [fire])
 
   const isHome = location.pathname === '/'
