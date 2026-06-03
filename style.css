@@ -466,6 +466,9 @@ body.menu-open #site-nav {
   display: flex;
   align-items: baseline;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 0;
+  flex: 1 1 0;
+  overflow: hidden;
 }
 
 .mobile-menu-links a:hover .menu-item-label,
@@ -1173,22 +1176,24 @@ body.menu-open #site-nav {
 
   /* Prevent long nav labels pushing ↗ arrows off-screen */
   .mobile-menu-links a {
-    font-size: clamp(30px, 8.5vw, 40px);
+    font-size: clamp(28px, 7.5vw, 36px);
     padding: 20px 0;
+    gap: 12px;
   }
   .menu-num {
-    margin-right: 16px;
+    margin-right: 12px;
+    flex-shrink: 0;
   }
   /* Tighten hover translate so arrow never clips on small screens */
   .mobile-menu-links a:hover .menu-item-label,
   .mobile-menu-links a:active .menu-item-label,
   .mobile-menu-links a.active .menu-item-label {
-    transform: translateX(6px);
+    transform: translateX(4px);
   }
   .mobile-menu-links a:hover .menu-arrow,
   .mobile-menu-links a:active .menu-arrow,
   .mobile-menu-links a.active .menu-arrow {
-    transform: translate(3px, -3px) scale(1.05);
+    transform: translate(2px, -2px) scale(1.05);
   }
 
   .mobile-menu-footer {
