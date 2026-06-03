@@ -697,7 +697,7 @@ ul { list-style: none; }
 
   /* Mobile: character left, cards absolute on the right, character overlaps them */
   .hero-visual { overflow: visible; max-width: 100%; flex-direction: row; align-items: flex-end; justify-content: flex-start; }
-  .hero-char-img { max-width: 75%; margin-left: -16px; flex-shrink: 0; }
+  .hero-char-img { max-width: 84%; margin-left: -16px; flex-shrink: 0; }
   .hero-visual .hero-cards {
     position: absolute;
     z-index: 1;
