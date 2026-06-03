@@ -699,9 +699,9 @@ ul { list-style: none; }
 @media (max-width: 480px) {
   .hero { padding-top: var(--nav-h); padding-bottom: 24px; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
-  .hero-ctas .btn { width: 100%; justify-content: flex-start; }
-  .hero-avail { align-self: flex-start; }
+  .hero-ctas { flex-direction: column; align-items: center; justify-content: center; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-avail { align-self: center; }
   .work-card-meta { grid-template-columns: 1fr; }
 
   /* Mobile: character left, cards absolute on the right, character overlaps them */
