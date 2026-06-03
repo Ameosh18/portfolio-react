@@ -690,7 +690,7 @@ ul { list-style: none; }
   .contact-link .c-k { width: auto; }
 }
 @media (max-width: 480px) {
-  .hero { padding-top: calc(var(--nav-h) + 24px); padding-bottom: 28px; }
+  .hero { padding-top: var(--nav-h); padding-bottom: 24px; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
   .work-card-meta { grid-template-columns: 1fr; }
