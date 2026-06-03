@@ -143,8 +143,8 @@ export default function Homepage() {
                 <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
                 <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
                 <div className="hero-ctas">
-                  <Link to="/digisense" className="btn btn-primary">Explore DiGiSense Case Study <span className="arrow">→</span></Link>
-                  <a href="#contact" className="btn btn-ghost">Schedule a Conversation</a>
+                  <Link to="/work" className="btn btn-primary">View All Work <span className="arrow">→</span></Link>
+                  <span className="status-pill hero-avail"><span className="dot" />Open to opportunities</span>
                 </div>
               </div>
 
@@ -291,7 +291,6 @@ export default function Homepage() {
 
             <div className="process-tagline reveal">
               <p>// I use tools fluently because I've thought about the work first.</p>
-              <Link to="/my-process" className="btn btn-ghost">Explore Full Process <span className="arrow">&#x2192;</span></Link>
             </div>
           </div>
         </section>
@@ -309,8 +308,7 @@ export default function Homepage() {
                 <div>
                   <p className="a-bio">With 9.5 years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
                   <div className="about-cta-row">
-                    <Link to="/about" className="btn btn-primary">Read Full Story <span className="arrow">&#x2192;</span></Link>
-                    <span className="status-pill"><span className="dot" />Available to join your company</span>
+                    <Link to="/about" className="btn btn-ghost">Read Full Story <span className="arrow">&#x2192;</span></Link>
                   </div>
                 </div>
               </div>
@@ -324,9 +322,12 @@ export default function Homepage() {
             <span className="eyebrow reveal">Get in Touch</span>
             <h2 className="section-title reveal" style={{ marginTop: '16px' }}>I can help your team move faster and ship better products.</h2>
             <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
+            <div className="contact-cta reveal">
+              <a href="mailto:ameya.kulkarni@outlook.com" className="btn btn-primary">Schedule a Call <span className="arrow">→</span></a>
+            </div>
             <div className="contact-links reveal">
-              <a href="mailto:ameya@example.com" className="contact-link">
-                <span className="c-k">Email</span><span className="c-v">Schedule a Conversation</span><span className="c-arrow">↗︎</span>
+              <a href="mailto:ameya.kulkarni@outlook.com" className="contact-link">
+                <span className="c-k">Email</span><span className="c-v">ameya.kulkarni@outlook.com</span><span className="c-arrow">↗︎</span>
               </a>
               <a href="https://linkedin.com/in/ameyakulkarni" target="_blank" rel="noopener" className="contact-link">
                 <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni</span><span className="c-arrow">↗︎</span>
