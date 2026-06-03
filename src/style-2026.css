@@ -267,7 +267,7 @@ ul { list-style: none; }
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+  align-items: stretch;
 }
 .hero-copy { max-width: 620px; }
 .hero h1 {
@@ -321,7 +321,6 @@ ul { list-style: none; }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 580px;
   overflow: visible;
 }
 
@@ -329,9 +328,9 @@ ul { list-style: none; }
 .hero-visual .hero-cards {
   position: absolute;
   z-index: 1;
-  top: 16px;
-  right: 0;
-  width: 240px;
+  top: 0;
+  right: -20px;
+  width: 220px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 14px;
@@ -347,6 +346,7 @@ ul { list-style: none; }
 .hero-video-wrap {
   position: absolute;
   inset: 0;
+  bottom: -40px;
   z-index: 2;
   display: flex;
   align-items: flex-end;
@@ -357,11 +357,10 @@ ul { list-style: none; }
 
 .hero-video {
   width: auto;
-  height: auto;
-  max-height: clamp(560px, 70vw, 820px);
+  height: 100%;
+  min-height: clamp(480px, 80vh, 900px);
   object-fit: contain;
   display: block;
-  margin-bottom: -24px;
 }
 
 /* ── PROCESS (centerpiece blueprint list) ────────────────────────────────── */
