@@ -1170,6 +1170,26 @@ body.menu-open #site-nav {
     padding: 96px 24px 40px;
   }
 
+  /* Prevent long nav labels pushing ↗ arrows off-screen */
+  .mobile-menu-links a {
+    font-size: clamp(30px, 8.5vw, 40px);
+    padding: 20px 0;
+  }
+  .menu-num {
+    margin-right: 16px;
+  }
+  /* Tighten hover translate so arrow never clips on small screens */
+  .mobile-menu-links a:hover .menu-item-label,
+  .mobile-menu-links a:active .menu-item-label,
+  .mobile-menu-links a.active .menu-item-label {
+    transform: translateX(6px);
+  }
+  .mobile-menu-links a:hover .menu-arrow,
+  .mobile-menu-links a:active .menu-arrow,
+  .mobile-menu-links a.active .menu-arrow {
+    transform: translate(3px, -3px) scale(1.05);
+  }
+
   .mobile-menu-footer {
     flex-direction: column;
     align-items: flex-start;
