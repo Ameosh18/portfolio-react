@@ -269,7 +269,7 @@ ul { list-style: none; }
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
-.hero-copy { max-width: 620px; }
+.hero-copy { max-width: 620px; width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
 .hero h1 {
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(28px, 4.4vw, 56px);
