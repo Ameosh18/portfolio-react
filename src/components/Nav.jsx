@@ -6,11 +6,18 @@ import AKLogo from '../../AKlogo.png'
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
-const CONFETTI_COLORS = ['#D5FF40', '#FFFFFF', '#C0C2B8', '#7A7C74', '#D5FF40']
+const CONFETTI_COLORS = [
+  '#FF4D6D', '#FF9F1C', '#FFBF69', '#06D6A0', '#118AB2',
+  '#FFD166', '#EF476F', '#8338EC', '#FB5607', '#3A86FF',
+  '#FF006E', '#CBFF8C', '#F72585', '#4CC9F0', '#FEC89A',
+]
 
 function random(min, max) {
   return Math.random() * (max - min) + min
 }
+
+const ANIM_DURATION = 2.2   // seconds each particle flies
+const OPEN_DELAY    = 1800  // ms — let the burst peak before PDF opens
 
 function useConfetti() {
   const [particles, setParticles] = useState([])
@@ -18,18 +25,20 @@ function useConfetti() {
   const fire = useCallback((originRect) => {
     const cx = originRect.left + originRect.width / 2
     const cy = originRect.top + originRect.height / 2
-    const newParticles = Array.from({ length: 40 }).map((_, i) => ({
+    const newParticles = Array.from({ length: 60 }).map((_, i) => ({
       id: i + Date.now(),
       cx,
       cy,
-      x: random(-160, 160),
-      y: random(-280, -80),
-      rotate: random(-360, 360),
+      x: random(-220, 220),
+      y: random(-380, -60),
+      rotate: random(-540, 540),
       color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-      delay: random(0, 0.18),
+      delay: random(0, 0.3),
+      w: random(8, 14),
+      h: random(5, 10),
     }))
     setParticles(newParticles)
-    setTimeout(() => setParticles([]), 2200)
+    setTimeout(() => setParticles([]), (ANIM_DURATION + 0.4) * 1000)
   }, [])
 
   return { particles, fire }
@@ -41,16 +50,16 @@ function ConfettiLayer({ particles }) {
       {particles.map((p) => (
         <motion.span
           key={p.id}
-          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0, scale: 1 }}
-          animate={{ opacity: 0, x: p.cx + p.x, y: p.cy + p.y, rotate: p.rotate, scale: 0 }}
+          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0, scaleX: 1, scaleY: 1 }}
+          animate={{ opacity: 0, x: p.cx + p.x, y: p.cy + p.y, rotate: p.rotate, scaleX: 0.3, scaleY: 0.3 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.8, delay: p.delay, ease: 'easeOut' }}
+          transition={{ duration: ANIM_DURATION, delay: p.delay, ease: [0.22, 1, 0.36, 1] }}
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
-            width: 10,
-            height: 10,
+            width: p.w,
+            height: p.h,
             borderRadius: 2,
             backgroundColor: p.color,
             pointerEvents: 'none',
@@ -73,11 +82,9 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    const isMobile = window.matchMedia('(pointer: coarse)').matches
-    const delay = isMobile ? 650 : 0
     setTimeout(() => {
       window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
-    }, delay)
+    }, OPEN_DELAY)
   }, [fire])
 
   const isHome = location.pathname === '/'
