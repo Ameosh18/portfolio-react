@@ -16,8 +16,7 @@ function random(min, max) {
   return Math.random() * (max - min) + min
 }
 
-const ANIM_DURATION = 2.2   // seconds each particle flies
-const OPEN_DELAY    = 1800  // ms — let the burst peak before PDF opens
+const ANIM_DURATION = 2.6
 
 function useConfetti() {
   const [particles, setParticles] = useState([])
@@ -29,16 +28,17 @@ function useConfetti() {
       id: i + Date.now(),
       cx,
       cy,
-      x: random(-220, 220),
-      y: random(-380, -60),
-      rotate: random(-540, 540),
+      dx: random(-240, 240),          // final horizontal drift
+      peakY: random(-260, -80),       // how high the burst goes (negative = up)
+      landY: random(120, 320),        // how far below origin it settles
+      rotate: random(-600, 600),
       color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-      delay: random(0, 0.3),
+      delay: random(0, 0.25),
       w: random(8, 14),
       h: random(5, 10),
     }))
     setParticles(newParticles)
-    setTimeout(() => setParticles([]), (ANIM_DURATION + 0.4) * 1000)
+    setTimeout(() => setParticles([]), (ANIM_DURATION + 0.5) * 1000)
   }, [])
 
   return { particles, fire }
@@ -50,10 +50,19 @@ function ConfettiLayer({ particles }) {
       {particles.map((p) => (
         <motion.span
           key={p.id}
-          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0, scaleX: 1, scaleY: 1 }}
-          animate={{ opacity: 0, x: p.cx + p.x, y: p.cy + p.y, rotate: p.rotate, scaleX: 0.3, scaleY: 0.3 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: ANIM_DURATION, delay: p.delay, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0 }}
+          animate={{
+            opacity: [1, 1, 1, 0],
+            x: [p.cx, p.cx + p.dx * 0.5, p.cx + p.dx],
+            y: [p.cy, p.cy + p.peakY, p.cy + p.landY],
+            rotate: [0, p.rotate * 0.4, p.rotate],
+          }}
+          transition={{
+            duration: ANIM_DURATION,
+            delay: p.delay,
+            ease: 'easeIn',
+            times: [0, 0.35, 1, 1],
+          }}
           style={{
             position: 'fixed',
             top: 0,
@@ -82,9 +91,13 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    setTimeout(() => {
-      window.open(RESUME_URL, '_blank', 'noopener,noreferrer')
-    }, OPEN_DELAY)
+    // Trigger via anchor click in the same event tick — avoids popup blocker
+    const a = document.createElement('a')
+    a.href = RESUME_URL
+    a.download = 'Ameya_Kulkarni_Resume.pdf'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
   }, [fire])
 
   const isHome = location.pathname === '/'
