@@ -1,0 +1,91 @@
+/* ── WORK PAGE ────────────────────────────────────────────────────────────── */
+
+/* Gallery viewport section (desktop + tablet) */
+.wk-gallery-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Title overlay (desktop + tablet) */
+.wk-title-overlay {
+  position: absolute;
+  top: calc(72px + 5vh);
+  left: clamp(32px, 5vw, 80px);
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── BEYOND THE BRIEF SECTION ─────────────────────────────────────────────── */
+
+.wk-beyond {
+  padding-block: clamp(64px, 9vw, 120px);
+  padding-inline: clamp(32px, 5vw, 80px);
+  border-top: 1px solid var(--border-soft);
+  background: var(--bg);
+}
+
+.wk-beyond-head {
+  margin-bottom: clamp(32px, 5vw, 56px);
+  max-width: 680px;
+}
+
+.wk-beyond-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 860px;
+}
+
+.wk-beyond-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.wk-beyond-desc {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.wk-beyond-tag {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .wk-title-overlay {
+    left: clamp(24px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 768px) {
+  .wk-beyond {
+    padding-inline: 24px;
+  }
+
+  .wk-beyond-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wk-beyond {
+    padding-inline: 20px;
+    padding-block: 48px;
+  }
+}
