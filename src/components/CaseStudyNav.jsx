@@ -117,7 +117,7 @@ export default function CaseStudyNav() {
 
   return (
     <>
-      {/* Desktop nav — portalled to body so position:fixed works regardless of ancestor transforms */}
+      {/* Desktop nav: portalled to body so position:fixed works regardless of ancestor transforms */}
       {createPortal(
         <DesktopNav sections={sections} activeId={activeId} />,
         document.body
