@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
+import CaseStudyNav from '../components/CaseStudyNav'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 
 const FLOW_DATA = {
@@ -115,6 +116,7 @@ export default function PfsOnePage() {
 
   return (
     <div className="cs-page cs-pfsone">
+      <CaseStudyNav />
       {/* ARTIFACT MODAL */}
       <div
         className={`artifact-modal${activeFlow ? ' is-open' : ''}`}
@@ -167,7 +169,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* HERO */}
-      <section className="hero">
+      <section id="cs-overview" className="hero">
         <div className="hero-content bp-frame">
           <span className="tick tl" aria-hidden="true" />
           <span className="tick tr" aria-hidden="true" />
@@ -203,7 +205,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* BUSINESS CONTEXT */}
-      <section className="business-context">
+      <section id="cs-business" className="business-context">
         <div className="container">
           <div className="section-label reveal">
             <span>Business Context</span>
@@ -262,7 +264,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* THE ECOSYSTEM */}
-      <section className="complexity-map">
+      <section id="cs-ecosystem" className="complexity-map">
         <div className="container">
           <div className="section-label reveal">
             <span>The Ecosystem</span>
@@ -333,7 +335,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* RESEARCH APPROACH */}
-      <section className="research">
+      <section id="cs-research" className="research">
         <div className="container">
           <div className="section-label reveal">
             <span>Research Approach</span>
@@ -389,7 +391,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* KEY INSIGHTS */}
-      <section className="insights">
+      <section id="cs-insights" className="insights">
         <div className="container">
           <div className="section-label reveal">
             <span>Key Insights</span>
@@ -465,7 +467,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* STRATEGIC DECISIONS */}
-      <section className="decisions">
+      <section id="cs-decisions" className="decisions">
         <div className="container">
           <div className="section-label reveal">
             <span>Strategic Decisions</span>
@@ -577,7 +579,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* DESIGN WORK */}
-      <section className="design-work">
+      <section id="cs-design" className="design-work">
         <div className="container">
           <div className="section-label reveal">
             <span>Design Work</span>
@@ -624,7 +626,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* AI OPPORTUNITY LAYER */}
-      <section className="ai-layer">
+      <section id="cs-ai" className="ai-layer">
         <div className="container">
           <div className="section-label reveal">
             <span>AI Opportunity Layer</span>
@@ -656,7 +658,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* OUTCOMES */}
-      <section className="outcomes">
+      <section id="cs-outcomes" className="outcomes">
         <div className="container">
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
@@ -769,7 +771,7 @@ export default function PfsOnePage() {
       </section>
 
       {/* REFLECTION */}
-      <section className="reflection">
+      <section id="cs-reflection" className="reflection">
         <div className="container">
           <div className="section-label reveal">
             <span>Reflection</span>
