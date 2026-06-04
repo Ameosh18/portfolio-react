@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
+import confetti from 'canvas-confetti'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
@@ -12,80 +12,34 @@ const CONFETTI_COLORS = [
   '#FF006E', '#CBFF8C', '#F72585', '#4CC9F0', '#FEC89A',
 ]
 
-function random(min, max) {
-  return Math.random() * (max - min) + min
+// Fires canvas-confetti from the center of the given button rect.
+// Returns the Promise from canvas-confetti (resolves when animation ends).
+function fireConfetti(rect) {
+  const x = (rect.left + rect.width / 2) / window.innerWidth
+  const y = (rect.top + rect.height / 2) / window.innerHeight
+  return confetti({
+    particleCount: 160,
+    spread: 90,
+    startVelocity: 52,
+    gravity: 1.6,       // slightly above default (1) for faster fall
+    decay: 0.87,
+    ticks: 280,
+    origin: { x, y },
+    colors: CONFETTI_COLORS,
+    shapes: ['square', 'circle'],
+    scalar: 1.1,
+    zIndex: 99996,
+    disableForReducedMotion: true,
+  })
 }
 
-const ANIM_DURATION = 2.6
-
-function useConfetti() {
-  const [particles, setParticles] = useState([])
-
-  // Clear particles if browser restores page from bfcache (back-forward navigation)
-  useEffect(() => {
-    const onPageShow = (e) => { if (e.persisted) setParticles([]) }
-    window.addEventListener('pageshow', onPageShow)
-    return () => window.removeEventListener('pageshow', onPageShow)
-  }, [])
-
-  const fire = useCallback((originRect) => {
-    const cx = originRect.left + originRect.width / 2
-    const cy = originRect.top + originRect.height / 2
-    const newParticles = Array.from({ length: 60 }).map((_, i) => ({
-      id: i + Date.now(),
-      cx,
-      cy,
-      dx: random(-240, 240),          // final horizontal drift
-      peakY: random(-260, -80),       // how high the burst goes (negative = up)
-      landY: random(120, 320),        // how far below origin it settles
-      rotate: random(-600, 600),
-      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-      delay: random(0, 0.25),
-      w: random(8, 14),
-      h: random(5, 10),
-    }))
-    setParticles(newParticles)
-    setTimeout(() => setParticles([]), (ANIM_DURATION + 0.5) * 1000)
-  }, [])
-
-  return { particles, fire }
-}
-
-function ConfettiLayer({ particles }) {
-  return (
-    <AnimatePresence>
-      {particles.map((p) => (
-        <motion.span
-          key={p.id}
-          initial={{ opacity: 1, x: p.cx, y: p.cy, rotate: 0 }}
-          animate={{
-            opacity: [1, 1, 1, 0],
-            x: [p.cx, p.cx + p.dx * 0.5, p.cx + p.dx],
-            y: [p.cy, p.cy + p.peakY, p.cy + p.landY],
-            rotate: [0, p.rotate * 0.4, p.rotate],
-          }}
-          transition={{
-            duration: ANIM_DURATION,
-            delay: p.delay,
-            ease: 'easeIn',
-            times: [0, 0.35, 1, 1],
-          }}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: p.w,
-            height: p.h,
-            borderRadius: 2,
-            backgroundColor: p.color,
-            pointerEvents: 'none',
-            zIndex: 99996,
-          }}
-          aria-hidden="true"
-        />
-      ))}
-    </AnimatePresence>
-  )
+function triggerDownload() {
+  const a = document.createElement('a')
+  a.href = RESUME_URL
+  a.download = 'Ameya_Kulkarni_Resume.pdf'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
 }
 
 export default function Nav() {
@@ -93,23 +47,20 @@ export default function Nav() {
   const [shouldScroll, setShouldScroll] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const { particles, fire } = useConfetti()
 
+  // Desktop: fire confetti + download after 1200ms (mid-fall)
   const handleDownload = useCallback((e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    fire(rect)
-    // <a download> inside setTimeout is NOT subject to popup-blocker rules
-    // (only window.open/_blank navigations require a synchronous gesture).
-    // 1200ms: confetti has peaked (~910ms) and is visibly mid-fall.
-    setTimeout(() => {
-      const a = document.createElement('a')
-      a.href = RESUME_URL
-      a.download = 'Ameya_Kulkarni_Resume.pdf'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-    }, 1200)
-  }, [fire])
+    fireConfetti(e.currentTarget.getBoundingClientRect())
+    setTimeout(triggerDownload, 1200)
+  }, [])
+
+  // Mobile: keep menu open while confetti plays, close + download when done
+  const handleMobileDownload = useCallback((e) => {
+    const promise = fireConfetti(e.currentTarget.getBoundingClientRect())
+    // Download at 1200ms (confetti mid-fall), close menu when animation finishes
+    setTimeout(triggerDownload, 1200)
+    promise.then(() => setIsMenuOpen(false))
+  }, [])
 
   const isHome = location.pathname === '/'
   const isWork = location.pathname === '/work' || CASE_STUDY_PATHS.includes(location.pathname)
@@ -117,10 +68,7 @@ export default function Nav() {
   const isAbout = location.pathname === '/about'
 
   const close = () => setIsMenuOpen(false)
-
-  const scrollToTop = () => {
-    setShouldScroll(true)
-  }
+  const scrollToTop = () => setShouldScroll(true)
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', isMenuOpen)
@@ -223,7 +171,7 @@ export default function Nav() {
             </Link>
           </li>
           <li className="menu-cta-item">
-            <button className="menu-cta" onClick={(e) => { close(); handleDownload(e) }}>
+            <button className="menu-cta" onClick={handleMobileDownload}>
               Download Resume <span className="menu-cta-arrow" aria-hidden="true">↓</span>
             </button>
           </li>
@@ -239,8 +187,6 @@ export default function Nav() {
           </a>
         </div>
       </div>
-
-      <ConfettiLayer particles={particles} />
     </>
   )
 }
