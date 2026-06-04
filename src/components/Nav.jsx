@@ -6,7 +6,7 @@ import AKLogo from '../../AKlogo.png'
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
-// position is pixel-based — center of the clicked button
+// position is pixel-based, from the center of the clicked button
 function fireConfetti(rect) {
   confetti({
     position: {
