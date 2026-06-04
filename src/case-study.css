@@ -2033,6 +2033,11 @@ html.is-simple .cs-page .artifact-card {
     display: none;
   }
 
+  /* Shift scroll-to-top above the sections FAB on case study pages */
+  body.has-cs-nav .scroll-top-btn {
+    bottom: 88px;
+  }
+
   /* Show FAB */
   .cs-sections-fab-wrap {
     display: block;

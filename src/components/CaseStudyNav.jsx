@@ -79,6 +79,11 @@ export default function CaseStudyNav() {
   const sections = ALL_SECTIONS.filter(s => !isSimple || s.simpleVisible)
 
   useEffect(() => {
+    document.body.classList.add('has-cs-nav')
+    return () => document.body.classList.remove('has-cs-nav')
+  }, [])
+
+  useEffect(() => {
     const visibilityMap = {}
     const observers = []
 
