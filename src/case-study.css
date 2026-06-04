@@ -1126,6 +1126,24 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .artifact-card-top {
+    align-items: flex-start;
+    flex-wrap: nowrap;
+  }
+  .artifact-card-label {
+    flex-shrink: 1;
+    min-width: 0;
+    white-space: normal;
+    line-height: 1.4;
+  }
+  .artifact-card-expand {
+    flex-shrink: 0;
+    align-self: flex-start;
+    padding-top: 4px;
+  }
+}
+
 .artifact-card-expand {
   font-size: 13px;
   font-weight: 600;
