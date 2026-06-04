@@ -98,15 +98,17 @@ export default function Nav() {
   const handleDownload = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect()
     fire(rect)
-    // Anchor click is synchronous with the user gesture on all browsers/devices.
-    // target="_blank" keeps the user on this page so confetti plays fully.
-    const a = document.createElement('a')
-    a.href = RESUME_URL
-    a.target = '_blank'
-    a.rel = 'noopener noreferrer'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
+    // <a download> inside setTimeout is NOT subject to popup-blocker rules
+    // (only window.open/_blank navigations require a synchronous gesture).
+    // 1200ms: confetti has peaked (~910ms) and is visibly mid-fall.
+    setTimeout(() => {
+      const a = document.createElement('a')
+      a.href = RESUME_URL
+      a.download = 'Ameya_Kulkarni_Resume.pdf'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+    }, 1200)
   }, [fire])
 
   const isHome = location.pathname === '/'

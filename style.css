@@ -300,6 +300,27 @@ nav {
   opacity: 0.8;
 }
 
+/* ── Desktop Download Resume pill ── */
+.nav-links button.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+.nav-links button.cta:hover  { background: #E2FF63; color: var(--accent-ink); opacity: 1; transform: translateY(-1px); }
+.nav-links button.cta:active { transform: translateY(0); }
+
 /* ── NAV ACTIONS (theme toggle + hamburger wrapper) ── */
 .nav-actions {
   display: flex;
