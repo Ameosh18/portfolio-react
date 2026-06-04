@@ -25,36 +25,49 @@ function scrollToSection(id) {
   window.scrollTo({ top, behavior: 'smooth' })
 }
 
-function DesktopNav({ sections, activeId, showLabels }) {
+function DesktopNav({ sections, activeId }) {
+  const [hovered, setHovered] = useState(false)
   const reduce = useReducedMotion()
 
   return (
-    <div
+    <motion.div
       role="navigation"
       aria-label="Case study sections"
-      className={`cs-section-nav${showLabels ? ' labels-visible' : ''}`}
+      className="cs-section-nav"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
-      <AnimatePresence>
-        {sections.map(({ id, label }, i) => {
-          const isActive = activeId === id
-          return (
-            <motion.button
-              key={id}
-              className={`cs-nav-item${isActive ? ' active' : ''}`}
-              onClick={() => scrollToSection(id)}
-              aria-current={isActive ? 'true' : undefined}
-              initial={{ opacity: 0, x: -12 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -12 }}
-              transition={reduce ? { duration: 0 } : { duration: 0.2, delay: i * 0.03 }}
-            >
-              <span className="cs-nav-dot" aria-hidden="true" />
-              <span className="cs-nav-label">{label}</span>
-            </motion.button>
-          )
-        })}
-      </AnimatePresence>
-    </div>
+      {sections.map(({ id, label }, i) => {
+        const isActive = activeId === id
+        return (
+          <button
+            key={id}
+            className={`cs-nav-item${isActive ? ' active' : ''}`}
+            onClick={() => scrollToSection(id)}
+            aria-current={isActive ? 'true' : undefined}
+          >
+            <span className="cs-nav-dot" aria-hidden="true" />
+            <AnimatePresence>
+              {hovered && (
+                <motion.span
+                  className="cs-nav-label"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -6 }}
+                  transition={
+                    reduce
+                      ? { duration: 0 }
+                      : { duration: 0.18, delay: i * 0.03, ease: 'easeOut' }
+                  }
+                >
+                  {label}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        )
+      })}
+    </motion.div>
   )
 }
 
@@ -107,7 +120,7 @@ export default function CaseStudyNav() {
     <>
       {/* Desktop nav: portalled to body so position:fixed works regardless of ancestor transforms */}
       {createPortal(
-        <DesktopNav sections={sections} activeId={activeId} showLabels={!isSimple} />,
+        <DesktopNav sections={sections} activeId={activeId} />,
         document.body
       )}
 
