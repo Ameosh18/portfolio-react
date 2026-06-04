@@ -2009,10 +2009,25 @@ html.is-simple .cs-page .artifact-card {
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.3s ease, opacity 0.25s ease;
+}
+
+.cs-section-nav:hover .cs-nav-label,
+.cs-section-nav.labels-visible .cs-nav-label {
+  max-width: 180px;
+  opacity: 1;
 }
 
 .cs-nav-item.active .cs-nav-label {
   color: var(--text);
+}
+
+.cs-section-nav.labels-visible {
+  background: rgba(12, 12, 12, 0.92);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
 }
 
 /* ── Mobile FAB: hide on desktop ── */
