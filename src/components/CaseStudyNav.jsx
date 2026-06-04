@@ -6,7 +6,7 @@ import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 const ALL_SECTIONS = [
   { id: 'cs-overview',   label: 'Overview',            simpleVisible: true  },
   { id: 'cs-business',   label: 'Business Context',    simpleVisible: true  },
-  { id: 'cs-ecosystem',  label: 'The Ecosystem',       simpleVisible: true  },
+  { id: 'cs-ecosystem',  label: 'The Ecosystem',       simpleVisible: false },
   { id: 'cs-research',   label: 'Research',            simpleVisible: false },
   { id: 'cs-insights',   label: 'Key Insights',        simpleVisible: true  },
   { id: 'cs-decisions',  label: 'Strategic Decisions', simpleVisible: false },
