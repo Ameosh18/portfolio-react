@@ -1,35 +1,22 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import confetti from 'canvas-confetti'
+import confetti from '@hiseb/confetti'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
-const CONFETTI_COLORS = [
-  '#FF4D6D', '#FF9F1C', '#FFBF69', '#06D6A0', '#118AB2',
-  '#FFD166', '#EF476F', '#8338EC', '#FB5607', '#3A86FF',
-  '#FF006E', '#CBFF8C', '#F72585', '#4CC9F0', '#FEC89A',
-]
-
-// Fires canvas-confetti from the center of the given button rect.
-// Returns the Promise from canvas-confetti (resolves when animation ends).
+// position is pixel-based — center of the clicked button
 function fireConfetti(rect) {
-  const x = (rect.left + rect.width / 2) / window.innerWidth
-  const y = (rect.top + rect.height / 2) / window.innerHeight
-  return confetti({
-    particleCount: 160,
-    spread: 90,
-    startVelocity: 52,
-    gravity: 1.6,       // slightly above default (1) for faster fall
-    decay: 0.87,
-    ticks: 280,
-    origin: { x, y },
-    colors: CONFETTI_COLORS,
-    shapes: ['square', 'circle'],
-    scalar: 1.1,
-    zIndex: 99996,
-    disableForReducedMotion: true,
+  confetti({
+    position: {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    },
+    count: 120,
+    size: 1.2,
+    velocity: 260,  // slightly above default (200) for faster fall
+    fade: false,
   })
 }
 
@@ -54,12 +41,11 @@ export default function Nav() {
     setTimeout(triggerDownload, 1200)
   }, [])
 
-  // Mobile: keep menu open while confetti plays, close + download when done
+  // Mobile: keep menu open while confetti plays, then close + download
   const handleMobileDownload = useCallback((e) => {
-    const promise = fireConfetti(e.currentTarget.getBoundingClientRect())
-    // Download at 1200ms (confetti mid-fall), close menu when animation finishes
-    setTimeout(triggerDownload, 1200)
-    promise.then(() => setIsMenuOpen(false))
+    fireConfetti(e.currentTarget.getBoundingClientRect())
+    setTimeout(triggerDownload, 1200)   // download mid-fall
+    setTimeout(() => setIsMenuOpen(false), 2400)  // close after particles clear
   }, [])
 
   const isHome = location.pathname === '/'
