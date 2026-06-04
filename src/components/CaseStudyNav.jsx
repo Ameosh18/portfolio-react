@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { createPortal } from 'react-dom'
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 
 const ALL_SECTIONS = [
@@ -15,6 +16,60 @@ const ALL_SECTIONS = [
   { id: 'cs-reflection', label: 'Reflection',          simpleVisible: true  },
 ]
 
+const NAV_OFFSET = 80 // fixed nav height in px
+
+function scrollToSection(id) {
+  const el = document.getElementById(id)
+  if (!el) return
+  const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET - 8
+  window.scrollTo({ top, behavior: 'smooth' })
+}
+
+function DesktopNav({ sections, activeId }) {
+  const [hovered, setHovered] = useState(false)
+  const reduce = useReducedMotion()
+
+  return (
+    <motion.nav
+      className="cs-section-nav"
+      aria-label="Case study sections"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+    >
+      {sections.map(({ id, label }, i) => {
+        const isActive = activeId === id
+        return (
+          <button
+            key={id}
+            className={`cs-nav-item${isActive ? ' active' : ''}`}
+            onClick={() => scrollToSection(id)}
+            aria-current={isActive ? 'true' : undefined}
+          >
+            <span className="cs-nav-dot" aria-hidden="true" />
+            <AnimatePresence>
+              {hovered && (
+                <motion.span
+                  className="cs-nav-label"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -6 }}
+                  transition={
+                    reduce
+                      ? { duration: 0 }
+                      : { duration: 0.18, delay: i * 0.03, ease: 'easeOut' }
+                  }
+                >
+                  {label}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        )
+      })}
+    </motion.nav>
+  )
+}
+
 export default function CaseStudyNav() {
   const isSimple = useCaseStudyMode()
   const [activeId, setActiveId] = useState('cs-overview')
@@ -22,10 +77,9 @@ export default function CaseStudyNav() {
 
   const sections = ALL_SECTIONS.filter(s => !isSimple || s.simpleVisible)
 
-  // Track active section via IntersectionObserver
   useEffect(() => {
-    const observers = []
     const visibilityMap = {}
+    const observers = []
 
     const pickMostVisible = () => {
       let best = null
@@ -52,34 +106,24 @@ export default function CaseStudyNav() {
     })
 
     return () => observers.forEach(o => o.disconnect())
-  }, [isSimple]) // re-run when mode changes so observer list updates
-
-  const scrollTo = useCallback((id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setIsOpen(false)
-  }, [])
+  }, [isSimple])
 
   const activeLabel = sections.find(s => s.id === activeId)?.label ?? 'Sections'
 
+  const handleSheetScroll = useCallback((id) => {
+    scrollToSection(id)
+    setIsOpen(false)
+  }, [])
+
   return (
     <>
-      {/* ── Desktop: fixed left nav ── */}
-      <nav className="cs-section-nav" aria-label="Case study sections">
-        {sections.map(({ id, label }) => (
-          <button
-            key={id}
-            className={`cs-nav-item${activeId === id ? ' active' : ''}`}
-            onClick={() => scrollTo(id)}
-            aria-current={activeId === id ? 'true' : undefined}
-            title={label}
-          >
-            <span className="cs-nav-dot" aria-hidden="true" />
-            <span className="cs-nav-label">{label}</span>
-          </button>
-        ))}
-      </nav>
+      {/* Desktop nav — portalled to body so position:fixed works regardless of ancestor transforms */}
+      {createPortal(
+        <DesktopNav sections={sections} activeId={activeId} />,
+        document.body
+      )}
 
-      {/* ── Mobile: floating button + bottom sheet ── */}
+      {/* Mobile FAB */}
       <div className="cs-sections-fab-wrap">
         <button
           className="cs-sections-fab"
@@ -96,7 +140,6 @@ export default function CaseStudyNav() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="cs-sheet-backdrop"
               initial={{ opacity: 0 }}
@@ -106,8 +149,6 @@ export default function CaseStudyNav() {
               onClick={() => setIsOpen(false)}
               aria-hidden="true"
             />
-
-            {/* Bottom sheet */}
             <motion.div
               id="cs-sections-sheet"
               className="cs-sections-sheet"
@@ -126,7 +167,7 @@ export default function CaseStudyNav() {
                   <li key={id}>
                     <button
                       className={`cs-sheet-item${activeId === id ? ' active' : ''}`}
-                      onClick={() => scrollTo(id)}
+                      onClick={() => handleSheetScroll(id)}
                     >
                       <span className="cs-nav-dot" aria-hidden="true" />
                       <span>{label}</span>
