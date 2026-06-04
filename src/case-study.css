@@ -1951,25 +1951,36 @@ html.is-simple .cs-page .artifact-card {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding: 10px 0;
+  padding: 12px 0;
+  border-radius: 0 10px 10px 0;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cs-section-nav:hover {
+  background: rgba(12, 12, 12, 0.88);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .cs-nav-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 14px 6px 10px;
+  padding: 7px 18px 7px 10px;
   background: none;
   border: none;
   border-left: 2px solid transparent;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s;
-  min-height: 28px;
+  transition: border-color 0.15s, background 0.15s;
+  min-height: 30px;
 }
 
 .cs-nav-item.active {
   border-left-color: var(--accent);
+}
+
+.cs-nav-item:hover {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .cs-nav-item:focus-visible {
@@ -1981,20 +1992,20 @@ html.is-simple .cs-page .artifact-card {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.35);
   flex-shrink: 0;
   transition: background 0.2s, transform 0.2s;
 }
 
 .cs-nav-item.active .cs-nav-dot {
   background: var(--accent);
-  transform: scale(1.3);
+  transform: scale(1.35);
 }
 
 .cs-nav-label {
   font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;

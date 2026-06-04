@@ -30,9 +30,10 @@ function DesktopNav({ sections, activeId }) {
   const reduce = useReducedMotion()
 
   return (
-    <motion.nav
-      className="cs-section-nav"
+    <motion.div
+      role="navigation"
       aria-label="Case study sections"
+      className="cs-section-nav"
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
@@ -66,7 +67,7 @@ function DesktopNav({ sections, activeId }) {
           </button>
         )
       })}
-    </motion.nav>
+    </motion.div>
   )
 }
 
