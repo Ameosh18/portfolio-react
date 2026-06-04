@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
+import CaseStudyNav from '../components/CaseStudyNav'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import heroImg from '../../digisense_hero_image.png'
 
@@ -36,6 +37,7 @@ export default function DigiSensePage() {
 
   return (
     <div className="cs-page cs-digisense">
+      <CaseStudyNav />
       {/* BREADCRUMB + TOGGLE */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
@@ -47,7 +49,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* HERO */}
-      <section className="hero">
+      <section id="cs-overview" className="hero">
         <div className="hero-content">
           <h1 className="hero-headline reveal">
             {isSimple ? 'Why 28,000+ farmers stopped using the app Mahindra built for them.' : 'Mahindra had deployed connected technology across 28,000+ tractors in rural India. Most had stopped using it. Nobody knew why.'}
@@ -95,7 +97,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* BUSINESS CONTEXT */}
-      <section className="business-context">
+      <section id="cs-business" className="business-context">
         <div className="container">
           <div className="section-label reveal">
             <span>Business Context</span>
@@ -156,7 +158,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* COMPLEXITY MAP */}
-      <section className="complexity-map">
+      <section id="cs-ecosystem" className="complexity-map">
         <div className="container">
           <div className="section-label reveal">
             <span>The Ecosystem</span>
@@ -229,7 +231,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* RESEARCH APPROACH */}
-      <section className="research">
+      <section id="cs-research" className="research">
         <div className="container">
           <div className="section-label reveal">
             <span>Research Approach</span>
@@ -348,7 +350,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* KEY INSIGHTS */}
-      <section className="insights">
+      <section id="cs-insights" className="insights">
         <div className="container">
           <div className="section-label reveal">
             <span>Key Insights</span>
@@ -436,7 +438,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* STRATEGIC DECISIONS */}
-      <section className="decisions">
+      <section id="cs-decisions" className="decisions">
         <div className="container">
           <div className="section-label reveal">
             <span>Strategic Decisions</span>
@@ -548,7 +550,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* DESIGN WORK */}
-      <section className="design-work">
+      <section id="cs-design" className="design-work">
         <div className="container">
           <div className="section-label reveal">
             <span>Design Work</span>
@@ -624,7 +626,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* AI OPPORTUNITY LAYER */}
-      <section className="ai-layer">
+      <section id="cs-ai" className="ai-layer">
         <div className="container">
           <div className="section-label reveal">
             <span>AI Opportunity Layer</span>
@@ -656,7 +658,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* OUTCOMES */}
-      <section className="outcomes">
+      <section id="cs-outcomes" className="outcomes">
         <div className="container">
           <div className="section-label reveal">
             <span>Outcomes + Impact</span>
@@ -769,7 +771,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* REFLECTION */}
-      <section className="reflection">
+      <section id="cs-reflection" className="reflection">
         <div className="container">
           <div className="section-label reveal">
             <span>Reflection</span>
