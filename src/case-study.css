@@ -243,9 +243,10 @@
 .cs-digisense .hero {
   display: grid;
   grid-template-columns: 75fr 25fr;
-  align-items: center;
-  /* Left centering offset mirrors .container logic: (viewport - maxw) / 2 */
+  align-items: start;
+  /* Both sides mirror .container centering: content stays within --maxw */
   padding-left: max(0px, calc((100vw - var(--maxw)) / 2));
+  padding-right: max(0px, calc((100vw - var(--maxw)) / 2));
 }
 
 .cs-digisense .hero::before {
@@ -377,7 +378,7 @@
 
 .cs-digisense .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(40px, 4.5vw, 68px);
+  font-size: clamp(32px, 3vw, 48px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
