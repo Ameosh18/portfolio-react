@@ -8,6 +8,7 @@ on:
     branches:
       - main
       - 'feature/**'
+      - 'claude/**'
 
 permissions:
   contents: read

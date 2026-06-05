@@ -48,7 +48,7 @@ function DesktopNav({ sections, activeId }) {
           >
             <span className="cs-nav-dot" aria-hidden="true" />
             <AnimatePresence>
-              {hovered && (
+              {(hovered || isActive) && (
                 <motion.span
                   className="cs-nav-label"
                   initial={{ opacity: 0, x: -10 }}
@@ -57,7 +57,7 @@ function DesktopNav({ sections, activeId }) {
                   transition={
                     reduce
                       ? { duration: 0 }
-                      : { duration: 0.18, delay: i * 0.03, ease: 'easeOut' }
+                      : { duration: 0.18, delay: hovered ? i * 0.03 : 0, ease: 'easeOut' }
                   }
                 >
                   {label}

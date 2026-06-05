@@ -1,10 +1,10 @@
 /* ─── CASE STUDY STYLES ───────────────────────────────────────────────────── */
 
-/* Blueprint grid background */
+/* Full-page dot grid; position:relative contains the absolute breadcrumb */
 .cs-page {
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  position: relative;
+  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
-  background-attachment: fixed;
 }
 
 /* Override the animation-based .reveal from style.css for case study pages */
@@ -112,22 +112,21 @@
 }
 
 /* ── BREADCRUMB NAVIGATION ── */
+/* Absolutely positioned so the hero section fills 100vh from the top */
 .cs-breadcrumb {
+  position: absolute;
+  top: 84px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: var(--maxw);
-  margin: 72px auto 0;
-  padding-top: 0;
-  padding-bottom: 24px;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  margin: 0;
+  padding: 0 var(--gutter) 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  position: relative;
-  z-index: 50;
+  z-index: 10;
 }
 
 .breadcrumb-nav {
@@ -231,33 +230,85 @@
 .cs-page .tick.bl { bottom: -8px; left: -8px; transform: scaleY(-1); }
 .cs-page .tick.br { bottom: -8px; right: -8px; transform: scale(-1); }
 
-/* ── HERO: shared base ── */
+/* ── HERO: shared full-viewport 2-column grid (all case studies) ── */
 .cs-page .hero {
   width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
-  min-height: 100vh;
-  position: relative;
+  height: 100vh;
   overflow: hidden;
+  position: relative;
   background: var(--bg);
-}
-
-/* ── DIGISENSE hero: 2-column grid ── */
-.cs-digisense .hero {
   display: grid;
-  grid-template-columns: 75fr 25fr;
+  grid-template-columns: 62fr 38fr;
+  align-items: start;
+  padding-left: max(0px, calc((100vw - var(--maxw)) / 2));
+  padding-right: max(0px, calc((100vw - var(--maxw)) / 2));
+}
+
+/* Content column: top padding clears fixed nav (72px) + absolute breadcrumb (~68px) */
+.cs-page .hero-content {
+  padding: 160px var(--gutter) 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Image column: centered vertically, standard height */
+.cs-page .hero-image {
+  height: 64vh;
+  background: var(--surface);
+  position: relative;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  align-self: center;
+  margin-top: 80px;
 }
 
-.cs-digisense .hero::before {
-  content: '';
+.cs-page .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 16px;
+  opacity: 0.9;
+}
+
+/* Lime corner ticks on the hero image frame */
+.cs-page .hero-image .tick { color: var(--accent); z-index: 2; }
+.cs-page .hero-image .tick.tl { top: 16px; left: 16px; }
+.cs-page .hero-image .tick.tr { top: 16px; right: 16px; }
+.cs-page .hero-image .tick.bl { bottom: 16px; left: 16px; }
+.cs-page .hero-image .tick.br { bottom: 16px; right: 16px; }
+
+/* Placeholder shown when no image is available */
+.cs-page .hero-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.3;
+}
+.cs-page .hero-image-placeholder span {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* Scroll-hint pinned to bottom-center of first fold */
+.cs-page .hero > .scroll-hint {
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
-  background-size: 48px 48px;
-  pointer-events: none;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin-top: 0;
 }
 
+/* ── Page-specific radial lime glow overlays ── */
 .cs-digisense .hero::after {
   content: '';
   position: absolute;
@@ -266,73 +317,6 @@
   width: 400px;
   height: 400px;
   background: radial-gradient(circle, rgba(var(--accent-rgb), 0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.cs-digisense .hero-content {
-  padding: 100px var(--gutter) 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cs-digisense .hero-image {
-  height: 100vh;
-  background: var(--surface);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.cs-digisense .hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.9;
-}
-
-/* Hero-image corner crosshairs read on the photo: lime, inset, on top */
-.cs-digisense .hero-image .tick {
-  color: var(--accent);
-  z-index: 2;
-}
-.cs-digisense .hero-image .tick.tl { top: 16px; left: 16px; }
-.cs-digisense .hero-image .tick.tr { top: 16px; right: 16px; }
-.cs-digisense .hero-image .tick.bl { bottom: 16px; left: 16px; }
-.cs-digisense .hero-image .tick.br { bottom: 16px; right: 16px; }
-
-.cs-digisense .hero-image-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  opacity: 0.3;
-}
-
-.cs-digisense .hero-image-placeholder span {
-  font-family: var(--font-display);
-  font-size: 48px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-
-/* ── PFS ONE hero: full-width flex ── */
-.cs-pfsone .hero {
-  display: flex;
-  align-items: center;
-  padding: 100px var(--gutter) 48px;
-}
-
-.cs-pfsone .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
-  background-size: 48px 48px;
   pointer-events: none;
 }
 
@@ -347,27 +331,24 @@
   pointer-events: none;
 }
 
-.cs-pfsone .hero-content {
-  max-width: 840px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  position: relative;
-  z-index: 1;
-}
-
+/* PFS ONE tagline: punchy closer in lime — same role as DiGiSense subheadline */
 .cs-pfsone .hero-tagline {
   font-family: var(--font-display);
-  font-size: clamp(18px, 2vw, 28px);
+  font-size: clamp(18px, 1.6vw, 22px);
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   line-height: 1.3;
+}
+
+/* PFS ONE has 3 text blocks — reduce top padding so all content fits in 100vh */
+.cs-pfsone .hero-content {
+  padding-top: 120px;
 }
 
 /* ── SHARED HERO ELEMENTS ── */
 .cs-page .hero-breadcrumb {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: var(--muted);
   text-transform: uppercase;
@@ -376,7 +357,7 @@
 
 .cs-digisense .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(40px, 4.5vw, 68px);
+  font-size: clamp(32px, 3vw, 48px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -386,14 +367,15 @@
 
 .cs-pfsone .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(36px, 4vw, 64px);
+  font-size: clamp(32px, 3vw, 48px);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--text);
   margin-bottom: 32px;
 }
 
+/* DiGiSense subheadline: short punchy lime line */
 .cs-digisense .hero-subheadline {
   font-family: var(--font-display);
   font-size: clamp(22px, 2.2vw, 34px);
@@ -403,14 +385,14 @@
   line-height: 1.2;
 }
 
+/* PFS ONE subheadline: long narrative paragraph — compact muted body text */
 .cs-pfsone .hero-subheadline {
-  font-family: var(--font-display);
-  font-size: clamp(16px, 1.8vw, 26px);
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 400;
   color: var(--text-muted);
-  margin-bottom: 24px;
-  line-height: 1.5;
-  max-width: 760px;
+  margin-bottom: 16px;
+  line-height: 1.65;
 }
 
 .cs-page .hero-meta {
@@ -440,36 +422,6 @@
   color: var(--text);
 }
 
-.cs-page .scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: var(--gutter);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.cs-page .scroll-indicator::before {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 48px;
-  background: var(--accent);
-  animation: csScrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes csScrollPulse {
-  0%, 100% { opacity: 1; transform: scaleY(1); }
-  50% { opacity: 0.4; transform: scaleY(0.6); }
-}
-
-.cs-page .scroll-indicator span {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
 
 /* ── BUSINESS CONTEXT ── */
 .business-context {
@@ -496,7 +448,7 @@
 
 .stat-number {
   font-family: var(--font-mono);
-  font-size: 52px;
+  font-size: clamp(36px, 4.4vw, 52px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -551,7 +503,7 @@
 }
 
 .mandate-block h4 {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--accent);
   text-transform: uppercase;
@@ -606,7 +558,7 @@
 .stakeholder-card:hover { border-color: var(--accent); }
 
 .stakeholder-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.15em;
   color: var(--accent);
@@ -674,7 +626,7 @@
 .tension-block h3 em { color: var(--accent); font-style: italic; }
 
 .tension-block p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
 }
@@ -709,14 +661,14 @@
 
 .research-stat-number {
   font-family: var(--font-mono);
-  font-size: 44px;
+  font-size: clamp(32px, 4vw, 44px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
 }
 
 .research-stat-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.05em;
 }
@@ -821,7 +773,7 @@
 }
 
 .surprise-callout p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
   max-width: 720px;
@@ -855,7 +807,7 @@
 
 .insight-number {
   font-family: var(--font-mono);
-  font-size: 56px;
+  font-size: clamp(40px, 4.4vw, 56px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -873,7 +825,7 @@
 }
 
 .insight-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
   margin-bottom: 24px;
@@ -924,7 +876,7 @@
 
 .decision-num {
   font-family: var(--font-mono);
-  font-size: 72px;
+  font-size: clamp(48px, 5vw, 72px);
   font-weight: 700;
   color: var(--accent);
   line-height: 0.9;
@@ -1062,7 +1014,7 @@
   margin-bottom: 8px;
 }
 
-.screen-problem { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+.screen-problem { font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
 
 /* ── ARTIFACT CARDS (PFS ONE) ── */
 .artifact-grid {
@@ -1430,7 +1382,7 @@
   line-height: 1.3;
 }
 
-.ai-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.ai-card p { font-size: 16px; color: var(--muted); line-height: 1.8; }
 
 .ai-big-picture {
   margin-top: 64px;
@@ -1468,7 +1420,7 @@
 .outcome-column-header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
 
 .outcome-column-header h3 {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--accent);
   text-transform: uppercase;
@@ -1509,7 +1461,7 @@
 
 .reflection-num {
   font-family: var(--font-mono);
-  font-size: 52px;
+  font-size: clamp(36px, 4.4vw, 52px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -1524,13 +1476,13 @@
   line-height: 1.3;
 }
 
-.reflection-content p { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 680px; }
+.reflection-content p { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 680px; }
 
 /* ── NEXT CASE STUDY CTA ── */
 .next-case { padding: 120px 0; background: var(--surface); text-align: center; }
 
 .next-case p {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: var(--muted);
   text-transform: uppercase;
@@ -1583,10 +1535,12 @@
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .cs-digisense .hero { grid-template-columns: 1fr; align-items: start; padding-top: 0; }
-  .cs-digisense .hero-image { display: none; }
-  .cs-digisense .hero-content { padding: 48px var(--gutter) 48px; }
-  .cs-pfsone .hero { padding: 48px var(--gutter); }
+  /* Collapse hero to single column; breadcrumb back in flow */
+  .cs-page .hero { grid-template-columns: 1fr; padding-left: 0; padding-right: 0; }
+  .cs-page .hero-image { display: none; }
+  .cs-page .hero-content { padding: 48px var(--gutter) 80px; }
+  .cs-page .hero > .scroll-hint { position: static; transform: none; left: auto; bottom: auto; margin-top: 32px; }
+  .cs-breadcrumb { position: static; margin-top: 72px; transform: none; }
   .two-col { grid-template-columns: 1fr; gap: 40px; }
   .stakeholder-grid { grid-template-columns: 1fr 1fr; }
   .insights-grid { grid-template-columns: 1fr; }
@@ -1606,18 +1560,15 @@
 }
 
 @media (max-width: 768px) {
-  .cs-breadcrumb { padding-top: 72px; padding-left: var(--gutter); padding-right: var(--gutter); }
+  .cs-breadcrumb { padding-left: var(--gutter); padding-right: var(--gutter); }
   .breadcrumb-nav { padding: 10px 0; }
-  .cs-digisense .hero { min-height: auto; }
-  .cs-digisense .hero-content { padding: 32px var(--gutter) 48px; }
-  .cs-pfsone .hero { min-height: auto; padding: 32px var(--gutter) 48px; }
+  .cs-page .hero { height: auto; overflow: visible; }
+  .cs-page .hero-content { padding: 32px var(--gutter) 48px; }
   .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-pfsone .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-digisense .hero-subheadline { font-size: clamp(20px, 4.5vw, 32px); }
-  .cs-pfsone .hero-subheadline { font-size: clamp(16px, 3.5vw, 22px); }
   .cs-pfsone .hero-tagline { font-size: clamp(18px, 4vw, 26px); }
   .cs-page .hero-meta { flex-wrap: wrap; gap: 16px 32px; }
-  .cs-page .scroll-indicator { display: none; }
   .business-context { padding: 80px 0; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .stat-card { padding: 24px; }
@@ -1667,10 +1618,9 @@
 }
 
 @media (max-width: 480px) {
-  .cs-breadcrumb { padding-top: 72px; flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 12px; }
+  .cs-breadcrumb { flex-direction: column; align-items: flex-start; gap: 12px; padding-bottom: 12px; }
   .breadcrumb-nav { padding: 10px 0; font-size: 11px; }
-  .cs-digisense .hero-content { padding: 24px var(--gutter) 40px; }
-  .cs-pfsone .hero { padding: 24px var(--gutter) 40px; }
+  .cs-page .hero-content { padding: 24px var(--gutter) 40px; }
   .cs-digisense .hero-headline,
   .cs-pfsone .hero-headline { font-size: clamp(28px, 7.5vw, 40px); }
   .cs-page .hero-meta { gap: 14px 20px; }
@@ -1935,7 +1885,6 @@ html.is-simple .cs-page .design-work .iteration-details {
     align-items: flex-start;
     gap: 12px;
     padding: 20px var(--gutter);
-    margin-top: 72px;
   }
 
   .cs-toggle-pill {

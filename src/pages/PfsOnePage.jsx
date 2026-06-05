@@ -170,11 +170,7 @@ export default function PfsOnePage() {
 
       {/* HERO */}
       <section id="cs-overview" className="hero">
-        <div className="hero-content bp-frame">
-          <span className="tick tl" aria-hidden="true" />
-          <span className="tick tr" aria-hidden="true" />
-          <span className="tick bl" aria-hidden="true" />
-          <span className="tick br" aria-hidden="true" />
+        <div className="hero-content">
           <h1 className="hero-headline reveal">
             {isSimple ? 'Redesigning visibility fabric for zero-margin-for-error infrastructure.' : 'Network administrators don\'t get second chances.'}
           </h1>
@@ -199,8 +195,23 @@ export default function PfsOnePage() {
             </div>
           </div>
         </div>
-        <div className="scroll-indicator">
-          <span>Scroll to explore</span>
+        <div className="hero-image bp-frame">
+          <span className="tick tl" aria-hidden="true" />
+          <span className="tick tr" aria-hidden="true" />
+          <span className="tick bl" aria-hidden="true" />
+          <span className="tick br" aria-hidden="true" />
+          <div className="hero-image-placeholder">
+            <span>PFS ONE</span>
+          </div>
+        </div>
+        <div className="scroll-hint" aria-hidden="true">
+          <span className="scroll-hint-label">Scroll to explore</span>
+          <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
+            <rect x="6.5" y="0" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+            <rect x="6.5" y="5" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.6"/>
+            <rect x="6.5" y="10" width="3" height="3" rx="1.5" fill="currentColor"/>
+            <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </section>
 
