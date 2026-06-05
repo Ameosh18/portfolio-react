@@ -233,7 +233,8 @@
 /* ── HERO: shared full-viewport 2-column grid (all case studies) ── */
 .cs-page .hero {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   position: relative;
   background: var(--bg);
   display: grid;
@@ -1554,7 +1555,7 @@
 @media (max-width: 768px) {
   .cs-breadcrumb { padding-left: var(--gutter); padding-right: var(--gutter); }
   .breadcrumb-nav { padding: 10px 0; }
-  .cs-page .hero { min-height: auto; }
+  .cs-page .hero { height: auto; overflow: visible; }
   .cs-page .hero-content { padding: 32px var(--gutter) 48px; }
   .cs-digisense .hero-headline { font-size: clamp(32px, 7vw, 52px); }
   .cs-pfsone .hero-headline { font-size: clamp(32px, 7vw, 52px); }
