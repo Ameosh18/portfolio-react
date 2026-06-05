@@ -234,9 +234,10 @@
 /* ── HERO: shared base ── */
 .cs-page .hero {
   width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
   background: var(--bg);
 }
 
@@ -250,7 +251,11 @@
 .cs-digisense .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
   pointer-events: none;
@@ -328,7 +333,11 @@
 .cs-pfsone .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
   pointer-events: none;
