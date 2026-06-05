@@ -199,6 +199,15 @@ export default function PfsOnePage() {
             </div>
           </div>
         </div>
+        <div className="hero-image bp-frame">
+          <span className="tick tl" aria-hidden="true" />
+          <span className="tick tr" aria-hidden="true" />
+          <span className="tick bl" aria-hidden="true" />
+          <span className="tick br" aria-hidden="true" />
+          <div className="hero-image-placeholder">
+            <span>PFS ONE</span>
+          </div>
+        </div>
         <div className="scroll-hint" aria-hidden="true">
           <span className="scroll-hint-label">Scroll to explore</span>
           <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
