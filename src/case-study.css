@@ -441,37 +441,6 @@
   color: var(--text);
 }
 
-.cs-page .scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: var(--gutter);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.cs-page .scroll-indicator::before {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 48px;
-  background: var(--accent);
-  animation: csScrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes csScrollPulse {
-  0%, 100% { opacity: 1; transform: scaleY(1); }
-  50% { opacity: 0.4; transform: scaleY(0.6); }
-}
-
-.cs-page .scroll-indicator span {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
 /* ── BUSINESS CONTEXT ── */
 .business-context {
   padding: 120px 0;
@@ -1618,7 +1587,6 @@
   .cs-pfsone .hero-subheadline { font-size: clamp(16px, 3.5vw, 22px); }
   .cs-pfsone .hero-tagline { font-size: clamp(18px, 4vw, 26px); }
   .cs-page .hero-meta { flex-wrap: wrap; gap: 16px 32px; }
-  .cs-page .scroll-indicator { display: none; }
   .business-context { padding: 80px 0; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .stat-card { padding: 24px; }
