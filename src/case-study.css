@@ -234,8 +234,6 @@
 /* ── HERO: shared base ── */
 .cs-page .hero {
   width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
   min-height: 100vh;
   position: relative;
   background: var(--bg);
@@ -246,16 +244,14 @@
   display: grid;
   grid-template-columns: 75fr 25fr;
   align-items: center;
+  /* Left centering offset mirrors .container logic: (viewport - maxw) / 2 */
+  padding-left: max(0px, calc((100vw - var(--maxw)) / 2));
 }
 
 .cs-digisense .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
+  inset: 0;
   background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
   pointer-events: none;
@@ -327,17 +323,15 @@
 .cs-pfsone .hero {
   display: flex;
   align-items: center;
-  padding: 100px var(--gutter) 48px;
+  padding-top: 100px;
+  padding-bottom: 48px;
+  padding-inline: max(var(--gutter), calc((100vw - var(--maxw)) / 2));
 }
 
 .cs-pfsone .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
+  inset: 0;
   background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 48px 48px;
   pointer-events: none;
