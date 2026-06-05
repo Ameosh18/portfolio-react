@@ -314,7 +314,7 @@
 
 .cs-digisense .hero-image-placeholder span {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 400;
   color: var(--muted);
   letter-spacing: 0.1em;
@@ -367,7 +367,7 @@
 
 /* ── SHARED HERO ELEMENTS ── */
 .cs-page .hero-breadcrumb {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: var(--muted);
   text-transform: uppercase;
@@ -496,7 +496,7 @@
 
 .stat-number {
   font-family: var(--font-mono);
-  font-size: 52px;
+  font-size: clamp(36px, 4.4vw, 52px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -551,7 +551,7 @@
 }
 
 .mandate-block h4 {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--accent);
   text-transform: uppercase;
@@ -606,7 +606,7 @@
 .stakeholder-card:hover { border-color: var(--accent); }
 
 .stakeholder-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.15em;
   color: var(--accent);
@@ -674,7 +674,7 @@
 .tension-block h3 em { color: var(--accent); font-style: italic; }
 
 .tension-block p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
 }
@@ -709,14 +709,14 @@
 
 .research-stat-number {
   font-family: var(--font-mono);
-  font-size: 44px;
+  font-size: clamp(32px, 4vw, 44px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
 }
 
 .research-stat-label {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.05em;
 }
@@ -821,7 +821,7 @@
 }
 
 .surprise-callout p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
   max-width: 720px;
@@ -855,7 +855,7 @@
 
 .insight-number {
   font-family: var(--font-mono);
-  font-size: 56px;
+  font-size: clamp(40px, 4.4vw, 56px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -873,7 +873,7 @@
 }
 
 .insight-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.8;
   margin-bottom: 24px;
@@ -924,7 +924,7 @@
 
 .decision-num {
   font-family: var(--font-mono);
-  font-size: 72px;
+  font-size: clamp(48px, 5vw, 72px);
   font-weight: 700;
   color: var(--accent);
   line-height: 0.9;
@@ -1062,7 +1062,7 @@
   margin-bottom: 8px;
 }
 
-.screen-problem { font-size: 14px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+.screen-problem { font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
 
 /* ── ARTIFACT CARDS (PFS ONE) ── */
 .artifact-grid {
@@ -1430,7 +1430,7 @@
   line-height: 1.3;
 }
 
-.ai-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.ai-card p { font-size: 16px; color: var(--muted); line-height: 1.8; }
 
 .ai-big-picture {
   margin-top: 64px;
@@ -1468,7 +1468,7 @@
 .outcome-column-header { padding-bottom: 16px; border-bottom: 1px solid var(--border); }
 
 .outcome-column-header h3 {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--accent);
   text-transform: uppercase;
@@ -1509,7 +1509,7 @@
 
 .reflection-num {
   font-family: var(--font-mono);
-  font-size: 52px;
+  font-size: clamp(36px, 4.4vw, 52px);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -1524,13 +1524,13 @@
   line-height: 1.3;
 }
 
-.reflection-content p { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 680px; }
+.reflection-content p { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 680px; }
 
 /* ── NEXT CASE STUDY CTA ── */
 .next-case { padding: 120px 0; background: var(--surface); text-align: center; }
 
 .next-case p {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: var(--muted);
   text-transform: uppercase;

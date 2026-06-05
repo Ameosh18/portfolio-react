@@ -35,7 +35,7 @@ function BeyondSection({ sectionRef }) {
         <h2
           id="beyond-heading"
           className="section-title"
-          style={{ marginTop: 14, fontSize: "clamp(28px, 3.6vw, 48px)" }}
+          style={{ marginTop: 14, fontSize: "clamp(30px, 4.4vw, 54px)" }}
         >
           Other things I do.
         </h2>
@@ -98,7 +98,7 @@ export default function WorkPage() {
           <div style={{ height: 72, flexShrink: 0 }} />
           <div style={{ padding: "12px 24px 20px", flexShrink: 0, pointerEvents: "none", userSelect: "none" }}>
             <span className="eyebrow">Work</span>
-            <h1 className="section-title" style={{ fontSize: "clamp(30px, 8vw, 40px)", fontWeight: 800, lineHeight: 1.0, marginTop: 8 }}>
+            <h1 className="section-title" style={{ fontSize: "clamp(28px, 8vw, 46px)", fontWeight: 800, lineHeight: 1.0, marginTop: 8 }}>
               Case Studies.
             </h1>
             <p style={{ marginTop: 8, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>
@@ -139,7 +139,7 @@ export default function WorkPage() {
       <div className="wk-gallery-section">
         <div className="wk-title-overlay container">
           <span className="eyebrow">Work</span>
-          <h1 className="section-title" style={{ fontSize: "clamp(40px, 5vw, 68px)", fontWeight: 800, lineHeight: 1.0, marginTop: 12 }}>
+          <h1 className="section-title" style={{ fontSize: "clamp(32px, 4.4vw, 56px)", fontWeight: 800, lineHeight: 1.0, marginTop: 12 }}>
             Case Studies.
           </h1>
           <p style={{ marginTop: 20, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--text-muted)", fontFamily: "var(--font-body)" }}>

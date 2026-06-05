@@ -187,7 +187,7 @@ function CardFace({ card, isDark, isHovered, w = CARD_W, h = CARD_H, imgH = IMG_
         padding: small ? "14px 14px 14px" : "20px 20px 18px",
         display: "flex", flexDirection: "column", boxSizing: "border-box",
       }}>
-        <div style={{ fontSize: small ? 9 : 10, letterSpacing: "0.12em", textTransform: "uppercase", color: panel.cat, fontFamily: '"DM Sans", sans-serif', marginBottom: 6 }}>
+        <div style={{ fontSize: small ? 10 : 11, letterSpacing: "0.12em", textTransform: "uppercase", color: panel.cat, fontFamily: '"DM Sans", sans-serif', marginBottom: 6 }}>
           {card.category}
         </div>
         <div style={{ fontSize: small ? 15 : 20, fontWeight: 700, color: panel.title, lineHeight: 1.2, fontFamily: '"DM Sans", sans-serif', letterSpacing: "-0.01em", marginBottom: 6 }}>
