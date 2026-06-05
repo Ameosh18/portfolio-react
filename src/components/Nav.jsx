@@ -104,9 +104,9 @@ export default function Nav() {
 
           <ul className="nav-links">
             <li><Link to="/" className={isHome ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>Home</Link></li>
-            <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>Work</Link></li>
-            <li><Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>My Process</Link></li>
-            <li><Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>About Me</Link></li>
+            <li><Link to="/work" className={isWork ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>Work</Link></li>
+            <li><Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>My Process</Link></li>
+            <li><Link to="/about" className={isAbout ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>About Me</Link></li>
             <li><button onClick={handleDownload} className="cta">Download Resume ↓</button></li>
           </ul>
 
@@ -139,19 +139,19 @@ export default function Nav() {
             </Link>
           </li>
           <li>
-            <Link to="/work" className={isWork ? 'active' : undefined} onClick={close}>
+            <Link to="/work" className={isWork ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>
               <span className="menu-item-label"><span className="menu-num">01</span>Work</span>
               <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li>
-            <Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={close}>
+            <Link to="/my-process" className={isProcess ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>
               <span className="menu-item-label"><span className="menu-num">02</span>My Process</span>
               <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
           </li>
           <li>
-            <Link to="/about" className={isAbout ? 'active' : undefined} onClick={close}>
+            <Link to="/about" className={isAbout ? 'active' : undefined} onClick={() => { close(); scrollToTop(); }}>
               <span className="menu-item-label"><span className="menu-num">03</span>About Me</span>
               <span className="menu-arrow" aria-hidden="true">↗︎</span>
             </Link>
