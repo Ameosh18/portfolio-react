@@ -234,8 +234,6 @@
 /* ── HERO: shared base ── */
 .cs-page .hero {
   width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
