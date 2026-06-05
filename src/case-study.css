@@ -115,13 +115,11 @@
 .cs-breadcrumb {
   width: 100%;
   max-width: var(--maxw);
-  margin: 72px auto 0;
+  margin: 84px auto 0;
   padding-top: 0;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,7 +240,7 @@
 /* ── DIGISENSE hero: 2-column grid ── */
 .cs-digisense .hero {
   display: grid;
-  grid-template-columns: 75fr 25fr;
+  grid-template-columns: 62fr 38fr;
   align-items: start;
   /* Both sides mirror .container centering: content stays within --maxw */
   padding-left: max(0px, calc((100vw - var(--maxw)) / 2));
@@ -270,7 +268,7 @@
 }
 
 .cs-digisense .hero-content {
-  padding: 100px var(--gutter) 48px;
+  padding: 80px var(--gutter) 48px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -289,9 +287,10 @@
 .cs-digisense .hero-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   opacity: 0.9;
+  padding: 16px;
 }
 
 /* Hero-image corner crosshairs read on the photo: lime, inset, on top */
@@ -440,6 +439,17 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text);
+}
+
+/* ── CASE STUDY HERO: scroll-hint pinned to bottom-center of first fold ── */
+.cs-digisense .hero > .scroll-hint,
+.cs-pfsone .hero > .scroll-hint {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin-top: 0;
 }
 
 /* ── BUSINESS CONTEXT ── */
@@ -1556,7 +1566,9 @@
 @media (max-width: 1024px) {
   .cs-digisense .hero { grid-template-columns: 1fr; align-items: start; padding-top: 0; }
   .cs-digisense .hero-image { display: none; }
-  .cs-digisense .hero-content { padding: 48px var(--gutter) 48px; }
+  .cs-digisense .hero-content { padding: 48px var(--gutter) 80px; }
+  .cs-digisense .hero > .scroll-hint,
+  .cs-pfsone .hero > .scroll-hint { position: static; transform: none; left: auto; bottom: auto; margin-top: 32px; }
   .cs-pfsone .hero { padding: 48px var(--gutter); }
   .two-col { grid-template-columns: 1fr; gap: 40px; }
   .stakeholder-grid { grid-template-columns: 1fr 1fr; }

@@ -198,15 +198,15 @@ export default function PfsOnePage() {
               <span className="hero-meta-value">Ogee Studio</span>
             </div>
           </div>
-          <div className="scroll-hint" aria-hidden="true">
-            <span className="scroll-hint-label">Scroll to explore</span>
-            <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
-              <rect x="6.5" y="0" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
-              <rect x="6.5" y="5" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.6"/>
-              <rect x="6.5" y="10" width="3" height="3" rx="1.5" fill="currentColor"/>
-              <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+        </div>
+        <div className="scroll-hint" aria-hidden="true">
+          <span className="scroll-hint-label">Scroll to explore</span>
+          <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
+            <rect x="6.5" y="0" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+            <rect x="6.5" y="5" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.6"/>
+            <rect x="6.5" y="10" width="3" height="3" rx="1.5" fill="currentColor"/>
+            <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </section>
 
