@@ -275,7 +275,7 @@
 }
 
 .cs-digisense .hero-image {
-  height: 100vh;
+  height: 64vh;
   background: var(--surface);
   position: relative;
   display: flex;
