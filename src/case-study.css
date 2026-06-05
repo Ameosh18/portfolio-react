@@ -1,11 +1,5 @@
 /* ─── CASE STUDY STYLES ───────────────────────────────────────────────────── */
 
-/* Blueprint grid background */
-.cs-page {
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-attachment: fixed;
-}
 
 /* Override the animation-based .reveal from style.css for case study pages */
 .cs-page .reveal {
