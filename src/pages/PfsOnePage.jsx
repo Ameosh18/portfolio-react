@@ -170,11 +170,7 @@ export default function PfsOnePage() {
 
       {/* HERO */}
       <section id="cs-overview" className="hero">
-        <div className="hero-content bp-frame">
-          <span className="tick tl" aria-hidden="true" />
-          <span className="tick tr" aria-hidden="true" />
-          <span className="tick bl" aria-hidden="true" />
-          <span className="tick br" aria-hidden="true" />
+        <div className="hero-content">
           <h1 className="hero-headline reveal">
             {isSimple ? 'Redesigning visibility fabric for zero-margin-for-error infrastructure.' : 'Network administrators don\'t get second chances.'}
           </h1>
