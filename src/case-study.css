@@ -1,5 +1,10 @@
 /* ─── CASE STUDY STYLES ───────────────────────────────────────────────────── */
 
+/* Full-page dot grid so the background is uniform behind breadcrumb and hero */
+.cs-page {
+  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
+  background-size: 48px 48px;
+}
 
 /* Override the animation-based .reveal from style.css for case study pages */
 .cs-page .reveal {
@@ -241,14 +246,6 @@
   padding-right: max(0px, calc((100vw - var(--maxw)) / 2));
 }
 
-.cs-digisense .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
 
 .cs-digisense .hero::after {
   content: '';
@@ -322,14 +319,6 @@
   padding-inline: max(var(--gutter), calc((100vw - var(--maxw)) / 2));
 }
 
-.cs-pfsone .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--dot-color) 1.5px, transparent 1.5px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
 
 .cs-pfsone .hero::after {
   content: '';
