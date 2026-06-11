@@ -44,37 +44,6 @@
   --ease:         cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-[data-theme="light"] {
-  /* ── Surfaces ── */
-  --bg:              #F7F4F0;
-  --surface:         #EDEAE5;
-  --surface-raised:  #E4E0DA;
-  --border:          #D4CFC8;
-  --border-subtle:   #E0DCD6;
-
-  /* ── Text ── */
-  --text:            #1A1A1A;
-  --text-secondary:  #2E2E2E;
-  --muted:           #5A5A5A;
-  --muted-strong:    #777777;
-
-  /* ── Accent ── */
-  --accent:          #7A5E34;
-  --accent-rgb:      122, 94, 52;
-  --accent-strong:   #9A7A4A;
-
-  /* ── Navigation ── */
-  --nav-bg:          rgba(247, 244, 240, 0.92);
-  --overlay-bg:      rgba(247, 244, 240, 0.97);
-
-  /* ── Functional ── */
-  --card-bg:         rgba(237, 234, 229, 0.80);
-  --dot-color:       #CECCCA;
-  --image-bg:        #EAE7E2;
-  --scrollbar-thumb: rgba(122, 94, 52, 0.25);
-  --scrollbar-hover: rgba(122, 94, 52, 0.45);
-}
-
 /* ── Grid System Tokens — Unified Fluid Layout ── */
 :root {
   --maxw:        1240px;                      /* unified max-width for all content */
@@ -189,9 +158,6 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-/* hide the icon not matching current theme */
-[data-theme="light"] .theme-toggle .icon-moon { display: none; }
-[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 .theme-toggle .icon-moon { display: block; }
 .theme-toggle .icon-sun { display: none; }
 
@@ -1616,9 +1582,6 @@ body.menu-open #site-nav {
 .workflow-step.is-inactive .step-title {
   color: rgba(255, 255, 255, 0.18);
 }
-[data-theme="light"] .workflow-step.is-inactive .step-title {
-  color: rgba(26, 26, 26, 0.25);
-}
 
 .workflow-step.is-inactive .step-desc {
   color: rgba(170, 170, 170, 0.18);
@@ -2797,13 +2760,6 @@ body * { cursor: none !important; }
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(var(--accent-rgb), 0.10);
 }
 
-/* Light theme: use white (not cream) for cleaner glass effect */
-[data-theme="light"] .name-popup-card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(var(--accent-rgb), 0.10);
-}
-
 /* Close (X) button — top-right corner */
 .name-popup-close {
   position: absolute;
@@ -2827,9 +2783,7 @@ body * { cursor: none !important; }
   color: var(--text-muted);
 }
 
-[data-theme="light"] .name-popup-close:hover {
-  background: rgba(0, 0, 0, 0.06);
-}
+
 
 .name-popup-close:focus-visible {
   outline: 2px solid var(--accent);
