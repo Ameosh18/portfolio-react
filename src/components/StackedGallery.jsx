@@ -10,22 +10,6 @@ import {
 } from "motion/react"
 import DigiSenseHero from "../../digisense_hero_image.png"
 
-// ── Theme hook ─────────────────────────────────────────────────────────────
-function useIsDark() {
-  const [isDark, setIsDark] = useState(
-    () => typeof document !== "undefined"
-      ? document.documentElement.getAttribute("data-theme") !== "light"
-      : true
-  )
-  useEffect(() => {
-    const obs = new MutationObserver(() =>
-      setIsDark(document.documentElement.getAttribute("data-theme") !== "light")
-    )
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] })
-    return () => obs.disconnect()
-  }, [])
-  return isDark
-}
 
 // ── Reactive breakpoint (handles orientation change) ───────────────────────
 function useBreakpoint() {
@@ -569,14 +553,13 @@ function ThreeDCarousel({ isDark, isTablet }) {
 
 // ── Main export ────────────────────────────────────────────────────────────
 export default function StackedGallery() {
-  const isDark = useIsDark()
-  const bp     = useBreakpoint()
+  const bp = useBreakpoint()
 
   return (
     <div style={{ width: "100%", height: "100%", background: "var(--bg)" }}>
       {bp === "mobile"
-        ? <MobileCarousel isDark={isDark} />
-        : <ThreeDCarousel  isDark={isDark} isTablet={bp === "tablet"} />
+        ? <MobileCarousel isDark={true} />
+        : <ThreeDCarousel isDark={true} isTablet={bp === "tablet"} />
       }
     </div>
   )
