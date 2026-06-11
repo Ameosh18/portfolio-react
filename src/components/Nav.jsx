@@ -4,7 +4,6 @@ import confetti from '@hiseb/confetti'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
-const CONFETTI_SOUND_URL = `${import.meta.env.BASE_URL}confetti.mp3`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
 // position is pixel-based, from the center of the clicked button
@@ -21,14 +20,6 @@ function fireConfetti(rect) {
   })
 }
 
-function playConfettiSound() {
-  try {
-    const audio = new Audio(CONFETTI_SOUND_URL)
-    audio.volume = 0.6
-    audio.play().catch(() => {})
-  } catch {}
-}
-
 function triggerDownload() {
   const a = document.createElement('a')
   a.href = RESUME_URL
@@ -39,9 +30,8 @@ function triggerDownload() {
 }
 
 // Fetch starts immediately (within user gesture) to satisfy iOS/Android download
-// requirements. Promise.all enforces a minimum 1200ms delay so the confetti
-// sound plays before the download dialog appears. Falls back to direct link
-// if fetch fails (e.g. offline, CSP).
+// requirements. Promise.all enforces a minimum 1200ms delay so confetti plays
+// before the download dialog appears. Falls back to direct link if fetch fails.
 function triggerMobileDownload() {
   const blobReady = fetch(RESUME_URL).then(r => r.blob())
   const minDelay  = new Promise(r => setTimeout(r, 1200))
@@ -66,18 +56,16 @@ export default function Nav() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Desktop: fire confetti + sound + download after 1200ms (mid-fall)
+  // Desktop: fire confetti + download after 1200ms (mid-fall)
   const handleDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
-    playConfettiSound()
     setTimeout(triggerDownload, 1200)
   }, [])
 
   // Mobile: trigger download immediately (preserves user gesture for iOS/Android),
-  // confetti + sound play in parallel, menu closes after particles clear
+  // confetti plays in parallel, menu closes after particles clear
   const handleMobileDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
-    playConfettiSound()
     triggerMobileDownload()
     setTimeout(() => setIsMenuOpen(false), 2400)
   }, [])
