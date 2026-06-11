@@ -115,7 +115,8 @@ export default function Homepage() {
     const isTouchOrSmall =
       window.matchMedia('(pointer: coarse)').matches ||
       window.matchMedia('(max-width: 1024px)').matches;
-    if (!name && !isTouchOrSmall) {
+    const hasSkipped = sessionStorage.getItem('visitor-skipped') === 'true'
+    if (!name && !hasSkipped && !isTouchOrSmall) {
       setTimeout(() => setShowPopup(true), 400);
     } else {
       setContentReady(true);

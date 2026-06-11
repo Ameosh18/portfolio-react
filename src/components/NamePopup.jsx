@@ -29,6 +29,7 @@ export default function NamePopup({ show, onClose }) {
   }
 
   const handleSkip = () => {
+    sessionStorage.setItem('visitor-skipped', 'true')
     onClose()
   }
 
