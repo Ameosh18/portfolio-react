@@ -4,6 +4,7 @@ import confetti from '@hiseb/confetti'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
+const CONFETTI_SOUND_URL = `${import.meta.env.BASE_URL}confetti.mp3`
 const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
 
 // position is pixel-based, from the center of the clicked button
@@ -18,6 +19,14 @@ function fireConfetti(rect) {
     velocity: 260,  // slightly above default (200) for faster fall
     fade: false,
   })
+}
+
+function playConfettiSound() {
+  try {
+    const audio = new Audio(CONFETTI_SOUND_URL)
+    audio.volume = 0.6
+    audio.play().catch(() => {})
+  } catch {}
 }
 
 function triggerDownload() {
@@ -35,15 +44,17 @@ export default function Nav() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Desktop: fire confetti + download after 1200ms (mid-fall)
+  // Desktop: fire confetti + sound + download after 1200ms (mid-fall)
   const handleDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
+    playConfettiSound()
     setTimeout(triggerDownload, 1200)
   }, [])
 
   // Mobile: keep menu open while confetti plays, then close + download
   const handleMobileDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
+    playConfettiSound()
     setTimeout(triggerDownload, 1200)   // download mid-fall
     setTimeout(() => setIsMenuOpen(false), 2400)  // close after particles clear
   }, [])
