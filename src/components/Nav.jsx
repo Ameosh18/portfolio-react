@@ -38,6 +38,26 @@ function triggerDownload() {
   document.body.removeChild(a)
 }
 
+// On mobile, the download attribute is ignored for PDFs by iOS/Android browsers
+// unless we fetch the file as a blob and hand it back within the same user gesture.
+// fetch is async so we chain it; the initial click satisfies the gesture requirement
+// on modern iOS 13+ / Android Chrome.
+function triggerMobileDownload() {
+  fetch(RESUME_URL)
+    .then(r => r.blob())
+    .then(blob => {
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'Ameya_Kulkarni_Resume.pdf'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      setTimeout(() => URL.revokeObjectURL(url), 10000)
+    })
+    .catch(() => triggerDownload()) // fallback to direct link
+}
+
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [shouldScroll, setShouldScroll] = useState(false)
@@ -51,12 +71,13 @@ export default function Nav() {
     setTimeout(triggerDownload, 1200)
   }, [])
 
-  // Mobile: keep menu open while confetti plays, then close + download
+  // Mobile: trigger download immediately (preserves user gesture for iOS/Android),
+  // confetti + sound play in parallel, menu closes after particles clear
   const handleMobileDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
     playConfettiSound()
-    setTimeout(triggerDownload, 1200)   // download mid-fall
-    setTimeout(() => setIsMenuOpen(false), 2400)  // close after particles clear
+    triggerMobileDownload()
+    setTimeout(() => setIsMenuOpen(false), 2400)
   }, [])
 
   const isHome = location.pathname === '/'
