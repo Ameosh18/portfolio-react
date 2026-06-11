@@ -38,24 +38,26 @@ function triggerDownload() {
   document.body.removeChild(a)
 }
 
-// On mobile, the download attribute is ignored for PDFs by iOS/Android browsers
-// unless we fetch the file as a blob and hand it back within the same user gesture.
-// fetch is async so we chain it; the initial click satisfies the gesture requirement
-// on modern iOS 13+ / Android Chrome.
+// Fetch starts immediately (within user gesture) to satisfy iOS/Android download
+// requirements. Promise.all enforces a minimum 1200ms delay so the confetti
+// sound plays before the download dialog appears. Falls back to direct link
+// if fetch fails (e.g. offline, CSP).
 function triggerMobileDownload() {
-  fetch(RESUME_URL)
-    .then(r => r.blob())
-    .then(blob => {
+  const blobReady = fetch(RESUME_URL).then(r => r.blob())
+  const minDelay  = new Promise(r => setTimeout(r, 1200))
+
+  Promise.all([blobReady, minDelay])
+    .then(([blob]) => {
       const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
+      const a   = document.createElement('a')
+      a.href     = url
       a.download = 'Ameya_Kulkarni_Resume.pdf'
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
       setTimeout(() => URL.revokeObjectURL(url), 10000)
     })
-    .catch(() => triggerDownload()) // fallback to direct link
+    .catch(() => setTimeout(triggerDownload, 1200))
 }
 
 export default function Nav() {
