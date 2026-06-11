@@ -29,6 +29,27 @@ function triggerDownload() {
   document.body.removeChild(a)
 }
 
+// Fetch starts immediately (within user gesture) to satisfy iOS/Android download
+// requirements. Promise.all enforces a minimum 1200ms delay so confetti plays
+// before the download dialog appears. Falls back to direct link if fetch fails.
+function triggerMobileDownload() {
+  const blobReady = fetch(RESUME_URL).then(r => r.blob())
+  const minDelay  = new Promise(r => setTimeout(r, 1200))
+
+  Promise.all([blobReady, minDelay])
+    .then(([blob]) => {
+      const url = URL.createObjectURL(blob)
+      const a   = document.createElement('a')
+      a.href     = url
+      a.download = 'Ameya_Kulkarni_Resume.pdf'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      setTimeout(() => URL.revokeObjectURL(url), 10000)
+    })
+    .catch(() => setTimeout(triggerDownload, 1200))
+}
+
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [shouldScroll, setShouldScroll] = useState(false)
@@ -41,11 +62,12 @@ export default function Nav() {
     setTimeout(triggerDownload, 1200)
   }, [])
 
-  // Mobile: keep menu open while confetti plays, then close + download
+  // Mobile: trigger download immediately (preserves user gesture for iOS/Android),
+  // confetti plays in parallel, menu closes after particles clear
   const handleMobileDownload = useCallback((e) => {
     fireConfetti(e.currentTarget.getBoundingClientRect())
-    setTimeout(triggerDownload, 1200)   // download mid-fall
-    setTimeout(() => setIsMenuOpen(false), 2400)  // close after particles clear
+    triggerMobileDownload()
+    setTimeout(() => setIsMenuOpen(false), 2400)
   }, [])
 
   const isHome = location.pathname === '/'
