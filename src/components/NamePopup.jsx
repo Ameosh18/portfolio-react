@@ -37,7 +37,7 @@ export default function NamePopup({ show, onClose }) {
     if (e.key === 'Enter' && document.activeElement === inputRef.current) { handleSubmit(); return }
     if (e.key !== 'Tab') return
 
-    const focusable = [closeRef.current, inputRef.current, submitBtnRef.current, skipRef.current].filter(Boolean)
+    const focusable = [closeRef.current, inputRef.current, skipRef.current, submitBtnRef.current].filter(Boolean)
     const first = focusable[0]
     const last = focusable[focusable.length - 1]
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
@@ -132,9 +132,8 @@ export default function NamePopup({ show, onClose }) {
               </div>
               <button
                 ref={submitBtnRef}
-                className="name-popup-btn"
+                className={`name-popup-btn${!canSubmit ? ' name-popup-btn--disabled' : ''}`}
                 onClick={handleSubmit}
-                disabled={!canSubmit}
                 aria-disabled={!canSubmit}
               >
                 Step Inside →
