@@ -133,10 +133,10 @@ jobs:
     - name: Check theme system
       run: |
         echo "Checking theme system..."
-        if grep -q "data-theme" style.css; then
-          echo "✓ Theme system implemented"
+        if grep -q "\-\-accent" style.css && grep -q "\-\-bg" style.css; then
+          echo "✓ Theme CSS variables present (dark-only theme)"
         else
-          echo "❌ Theme system not properly configured"
+          echo "❌ Core theme CSS variables missing"
           exit 1
         fi
 
