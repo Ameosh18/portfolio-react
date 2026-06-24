@@ -80,65 +80,99 @@ export default function NamePopup({ show, onClose }) {
               </svg>
             </button>
 
-            <p className="name-popup-eyebrow" aria-hidden="true">One quick thing</p>
-            <h2 className="name-popup-headline" id="popup-title">Glad you're here.</h2>
-            <p className="name-popup-body">
-              Whether you're here to hire, collaborate, or just explore, I'd love to know who I'm designing for. Just your first name. That's it.
-            </p>
-
-            <div className="name-popup-field">
-              <div className="name-popup-label-row">
-                <label htmlFor="popup-name-input" className="name-popup-label">
-                  Your name
-                </label>
-                <AnimatePresence>
-                  {showCharCount && (
-                    <motion.span
-                      className="name-popup-charcount"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      aria-live="polite"
-                      aria-atomic="true"
-                    >
-                      {value.length} / 40
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+            {/* AI Story Panel */}
+            <div className="name-popup-ai-panel" aria-hidden="true">
+              <p className="name-popup-ai-eyebrow">Built with AI · 2026</p>
+              <h3 className="name-popup-ai-headline">Design meets AI.</h3>
+              <p className="name-popup-ai-body">
+                This portfolio was built using Claude Code and the Figma MCP, the same AI tools reshaping how designers work. Not just aware of them, I use them.
+              </p>
+              <div className="name-popup-tool-badges">
+                <span className="tool-badge">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="3" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.9"/>
+                    <rect x="13" y="3" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="3" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="13" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.7"/>
+                  </svg>
+                  Claude Code
+                </span>
+                <span className="tool-badge">
+                  <svg width="12" height="14" viewBox="0 0 38 57" fill="none" aria-hidden="true">
+                    <path d="M19 0C8.507 0 0 8.507 0 19c0 6.192 2.986 11.7 7.6 15.2L19 57l11.4-22.8C35.014 30.7 38 25.192 38 19 38 8.507 29.493 0 19 0z" fill="currentColor" opacity="0.9"/>
+                  </svg>
+                  Figma MCP
+                </span>
               </div>
-              <input
-                id="popup-name-input"
-                ref={inputRef}
-                className="name-popup-input"
-                type="text"
-                placeholder="What should I call you?"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                maxLength={40}
-                autoComplete="given-name"
-              />
+              <div className="name-popup-terminal">
+                <span className="terminal-line"><span className="terminal-prompt">$</span> claude-code --build</span>
+                <span className="terminal-line"><span className="terminal-prompt">$</span> figma-mcp --sync</span>
+                <span className="terminal-line terminal-success"><span className="terminal-check">✓</span> shipped to github pages</span>
+              </div>
             </div>
 
-            <div className="name-popup-footer">
-              <div className="name-popup-footer-left">
-                <button
-                  ref={skipRef}
-                  className="name-popup-skip"
-                  onClick={handleSkip}
-                >
-                  Skip for now
-                </button>
-                <span className="name-popup-disclaimer">Stored for this session only</span>
+            {/* Form Panel */}
+            <div className="name-popup-form-panel">
+              <p className="name-popup-eyebrow">One quick thing</p>
+              <h2 className="name-popup-headline" id="popup-title">Glad you're here.</h2>
+              <p className="name-popup-body">
+                Whether you're here to hire, collaborate, or just explore, I'd love to know who I'm designing for. Just your first name. That's it.
+              </p>
+
+              <div className="name-popup-field">
+                <div className="name-popup-label-row">
+                  <label htmlFor="popup-name-input" className="name-popup-label">
+                    Your name
+                  </label>
+                  <AnimatePresence>
+                    {showCharCount && (
+                      <motion.span
+                        className="name-popup-charcount"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                        aria-live="polite"
+                        aria-atomic="true"
+                      >
+                        {value.length} / 40
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <input
+                  id="popup-name-input"
+                  ref={inputRef}
+                  className="name-popup-input"
+                  type="text"
+                  placeholder="What should I call you?"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  maxLength={40}
+                  autoComplete="given-name"
+                />
               </div>
-              <button
-                ref={submitBtnRef}
-                className={`name-popup-btn${!canSubmit ? ' name-popup-btn--disabled' : ''}`}
-                onClick={handleSubmit}
-                aria-disabled={!canSubmit}
-              >
-                Step Inside →
-              </button>
+
+              <div className="name-popup-footer">
+                <div className="name-popup-footer-left">
+                  <button
+                    ref={skipRef}
+                    className="name-popup-skip"
+                    onClick={handleSkip}
+                  >
+                    Skip for now
+                  </button>
+                  <span className="name-popup-disclaimer">Stored for this session only</span>
+                </div>
+                <button
+                  ref={submitBtnRef}
+                  className={`name-popup-btn${!canSubmit ? ' name-popup-btn--disabled' : ''}`}
+                  onClick={handleSubmit}
+                  aria-disabled={!canSubmit}
+                >
+                  Step Inside →
+                </button>
+              </div>
             </div>
           </motion.div>
         </motion.div>
