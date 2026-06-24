@@ -467,6 +467,15 @@ export default function DigiSensePage() {
               </div>
             )}
           </div>
+
+          <div className="section-figma-embed reveal">
+            <iframe
+              title="Farmers affinity map · DigiSense"
+              src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-108&embed-host=share&hide-ui=1"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
