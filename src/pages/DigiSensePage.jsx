@@ -624,8 +624,13 @@ export default function DigiSensePage() {
             <p className="screen-problem reveal">Farmers used live tracking as their primary trust signal ,  not for navigation, but to confirm their driver was where they were supposed to be. The existing screen showed a static map that required manual refresh.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 03 · Location Services</span>
-              <div className="screen-placeholder">
-                <span>Location Services</span>
+              <div className="screen-figma-embed">
+                <iframe
+                  title="Location Services — DigiSense"
+                  src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-104&embed-host=share&hide-ui=1"
+                  allowFullScreen
+                  loading="lazy"
+                />
               </div>
             </div>
             <div className="screen-annotations reveal">
