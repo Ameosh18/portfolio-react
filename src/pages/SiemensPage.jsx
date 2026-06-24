@@ -464,8 +464,13 @@ export default function SiemensPage() {
             <p className="screen-problem reveal">The most common buyer use case produced three different journey paths depending on whether the user arrived via Google, Siemens internal search, or the home page nav. All three paths had different failure modes. None of them reliably reached the same endpoint.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Work 03 · Three-path journey · Decision Makers + End Users + Buyers</span>
-              <div className="screen-placeholder">
-                <span>Find and Evaluate Journey Map</span>
+              <div className="screen-figma-embed">
+                <iframe
+                  title="Find and Evaluate Journey Map — Siemens Xcelerator"
+                  src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=144-717&embed-host=share&hide-ui=1"
+                  allowFullScreen
+                  loading="lazy"
+                />
               </div>
             </div>
             <div className="screen-annotations reveal">
