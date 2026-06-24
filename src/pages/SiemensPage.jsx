@@ -126,7 +126,7 @@ export default function SiemensPage() {
         </div>
       </section>
 
-      {/* 4. THE ECOSYSTEM — hidden in simple mode */}
+      {/* 4. THE ECOSYSTEM - hidden in simple mode */}
       {!isSimple && (
         <section id="cs-ecosystem" className="complexity-map">
           <div className="container">
@@ -197,7 +197,7 @@ export default function SiemensPage() {
         </section>
       )}
 
-      {/* 5. RESEARCH APPROACH — hidden in simple mode */}
+      {/* 5. RESEARCH APPROACH - hidden in simple mode */}
       {!isSimple && (
         <section id="cs-research" className="research">
           <div className="container">
@@ -316,7 +316,7 @@ export default function SiemensPage() {
         </div>
       </section>
 
-      {/* 7. STRATEGIC DECISIONS — hidden in simple mode */}
+      {/* 7. STRATEGIC DECISIONS - hidden in simple mode */}
       {!isSimple && (
         <section id="cs-decisions" className="decisions">
           <div className="container">
@@ -409,7 +409,7 @@ export default function SiemensPage() {
               <span className="screen-label">Work 01 · Journey Maps · Figma · 14 use cases</span>
               <div className="screen-figma-embed">
                 <iframe
-                  title="Journey Map Framework — Siemens Xcelerator"
+                  title="Journey Map Framework · Siemens Xcelerator"
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=267-692&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
@@ -466,7 +466,7 @@ export default function SiemensPage() {
               <span className="screen-label">Work 03 · Three-path journey · Decision Makers + End Users + Buyers</span>
               <div className="screen-figma-embed">
                 <iframe
-                  title="Find and Evaluate Journey Map — Siemens Xcelerator"
+                  title="Find and Evaluate Journey Map · Siemens Xcelerator"
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com?node-id=144-717&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
@@ -491,7 +491,7 @@ export default function SiemensPage() {
         </div>
       </section>
 
-      {/* 9. AI OPPORTUNITY LAYER — hidden in simple mode */}
+      {/* 9. AI OPPORTUNITY LAYER - hidden in simple mode */}
       {!isSimple && (
         <section id="cs-ai" className="ai-layer">
           <div className="container">

@@ -571,7 +571,7 @@ export default function DigiSensePage() {
               <span className="screen-label">Screen 01 · Mobile Dashboard</span>
               <div className="screen-figma-embed">
                 <iframe
-                  title="Mobile Dashboard — DigiSense"
+                  title="Mobile Dashboard · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-102&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
@@ -598,7 +598,7 @@ export default function DigiSensePage() {
               <span className="screen-label">Screen 02 · Geofencing Creation</span>
               <div className="screen-figma-embed">
                 <iframe
-                  title="Geofencing Flow — DigiSense"
+                  title="Geofencing Flow · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-103&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
@@ -625,7 +625,7 @@ export default function DigiSensePage() {
               <span className="screen-label">Screen 03 · Location Services</span>
               <div className="screen-figma-embed">
                 <iframe
-                  title="Location Services — DigiSense"
+                  title="Location Services · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-104&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
