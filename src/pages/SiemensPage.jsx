@@ -410,12 +410,9 @@ export default function SiemensPage() {
               <div className="screen-figma-embed">
                 <iframe
                   title="Journey Map Framework — Siemens Xcelerator"
-                  width="100%"
-                  height="520"
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=267-692&embed-host=share"
                   allowFullScreen
                   loading="lazy"
-                  style={{ border: 'none', display: 'block', borderRadius: '8px' }}
                 />
               </div>
             </div>
