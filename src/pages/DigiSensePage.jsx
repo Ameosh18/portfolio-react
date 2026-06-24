@@ -596,8 +596,14 @@ export default function DigiSensePage() {
             <p className="screen-problem reveal">The original geofencing flow required 37 clicks and 350 seconds. It was web-only ,  meaning farmers who didn't own laptops couldn't access it at all.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 02 · Geofencing Creation</span>
-              <div className="screen-placeholder">
-                <span>Geofencing Flow</span>
+              <div className="screen-figma-embed">
+                <iframe
+                  title="Geofencing Flow — DigiSense"
+                  src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-103&embed-host=share&hide-ui=1"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
               </div>
             </div>
             <div className="screen-annotations reveal">
