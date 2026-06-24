@@ -569,8 +569,13 @@ export default function DigiSensePage() {
             <p className="screen-problem reveal">The existing app had no clear hierarchy. Farmers opened it and faced 16 features with equal visual weight ,  no sense of what mattered most or what to do first.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Screen 01 · Mobile Dashboard</span>
-              <div className="screen-placeholder">
-                <span>Dashboard Screen</span>
+              <div className="screen-figma-embed">
+                <iframe
+                  title="Mobile Dashboard — DigiSense"
+                  src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-102&embed-host=share&hide-ui=1"
+                  allowFullScreen
+                  loading="lazy"
+                />
               </div>
             </div>
             <div className="screen-annotations reveal">

@@ -2208,17 +2208,20 @@ html.is-simple .cs-page .design-work .iteration-details {
   display: block;
   opacity: 0.9;
 }
+.cs-digisense .screen-container:has(.screen-figma-embed),
 .cs-siemens .screen-container:has(.screen-figma-embed) {
   padding: 0;
   min-height: unset;
   align-items: stretch;
 }
 
+.cs-digisense .screen-figma-embed,
 .cs-siemens .screen-figma-embed {
   width: 100%;
   line-height: 0;
 }
 
+.cs-digisense .screen-figma-embed iframe,
 .cs-siemens .screen-figma-embed iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -2227,8 +2230,9 @@ html.is-simple .cs-page .design-work .iteration-details {
   border: none;
 }
 
-@media (max-width: 768px) {
-  .cs-siemens .screen-figma-embed iframe { aspect-ratio: 16 / 9; }
+@media (max-width: 480px) {
+  .cs-digisense .screen-figma-embed iframe,
+  .cs-siemens .screen-figma-embed iframe { aspect-ratio: 4 / 3; }
 }
 @media (max-width: 480px) {
   .cs-siemens .screen-figma-embed iframe { aspect-ratio: 4 / 3; }
