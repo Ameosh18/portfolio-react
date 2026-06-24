@@ -277,7 +277,16 @@ export default function DigiSensePage() {
             </div>
           </div>
 
-          <div className="two-col reveal" style={{ marginBottom: '48px' }}>
+          <div className="section-figma-embed reveal">
+            <iframe
+              title="Research locations across 5 states · DigiSense"
+              src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-106&embed-host=share&hide-ui=1"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+
+          <div className="two-col reveal" style={{ marginBottom: '48px', marginTop: '56px' }}>
             <div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 400, color: 'var(--text)', marginBottom: '16px' }}>WHAT-HOW-WHY Method</h3>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '24px' }}>Every interview followed a structured observation framework that moves from surface behaviour to emotional drivers.</p>
