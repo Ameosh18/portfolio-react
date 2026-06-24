@@ -1885,6 +1885,14 @@ html.is-simple .cs-page .design-work .iteration-details {
   display: none;
 }
 
+/* Simple mode hides ecosystem/research/decisions/ai, which would otherwise
+   leave insights -> design-work -> outcomes as three consecutive surface
+   sections. Re-alternate backgrounds so every section boundary keeps a
+   visual break instead of reading as one large empty gap. */
+html.is-simple .cs-page .design-work {
+  background: var(--bg);
+}
+
 /* Responsive: toggle at 480px and below */
 @media (max-width: 480px) {
   .cs-breadcrumb {
