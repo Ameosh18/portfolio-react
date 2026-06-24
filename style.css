@@ -84,7 +84,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  overscroll-behavior-y: contain;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
