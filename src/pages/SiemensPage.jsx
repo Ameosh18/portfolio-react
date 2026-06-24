@@ -407,8 +407,16 @@ export default function SiemensPage() {
             <p className="screen-problem reveal">Existing UX reports described problems in lists. Stakeholders could read findings without understanding where in a journey they happened, who was affected, or how severe the cumulative impact was. Without a visual language for journey failure, the case for systemic change stayed abstract.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Work 01 · Journey Maps · Figma · 14 use cases</span>
-              <div className="screen-placeholder">
-                <span>Journey Map System</span>
+              <div className="screen-figma-embed">
+                <iframe
+                  title="Journey Map Framework — Siemens Xcelerator"
+                  width="100%"
+                  height="520"
+                  src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=267-692&embed-host=share"
+                  allowFullScreen
+                  loading="lazy"
+                  style={{ border: 'none', display: 'block', borderRadius: '8px' }}
+                />
               </div>
             </div>
             <div className="screen-annotations reveal">

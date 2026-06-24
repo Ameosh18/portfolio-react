@@ -2201,6 +2201,14 @@ html.is-simple .cs-page .design-work .iteration-details {
   display: block;
   opacity: 0.9;
 }
+.cs-siemens .screen-figma-embed {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  line-height: 0;
+}
+
 .cs-siemens .screen-placeholder-image {
   border-radius: 8px;
   overflow: hidden;
