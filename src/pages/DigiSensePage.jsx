@@ -370,6 +370,15 @@ export default function DigiSensePage() {
             <blockquote>"A bottom consumer study was not done. We just took standard telematics."</blockquote>
             <p>In one sentence, the entire product problem became clear. DiGiSense had been built for a farmer that Mahindra had imagined ,  not the farmer that actually existed. Our job wasn't just to fix the UX. It was to introduce Mahindra to their own user for the first time.</p>
           </div>
+
+          <div className="section-figma-embed reveal">
+            <iframe
+              title="Savvy Farmer journey map · DigiSense"
+              src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-107&embed-host=share&hide-ui=1"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
