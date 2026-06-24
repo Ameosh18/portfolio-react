@@ -66,6 +66,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
   overflow-x: hidden;
+  overscroll-behavior-y: contain;
 }
 
 html::-webkit-scrollbar { width: 4px; }
@@ -84,6 +85,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overscroll-behavior-y: contain;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
