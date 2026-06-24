@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import DigiSensePage from './DigiSensePage'
 import PfsOnePage from './PfsOnePage'
+import SiemensPage from './SiemensPage'
 import '../case-study.css'
 
 export default function CaseStudyPage({ caseId }) {
@@ -10,5 +11,6 @@ export default function CaseStudyPage({ caseId }) {
 
   if (caseId === 'digisense') return <DigiSensePage />
   if (caseId === 'pfsone') return <PfsOnePage />
+  if (caseId === 'siemens') return <SiemensPage />
   return null
 }

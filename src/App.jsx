@@ -29,6 +29,7 @@ function AppContent() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/digisense" element={<CaseStudyPage caseId="digisense" />} />
           <Route path="/pfsone" element={<CaseStudyPage caseId="pfsone" />} />
+          <Route path="/siemens" element={<CaseStudyPage caseId="siemens" />} />
         </Routes>
       </div>
       {!hideFooter && !isHome && <Footer />}

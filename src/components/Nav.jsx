@@ -4,7 +4,7 @@ import confetti from '@hiseb/confetti'
 import AKLogo from '../../AKlogo.png'
 
 const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf`
-const CASE_STUDY_PATHS = ['/digisense', '/pfsone']
+const CASE_STUDY_PATHS = ['/digisense', '/pfsone', '/siemens']
 
 // position is pixel-based, from the center of the clicked button
 function fireConfetti(rect) {

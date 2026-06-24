@@ -53,7 +53,7 @@ const SPRING_CFG   = { stiffness: 320, damping: 20, mass: 0.55 }
 const WHEEL_SPEED = IS_TABLET ? 0.4 : 0.5
 const TOUCH_SPEED = 0.8
 const COPIES      = 2
-const N           = 5
+const N           = 6
 const TOTAL       = N * COPIES
 const WRAP_DIST   = TOTAL * STEP_X
 const CENTER_IDX  = N
@@ -84,8 +84,19 @@ export const projects = [
     href: "/pfsone",
   },
   {
-    id: "innoplexus",
+    id: "siemens",
     num: "03",
+    title: "Siemens Xcelerator",
+    category: "Enterprise · B2B Marketplace",
+    summary: "UX & IA assessment of Xcelerator Marketplace to reduce drop-off from industry pages — and a left-panel filter system that shipped to production.",
+    year: "2024",
+    image: null,
+    gradient: "linear-gradient(140deg, #050d1a 0%, #0a1f4a 60%, #021028 100%)",
+    href: "/siemens",
+  },
+  {
+    id: "innoplexus",
+    num: "04",
     title: "Innoplexus",
     category: "Life Sciences · AI",
     summary: "AI-assisted drug discovery workflows for global research teams",
