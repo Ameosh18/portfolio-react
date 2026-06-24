@@ -604,7 +604,6 @@ export default function DigiSensePage() {
                   loading="lazy"
                 />
               </div>
-              </div>
             </div>
             <div className="screen-annotations reveal">
               <div className="annotation">
