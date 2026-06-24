@@ -400,105 +400,81 @@ export default function SiemensPage() {
         <div className="container">
           <div className="section-label reveal"><span>Design Work</span></div>
           <h2 className="cs-h2 reveal">Three outputs. Each chosen because it shows a decision, not just a deliverable.</h2>
-          <div className="screen-section reveal">
-            <div className="screen-header">
-              <span className="screen-label">Work 01</span>
-              <h3>The Journey Map Framework</h3>
-            </div>
-            <div className="screen-body">
+
+          {/* Work 01 */}
+          <div className="screen-section">
+            <h3 className="screen-title reveal">The Journey Map Framework</h3>
+            <p className="screen-problem reveal">Existing UX reports described problems in lists. Stakeholders could read findings without understanding where in a journey they happened, who was affected, or how severe the cumulative impact was. Without a visual language for journey failure, the case for systemic change stayed abstract.</p>
+            <div className="screen-container reveal">
+              <span className="screen-label">Work 01 · Journey Maps · Figma · 14 use cases</span>
               <div className="screen-placeholder">
-                <span>Journey Map System , Figma , 14 use cases</span>
+                <span>Journey Map System</span>
               </div>
-              <div className="screen-annotations">
-                <div className="annotation">
-                  <span className="annotation-num">①</span>
-                  <div>
-                    <strong>Moments of Truth</strong>
-                    <p>Each journey concluded with a Moment of Truth symbol , successful resolution or failed resolution. Both were documented and colour-coded. Failed moments of truth were impossible to miss. Counting them was the most persuasive slide in any stakeholder presentation.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">②</span>
-                  <div>
-                    <strong>Roadblock Notation</strong>
-                    <p>Roadblocks were placed exactly where the user encountered them , not listed separately. A roadblock at a CTA meant the CTA was the problem. A roadblock at a domain transition meant the domain jump was the problem. Location specificity drove design specificity.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">③</span>
-                  <div>
-                    <strong>Channel Labels</strong>
-                    <p>Every touchpoint carried a channel label , siemens.com, xcelerator.siemens, community.siemens. A journey crossing four domain labels in eight touchpoints was self-evidently broken before a single annotation was added.</p>
-                  </div>
-                </div>
+            </div>
+            <div className="screen-annotations reveal">
+              <div className="annotation">
+                <h5>Moments of Truth</h5>
+                <p>Each journey concluded with a Moment of Truth symbol , successful resolution or failed resolution. Both were documented and colour-coded. <strong>Failed moments of truth were impossible to miss.</strong> Counting them was the most persuasive slide in any stakeholder presentation.</p>
+              </div>
+              <div className="annotation">
+                <h5>Roadblock Notation</h5>
+                <p>Roadblocks were placed exactly where the user encountered them , not listed separately. <strong>A roadblock at a CTA meant the CTA was the problem.</strong> A roadblock at a domain transition meant the domain jump was the problem. Location specificity drove design specificity.</p>
+              </div>
+              <div className="annotation">
+                <h5>Channel Labels</h5>
+                <p>Every touchpoint carried a channel label , siemens.com, xcelerator.siemens, community.siemens. <strong>A journey crossing four domain labels in eight touchpoints was self-evidently broken</strong> before a single annotation was added.</p>
               </div>
             </div>
           </div>
-          <div className="screen-section reveal">
-            <div className="screen-header">
-              <span className="screen-label">Work 02</span>
-              <h3>The Left-Panel Filter System</h3>
-            </div>
-            <div className="screen-body">
+
+          {/* Work 02 */}
+          <div className="screen-section">
+            <h3 className="screen-title reveal">The Left-Panel Filter System</h3>
+            <p className="screen-problem reveal">Users arriving at the Xcelerator Marketplace industry pages faced an undifferentiated list of solutions with no way to filter by what they actually cared about. The only navigation available was to go back up and try a different path. Most didn't. They left.</p>
+            <div className="screen-container reveal">
+              <span className="screen-label">Work 02 · Left-Panel Filter · Shipped to production</span>
               <div className="screen-placeholder">
-                <span>Left Panel Filter , Shipped to production , Siemens Xcelerator Marketplace</span>
+                <span>Left-Panel Filter System</span>
               </div>
-              <div className="screen-annotations">
-                <div className="annotation">
-                  <span className="annotation-num">①</span>
-                  <div>
-                    <strong>Why Left Panel, Not Top Filter Bar</strong>
-                    <p>A top filter bar required users to choose filter type before filter value , a two-step interaction that introduced friction. A persistent left panel kept all filter dimensions visible simultaneously, matching how expert buyers actually searched: "building automation AND IoT," not one then the other.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">②</span>
-                  <div>
-                    <strong>Shipped to Production</strong>
-                    <p>The left-panel filter interaction pattern we designed during this engagement shipped to the live Siemens Xcelerator Marketplace. It is visible on the production Siemens website. This was the most direct design output of the engagement.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">③</span>
-                  <div>
-                    <strong>Competitor Evidence</strong>
-                    <p>Rockwell Automation's left-panel filter for multi-category simultaneous selection was rated Good UX in our competitor benchmarking. That specific evidence was used in stakeholder conversations to counter the concern that left-panel filters were too complex.</p>
-                  </div>
-                </div>
+            </div>
+            <div className="screen-annotations reveal">
+              <div className="annotation">
+                <h5>Why Left Panel, Not Top Filter Bar</h5>
+                <p>A top filter bar required users to choose filter type before filter value , a two-step interaction that introduced friction. <strong>A persistent left panel kept all filter dimensions visible simultaneously,</strong> matching how expert buyers actually searched: "building automation AND IoT," not one then the other.</p>
+              </div>
+              <div className="annotation">
+                <h5>Shipped to Production</h5>
+                <p>The left-panel filter interaction pattern we designed during this engagement <strong>shipped to the live Siemens Xcelerator Marketplace.</strong> It is visible on the production Siemens website. This was the most direct design output of the entire engagement.</p>
+              </div>
+              <div className="annotation">
+                <h5>Competitor Evidence</h5>
+                <p>Rockwell Automation's left-panel filter for multi-category simultaneous selection was rated Good UX in our competitor benchmarking. <strong>That specific evidence was used in stakeholder conversations</strong> to counter the concern that left-panel filters were too complex.</p>
               </div>
             </div>
           </div>
-          <div className="screen-section reveal">
-            <div className="screen-header">
-              <span className="screen-label">Work 03</span>
-              <h3>User Journey: Find and Evaluate a Relevant Product</h3>
-            </div>
-            <div className="screen-body">
+
+          {/* Work 03 */}
+          <div className="screen-section">
+            <h3 className="screen-title reveal">User Journey: Find and Evaluate a Relevant Product</h3>
+            <p className="screen-problem reveal">The most common buyer use case produced three different journey paths depending on whether the user arrived via Google, Siemens internal search, or the home page nav. All three paths had different failure modes. None of them reliably reached the same endpoint.</p>
+            <div className="screen-container reveal">
+              <span className="screen-label">Work 03 · Three-path journey · Decision Makers + End Users + Buyers</span>
               <div className="screen-placeholder">
-                <span>Three-path journey , Google / Internal Search / Home Nav , Decision Makers + End Users + Buyers</span>
+                <span>Find and Evaluate Journey Map</span>
               </div>
-              <div className="screen-annotations">
-                <div className="annotation">
-                  <span className="annotation-num">①</span>
-                  <div>
-                    <strong>Three Entry Paths, One Broken Destination</strong>
-                    <p>Google path, Siemens internal search path, and home page navigation path all aimed at the same endpoint. All three had different failure modes. Mapping them simultaneously made visible what a single-path journey would have hidden: the inconsistency between paths was itself the problem.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">②</span>
-                  <div>
-                    <strong>The Silent Failure</strong>
-                    <p>Users hitting a broken 'Manage MyResources Tools' link did not generate an error event. They silently gave up. This was documented as a Road Block in the journey map , precisely the kind of failure that never appears in analytics because there is no measurable signal that the user stopped.</p>
-                  </div>
-                </div>
-                <div className="annotation">
-                  <span className="annotation-num">③</span>
-                  <div>
-                    <strong>The Lead Form Timing Problem</strong>
-                    <p>"Get in contact" CTAs were placed at the top of industry pages , before users had consumed enough content to be interested. Documented as a specific roadblock pattern across multiple journeys: conversion mechanisms placed where they could not convert because the user was not yet ready.</p>
-                  </div>
-                </div>
+            </div>
+            <div className="screen-annotations reveal">
+              <div className="annotation">
+                <h5>Three Entry Paths, One Broken Destination</h5>
+                <p>Google path, internal search path, and home page nav all aimed at the same endpoint. All three had different failure modes. <strong>Mapping them simultaneously made visible what a single-path journey would have hidden:</strong> the inconsistency between paths was itself the problem.</p>
+              </div>
+              <div className="annotation">
+                <h5>The Silent Failure</h5>
+                <p>Users hitting a broken 'Manage MyResources Tools' link did not generate an error event. They silently gave up. <strong>This was documented as a Road Block in the journey map</strong> , precisely the kind of failure that never appears in analytics because there is no measurable signal that the user stopped.</p>
+              </div>
+              <div className="annotation">
+                <h5>The Lead Form Timing Problem</h5>
+                <p>"Get in contact" CTAs were placed at the top of industry pages , before users had consumed enough content to be interested. <strong>Documented as a specific roadblock pattern across multiple journeys:</strong> conversion mechanisms placed where they could not convert because the user was not yet ready.</p>
               </div>
             </div>
           </div>

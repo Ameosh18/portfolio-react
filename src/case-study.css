@@ -2131,6 +2131,11 @@ html.is-simple .cs-page .design-work .iteration-details {
   }
 }
 
+/* ── SIEMENS XCELERATOR design work: 3-column annotations ── */
+.cs-siemens .screen-annotations { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 1024px) { .cs-siemens .screen-annotations { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px)  { .cs-siemens .screen-annotations { grid-template-columns: 1fr; } }
+
 /* ── SIEMENS XCELERATOR hero ── */
 .cs-siemens .hero-content {
   padding-top: 120px;
