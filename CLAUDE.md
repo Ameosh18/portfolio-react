@@ -628,53 +628,53 @@ Before writing any JSX for a new case study page, open every existing case study
 - **Never write multi-line comments** explaining what code does — code should be self-documenting.
 - **Never use cream (`#F7F4F0`) for glass cards in light mode** — use white.
 - **Never make text smaller** when uncertain — default to larger, more readable sizes.
-- **Never push to main without running sanity checks** — use feature branches and wait for GitHub Actions validation.
+- **Never push to main without a clean local `npm run build`** — main deploys live; sanity also runs automatically on every push.
 
 ---
 
-## 15. Feature Branch Workflow & Sanity Checks
+## 15. Workflow, Sanity Checks & Deployment
 
-**Every new feature or change must follow this workflow to maintain code quality and prevent regressions.**
+This is a **solo-maintained** personal portfolio. The workflow is intentionally light: no
+mandatory PR ceremony, but **sanity checks run on every push** so nothing slips through
+before it goes live.
 
-### Workflow Steps
+### How deployment works
 
-1. **Create feature branch** from main:
-   ```bash
-   git checkout main
-   git pull origin main
-   git checkout -b feature/[feature-name]
-   ```
+- **Deploy trigger:** push to `main` only (`.github/workflows/deploy.yml`).
+- **Mechanism:** the workflow runs `npm run build`, then `peaceiris/actions-gh-pages`
+  (`force_orphan: true`) force-pushes `dist/` to the **`gh-pages`** branch.
+- **Publish:** GitHub Pages is set to **Deploy from a branch → `gh-pages` / (root)**, so
+  GitHub's own "pages build and deployment" publishes the site to
+  `ameosh18.github.io/portfolio-react/`.
+- **Do NOT** re-introduce `actions/deploy-pages` / the `github-pages` *environment* — it
+  caused an infinite `deployment_queued` loop. The gh-pages-branch approach is the fix.
+- **Do NOT** make `deploy.yml` trigger on `feature/**` or `claude/**` — only `main` deploys.
+  Multiple branches sharing the `pages` concurrency group is what caused runs to cancel
+  each other.
+- **Never delete the `gh-pages` branch** — it is the live deploy target.
 
-2. **Develop and push to feature branch:**
-   - Implement the feature/fix
-   - Push to the feature branch: `git push -u origin feature/[feature-name]`
-   - Do NOT push to main directly
+### How sanity checks work
 
-3. **Create Pull Request:**
-   - Open a PR on GitHub from `feature/[feature-name]` to `main`
-   - GitHub Actions will automatically run the sanity check suite
+- **Sanity trigger:** every push to any branch except `gh-pages`, plus any PR into `main`
+  (`.github/workflows/sanity-check.yml`).
+- It runs **independently** of deploy and does not block it. On a push to `main`, sanity and
+  deploy run in parallel — so always check the sanity result; a red sanity run means fix it
+  even though the site already deployed.
+- `deploy.yml` itself runs `npm run build`, so a build failure stops the deploy (no broken
+  bundle reaches `gh-pages`). Sanity adds the extra content/a11y checks on top.
 
-4. **Review Sanity Check Results:**
-   - Wait for all checks to pass (green checkmarks)
-   - Checks validate:
-     - ✓ Build succeeds (`npm run build`)
-     - ✓ No CSS/styling errors or broken layouts
-     - ✓ All navigation links work (internal routing)
-     - ✓ Component rendering (no console errors)
-     - ✓ Responsive design (mobile, tablet, desktop)
-     - ✓ Accessibility (WCAG checks)
-     - ✓ Theme switching (light/dark modes work)
+### Workflow Steps (solo)
 
-5. **Ask for Approval Before Merging:**
-   - Only after sanity checks PASS, ask the user for approval
-   - Share the PR link and summary of changes
-   - Wait for explicit approval: "Yes, merge it" or similar
-   - Do NOT merge without user approval
+1. **Trivial changes** (copy tweaks, small CSS): commit straight to `main`. Sanity runs on
+   the push; deploy publishes. The live site is your verification.
+2. **Non-trivial features:** branch off `main` (`feature/[name]`), push (sanity runs
+   automatically), open a PR if you want a reviewable diff, then merge to `main` to deploy.
+3. **Always** run local checks (`npm run build`, `npm run dev`) before pushing - see the
+   runtime-verification section below.
+4. **Delete the branch** after merging. Keep only `main` and `gh-pages` long-term.
 
-6. **Merge to Main:**
-   - Once approved, merge the PR using GitHub's merge options
-   - Delete the feature branch after merging
-   - Verify the deployment succeeds on main
+> If stricter gating is ever wanted: add a branch-protection rule on `main` requiring the
+> sanity check to pass before merge. Not currently enabled.
 
 ### Sanity Check Details
 
@@ -707,7 +707,7 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
    - Verify hover states, focus states, and disabled states work
 4. **Check browser console** — no JavaScript errors or warnings
 5. **Run the build** — `npm run build` must succeed with no errors
-6. **Commit and push** to the feature branch only
+6. **Commit and push** (to `main` for trivial changes, or a `feature/*` branch for larger work)
 
 **Why this matters:**
 - Build success ≠ feature works. Syntax might be correct but logic broken.
@@ -728,12 +728,11 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
 
 ### Key Reminders
 
-- **Always create a feature branch** — never work on main directly
-- **Wait for sanity checks** — red checks = do not merge
-- **Ask for approval** — get explicit user consent before merging
-- **Test locally first** — run `npm run build` and `npm run dev` before pushing
-- **One feature per branch** — keep branches focused
-- **Descriptive commit messages** — help reviewers understand changes
+- **Trivial changes can go straight to `main`** — larger features use a `feature/*` branch.
+- **Sanity runs on every push** — always check the result; a red run means fix it, even if the site already deployed.
+- **Test locally first** — run `npm run build` and `npm run dev` before pushing.
+- **Descriptive commit messages** — keep history readable.
 - **Never commit breaking changes** without running `npm run build` first.
-- **Never push to `main` without verifying the build is clean.**
+- **Never push to `main` without verifying the build is clean** — `main` deploys live.
+- **Only `main` deploys; only the `gh-pages` branch is the deploy target** — never delete `gh-pages`, never add deploy triggers for `feature/**` or `claude/**`.
 - **ALWAYS run the app in the browser and visually test before marking work complete** — builds passing is not proof that features work
