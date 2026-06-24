@@ -79,6 +79,15 @@ export default function SiemensPage() {
             <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
+        <div className="hero-image bp-frame">
+          <span className="tick tl" aria-hidden="true" />
+          <span className="tick tr" aria-hidden="true" />
+          <span className="tick bl" aria-hidden="true" />
+          <span className="tick br" aria-hidden="true" />
+          <div className="hero-image-placeholder">
+            <span>Siemens Xcelerator</span>
+          </div>
+        </div>
       </section>
 
       {/* 3. BUSINESS CONTEXT */}
