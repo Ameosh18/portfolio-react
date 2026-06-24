@@ -467,7 +467,7 @@ export default function SiemensPage() {
               <div className="screen-figma-embed">
                 <iframe
                   title="Find and Evaluate Journey Map — Siemens Xcelerator"
-                  src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=144-717&embed-host=share&hide-ui=1"
+                  src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com?node-id=144-717&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
                 />
