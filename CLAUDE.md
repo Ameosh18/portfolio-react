@@ -602,7 +602,23 @@ Add a `.cs-[slug]` block in `src/case-study.css` with the hero type:
 
 ---
 
-## 14. What NOT to Do
+## 14. Case Study Consistency Rule
+
+**Every new case study must visually match all existing ones before it is considered complete.**
+
+Before writing any JSX for a new case study page, open every existing case study (`DigiSensePage.jsx`, `PfsOnePage.jsx`, and any others added since) and note:
+
+1. **Hero layout** — which grid/flex pattern is used, which CSS classes are on `.hero`, `.hero-content`, `.hero-image`. New pages must use the same two-column grid (`display: grid; grid-template-columns: 62fr 38fr`) with a `hero-image bp-frame` div on the right (image or placeholder). Never invent a different layout.
+
+2. **Section class names** — every shared section uses established CSS classes. Check `case-study.css` before inventing new wrapper divs. The design work section specifically requires: `screen-section > screen-title + screen-problem + screen-container(reveal) > screen-label + screen-placeholder` then `screen-annotations(reveal) > annotation > h5 + p`. Do not add wrapper divs like `screen-header` or `screen-body` that have no CSS.
+
+3. **Screenshot and compare** — after implementing, screenshot the new page's hero, design work section, and at least two other sections side-by-side with the equivalent sections from an existing case study. They must look like they belong to the same design system before committing.
+
+4. **Reference, don't invent** — when the implementation spec says "Type B text-only hero", check whether any existing case study actually uses that layout. If all existing pages use Type A, use Type A (with a placeholder panel) for consistency unless the user explicitly confirms otherwise.
+
+---
+
+## 15. What NOT to Do
 
 - **Never hardcode hex colours** — always use CSS variables.
 - **Never use em dashes (`—`)** anywhere.
