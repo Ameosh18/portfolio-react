@@ -638,37 +638,37 @@ This is a **solo-maintained** personal portfolio. The workflow is intentionally 
 mandatory PR ceremony, but **sanity checks run on every push** so nothing slips through
 before it goes live.
 
-### How deployment works
+### How CI & deployment work
 
-- **Deploy trigger:** push to `main` only (`.github/workflows/deploy.yml`).
-- **Mechanism:** the workflow runs `npm run build`, then `peaceiris/actions-gh-pages`
+Both live in a single workflow, `.github/workflows/deploy.yml`, with two jobs: `sanity`
+then `deploy`. **`deploy` has `needs: sanity`, so the site only publishes if sanity passes.**
+
+- **Trigger:** every push to any branch except `gh-pages`, plus any PR into `main`.
+- **`sanity` job** always runs (build + em-dash, CSS vars, a11y, theme, responsive checks).
+- **`deploy` job** runs only when `sanity` succeeds AND it is a push to `main`
+  (`if: github.event_name == 'push' && github.ref == 'refs/heads/main'`). On feature
+  branches / PRs the deploy job is skipped, so sanity acts purely as a gate there.
+- **Deploy mechanism:** `npm run build`, then `peaceiris/actions-gh-pages`
   (`force_orphan: true`) force-pushes `dist/` to the **`gh-pages`** branch.
 - **Publish:** GitHub Pages is set to **Deploy from a branch → `gh-pages` / (root)**, so
   GitHub's own "pages build and deployment" publishes the site to
   `ameosh18.github.io/portfolio-react/`.
+
+**Guardrails (do not undo — these caused outages before):**
 - **Do NOT** re-introduce `actions/deploy-pages` / the `github-pages` *environment* — it
   caused an infinite `deployment_queued` loop. The gh-pages-branch approach is the fix.
-- **Do NOT** make `deploy.yml` trigger on `feature/**` or `claude/**` — only `main` deploys.
-  Multiple branches sharing the `pages` concurrency group is what caused runs to cancel
-  each other.
+- **Do NOT** let the `deploy` job run for `feature/**` or `claude/**`. Only `main` deploys.
+  Multiple branches sharing the deployment slot is what caused runs to cancel each other.
 - **Never delete the `gh-pages` branch** — it is the live deploy target.
-
-### How sanity checks work
-
-- **Sanity trigger:** every push to any branch except `gh-pages`, plus any PR into `main`
-  (`.github/workflows/sanity-check.yml`).
-- It runs **independently** of deploy and does not block it. On a push to `main`, sanity and
-  deploy run in parallel — so always check the sanity result; a red sanity run means fix it
-  even though the site already deployed.
-- `deploy.yml` itself runs `npm run build`, so a build failure stops the deploy (no broken
-  bundle reaches `gh-pages`). Sanity adds the extra content/a11y checks on top.
+- **Keep both jobs in one workflow file** — `needs:` only works within a single workflow.
 
 ### Workflow Steps (solo)
 
 1. **Trivial changes** (copy tweaks, small CSS): commit straight to `main`. Sanity runs on
    the push; deploy publishes. The live site is your verification.
-2. **Non-trivial features:** branch off `main` (`feature/[name]`), push (sanity runs
-   automatically), open a PR if you want a reviewable diff, then merge to `main` to deploy.
+2. **Non-trivial features:** branch off `main` (`feature/[name]`), push (sanity runs, deploy
+   is skipped), open a PR if you want a reviewable diff, then merge to `main` — which runs
+   sanity again and only deploys if it passes.
 3. **Always** run local checks (`npm run build`, `npm run dev`) before pushing - see the
    runtime-verification section below.
 4. **Delete the branch** after merging. Keep only `main` and `gh-pages` long-term.
@@ -729,7 +729,7 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
 ### Key Reminders
 
 - **Trivial changes can go straight to `main`** — larger features use a `feature/*` branch.
-- **Sanity runs on every push** — always check the result; a red run means fix it, even if the site already deployed.
+- **Sanity gates deploy** — it runs on every push; the site only publishes if sanity passes.
 - **Test locally first** — run `npm run build` and `npm run dev` before pushing.
 - **Descriptive commit messages** — keep history readable.
 - **Never commit breaking changes** without running `npm run build` first.
