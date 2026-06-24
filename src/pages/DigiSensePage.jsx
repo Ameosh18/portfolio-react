@@ -229,6 +229,15 @@ export default function DigiSensePage() {
             </div>
           </div>
 
+          <div className="section-figma-embed reveal">
+            <iframe
+              title="Stakeholder personas · DigiSense"
+              src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-105&embed-host=share&hide-ui=1"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+
           <div className="tension-block reveal">
             <h3>Mahindra's vision was sophisticated.<br />The farmer's reality was simple.<br /><em>Nobody had mapped that gap ,  until now.</em></h3>
             <p>Every decision we made had to thread through all three groups simultaneously. A feature that delighted Mahindra stakeholders could overwhelm a farmer. A simplification that worked for farmers could undermine the dealer's ability to demonstrate value.<br /><br />This is why the project needed a systems approach ,  not just a screen redesign.</p>

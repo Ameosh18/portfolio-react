@@ -2238,6 +2238,37 @@ html.is-simple .cs-page .design-work .iteration-details {
   .cs-siemens .screen-figma-embed iframe { aspect-ratio: 4 / 3; }
 }
 
+.cs-digisense .section-figma-embed {
+  width: 100%;
+  margin-top: 56px;
+  line-height: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.cs-digisense .section-figma-embed iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  display: block;
+  border: none;
+}
+
+.cs-digisense .section-figma-caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 14px;
+}
+
+@media (max-width: 480px) {
+  .cs-digisense .section-figma-embed iframe { aspect-ratio: 4 / 3; }
+  .cs-digisense .section-figma-embed { margin-top: 40px; }
+}
+
 .cs-siemens .screen-placeholder-image {
   border-radius: 8px;
   overflow: hidden;
