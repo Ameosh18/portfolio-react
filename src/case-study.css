@@ -2225,29 +2225,34 @@ html.is-simple .cs-page .design-work {
 
 .cs-digisense .screen-figma-embed,
 .cs-siemens .screen-figma-embed {
+  position: relative;
   width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
   line-height: 0;
 }
 
 .cs-digisense .screen-figma-embed iframe,
 .cs-siemens .screen-figma-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
+  height: 100%;
   display: block;
   border: none;
 }
 
 @media (max-width: 480px) {
-  .cs-digisense .screen-figma-embed iframe,
-  .cs-siemens .screen-figma-embed iframe { aspect-ratio: 4 / 3; }
-}
-@media (max-width: 480px) {
-  .cs-siemens .screen-figma-embed iframe { aspect-ratio: 4 / 3; }
+  .cs-digisense .screen-figma-embed,
+  .cs-siemens .screen-figma-embed { padding-bottom: 75%; }
 }
 
 .cs-digisense .section-figma-embed {
+  position: relative;
   width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
   margin-top: 56px;
   line-height: 0;
   border-radius: var(--radius);
@@ -2256,9 +2261,11 @@ html.is-simple .cs-page .design-work {
 }
 
 .cs-digisense .section-figma-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
+  height: 100%;
   display: block;
   border: none;
 }
@@ -2273,8 +2280,7 @@ html.is-simple .cs-page .design-work {
 }
 
 @media (max-width: 480px) {
-  .cs-digisense .section-figma-embed iframe { aspect-ratio: 4 / 3; }
-  .cs-digisense .section-figma-embed { margin-top: 40px; }
+  .cs-digisense .section-figma-embed { padding-bottom: 75%; margin-top: 40px; }
 }
 
 .cs-siemens .screen-placeholder-image {
