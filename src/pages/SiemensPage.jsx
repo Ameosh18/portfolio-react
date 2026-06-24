@@ -413,6 +413,7 @@ export default function SiemensPage() {
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=267-692&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
                 />
               </div>
             </div>
@@ -470,6 +471,7 @@ export default function SiemensPage() {
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com?node-id=144-717&embed-host=share&hide-ui=1"
                   allowFullScreen
                   loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
                 />
               </div>
             </div>

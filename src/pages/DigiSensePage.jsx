@@ -235,6 +235,7 @@ export default function DigiSensePage() {
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-105&embed-host=share&hide-ui=1"
               allowFullScreen
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
 
@@ -283,6 +284,7 @@ export default function DigiSensePage() {
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-106&embed-host=share&hide-ui=1"
               allowFullScreen
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
 
@@ -377,6 +379,7 @@ export default function DigiSensePage() {
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-107&embed-host=share&hide-ui=1"
               allowFullScreen
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
@@ -474,6 +477,7 @@ export default function DigiSensePage() {
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-108&embed-host=share&hide-ui=1"
               allowFullScreen
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
@@ -595,6 +599,7 @@ export default function DigiSensePage() {
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-109&embed-host=share&hide-ui=1"
               allowFullScreen
               loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
