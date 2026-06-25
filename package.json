@@ -9,6 +9,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@hiseb/confetti": "^2.1.0",
     "canvas-confetti": "^1.9.4",
     "motion": "^11.0.0",

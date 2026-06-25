@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Loader from './Loader'
 
-export default function CaseStudyToggle() {
+export default function CaseStudyToggle({ accessStatus, onRequestAccess }) {
   const [isSimple, setIsSimple] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -23,8 +23,6 @@ export default function CaseStudyToggle() {
   const toggleMode = (mode) => {
     const simple = mode === 'simple'
 
-    // Anchor scroll position: find the first section at/below the viewport top
-    // so content doesn't jump when hidden sections are added/removed above
     const sections = Array.from(document.querySelectorAll('.cs-page > section'))
     const anchor = sections.find(s => s.getBoundingClientRect().top >= -8) || sections[0]
     const anchorTopBefore = anchor ? anchor.getBoundingClientRect().top : null
@@ -35,7 +33,6 @@ export default function CaseStudyToggle() {
     document.documentElement.classList.toggle('is-simple', simple)
     document.documentElement.classList.toggle('is-detailed', !simple)
 
-    // Two rAFs: first lets React flush the DOM update, second lets the browser calculate layout
     if (anchor !== null && anchorTopBefore !== null) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -75,7 +72,13 @@ export default function CaseStudyToggle() {
       </button>
       <button
         className="cs-toggle-pill-btn detailed-btn"
-        onClick={() => toggleMode('detailed')}
+        onClick={() => {
+          if (accessStatus === 'unlocked') {
+            toggleMode('detailed')
+          } else {
+            onRequestAccess?.()
+          }
+        }}
         aria-pressed={!isSimple}
         role="radio"
         aria-checked={!isSimple}
