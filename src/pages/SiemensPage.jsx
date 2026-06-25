@@ -1,26 +1,56 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import CaseStudyNav from '../components/CaseStudyNav'
+import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
+import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
+import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 
 export default function SiemensPage() {
   const isSimple = useCaseStudyMode()
+  const access = useCaseStudyAccess('siemens')
+  const [showGate, setShowGate] = useState(false)
+
+  const revealObserverRef = useRef(null)
 
   useEffect(() => {
-    const reveals = document.querySelectorAll('.cs-siemens .reveal')
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }) },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     )
-    reveals.forEach(el => observer.observe(el))
+    revealObserverRef.current = obs
+    document.querySelectorAll('.cs-siemens .reveal').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (access.status === 'expired') {
+      document.documentElement.classList.add('is-simple')
+      document.documentElement.classList.remove('is-detailed')
+      setShowGate(true)
+    }
+  }, [access.status])
+
+  useEffect(() => {
+    if (access.status === 'unlocked') {
+      setShowGate(false)
+      document.documentElement.classList.remove('is-simple')
+      document.documentElement.classList.add('is-detailed')
+    }
+  }, [access.status])
+
+  useEffect(() => {
+    const obs = revealObserverRef.current
+    if (!obs) return
+    document.querySelectorAll('.cs-siemens .reveal').forEach(el => obs.observe(el))
     document
       .querySelectorAll('.cs-siemens .insights-grid, .cs-siemens .outcomes-grid, .cs-siemens .ai-opportunities')
       .forEach(grid => {
         grid.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.1}s` })
       })
-    return () => observer.disconnect()
   }, [isSimple])
 
   return (
@@ -34,8 +64,29 @@ export default function SiemensPage() {
           <span className="separator">/</span>
           <span className="current">Siemens Xcelerator</span>
         </div>
-        <CaseStudyToggle />
+        <CaseStudyToggle
+          accessStatus={access.status}
+          onRequestAccess={() => setShowGate(true)}
+        />
       </section>
+
+      <AnimatePresence>
+        {showGate && access.status !== 'unlocked' && (
+          <CaseStudyPasswordGate
+            caseId="siemens"
+            access={access}
+            onClose={() => setShowGate(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {access.status === 'unlocked' && (
+        <CaseStudyTimer
+          caseId="siemens"
+          timeLeftMs={access.timeLeftMs}
+          totalMs={access.totalMs}
+        />
+      )}
 
       {/* 2. HERO */}
       <section id="cs-overview" className="hero">

@@ -2304,3 +2304,312 @@ html.is-simple .cs-page .design-work {
   height: auto;
   border-radius: 8px;
 }
+
+
+/* ── CASE STUDY PASSWORD GATE ── */
+
+.cs-gate-wrap {
+  padding: 0 var(--grid-margin);
+  margin: 0 0 8px;
+}
+
+.cs-gate-card {
+  background: rgba(17, 17, 17, 0.72);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  padding: 32px 36px 28px;
+  max-width: 560px;
+}
+
+.cs-gate-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.cs-gate-lock-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+}
+
+.cs-gate-headline {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.cs-gate-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 22px;
+}
+
+.cs-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-gate-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.cs-gate-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cs-gate-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+
+.cs-gate-input:focus {
+  border-color: var(--accent);
+}
+
+.cs-gate-input::placeholder {
+  color: var(--text-dim);
+}
+
+.cs-gate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+  min-height: 44px;
+}
+
+.cs-gate-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.cs-gate-btn:disabled,
+.cs-gate-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cs-gate-btn-arrow {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.cs-gate-subtext {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin: 4px 0 0;
+}
+
+.cs-gate-error {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+/* OTP input */
+
+.cs-otp-row {
+  display: flex;
+  gap: 8px;
+}
+
+.cs-otp-box {
+  width: 44px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  caret-color: var(--accent);
+}
+
+.cs-otp-box:focus {
+  border-color: var(--accent);
+  background: rgba(213, 255, 64, 0.04);
+}
+
+.cs-otp-box.is-error {
+  border-color: #ff6b6b;
+  animation: cs-otp-shake 0.35s ease;
+}
+
+@keyframes cs-otp-shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-4px); }
+  75%       { transform: translateX(4px); }
+}
+
+.cs-gate-verify-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs-gate-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cs-gate-link:hover {
+  color: var(--accent);
+}
+
+/* ── CASE STUDY TIMER BAR ── */
+
+.cs-timer-bar-wrap {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  cursor: default;
+}
+
+.cs-timer-track {
+  height: 3px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-timer-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 1s linear, background 0.5s ease;
+  transform-origin: left;
+}
+
+.cs-timer-fill.is-warning {
+  background: #f59e0b;
+}
+
+.cs-timer-tooltip {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .cs-gate-card {
+    padding: 24px 20px 20px;
+  }
+  .cs-gate-input-row {
+    flex-direction: column;
+  }
+  .cs-otp-box {
+    width: 40px;
+    height: 48px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-gate-wrap {
+    padding: 0 16px;
+  }
+  .cs-otp-row {
+    gap: 6px;
+  }
+  .cs-otp-box {
+    width: 36px;
+    height: 44px;
+    font-size: 16px;
+  }
+}
+
+/* Light theme overrides */
+[data-theme="light"] .cs-gate-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .cs-gate-input {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="light"] .cs-otp-box {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="light"] .cs-timer-tooltip {
+  background: var(--surface);
+}
