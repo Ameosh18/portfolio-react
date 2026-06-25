@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
@@ -72,30 +72,34 @@ export default function PfsOnePage() {
   const [activeFlow, setActiveFlow] = useState(null)
   const isSimple = useCaseStudyMode()
 
+  const revealObserverRef = useRef(null)
+
   useEffect(() => {
-    const reveals = document.querySelectorAll('.cs-pfsone .reveal')
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible')
-        })
-      },
+    const obs = new IntersectionObserver(
+      (entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }) },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     )
-    reveals.forEach((el) => observer.observe(el))
-
+    revealObserverRef.current = obs
+    document.querySelectorAll('.cs-pfsone .reveal').forEach(el => obs.observe(el))
     document
-      .querySelectorAll(
-        '.cs-pfsone .insights-grid, .cs-pfsone .stakeholder-grid, .cs-pfsone .ai-opportunities, .cs-pfsone .outcomes-grid, .cs-pfsone .artifact-grid'
-      )
-      .forEach((grid) => {
-        grid.querySelectorAll('.reveal').forEach((el, i) => {
-          el.style.transitionDelay = `${i * 0.08}s`
-        })
+      .querySelectorAll('.cs-pfsone .insights-grid, .cs-pfsone .stakeholder-grid, .cs-pfsone .ai-opportunities, .cs-pfsone .outcomes-grid, .cs-pfsone .artifact-grid')
+      .forEach(grid => {
+        grid.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.08}s` })
       })
-
-    return () => observer.disconnect()
+    return () => obs.disconnect()
   }, [])
+
+  // When mode changes, observe newly rendered reveals without recreating the observer
+  useEffect(() => {
+    const obs = revealObserverRef.current
+    if (!obs) return
+    document.querySelectorAll('.cs-pfsone .reveal').forEach(el => obs.observe(el))
+    document
+      .querySelectorAll('.cs-pfsone .insights-grid, .cs-pfsone .stakeholder-grid, .cs-pfsone .ai-opportunities, .cs-pfsone .outcomes-grid, .cs-pfsone .artifact-grid')
+      .forEach(grid => {
+        grid.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.08}s` })
+      })
+  }, [isSimple])
 
   useEffect(() => {
     const handleKeyDown = (e) => {

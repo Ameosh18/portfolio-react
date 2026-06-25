@@ -21,15 +21,33 @@ export default function CaseStudyToggle() {
   }, [])
 
   const toggleMode = (mode) => {
+    const simple = mode === 'simple'
+
+    // Anchor scroll position: find the first section at/below the viewport top
+    // so content doesn't jump when hidden sections are added/removed above
+    const sections = Array.from(document.querySelectorAll('.cs-page > section'))
+    const anchor = sections.find(s => s.getBoundingClientRect().top >= -8) || sections[0]
+    const anchorTopBefore = anchor ? anchor.getBoundingClientRect().top : null
+
     setIsLoading(true)
     document.documentElement.classList.add('is-loading')
-    const simple = mode === 'simple'
     setIsSimple(simple)
-    // Update CSS classes for Simple/Detailed view without persisting to localStorage
     document.documentElement.classList.toggle('is-simple', simple)
     document.documentElement.classList.toggle('is-detailed', !simple)
 
-    // Simulate content loading with 1.2s delay for both simple and detailed views
+    // Two rAFs: first lets React flush the DOM update, second lets the browser calculate layout
+    if (anchor !== null && anchorTopBefore !== null) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const anchorTopAfter = anchor.getBoundingClientRect().top
+          const diff = anchorTopAfter - anchorTopBefore
+          if (Math.abs(diff) > 1) {
+            window.scrollBy({ top: diff, behavior: 'instant' })
+          }
+        })
+      })
+    }
+
     setTimeout(() => {
       setIsLoading(false)
       document.documentElement.classList.remove('is-loading')

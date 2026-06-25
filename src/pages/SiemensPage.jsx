@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
@@ -8,19 +8,29 @@ import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 export default function SiemensPage() {
   const isSimple = useCaseStudyMode()
 
+  const revealObserverRef = useRef(null)
+
+  // Create the observer once — never disconnect on mode change to avoid re-animation jank
   useEffect(() => {
-    const reveals = document.querySelectorAll('.cs-siemens .reveal')
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }) },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     )
-    reveals.forEach(el => observer.observe(el))
+    revealObserverRef.current = obs
+    document.querySelectorAll('.cs-siemens .reveal').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
+  // When mode changes, add newly visible elements to the existing observer (observe() is idempotent)
+  useEffect(() => {
+    const obs = revealObserverRef.current
+    if (!obs) return
+    document.querySelectorAll('.cs-siemens .reveal').forEach(el => obs.observe(el))
     document
       .querySelectorAll('.cs-siemens .insights-grid, .cs-siemens .outcomes-grid, .cs-siemens .ai-opportunities')
       .forEach(grid => {
         grid.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${i * 0.1}s` })
       })
-    return () => observer.disconnect()
   }, [isSimple])
 
   return (
