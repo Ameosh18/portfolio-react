@@ -10,7 +10,7 @@ export default function SiemensPage() {
 
   const revealObserverRef = useRef(null)
 
-  // Create the observer once — never disconnect on mode change to avoid re-animation jank
+  // Create the observer once - never disconnect on mode change to avoid re-animation jank
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }) },
