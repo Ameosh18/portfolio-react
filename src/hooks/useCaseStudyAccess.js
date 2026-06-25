@@ -80,11 +80,18 @@ export function useCaseStudyAccess(caseId) {
     writeSession(caseId, session)
     setEmail(emailInput)
 
-    try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
+    if (!serviceId || !templateId || !publicKey) {
+      setSendError('Email service is not configured. Please contact Ameya directly.')
+      clearSession(caseId)
+      setStatus('idle')
+      return
+    }
+
+    try {
       await emailjs.send(
         serviceId,
         templateId,
@@ -94,7 +101,7 @@ export function useCaseStudyAccess(caseId) {
           case_study: config?.displayName ?? caseId,
           minutes: config?.timerMinutes ?? 35,
         },
-        publicKey
+        { publicKey }
       )
       setStatus('code_sent')
     } catch (err) {
