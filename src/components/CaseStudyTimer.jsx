@@ -1,5 +1,16 @@
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CASE_STUDY_ACCESS } from '../config/caseStudyAccess'
+
+function readTimeLeft(caseId) {
+  try {
+    const raw = sessionStorage.getItem(`cs-access-${caseId}`)
+    const session = raw ? JSON.parse(raw) : null
+    return session ? Math.max(0, session.expiresAt - Date.now()) : 0
+  } catch {
+    return 0
+  }
+}
 
 function formatTime(ms) {
   const totalSec = Math.max(0, Math.ceil(ms / 1000))
@@ -8,8 +19,16 @@ function formatTime(ms) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-export default function CaseStudyTimer({ caseId, timeLeftMs, totalMs }) {
+export default function CaseStudyTimer({ caseId, totalMs }) {
   const config = CASE_STUDY_ACCESS[caseId] ?? {}
+  const [timeLeftMs, setTimeLeftMs] = useState(() => readTimeLeft(caseId))
+
+  useEffect(() => {
+    setTimeLeftMs(readTimeLeft(caseId))
+    const id = setInterval(() => setTimeLeftMs(readTimeLeft(caseId)), 1000)
+    return () => clearInterval(id)
+  }, [caseId])
+
   const pct = totalMs > 0 ? Math.max(0, Math.min(1, timeLeftMs / totalMs)) : 0
   const isWarning = pct < 0.2
 
@@ -25,7 +44,6 @@ export default function CaseStudyTimer({ caseId, timeLeftMs, totalMs }) {
           role="timer"
           aria-label={`Detailed view session: ${formatTime(timeLeftMs)} remaining`}
         >
-          {/* Progress track */}
           <div className="cs-timer-track">
             <motion.div
               className={`cs-timer-fill${isWarning ? ' is-warning' : ''}`}
@@ -34,7 +52,6 @@ export default function CaseStudyTimer({ caseId, timeLeftMs, totalMs }) {
             />
           </div>
 
-          {/* Persistent label strip centered below the bar */}
           <div className="cs-timer-label">
             <span className={`cs-timer-countdown${isWarning ? ' is-warning' : ''}`}>
               {formatTime(timeLeftMs)}

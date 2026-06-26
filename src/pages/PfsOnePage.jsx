@@ -9,6 +9,7 @@ import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
 import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
+import { useCaseMode } from '../context/CaseModeContext'
 
 const FLOW_DATA = {
   flow_01: {
@@ -76,24 +77,23 @@ const FLOW_DATA = {
 export default function PfsOnePage() {
   const [activeFlow, setActiveFlow] = useState(null)
   const isSimple = useCaseStudyMode()
+  const { setMode } = useCaseMode()
   const access = useCaseStudyAccess('pfsone')
   const [showGate, setShowGate] = useState(false)
 
   useEffect(() => {
     if (access.status === 'expired') {
-      document.documentElement.classList.add('is-simple')
-      document.documentElement.classList.remove('is-detailed')
+      setMode(true)
       setShowGate(true)
     }
-  }, [access.status])
+  }, [access.status, setMode])
 
   useEffect(() => {
     if (access.status === 'unlocked') {
       setShowGate(false)
-      document.documentElement.classList.remove('is-simple')
-      document.documentElement.classList.add('is-detailed')
+      setMode(false)
     }
-  }, [access.status])
+  }, [access.status, setMode])
 
   const revealObserverRef = useRef(null)
 
@@ -150,7 +150,7 @@ export default function PfsOnePage() {
         )}
       </AnimatePresence>
       {access.status === 'unlocked' && (
-        <CaseStudyTimer caseId="pfsone" timeLeftMs={access.timeLeftMs} totalMs={access.totalMs} />
+        <CaseStudyTimer caseId="pfsone" totalMs={access.totalMs} />
       )}
       {/* ARTIFACT MODAL */}
       <div

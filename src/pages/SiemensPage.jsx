@@ -9,9 +9,11 @@ import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
 import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
+import { useCaseMode } from '../context/CaseModeContext'
 
 export default function SiemensPage() {
   const isSimple = useCaseStudyMode()
+  const { setMode } = useCaseMode()
   const access = useCaseStudyAccess('siemens')
   const [showGate, setShowGate] = useState(false)
 
@@ -29,17 +31,15 @@ export default function SiemensPage() {
 
   useEffect(() => {
     if (access.status === 'expired') {
-      document.documentElement.classList.add('is-simple')
-      document.documentElement.classList.remove('is-detailed')
+      setMode(true)
       setShowGate(true)
     }
-  }, [access.status])
+  }, [access.status, setMode])
 
   useEffect(() => {
     if (access.status === 'unlocked') {
       setShowGate(false)
-      document.documentElement.classList.remove('is-simple')
-      document.documentElement.classList.add('is-detailed')
+      setMode(false)
     }
   }, [access.status])
 
@@ -84,7 +84,6 @@ export default function SiemensPage() {
       {access.status === 'unlocked' && (
         <CaseStudyTimer
           caseId="siemens"
-          timeLeftMs={access.timeLeftMs}
           totalMs={access.totalMs}
         />
       )}

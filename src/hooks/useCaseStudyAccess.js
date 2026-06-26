@@ -54,20 +54,17 @@ export function useCaseStudyAccess(caseId) {
     }
   }, [caseId])
 
-  // Countdown interval
+  // Expiry watchdog — only updates state when session actually expires.
+  // CaseStudyTimer owns its own display interval to avoid page-level re-renders every second.
   useEffect(() => {
     if (status !== 'unlocked') return
     const id = setInterval(() => {
       const session = readSession(caseId)
-      if (!session) return
-      const left = session.expiresAt - Date.now()
-      if (left <= 0) {
+      if (!session || session.expiresAt - Date.now() <= 0) {
         clearInterval(id)
         clearSession(caseId)
         setTimeLeftMs(0)
         setStatus('expired')
-      } else {
-        setTimeLeftMs(left)
       }
     }, 1000)
     return () => clearInterval(id)

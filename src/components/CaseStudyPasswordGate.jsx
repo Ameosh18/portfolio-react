@@ -33,16 +33,19 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
   const otpRefs = useRef([])
   const prevFocusRef = useRef(null)
 
+  const onCloseRef = useRef(onClose)
+  useEffect(() => { onCloseRef.current = onClose })
+
   useEffect(() => {
     prevFocusRef.current = document.activeElement
     setTimeout(() => emailRef.current?.focus(), 80)
-    const onKey = (e) => { if (e.key === 'Escape') onClose?.() }
+    const onKey = (e) => { if (e.key === 'Escape') onCloseRef.current?.() }
     document.addEventListener('keydown', onKey)
     return () => {
       document.removeEventListener('keydown', onKey)
       prevFocusRef.current?.focus()
     }
-  }, [onClose])
+  }, [])
 
   useEffect(() => {
     if (access.status === 'code_sent') {

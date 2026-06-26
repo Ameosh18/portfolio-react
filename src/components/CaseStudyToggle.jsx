@@ -1,24 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Loader from './Loader'
+import { useCaseMode } from '../context/CaseModeContext'
 
 export default function CaseStudyToggle({ accessStatus, onRequestAccess }) {
-  const [isSimple, setIsSimple] = useState(true)
+  const { isSimple, setMode } = useCaseMode()
   const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    // Always initialize to Simple view on mount
-    setIsSimple(true)
-    document.documentElement.classList.add('is-simple')
-    document.documentElement.classList.remove('is-detailed')
-
-    const observer = new MutationObserver(() => {
-      const isSimpleModeFromDOM = document.documentElement.classList.contains('is-simple')
-      setIsSimple(isSimpleModeFromDOM)
-    })
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-    return () => observer.disconnect()
-  }, [])
 
   const toggleMode = (mode) => {
     const simple = mode === 'simple'
@@ -29,9 +16,7 @@ export default function CaseStudyToggle({ accessStatus, onRequestAccess }) {
 
     setIsLoading(true)
     document.documentElement.classList.add('is-loading')
-    setIsSimple(simple)
-    document.documentElement.classList.toggle('is-simple', simple)
-    document.documentElement.classList.toggle('is-detailed', !simple)
+    setMode(simple)
 
     if (anchor !== null && anchorTopBefore !== null) {
       requestAnimationFrame(() => {
@@ -53,7 +38,6 @@ export default function CaseStudyToggle({ accessStatus, onRequestAccess }) {
 
   return (
     <div className={`cs-toggle-pill ${isSimple ? 'is-simple' : ''}`} role="radiogroup" aria-label="View mode">
-      {/* Animated highlight background that slides between buttons */}
       <motion.div
         className="cs-toggle-highlight"
         layout

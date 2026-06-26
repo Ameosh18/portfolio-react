@@ -9,29 +9,29 @@ import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
 import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
+import { useCaseMode } from '../context/CaseModeContext'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
   const [imgError, setImgError] = useState(false)
   const isSimple = useCaseStudyMode()
+  const { setMode } = useCaseMode()
   const access = useCaseStudyAccess('digisense')
   const [showGate, setShowGate] = useState(false)
 
   useEffect(() => {
     if (access.status === 'expired') {
-      document.documentElement.classList.add('is-simple')
-      document.documentElement.classList.remove('is-detailed')
+      setMode(true)
       setShowGate(true)
     }
-  }, [access.status])
+  }, [access.status, setMode])
 
   useEffect(() => {
     if (access.status === 'unlocked') {
       setShowGate(false)
-      document.documentElement.classList.remove('is-simple')
-      document.documentElement.classList.add('is-detailed')
+      setMode(false)
     }
-  }, [access.status])
+  }, [access.status, setMode])
 
   const revealObserverRef = useRef(null)
 
@@ -71,7 +71,7 @@ export default function DigiSensePage() {
         )}
       </AnimatePresence>
       {access.status === 'unlocked' && (
-        <CaseStudyTimer caseId="digisense" timeLeftMs={access.timeLeftMs} totalMs={access.totalMs} />
+        <CaseStudyTimer caseId="digisense" totalMs={access.totalMs} />
       )}
       {/* BREADCRUMB + TOGGLE */}
       <section className="cs-breadcrumb">

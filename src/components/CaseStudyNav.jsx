@@ -83,6 +83,8 @@ export default function CaseStudyNav() {
     return () => document.body.classList.remove('has-cs-nav')
   }, [])
 
+  const sectionKey = sections.map(s => s.id).join(',')
+
   useEffect(() => {
     const visibilityMap = {}
     const observers = []
@@ -112,7 +114,8 @@ export default function CaseStudyNav() {
     })
 
     return () => observers.forEach(o => o.disconnect())
-  }, [isSimple])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionKey])
 
   const activeLabel = sections.find(s => s.id === activeId)?.label ?? 'Sections'
 
