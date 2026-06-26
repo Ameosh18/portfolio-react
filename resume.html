@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Ameya Kulkarni" />
+  <meta name="description" content="Lead UX Designer, 9.5 years, Pune — Resume of Ameya Kulkarni" />
+  <title>Ameya Kulkarni — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:           #0C0C0C;
+      --surface:      #141414;
+      --surface-2:    #1C1C1C;
+      --border:       #262626;
+      --border-soft:  #1E1E1E;
+      --text:         #FFFFFF;
+      --text-muted:   #C0C2B8;
+      --text-dim:     #7A7C74;
+      --accent:       #D5FF40;
+      --accent-ink:   #0C0C0C;
+      --font-display: 'Bricolage Grotesque', sans-serif;
+      --font-mono:    'Space Mono', monospace;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ul { list-style: none; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── PAGE ── */
+    html, body {
+      width: 210mm;
+      height: 297mm;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      overflow: hidden;
+      position: relative;
+      background-color: var(--bg);
+      /* Blueprint dot grid */
+      background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* ── HEADER ── */
+    .r-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(213,255,64,0.04) 0%, transparent 100%);
+      position: relative;
+      z-index: 1;
+    }
+
+    .r-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      background: var(--surface-2);
+    }
+
+    .r-photo-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .r-header-info { flex: 1; }
+
+    .r-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .r-eyebrow::before { content: "// "; }
+
+    .r-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 26px;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .r-accent-bar {
+      width: 36px;
+      height: 2px;
+      background: var(--accent);
+      margin: 6px 0;
+    }
+
+    .r-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-top: 2px;
+    }
+
+    .r-contact-item {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .r-contact-item span { color: var(--text-muted); }
+    a.r-contact-item { text-decoration: none; color: var(--accent); }
+    a.r-contact-item span { color: var(--accent); }
+    a.r-contact-item:hover span { text-decoration: underline; }
+
+    /* Metrics strip on the right of header */
+    .r-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .r-metric-cell {
+      background: var(--surface-2);
+      padding: 8px 12px;
+      min-width: 72px;
+    }
+
+    .r-metric-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .r-metric-lbl {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* ── BODY GRID ── */
+    .r-body {
+      display: grid;
+      grid-template-columns: 198px 1fr;
+      height: calc(297mm - 136px);
+    }
+
+    /* ── SIDEBAR ── */
+    .r-sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 20px 16px;
+      overflow: hidden;
+    }
+
+    /* ── MAIN ── */
+    .r-main {
+      padding: 16px 24px 12px;
+      overflow: hidden;
+    }
+
+    /* ── SECTION LABEL ── */
+    .r-section-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--border);
+      margin-bottom: 10px;
+    }
+    .r-section-label::before { content: "// "; }
+
+    /* ── SKILL CHIPS ── */
+    .r-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+
+    .r-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── SIDEBAR EDU ── */
+    .r-edu-entry { margin-bottom: 12px; }
+
+    .r-edu-degree {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 9.5px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .r-edu-school {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .r-edu-period {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    /* ── SIDEBAR LANG ── */
+    .r-lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .r-lang-name {
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      color: var(--text-muted);
+    }
+
+    .r-lang-level {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      color: var(--text-dim);
+    }
+
+    /* ── SIDEBAR BEYOND ── */
+    .r-beyond-entry {
+      padding: 8px 0;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .r-beyond-org {
+      font-family: var(--font-mono);
+      font-size: 7.5px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    .r-beyond-roles {
+      font-family: var(--font-body);
+      font-size: 8.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .r-beyond-since {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      color: var(--text-dim);
+      margin-top: 1px;
+    }
+
+    /* ── EXPERIENCE ENTRY ── */
+    .r-exp-entry {
+      padding-bottom: 9px;
+      margin-bottom: 9px;
+      border-bottom: 1px solid var(--border-soft);
+      position: relative;
+    }
+
+    .r-exp-entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Lime left accent bar */
+    .r-exp-entry::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 2px;
+      width: 2px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 1px;
+      opacity: 0.6;
+    }
+
+    .r-exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+
+    .r-exp-role {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .r-exp-period {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .r-exp-company {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+
+    .r-exp-desc {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .r-exp-desc li { position: relative; margin-bottom: 2px; }
+    .r-exp-desc li::before {
+      content: "–";
+      position: absolute;
+      left: -10px;
+      color: var(--text-dim);
+    }
+
+    /* ── PRINT ── */
+    @page { size: A4; margin: 0; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { width: 210mm; height: 297mm; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <header class="r-header">
+
+    <!-- Photo -->
+    <img
+      src="ameya_photo.PNG"
+      alt="Ameya Kulkarni"
+      class="r-photo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="r-photo-placeholder" style="display:none;" aria-hidden="true">AK</div>
+
+    <!-- Name + contact -->
+    <div class="r-header-info">
+      <p class="r-eyebrow">Lead UX Designer</p>
+      <h1 class="r-name">Ameya Kulkarni</h1>
+      <div class="r-accent-bar"></div>
+      <div class="r-contact-row">
+        <a href="mailto:ameosh18@gmail.com" class="r-contact-item"><span>ameosh18@gmail.com</span></a>
+        <a href="tel:+919975308842" class="r-contact-item"><span>+91-9975308842</span></a>
+        <span class="r-contact-item"><span>Pune, India</span></span>
+        <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" class="r-contact-item"><span>linkedin.com/in/ameyakulkarni-ux</span></a>
+        <a href="https://ameosh18.github.io/portfolio-react" target="_blank" rel="noopener" class="r-contact-item"><span>ameosh18.github.io/portfolio-react</span></a>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="r-metrics" role="list" aria-label="Key impact metrics">
+      <div class="r-metric-cell" role="listitem">
+        <div class="r-metric-num">+35%</div>
+        <div class="r-metric-lbl">Engagement</div>
+      </div>
+      <div class="r-metric-cell" role="listitem">
+        <div class="r-metric-num">-2.5s</div>
+        <div class="r-metric-lbl">Task Time</div>
+      </div>
+      <div class="r-metric-cell" role="listitem">
+        <div class="r-metric-num">4+</div>
+        <div class="r-metric-lbl">Design Systems</div>
+      </div>
+      <div class="r-metric-cell" role="listitem">
+        <div class="r-metric-num">9.5y</div>
+        <div class="r-metric-lbl">Experience</div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ── BODY ── -->
+  <div class="r-body">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="r-sidebar">
+
+      <!-- Skills -->
+      <h2 class="r-section-label">Skills</h2>
+      <div class="r-chips" role="list">
+        <span class="r-chip" role="listitem">Requirement Gathering</span>
+        <span class="r-chip" role="listitem">UX Design</span>
+        <span class="r-chip" role="listitem">Interaction Design</span>
+        <span class="r-chip" role="listitem">Heuristic Evaluation</span>
+        <span class="r-chip" role="listitem">User Research</span>
+        <span class="r-chip" role="listitem">Usability Testing</span>
+        <span class="r-chip" role="listitem">Hi-Fi Prototyping</span>
+        <span class="r-chip" role="listitem">Design Systems</span>
+        <span class="r-chip" role="listitem">Agile / Lean UX</span>
+        <span class="r-chip" role="listitem">Project Management</span>
+      </div>
+
+      <!-- Tools -->
+      <h2 class="r-section-label">Tools</h2>
+      <div class="r-chips" role="list">
+        <span class="r-chip" role="listitem">Figma</span>
+        <span class="r-chip" role="listitem">Adobe XD</span>
+        <span class="r-chip" role="listitem">Miro</span>
+        <span class="r-chip" role="listitem">JIRA / Confluence</span>
+        <span class="r-chip" role="listitem">Optimal Workshop</span>
+        <span class="r-chip" role="listitem">Maze</span>
+        <span class="r-chip" role="listitem">Framer</span>
+      </div>
+
+      <!-- Education -->
+      <h2 class="r-section-label">Education</h2>
+      <div class="r-edu-entry">
+        <h3 class="r-edu-degree">Bachelor of Design<br />(User Experience Design)</h3>
+        <p class="r-edu-school">Symbiosis Institute of Design, Pune</p>
+        <p class="r-edu-period">2012 – 2016</p>
+      </div>
+
+      <!-- Beyond the Brief -->
+      <h2 class="r-section-label">Beyond the Brief</h2>
+      <div class="r-beyond-entry">
+        <p class="r-beyond-org">SID · Symbiosis Institute of Design</p>
+        <p class="r-beyond-roles">Visiting Faculty · External Jury<br />Programme Review Committee</p>
+        <p class="r-beyond-since">Since 2023</p>
+      </div>
+      <div class="r-beyond-entry">
+        <p class="r-beyond-org">Analyzethis.ai</p>
+        <p class="r-beyond-roles">Ideator · AI Product Strategy</p>
+        <p class="r-beyond-since">Since 2025</p>
+      </div>
+
+      <!-- Languages -->
+      <h2 class="r-section-label" style="margin-top:12px;">Languages</h2>
+      <div role="list">
+        <div class="r-lang-row" role="listitem">
+          <span class="r-lang-name">English</span>
+          <span class="r-lang-level">Professional</span>
+        </div>
+        <div class="r-lang-row" role="listitem">
+          <span class="r-lang-name">Hindi</span>
+          <span class="r-lang-level">Native</span>
+        </div>
+        <div class="r-lang-row" role="listitem">
+          <span class="r-lang-name">Marathi</span>
+          <span class="r-lang-level">Native</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="r-main">
+
+      <h2 class="r-section-label">Experience</h2>
+
+      <!-- 1 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">Senior UX Designer</h3>
+          <span class="r-exp-period">Aug 2020 – Present · Pune</span>
+        </div>
+        <p class="r-exp-company">Globant · Enterprise IoT, Fintech, SaaS · 6 Projects</p>
+        <ul class="r-exp-desc">
+          <li>Interacted with clients to define product strategy and goals, creating user-centric interaction models, screen flows, and detail designs across web, Android, and iOS platforms.</li>
+          <li>Applied WCAG accessibility standards to enterprise applications, reducing task completion time by 2.5s and driving a 35%+ engagement lift on flagship IoT dashboards.</li>
+          <li>Reviewed and evaluated existing products, produced heuristics-driven design options, and delivered personas, user flows, and clickable prototypes through rapid feedback cycles with 8+ cross-functional teams.</li>
+        </ul>
+      </article>
+
+      <!-- 2 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">Senior UX Consultant</h3>
+          <span class="r-exp-period">Mar 2020 – Aug 2020 · Pune</span>
+        </div>
+        <p class="r-exp-company">Thought-Craft · B2B Enterprise Applications</p>
+        <ul class="r-exp-desc">
+          <li>Translated B2B enterprise requirements into UX scenarios, task flows, and product workflows, creating storyboards to map and communicate design intent.</li>
+          <li>Swiftly converted complex problems into working low and high-fidelity prototypes to validate solutions with stakeholders.</li>
+        </ul>
+      </article>
+
+      <!-- 3 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">Senior UX Designer</h3>
+          <span class="r-exp-period">Dec 2019 – Feb 2020 · Pune</span>
+        </div>
+        <p class="r-exp-company">Innoplexus · AI, Pharma Data</p>
+        <ul class="r-exp-desc">
+          <li>Designed low and high-fidelity wireframes and mockups, crafting IA diagrams, UI pattern libraries, and interaction guidelines for AI-driven pharma data products.</li>
+          <li>Created rapid prototypes translating abstract ideas to visual assets, enabling the product team to rapidly converge on solutions for development handoff.</li>
+        </ul>
+      </article>
+
+      <!-- 4 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">Senior Interaction Designer</h3>
+          <span class="r-exp-period">Feb 2019 – Oct 2019 · Pune</span>
+        </div>
+        <p class="r-exp-company">Ogee Studio · Cybersecurity B2B</p>
+        <ul class="r-exp-desc">
+          <li>Translated security product requirements into UX scenarios, task flows, and storyboards, then swiftly produced low and high-fidelity prototypes for stakeholder validation.</li>
+          <li>Mapped complex cybersecurity requirements to interaction models and product workflows, maintaining design consistency across B2B application suites.</li>
+        </ul>
+      </article>
+
+      <!-- 5 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">UX Designer</h3>
+          <span class="r-exp-period">Feb 2018 – Feb 2019 · Pune</span>
+        </div>
+        <p class="r-exp-company">Extentia Information Technology · Enterprise B2B</p>
+        <ul class="r-exp-desc">
+          <li>Converted briefs into user-centric interfaces, task flows, and interaction models through competitive analysis and primary research including user interviews.</li>
+          <li>Developed low-to-high fidelity prototypes, tracked usability goals, prepared reports for senior management, and collaborated closely with developers to ensure cohesive delivery.</li>
+        </ul>
+      </article>
+
+      <!-- 6 -->
+      <article class="r-exp-entry">
+        <div class="r-exp-header">
+          <h3 class="r-exp-role">Interaction Designer</h3>
+          <span class="r-exp-period">May 2016 – Oct 2017 · Pune</span>
+        </div>
+        <p class="r-exp-company">Ogee Studio · Cybersecurity · 3 Projects</p>
+        <ul class="r-exp-desc">
+          <li>Understood requirements and translated them into UX scenarios, task flows, storyboards, and low/high-fidelity prototypes across 3 cybersecurity product projects.</li>
+          <li>Mapped requirements into product workflows and contributed to design critiques and cross-team reviews to ensure solution quality.</li>
+        </ul>
+      </article>
+
+    </main>
+  </div><!-- /r-body -->
+
+</div><!-- /page -->
+</body>
+</html>
