@@ -121,7 +121,7 @@ export default function WorkPage() {
             </span>
           </div>
           <a
-            href="mailto:ameyakulkarni43@icloud.com"
+            href="mailto:ameosh18@gmail.com"
             style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.1em", color: "var(--accent)", textDecoration: "none", textTransform: "uppercase", fontFamily: "var(--font-body)" }}
           >
             Get in touch ↗︎

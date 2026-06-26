@@ -190,7 +190,7 @@ export default function Nav() {
             <span className="pulse-dot" aria-hidden="true"></span>
             <span className="mobile-menu-footer-label">Available for projects</span>
           </div>
-          <a href="mailto:ameya.kulkarni@outlook.com" className="mobile-menu-footer-cta" onClick={close}>
+          <a href="mailto:ameosh18@gmail.com" className="mobile-menu-footer-cta" onClick={close}>
             Get in touch ↗︎
           </a>
         </div>
