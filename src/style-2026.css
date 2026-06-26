@@ -511,6 +511,7 @@ ul { list-style: none; }
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.4;
+  margin-top: 4px;
   margin-bottom: 14px;
 }
 

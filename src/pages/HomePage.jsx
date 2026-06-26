@@ -205,7 +205,6 @@ export default function Homepage() {
                     }
                     <span className="client-period">{c.period}</span>
                   </div>
-                  <div className="client-name">{c.name}</div>
                   <div className="client-role">{c.role}</div>
                   <div className="client-tag">{c.tag}</div>
                 </div>
