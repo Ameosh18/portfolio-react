@@ -433,6 +433,7 @@ ul { list-style: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  padding-top: 72px;
 }
 
 .client-chip {
@@ -441,11 +442,11 @@ ul { list-style: none; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 28px 28px 28px;
+  padding: 80px 28px 28px 28px;
   display: flex;
   flex-direction: column;
   gap: 0;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
@@ -455,23 +456,25 @@ ul { list-style: none; }
   background: var(--surface-2);
 }
 
-/* top row: logo + period */
+/* top row: period (logo is absolutely positioned above card) */
 .client-chip-top {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-bottom: 28px;
 }
 
 .client-logo {
-  height: 72px;
+  height: 100px;
   width: auto;
-  max-width: 160px;
+  max-width: 200px;
   object-fit: contain;
-  object-position: left top;
-  margin-top: -4px;
-  margin-left: -4px;
-  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  object-position: left bottom;
+  position: absolute;
+  top: -44px;
+  left: 20px;
+  z-index: 3;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
 }
 
 
