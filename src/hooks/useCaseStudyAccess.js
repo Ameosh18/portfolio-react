@@ -54,7 +54,7 @@ export function useCaseStudyAccess(caseId) {
     }
   }, [caseId])
 
-  // Expiry watchdog — only updates state when session actually expires.
+  // Expiry watchdog - only updates state when session actually expires.
   // CaseStudyTimer owns its own display interval to avoid page-level re-renders every second.
   useEffect(() => {
     if (status !== 'unlocked') return
