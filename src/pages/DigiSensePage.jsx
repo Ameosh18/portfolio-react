@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import CaseStudyToggle from '../components/CaseStudyToggle'
+import SnapshotNotice from '../components/SnapshotNotice'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import CaseStudyNav from '../components/CaseStudyNav'
 import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
@@ -662,6 +663,7 @@ export default function DigiSensePage() {
                 />
               </div>
             </div>
+            <SnapshotNotice />
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>
@@ -689,6 +691,7 @@ export default function DigiSensePage() {
                 />
               </div>
             </div>
+            <SnapshotNotice />
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>
@@ -716,6 +719,7 @@ export default function DigiSensePage() {
                 />
               </div>
             </div>
+            <SnapshotNotice />
             <div className="screen-annotations reveal">
               <div className="annotation">
                 <h5>The Decision</h5>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import CaseStudyToggle from '../components/CaseStudyToggle'
+import SnapshotNotice from '../components/SnapshotNotice'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import CaseStudyNav from '../components/CaseStudyNav'
 import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
@@ -630,6 +631,8 @@ export default function PfsOnePage() {
             <span>Design Work</span>
           </div>
           <h2 className="cs-h2 reveal">Six flows. Each chosen because<br />it shows a decision, not just a screen.</h2>
+
+          <SnapshotNotice />
 
           <div className="artifact-grid">
             {[

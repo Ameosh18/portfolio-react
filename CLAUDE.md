@@ -7,7 +7,7 @@ Follow every rule here unless the user explicitly overrides it in conversation.
 
 ## 1. Project Overview
 
-Personal portfolio for **Ameya Kulkarni**, Lead UX Designer (9.5 years).
+Personal portfolio for **Ameya Kulkarni**, Lead UX Designer (10+ years).
 Built with React + Vite, deployed to GitHub Pages at `/portfolio-react/`.
 
 **Stack:** React 18, React Router 6, Framer Motion (`motion/react`), plain CSS (no CSS-in-JS).
@@ -736,3 +736,238 @@ The GitHub Actions workflow (`/.github/workflows/sanity-check.yml`) runs:
 - **Never push to `main` without verifying the build is clean** — `main` deploys live.
 - **Only `main` deploys; only the `gh-pages` branch is the deploy target** — never delete `gh-pages`, never add deploy triggers for `feature/**` or `claude/**`.
 - **ALWAYS run the app in the browser and visually test before marking work complete** — builds passing is not proof that features work
+
+---
+
+## 16. Case Study Interactive Features
+
+Every case study page now ships with six interactive features beyond the hero + content sections. When adding a new case study, wire all of them — none are optional.
+
+---
+
+### 16a. Simple / Detailed Toggle
+
+**What:** A pill toggle at the top of the case study that switches between a recruiter-friendly summary (Simple) and the full NDA-gated view (Detailed). The active mode is stored as a CSS class on `<html>`: `html.is-simple` or `html.is-detailed`.
+
+**Component:** `src/components/CaseStudyToggle.jsx`
+
+**Props:**
+```jsx
+<CaseStudyToggle
+  accessStatus={access.status}   // 'idle' | 'code_sent' | 'unlocked' | 'expired'
+  onRequestAccess={() => setShowGate(true)}
+/>
+```
+
+**CSS pattern:** Content shown only in Simple mode uses `.is-simple-only` (or `html:not(.is-detailed) .element`). Content shown only in Detailed uses `.is-detailed-only`. Simple mode is the default on first load.
+
+---
+
+### 16b. OTP Access Gate (Detailed mode only)
+
+**What:** When the user clicks "Detailed" without a valid session, a glassmorphic gate card appears inline (not a modal). The user enters their email, receives a 6-digit code via EmailJS, and enters it to unlock. On unlock, the gate slides away and the timer starts.
+
+**Files:**
+- Component: `src/components/CaseStudyPasswordGate.jsx`
+- Hook: `src/hooks/useCaseStudyAccess.js`
+- Config: `src/config/caseStudyAccess.js`
+
+**Session storage key:** `cs-access-{caseId}` containing `{ email, code, unlockedAt, expiresAt }`. Uses `sessionStorage` (clears on tab close).
+
+**Owner bypass:** If the entered email is `ameosh18@gmail.com`, the gate unlocks immediately without sending a code.
+
+**EmailJS env vars (never commit, keep in `.env` only):**
+```
+VITE_EMAILJS_PUBLIC_KEY=...
+VITE_EMAILJS_SERVICE_ID=...
+VITE_EMAILJS_TEMPLATE_ID=...
+```
+
+**Wiring in page:**
+```jsx
+const access = useCaseStudyAccess('yourcaseid')
+const [showGate, setShowGate] = useState(false)
+
+// Force back to Simple when session expires
+useEffect(() => {
+  if (access.status === 'expired') {
+    document.documentElement.classList.remove('is-detailed')
+    document.documentElement.classList.add('is-simple')
+    setShowGate(true)
+  }
+}, [access.status])
+
+// Auto-hide gate once unlocked
+useEffect(() => {
+  if (access.status === 'unlocked') setShowGate(false)
+}, [access.status])
+
+// In JSX:
+<AnimatePresence>
+  {showGate && access.status !== 'unlocked' && (
+    <CaseStudyPasswordGate caseId="yourcaseid" access={access} onClose={() => setShowGate(false)} />
+  )}
+</AnimatePresence>
+```
+
+**Register in config (`src/config/caseStudyAccess.js`):**
+```js
+export const CASE_STUDY_ACCESS = {
+  siemens:   { displayName: 'Siemens Xcelerator',  timerMinutes: 35 },
+  digisense: { displayName: 'DiGiSense',            timerMinutes: 30 },
+  pfsone:    { displayName: 'PFS ONE',              timerMinutes: 40 },
+  // yourcaseid: { displayName: 'Project Name', timerMinutes: 30 },
+}
+```
+
+---
+
+### 16c. Session Timer Bar
+
+**What:** A slim full-width bar pinned just below the nav (top: 72px) that shows how much of the Detailed session remains. Fills lime, depletes left-to-right. Turns amber when under 20% remaining. Disappears when the session expires (gate re-appears).
+
+**Component:** `src/components/CaseStudyTimer.jsx`
+
+**Wiring:**
+```jsx
+{access.status === 'unlocked' && (
+  <CaseStudyTimer
+    caseId="yourcaseid"
+    timeLeftMs={access.timeLeftMs}
+    totalMs={access.totalMs}
+  />
+)}
+```
+
+**CSS offset:** Wrap the page in a div with class `cs-page cs-yourcaseid` and conditionally add `cs-timer-active` when unlocked. The CSS variable `--timer-h: 37px` shifts the breadcrumb and toggle down when the timer bar is visible:
+
+```jsx
+<div className={`cs-page cs-yourcaseid${access.status === 'unlocked' ? ' cs-timer-active' : ''}`}>
+```
+
+---
+
+### 16d. Fixed Section Nav (CaseStudyNav)
+
+**What:** A fixed left-side navigation (desktop) and floating action button (mobile) listing the major sections of the case study. Clicking a nav item smooth-scrolls to the section. Active section is highlighted.
+
+**Component:** `src/components/CaseStudyNav.jsx`
+
+**Wiring:** Place just inside the outer page wrapper, before the page content:
+```jsx
+<CaseStudyNav caseId="yourcaseid" />
+```
+
+Each navigable section must have an `id` matching the nav entry (e.g. `id="cs-overview"`, `id="cs-research"`, `id="cs-design"`).
+
+---
+
+### 16e. Feedback Prompt (Simple mode only)
+
+**What:** A card at the bottom of the page asking viewers for feedback. Visible only in Simple mode. Hidden in Detailed mode via CSS (`html:not(.is-simple) .case-study-feedback { display: none }`).
+
+**Component:** `src/components/CaseStudyFeedbackPrompt.jsx`
+
+**Wiring:** Place at the end of the page content, after all sections:
+```jsx
+<CaseStudyFeedbackPrompt />
+```
+
+No props required.
+
+---
+
+### 16f. Snapshot Notice
+
+**What:** A small inline notice rendered below each work-image frame (`.screen-container`) and above the annotations grid (`.screen-annotations`). Tells recruiters and hiring managers that what they see is a curated snapshot and that full files, explorations, and handoff specs are available in the interview round.
+
+**Component:** `src/components/SnapshotNotice.jsx`
+
+**Placement:** Once per `screen-section`, between the closing `</div>` of `.screen-container` and the opening `<div className="screen-annotations">`. For pages that use `artifact-grid` instead of `screen-section` (e.g. PFS ONE), place once above the grid.
+
+```jsx
+import SnapshotNotice from '../components/SnapshotNotice'
+
+// Inside each screen-section:
+<div className="screen-container reveal">
+  ...
+</div>
+<SnapshotNotice />
+<div className="screen-annotations reveal">
+  ...
+</div>
+```
+
+**CSS:** Lives in `src/case-study.css` under `.cs-snapshot-notice`. Uses `rgba(var(--accent-rgb), 0.05)` background and `var(--font-mono)` at 10px. Visible in both Simple and Detailed modes.
+
+---
+
+### 16g. Wiring a New Case Study - Complete Checklist
+
+Do all of the following when creating a new case study page:
+
+**Setup:**
+- [ ] Add `caseId` entry to `src/config/caseStudyAccess.js`
+- [ ] Add route in `src/App.jsx`
+- [ ] Add `'/slug'` to `CASE_STUDY_PATHS` in `src/components/Nav.jsx`
+- [ ] Add card to `src/components/StackedGallery.jsx`
+- [ ] Add `.cs-slug` CSS block to `src/case-study.css`
+
+**Imports (top of page file):**
+```js
+import { useState, useEffect, useRef } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import CaseStudyToggle from '../components/CaseStudyToggle'
+import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
+import CaseStudyNav from '../components/CaseStudyNav'
+import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
+import CaseStudyTimer from '../components/CaseStudyTimer'
+import SnapshotNotice from '../components/SnapshotNotice'
+import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
+import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
+```
+
+**Hook calls (inside the component):**
+```js
+const { isSimple } = useCaseStudyMode()
+const access = useCaseStudyAccess('yourcaseid')
+const [showGate, setShowGate] = useState(false)
+```
+
+**Effects (inside the component):**
+```js
+useEffect(() => {
+  if (access.status === 'expired') {
+    document.documentElement.classList.remove('is-detailed')
+    document.documentElement.classList.add('is-simple')
+    setShowGate(true)
+  }
+}, [access.status])
+
+useEffect(() => {
+  if (access.status === 'unlocked') setShowGate(false)
+}, [access.status])
+```
+
+**JSX structure:**
+```jsx
+<div className={`cs-page cs-yourcaseid${access.status === 'unlocked' ? ' cs-timer-active' : ''}`}>
+  <CaseStudyNav caseId="yourcaseid" />
+  <AnimatePresence>
+    {showGate && access.status !== 'unlocked' && (
+      <CaseStudyPasswordGate caseId="yourcaseid" access={access} onClose={() => setShowGate(false)} />
+    )}
+  </AnimatePresence>
+  {access.status === 'unlocked' && (
+    <CaseStudyTimer caseId="yourcaseid" timeLeftMs={access.timeLeftMs} totalMs={access.totalMs} />
+  )}
+
+  {/* Breadcrumb */}
+  {/* Hero */}
+  {/* Content sections (each with id for CaseStudyNav) */}
+  {/* Design work sections (each with <SnapshotNotice /> below screen-container) */}
+
+  <CaseStudyToggle accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
+  <CaseStudyFeedbackPrompt />
+</div>
+```
