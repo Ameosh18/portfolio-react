@@ -540,7 +540,7 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .client-chip { flex: 1 1 calc(50% - 12px); padding: 22px 24px; }
+  .client-chip { flex: 1 1 calc(50% - 12px); padding: 56px 24px 22px; }
   .clients-grid { gap: 12px; }
 }
 
