@@ -990,14 +990,14 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 16px;
+  padding: 12px 18px;
   margin-bottom: 24px;
-  background: rgba(var(--accent-rgb), 0.05);
-  border: 1px solid rgba(var(--accent-rgb), 0.15);
+  background: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   border-radius: var(--radius-sm);
 }
 .cs-snapshot-icon {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--accent);
   flex-shrink: 0;
 }
@@ -1005,7 +1005,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.06em;
-  color: var(--text-dim);
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
