@@ -2528,6 +2528,10 @@ html.is-simple .cs-page .design-work {
 
 /* ── CASE STUDY TIMER BAR ── */
 
+:root {
+  --timer-h: 37px;
+}
+
 .cs-timer-bar-wrap {
   position: fixed;
   top: var(--nav-h);
@@ -2536,6 +2540,10 @@ html.is-simple .cs-page .design-work {
   z-index: 99;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+}
+
+.cs-timer-active .cs-breadcrumb {
+  padding-top: calc(var(--timer-h) + 16px);
 }
 
 .cs-timer-track {

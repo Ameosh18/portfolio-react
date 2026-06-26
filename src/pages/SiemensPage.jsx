@@ -54,7 +54,7 @@ export default function SiemensPage() {
   }, [isSimple])
 
   return (
-    <div className="cs-page cs-siemens">
+    <div className={`cs-page cs-siemens${access.status === 'unlocked' ? ' cs-timer-active' : ''}`}>
       <CaseStudyNav />
 
       {/* 1. BREADCRUMB + TOGGLE */}
