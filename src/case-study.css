@@ -995,6 +995,7 @@
   background: rgba(var(--accent-rgb), 0.08);
   border: 1px solid rgba(var(--accent-rgb), 0.25);
   border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
 }
 .cs-snapshot-icon {
   font-size: 11px;
@@ -1002,7 +1003,6 @@
   flex-shrink: 0;
 }
 .cs-snapshot-text {
-  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--text-muted);
