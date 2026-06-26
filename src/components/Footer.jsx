@@ -26,8 +26,8 @@ export default function Footer() {
           >
             LinkedIn ↗︎
           </a>
-          <a href="mailto:ameya.kulkarni@outlook.com" className="footer-email">
-            ameya.kulkarni@outlook.com
+          <a href="mailto:ameosh18@gmail.com" className="footer-email">
+            ameosh18@gmail.com
           </a>
         </div>
 

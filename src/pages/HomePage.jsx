@@ -141,8 +141,8 @@ export default function Homepage() {
               <div className="hero-copy reveal">
                 <span className="eyebrow">Lead UX Designer</span>
                 <h1>I design where systems thinking, UX strategy,<br />and AI workflows meet.</h1>
-                <p className="hero-sub"><span>9.5 years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
-                <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 9.5 years making complex products feel clear, and shipping things that move metrics.</p>
+                <p className="hero-sub"><span>10+ years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
+                <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 10+ years making complex products feel clear, and shipping things that move metrics.</p>
                 <div className="hero-ctas">
                   <Link to="/work" className="btn btn-primary">View All Work <span className="arrow">→</span></Link>
                   <span className="status-pill hero-avail"><span className="dot" />Open to opportunities</span>
@@ -324,8 +324,8 @@ export default function Homepage() {
             <h2 className="section-title reveal" style={{ marginTop: '16px' }}>I can help your team move faster and ship better products.</h2>
             <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
             <div className="contact-links reveal">
-              <a href="mailto:ameyakulkarni43@icloud.com" className="contact-link">
-                <span className="c-k">Email</span><span className="c-v">ameyakulkarni43@icloud.com</span><span className="c-arrow">↗︎</span>
+              <a href="mailto:ameosh18@gmail.com" className="contact-link">
+                <span className="c-k">Email</span><span className="c-v">ameosh18@gmail.com</span><span className="c-arrow">↗︎</span>
               </a>
               <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" className="contact-link">
                 <span className="c-k">LinkedIn</span><span className="c-v">linkedin.com/in/ameyakulkarni-ux</span><span className="c-arrow">↗︎</span>
@@ -348,7 +348,7 @@ export default function Homepage() {
           </div>
           <div className="footer-contact">
             <a href="#contact">Get in touch</a>
-            <a href="mailto:ameyakulkarni43@icloud.com" className="footer-email">ameyakulkarni43@icloud.com</a>
+            <a href="mailto:ameosh18@gmail.com" className="footer-email">ameosh18@gmail.com</a>
           </div>
         </div>
       </footer>

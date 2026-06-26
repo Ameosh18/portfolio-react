@@ -17,7 +17,7 @@ const Ticks = () => (
 
 const IDENTITY = [
   { key: 'Role',       val: 'Lead UX Designer' },
-  { key: 'Experience', val: '9.5 Years' },
+  { key: 'Experience', val: '10+ Years' },
   { key: 'Focus',      val: 'B2B SaaS · Fintech · AI' },
   { key: 'Status',     val: 'Available', pulse: true },
 ]
@@ -47,7 +47,7 @@ const EXPERTISE_BLOCKS = [
 ]
 
 const METRICS = [
-  { value: '9.5 yrs', label: 'Industry experience' },
+  { value: '10+ yrs', label: 'Industry experience' },
   { value: '4+',      label: 'Design systems shipped' },
   { value: '8+',      label: 'Team members led' },
   { value: '35%+',    label: 'Avg. engagement lift' },
@@ -104,7 +104,7 @@ export default function AboutPage() {
               <div className="ab-hero-left reveal">
                 <span className="eyebrow">About Me</span>
                 <h1 id="ab-hero-heading" className="ab-hero-h1">
-                  9.5 years shipping<br />
+                  10+ years shipping<br />
                   systems that move people.
                 </h1>
                 <p className="ab-hero-lead">
@@ -219,7 +219,7 @@ export default function AboutPage() {
                 Full-time or contract. Product, platform, or AI-native teams.
               </p>
               <div className="ab-cta-actions">
-                <a href="mailto:ameya.kulkarni@outlook.com" className="btn btn-primary">
+                <a href="mailto:ameosh18@gmail.com" className="btn btn-primary">
                   Get in Touch <span className="arrow" aria-hidden="true">&#x2192;</span>
                 </a>
                 <Link to="/work" className="btn btn-ghost">
