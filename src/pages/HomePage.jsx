@@ -290,7 +290,7 @@ export default function Homepage() {
             </div>
 
             <div className="process-tagline reveal">
-              <p>// I use tools fluently because I've thought about the work first.</p>
+              <p>// Tools amplify thinking. The thinking still comes first.</p>
             </div>
           </div>
         </section>
