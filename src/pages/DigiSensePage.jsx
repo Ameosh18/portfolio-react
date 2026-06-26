@@ -10,6 +10,7 @@ import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import { useCaseMode } from '../context/CaseModeContext'
+import LazyFigmaEmbed from '../components/LazyFigmaEmbed'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
@@ -265,12 +266,9 @@ export default function DigiSensePage() {
           </div>
 
           <div className="section-figma-embed reveal">
-            <iframe
+            <LazyFigmaEmbed
               title="Stakeholder personas · DigiSense"
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-105&embed-host=share&hide-ui=1"
-              allowFullScreen
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
 
@@ -314,12 +312,9 @@ export default function DigiSensePage() {
           </div>
 
           <div className="section-figma-embed reveal">
-            <iframe
+            <LazyFigmaEmbed
               title="Research locations across 5 states · DigiSense"
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-106&embed-host=share&hide-ui=1"
-              allowFullScreen
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
 
@@ -409,12 +404,9 @@ export default function DigiSensePage() {
           </div>
 
           <div className="section-figma-embed reveal">
-            <iframe
+            <LazyFigmaEmbed
               title="Savvy Farmer journey map · DigiSense"
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-107&embed-host=share&hide-ui=1"
-              allowFullScreen
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
@@ -507,12 +499,9 @@ export default function DigiSensePage() {
           </div>
 
           <div className="section-figma-embed reveal">
-            <iframe
+            <LazyFigmaEmbed
               title="Farmers affinity map · DigiSense"
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-108&embed-host=share&hide-ui=1"
-              allowFullScreen
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
@@ -629,12 +618,9 @@ export default function DigiSensePage() {
           </div>
 
           <div className="section-figma-embed reveal">
-            <iframe
+            <LazyFigmaEmbed
               title="Opportunity areas · DigiSense"
               src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2011-109&embed-host=share&hide-ui=1"
-              allowFullScreen
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
             />
           </div>
         </div>
@@ -655,11 +641,9 @@ export default function DigiSensePage() {
             <div className="screen-container reveal">
               <span className="screen-label">Screen 01 · Mobile Dashboard</span>
               <div className="screen-figma-embed">
-                <iframe
+                <LazyFigmaEmbed
                   title="Mobile Dashboard · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-102&embed-host=share&hide-ui=1"
-                  allowFullScreen
-                  loading="lazy"
                 />
               </div>
             </div>
@@ -683,11 +667,9 @@ export default function DigiSensePage() {
             <div className="screen-container reveal">
               <span className="screen-label">Screen 02 · Geofencing Creation</span>
               <div className="screen-figma-embed">
-                <iframe
+                <LazyFigmaEmbed
                   title="Geofencing Flow · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-103&embed-host=share&hide-ui=1"
-                  allowFullScreen
-                  loading="lazy"
                 />
               </div>
             </div>
@@ -711,11 +693,9 @@ export default function DigiSensePage() {
             <div className="screen-container reveal">
               <span className="screen-label">Screen 03 · Location Services</span>
               <div className="screen-figma-embed">
-                <iframe
+                <LazyFigmaEmbed
                   title="Location Services · DigiSense"
                   src="https://embed.figma.com/design/am9pWKwbRbsNd7dER0cdUS/Digisense-case-study?node-id=2003-104&embed-host=share&hide-ui=1"
-                  allowFullScreen
-                  loading="lazy"
                 />
               </div>
             </div>

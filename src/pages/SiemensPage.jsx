@@ -10,6 +10,7 @@ import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import { useCaseMode } from '../context/CaseModeContext'
+import LazyFigmaEmbed from '../components/LazyFigmaEmbed'
 
 export default function SiemensPage() {
   const isSimple = useCaseStudyMode()
@@ -459,12 +460,9 @@ export default function SiemensPage() {
             <div className="screen-container reveal">
               <span className="screen-label">Work 01 · Journey Maps · Figma · 14 use cases</span>
               <div className="screen-figma-embed">
-                <iframe
+                <LazyFigmaEmbed
                   title="Journey Map Framework · Siemens Xcelerator"
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com--Copy-?node-id=267-692&embed-host=share&hide-ui=1"
-                  allowFullScreen
-                  loading="lazy"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
                 />
               </div>
             </div>
@@ -519,12 +517,9 @@ export default function SiemensPage() {
             <div className="screen-container reveal">
               <span className="screen-label">Work 03 · Three-path journey · Decision Makers + End Users + Buyers</span>
               <div className="screen-figma-embed">
-                <iframe
+                <LazyFigmaEmbed
                   title="Find and Evaluate Journey Map · Siemens Xcelerator"
                   src="https://embed.figma.com/slides/BYq6ijKEZUcOGVOuxAmvWj/User-journeys---UX_IA-assessment-of-Siemens.com?node-id=144-717&embed-host=share&hide-ui=1"
-                  allowFullScreen
-                  loading="lazy"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation allow-pointer-lock"
                 />
               </div>
             </div>
