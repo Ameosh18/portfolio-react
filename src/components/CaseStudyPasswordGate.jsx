@@ -2,10 +2,16 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CASE_STUDY_ACCESS } from '../config/caseStudyAccess'
 
+const BACKDROP_VARIANTS = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.25 } },
+  exit:    { opacity: 0, transition: { duration: 0.2 } },
+}
+
 const CARD_VARIANTS = {
-  initial: { opacity: 0, y: -16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
-  exit:    { opacity: 0, y: -12, transition: { duration: 0.2 } },
+  initial: { opacity: 0, scale: 0.95, y: 24 },
+  animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
+  exit:    { opacity: 0, scale: 0.96, y: 16, transition: { duration: 0.2 } },
 }
 
 const STEP_VARIANTS = {
@@ -25,10 +31,22 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
   const [verifying, setVerifying] = useState(false)
   const emailRef = useRef(null)
   const otpRefs = useRef([])
+  const prevFocusRef = useRef(null)
 
   useEffect(() => {
-    if (access.status === 'idle' && emailRef.current) {
-      emailRef.current.focus()
+    prevFocusRef.current = document.activeElement
+    setTimeout(() => emailRef.current?.focus(), 80)
+    const onKey = (e) => { if (e.key === 'Escape') onClose?.() }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      prevFocusRef.current?.focus()
+    }
+  }, [onClose])
+
+  useEffect(() => {
+    if (access.status === 'code_sent') {
+      setTimeout(() => otpRefs.current[0]?.focus(), 80)
     }
   }, [access.status])
 
@@ -38,7 +56,6 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
     setSending(true)
     try {
       await access.requestCode(inputEmail.trim())
-      setTimeout(() => otpRefs.current[0]?.focus(), 80)
     } catch {}
     setSending(false)
   }
@@ -49,9 +66,7 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
     next[index] = digit
     setOtp(next)
     setOtpError(false)
-    if (digit && index < 5) {
-      otpRefs.current[index + 1]?.focus()
-    }
+    if (digit && index < 5) otpRefs.current[index + 1]?.focus()
   }, [otp])
 
   const handleOtpKeyDown = (index, e) => {
@@ -64,8 +79,7 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
     const text = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6)
     if (text.length === 6) {
       e.preventDefault()
-      const next = text.split('')
-      setOtp(next)
+      setOtp(text.split(''))
       setOtpError(false)
       otpRefs.current[5]?.focus()
     }
@@ -100,13 +114,22 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
 
   return (
     <motion.div
-      className="cs-gate-wrap"
-      variants={CARD_VARIANTS}
+      className="cs-gate-backdrop"
+      variants={BACKDROP_VARIANTS}
       initial="initial"
       animate="animate"
       exit="exit"
+      onClick={onClose}
+      aria-hidden="true"
     >
-      <div className="cs-gate-card" role="region" aria-label="Detailed view access">
+      <motion.div
+        className="cs-gate-modal"
+        variants={CARD_VARIANTS}
+        onClick={e => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cs-gate-title"
+      >
         <div className="cs-gate-eyebrow">
           <span className="cs-gate-lock-icon" aria-hidden="true">
             <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
@@ -122,12 +145,12 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
             <motion.div key="email-step" variants={STEP_VARIANTS} initial="initial" animate="animate" exit="exit">
               {status === 'expired' ? (
                 <>
-                  <h2 className="cs-gate-headline">Session expired.</h2>
+                  <h2 id="cs-gate-title" className="cs-gate-headline">Session expired.</h2>
                   <p className="cs-gate-body">Your access window has closed. Enter your email to get a new code.</p>
                 </>
               ) : (
                 <>
-                  <h2 className="cs-gate-headline">Unlock the detailed view.</h2>
+                  <h2 id="cs-gate-title" className="cs-gate-headline">Unlock the detailed view.</h2>
                   <p className="cs-gate-body">This version contains confidential client details. Enter your email and I'll send you a temporary access code.</p>
                 </>
               )}
@@ -167,7 +190,7 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
 
           {status === 'code_sent' && (
             <motion.div key="otp-step" variants={STEP_VARIANTS} initial="initial" animate="animate" exit="exit">
-              <h2 className="cs-gate-headline">Check your inbox.</h2>
+              <h2 id="cs-gate-title" className="cs-gate-headline">Check your inbox.</h2>
               <p className="cs-gate-body">Code sent to <strong>{email}</strong>. Enter the 6-digit code below.</p>
 
               <form className="cs-gate-form" onSubmit={handleVerify}>
@@ -208,7 +231,7 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

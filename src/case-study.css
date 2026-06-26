@@ -2306,22 +2306,31 @@ html.is-simple .cs-page .design-work {
 }
 
 
-/* ── CASE STUDY PASSWORD GATE ── */
+/* ── CASE STUDY PASSWORD GATE (MODAL) ── */
 
-.cs-gate-wrap {
-  padding: 0 var(--grid-margin);
-  margin: 0 0 8px;
+.cs-gate-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
 
-.cs-gate-card {
-  background: rgba(17, 17, 17, 0.72);
+.cs-gate-modal {
+  background: rgba(17, 17, 17, 0.92);
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-  padding: 32px 36px 28px;
-  max-width: 560px;
+  border-radius: 24px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  padding: 40px 44px 36px;
+  width: 100%;
+  max-width: 520px;
 }
 
 .cs-gate-eyebrow {
@@ -2565,8 +2574,8 @@ html.is-simple .cs-page .design-work {
 /* Responsive */
 
 @media (max-width: 768px) {
-  .cs-gate-card {
-    padding: 24px 20px 20px;
+  .cs-gate-modal {
+    padding: 28px 24px 24px;
   }
   .cs-gate-input-row {
     flex-direction: column;
@@ -2579,8 +2588,13 @@ html.is-simple .cs-page .design-work {
 }
 
 @media (max-width: 480px) {
-  .cs-gate-wrap {
-    padding: 0 16px;
+  .cs-gate-backdrop {
+    padding: 16px;
+    align-items: flex-end;
+  }
+  .cs-gate-modal {
+    border-radius: 20px 20px 16px 16px;
+    padding: 24px 20px 20px;
   }
   .cs-otp-row {
     gap: 6px;
@@ -2593,8 +2607,8 @@ html.is-simple .cs-page .design-work {
 }
 
 /* Light theme overrides */
-[data-theme="light"] .cs-gate-card {
-  background: rgba(255, 255, 255, 0.82);
+[data-theme="light"] .cs-gate-modal {
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
