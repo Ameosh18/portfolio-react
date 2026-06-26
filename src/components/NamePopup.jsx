@@ -80,44 +80,13 @@ export default function NamePopup({ show, onClose }) {
               </svg>
             </button>
 
-            {/* AI Story Panel */}
-            <div className="name-popup-ai-panel" aria-hidden="true">
-              <p className="name-popup-ai-eyebrow">Built with AI · 2026</p>
-
-              <div className="name-popup-stickers">
-                <div className="ai-sticker ai-sticker--claude">
-                  <div className="ai-sticker-logo">
-                    <img src="/portfolio-react/logos/claude-logo.png" alt="" className="ai-sticker-img" onError={e => e.currentTarget.style.display='none'} />
-                    <span className="ai-sticker-fallback" aria-hidden="true">C</span>
-                  </div>
-                  <span className="ai-sticker-label">Claude Code</span>
-                </div>
-                <div className="ai-sticker-plus" aria-hidden="true">+</div>
-                <div className="ai-sticker ai-sticker--figma">
-                  <div className="ai-sticker-logo">
-                    <img src="/portfolio-react/logos/figma-logo.png" alt="" className="ai-sticker-img" onError={e => e.currentTarget.style.display='none'} />
-                    <span className="ai-sticker-fallback" aria-hidden="true">F</span>
-                  </div>
-                  <span className="ai-sticker-label">Figma MCP</span>
-                </div>
-              </div>
-
-              <h3 className="name-popup-ai-headline">I don't just know AI tools. I shipped with them.</h3>
-
-              <div className="name-popup-terminal">
-                <span className="terminal-line"><span className="terminal-prompt">$</span> claude-code --build</span>
-                <span className="terminal-line"><span className="terminal-prompt">$</span> figma-mcp --sync</span>
-                <span className="terminal-line terminal-success"><span className="terminal-check">✓</span> shipped</span>
-              </div>
-            </div>
-
-            {/* Form Panel */}
+            {/* Single content panel */}
             <div className="name-popup-form-panel">
-              <p className="name-popup-eyebrow">One quick thing</p>
               <h2 className="name-popup-headline" id="popup-title">Glad you're here.</h2>
               <p className="name-popup-body">
-                Whether you're here to hire, collaborate, or just explore, I'd love to know who I'm designing for. Just your first name. That's it.
+                This site was designed for whoever's reading it. Type your name and you'll see what I mean.
               </p>
+              <p className="name-popup-body-sub">Just your name. That's it.</p>
 
               <div className="name-popup-field">
                 <div className="name-popup-label-row">
@@ -152,6 +121,10 @@ export default function NamePopup({ show, onClose }) {
                   autoComplete="given-name"
                 />
               </div>
+
+              <p className="name-popup-desktop-hint" aria-hidden="true">
+                For the full experience, visit on desktop
+              </p>
 
               <div className="name-popup-footer">
                 <div className="name-popup-footer-left">
