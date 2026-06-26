@@ -130,6 +130,12 @@ export default function CaseStudyPasswordGate({ caseId, access, onClose }) {
         aria-modal="true"
         aria-labelledby="cs-gate-title"
       >
+        <button className="cs-gate-close" onClick={onClose} aria-label="Close">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+          </svg>
+        </button>
+
         <div className="cs-gate-eyebrow">
           <span className="cs-gate-lock-icon" aria-hidden="true">
             <svg width="12" height="14" viewBox="0 0 12 14" fill="none">

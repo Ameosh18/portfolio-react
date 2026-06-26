@@ -2322,27 +2322,55 @@ html.is-simple .cs-page .design-work {
 }
 
 .cs-gate-modal {
-  background: rgba(17, 17, 17, 0.92);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
-  padding: 40px 44px 36px;
+  background: rgba(17, 17, 17, 0.94);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 28px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+  padding: 52px 52px 44px;
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
+  position: relative;
+}
+
+.cs-gate-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cs-gate-close:hover {
+  background: rgba(255, 255, 255, 0.11);
+  color: var(--text);
+}
+
+.cs-gate-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .cs-gate-eyebrow {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .cs-gate-lock-icon {
@@ -2353,34 +2381,35 @@ html.is-simple .cs-page .design-work {
 
 .cs-gate-headline {
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(26px, 2.6vw, 36px);
   font-weight: 700;
   color: var(--text);
-  margin: 0 0 10px;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  margin: 0 0 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
 .cs-gate-body {
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.65;
   color: var(--text-muted);
-  margin: 0 0 22px;
+  margin: 0 0 32px;
 }
 
 .cs-gate-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .cs-gate-label {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-dim);
+  margin-bottom: 2px;
 }
 
 .cs-gate-input-row {
@@ -2392,10 +2421,10 @@ html.is-simple .cs-page .design-work {
   flex: 1;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 14px;
+  border-radius: 12px;
+  padding: 14px 16px;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text);
   outline: none;
   transition: border-color 0.2s;
@@ -2413,20 +2442,20 @@ html.is-simple .cs-page .design-work {
 .cs-gate-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--accent);
   color: var(--accent-ink);
   border: none;
-  border-radius: 10px;
-  padding: 11px 20px;
+  border-radius: 12px;
+  padding: 14px 22px;
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   cursor: pointer;
   white-space: nowrap;
   transition: opacity 0.2s, transform 0.2s;
-  min-height: 44px;
+  min-height: 48px;
 }
 
 .cs-gate-btn:hover:not(:disabled) {
@@ -2442,21 +2471,21 @@ html.is-simple .cs-page .design-work {
 }
 
 .cs-gate-btn-arrow {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1;
 }
 
 .cs-gate-subtext {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--text-dim);
-  margin: 4px 0 0;
+  margin: 8px 0 0;
 }
 
 .cs-gate-error {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   color: #ff6b6b;
   margin: 0;
 }
@@ -2465,18 +2494,18 @@ html.is-simple .cs-page .design-work {
 
 .cs-otp-row {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .cs-otp-box {
-  width: 44px;
-  height: 52px;
+  width: 52px;
+  height: 60px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text);
   outline: none;
@@ -2486,7 +2515,7 @@ html.is-simple .cs-page .design-work {
 
 .cs-otp-box:focus {
   border-color: var(--accent);
-  background: rgba(213, 255, 64, 0.04);
+  background: rgba(213, 255, 64, 0.05);
 }
 
 .cs-otp-box.is-error {
@@ -2503,7 +2532,8 @@ html.is-simple .cs-page .design-work {
 .cs-gate-verify-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
+  margin-top: 4px;
 }
 
 .cs-gate-link {
@@ -2511,7 +2541,7 @@ html.is-simple .cs-page .design-work {
   border: none;
   padding: 0;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-dim);
   cursor: pointer;
   text-decoration: underline;
@@ -2616,41 +2646,79 @@ html.is-simple .cs-page .design-work {
 
 @media (max-width: 768px) {
   .cs-gate-modal {
-    padding: 28px 24px 24px;
+    padding: 44px 36px 36px;
+    border-radius: 24px;
+  }
+  .cs-gate-headline {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+  .cs-gate-body {
+    font-size: 15px;
+    margin-bottom: 28px;
   }
   .cs-gate-input-row {
     flex-direction: column;
   }
+  .cs-gate-btn {
+    width: 100%;
+    justify-content: center;
+  }
   .cs-otp-box {
-    width: 40px;
-    height: 48px;
-    font-size: 18px;
+    width: 46px;
+    height: 56px;
+    font-size: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .cs-gate-backdrop {
-    padding: 16px;
+    padding: 12px;
     align-items: flex-end;
   }
   .cs-gate-modal {
-    border-radius: 20px 20px 16px 16px;
-    padding: 24px 20px 20px;
+    border-radius: 24px 24px 20px 20px;
+    padding: 40px 28px 32px;
+  }
+  .cs-gate-headline {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+  .cs-gate-body {
+    font-size: 14px;
+    margin-bottom: 24px;
   }
   .cs-otp-row {
-    gap: 6px;
+    gap: 7px;
   }
   .cs-otp-box {
-    width: 36px;
-    height: 44px;
-    font-size: 16px;
+    flex: 1;
+    width: auto;
+    height: 52px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+  .cs-gate-verify-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .cs-gate-link {
+    justify-content: center;
   }
 }
 
 /* Light theme overrides */
 [data-theme="light"] .cs-gate-modal {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .cs-gate-close {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .cs-gate-close:hover {
+  background: rgba(0, 0, 0, 0.09);
 }
 
 [data-theme="light"] .cs-gate-input {
