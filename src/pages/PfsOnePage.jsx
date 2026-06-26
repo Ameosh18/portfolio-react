@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import CaseStudyNav from '../components/CaseStudyNav'
+import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
+import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
+import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 
 const FLOW_DATA = {
   flow_01: {
@@ -71,6 +75,24 @@ const FLOW_DATA = {
 export default function PfsOnePage() {
   const [activeFlow, setActiveFlow] = useState(null)
   const isSimple = useCaseStudyMode()
+  const access = useCaseStudyAccess('pfsone')
+  const [showGate, setShowGate] = useState(false)
+
+  useEffect(() => {
+    if (access.status === 'expired') {
+      document.documentElement.classList.add('is-simple')
+      document.documentElement.classList.remove('is-detailed')
+      setShowGate(true)
+    }
+  }, [access.status])
+
+  useEffect(() => {
+    if (access.status === 'unlocked') {
+      setShowGate(false)
+      document.documentElement.classList.remove('is-simple')
+      document.documentElement.classList.add('is-detailed')
+    }
+  }, [access.status])
 
   const revealObserverRef = useRef(null)
 
@@ -119,8 +141,16 @@ export default function PfsOnePage() {
   const flow = activeFlow ? FLOW_DATA[activeFlow] : null
 
   return (
-    <div className="cs-page cs-pfsone">
+    <div className={`cs-page cs-pfsone${access.status === 'unlocked' ? ' cs-timer-active' : ''}`}>
       <CaseStudyNav />
+      <AnimatePresence>
+        {showGate && access.status !== 'unlocked' && (
+          <CaseStudyPasswordGate caseId="pfsone" access={access} onClose={() => setShowGate(false)} />
+        )}
+      </AnimatePresence>
+      {access.status === 'unlocked' && (
+        <CaseStudyTimer caseId="pfsone" timeLeftMs={access.timeLeftMs} totalMs={access.totalMs} />
+      )}
       {/* ARTIFACT MODAL */}
       <div
         className={`artifact-modal${activeFlow ? ' is-open' : ''}`}
@@ -169,7 +199,7 @@ export default function PfsOnePage() {
           <span className="separator">/</span>
           <span className="current">PFS ONE</span>
         </div>
-        <CaseStudyToggle />
+        <CaseStudyToggle accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
       </section>
 
       {/* HERO */}

@@ -1,14 +1,36 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import CaseStudyToggle from '../components/CaseStudyToggle'
 import CaseStudyFeedbackPrompt from '../components/CaseStudyFeedbackPrompt'
 import CaseStudyNav from '../components/CaseStudyNav'
+import CaseStudyPasswordGate from '../components/CaseStudyPasswordGate'
+import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
+import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import heroImg from '../../digisense_hero_image.png'
 
 export default function DigiSensePage() {
   const [imgError, setImgError] = useState(false)
   const isSimple = useCaseStudyMode()
+  const access = useCaseStudyAccess('digisense')
+  const [showGate, setShowGate] = useState(false)
+
+  useEffect(() => {
+    if (access.status === 'expired') {
+      document.documentElement.classList.add('is-simple')
+      document.documentElement.classList.remove('is-detailed')
+      setShowGate(true)
+    }
+  }, [access.status])
+
+  useEffect(() => {
+    if (access.status === 'unlocked') {
+      setShowGate(false)
+      document.documentElement.classList.remove('is-simple')
+      document.documentElement.classList.add('is-detailed')
+    }
+  }, [access.status])
 
   const revealObserverRef = useRef(null)
 
@@ -40,8 +62,16 @@ export default function DigiSensePage() {
   }, [isSimple])
 
   return (
-    <div className="cs-page cs-digisense">
+    <div className={`cs-page cs-digisense${access.status === 'unlocked' ? ' cs-timer-active' : ''}`}>
       <CaseStudyNav />
+      <AnimatePresence>
+        {showGate && access.status !== 'unlocked' && (
+          <CaseStudyPasswordGate caseId="digisense" access={access} onClose={() => setShowGate(false)} />
+        )}
+      </AnimatePresence>
+      {access.status === 'unlocked' && (
+        <CaseStudyTimer caseId="digisense" timeLeftMs={access.timeLeftMs} totalMs={access.totalMs} />
+      )}
       {/* BREADCRUMB + TOGGLE */}
       <section className="cs-breadcrumb">
         <div className="breadcrumb-nav">
@@ -49,7 +79,7 @@ export default function DigiSensePage() {
           <span className="separator">/</span>
           <span className="current">DiGiSense</span>
         </div>
-        <CaseStudyToggle />
+        <CaseStudyToggle accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
       </section>
 
       {/* HERO */}
