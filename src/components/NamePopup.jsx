@@ -83,31 +83,31 @@ export default function NamePopup({ show, onClose }) {
             {/* AI Story Panel */}
             <div className="name-popup-ai-panel" aria-hidden="true">
               <p className="name-popup-ai-eyebrow">Built with AI · 2026</p>
-              <h3 className="name-popup-ai-headline">Design meets AI.</h3>
-              <p className="name-popup-ai-body">
-                This portfolio was built using Claude Code and the Figma MCP, the same AI tools reshaping how designers work. Not just aware of them, I use them.
-              </p>
-              <div className="name-popup-tool-badges">
-                <span className="tool-badge">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3" y="3" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.9"/>
-                    <rect x="13" y="3" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.5"/>
-                    <rect x="3" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.5"/>
-                    <rect x="13" y="13" width="8" height="8" rx="1.5" fill="currentColor" opacity="0.7"/>
-                  </svg>
-                  Claude Code
-                </span>
-                <span className="tool-badge">
-                  <svg width="12" height="14" viewBox="0 0 38 57" fill="none" aria-hidden="true">
-                    <path d="M19 0C8.507 0 0 8.507 0 19c0 6.192 2.986 11.7 7.6 15.2L19 57l11.4-22.8C35.014 30.7 38 25.192 38 19 38 8.507 29.493 0 19 0z" fill="currentColor" opacity="0.9"/>
-                  </svg>
-                  Figma MCP
-                </span>
+
+              <div className="name-popup-stickers">
+                <div className="ai-sticker ai-sticker--claude">
+                  <div className="ai-sticker-logo">
+                    <img src="/portfolio-react/logos/claude-logo.png" alt="" className="ai-sticker-img" onError={e => e.currentTarget.style.display='none'} />
+                    <span className="ai-sticker-fallback" aria-hidden="true">C</span>
+                  </div>
+                  <span className="ai-sticker-label">Claude Code</span>
+                </div>
+                <div className="ai-sticker-plus" aria-hidden="true">+</div>
+                <div className="ai-sticker ai-sticker--figma">
+                  <div className="ai-sticker-logo">
+                    <img src="/portfolio-react/logos/figma-logo.png" alt="" className="ai-sticker-img" onError={e => e.currentTarget.style.display='none'} />
+                    <span className="ai-sticker-fallback" aria-hidden="true">F</span>
+                  </div>
+                  <span className="ai-sticker-label">Figma MCP</span>
+                </div>
               </div>
+
+              <h3 className="name-popup-ai-headline">I don't just know AI tools. I shipped with them.</h3>
+
               <div className="name-popup-terminal">
                 <span className="terminal-line"><span className="terminal-prompt">$</span> claude-code --build</span>
                 <span className="terminal-line"><span className="terminal-prompt">$</span> figma-mcp --sync</span>
-                <span className="terminal-line terminal-success"><span className="terminal-check">✓</span> shipped to github pages</span>
+                <span className="terminal-line terminal-success"><span className="terminal-check">✓</span> shipped</span>
               </div>
             </div>
 
