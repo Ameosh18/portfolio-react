@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CASE_STUDY_ACCESS } from '../config/caseStudyAccess'
 
@@ -10,7 +9,6 @@ function formatTime(ms) {
 }
 
 export default function CaseStudyTimer({ caseId, timeLeftMs, totalMs }) {
-  const [showTooltip, setShowTooltip] = useState(false)
   const config = CASE_STUDY_ACCESS[caseId] ?? {}
   const pct = totalMs > 0 ? Math.max(0, Math.min(1, timeLeftMs / totalMs)) : 0
   const isWarning = pct < 0.2
@@ -20,37 +18,32 @@ export default function CaseStudyTimer({ caseId, timeLeftMs, totalMs }) {
       {timeLeftMs > 0 && (
         <motion.div
           className="cs-timer-bar-wrap"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-          aria-label={`Detailed view session: ${formatTime(timeLeftMs)} remaining`}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           role="timer"
+          aria-label={`Detailed view session: ${formatTime(timeLeftMs)} remaining`}
         >
+          {/* Progress track */}
           <div className="cs-timer-track">
             <motion.div
               className={`cs-timer-fill${isWarning ? ' is-warning' : ''}`}
               style={{ width: `${pct * 100}%` }}
-              transition={{ duration: 0.8, ease: 'linear' }}
+              transition={{ duration: 0.9, ease: 'linear' }}
             />
           </div>
 
-          <AnimatePresence>
-            {showTooltip && (
-              <motion.div
-                className="cs-timer-tooltip"
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.15 }}
-                aria-hidden="true"
-              >
-                {formatTime(timeLeftMs)} remaining · {config.displayName ?? caseId} detailed view
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Persistent label strip centered below the bar */}
+          <div className="cs-timer-label">
+            <span className={`cs-timer-countdown${isWarning ? ' is-warning' : ''}`}>
+              {formatTime(timeLeftMs)}
+            </span>
+            <span className="cs-timer-sep" aria-hidden="true">·</span>
+            <span className="cs-timer-text">
+              {config.displayName ?? caseId} · detailed view
+            </span>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

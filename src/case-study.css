@@ -2534,7 +2534,8 @@ html.is-simple .cs-page .design-work {
   left: 0;
   right: 0;
   z-index: 99;
-  cursor: default;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
 }
 
 .cs-timer-track {
@@ -2555,20 +2556,52 @@ html.is-simple .cs-page .design-work {
   background: #f59e0b;
 }
 
-.cs-timer-tooltip {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  background: var(--surface-raised);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 5px 10px;
+.cs-timer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 16px;
+}
+
+.cs-timer-countdown {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  min-width: 40px;
+  text-align: right;
+}
+
+.cs-timer-countdown.is-warning {
+  color: #f59e0b;
+}
+
+.cs-timer-sep {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.cs-timer-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: var(--text-dim);
+  text-transform: uppercase;
   white-space: nowrap;
-  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .cs-timer-label {
+    padding: 8px 12px;
+  }
+  .cs-timer-countdown {
+    font-size: 14px;
+  }
+  .cs-timer-text {
+    font-size: 10px;
+  }
 }
 
 /* Responsive */
@@ -2622,8 +2655,4 @@ html.is-simple .cs-page .design-work {
   background: rgba(0, 0, 0, 0.04);
   border-color: var(--border);
   color: var(--text);
-}
-
-[data-theme="light"] .cs-timer-tooltip {
-  background: var(--surface);
 }
