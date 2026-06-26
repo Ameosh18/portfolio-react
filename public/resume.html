@@ -136,6 +136,8 @@
       color: var(--text-dim);
     }
     .r-contact-item span { color: var(--text-muted); }
+    a.r-contact-item { text-decoration: none; color: inherit; }
+    a.r-contact-item:hover span { color: var(--accent); }
 
     /* Metrics strip on the right of header */
     .r-metrics {
@@ -404,11 +406,11 @@
       <h1 class="r-name">Ameya Kulkarni</h1>
       <div class="r-accent-bar"></div>
       <div class="r-contact-row">
-        <span class="r-contact-item"><span>ameyakulkarni43@icloud.com</span></span>
-        <span class="r-contact-item"><span>+91-9975308842</span></span>
+        <a href="mailto:ameyakulkarni43@icloud.com" class="r-contact-item"><span>ameyakulkarni43@icloud.com</span></a>
+        <a href="tel:+919975308842" class="r-contact-item"><span>+91-9975308842</span></a>
         <span class="r-contact-item"><span>Pune, India</span></span>
-        <span class="r-contact-item"><span>linkedin.com/in/ameyakulkarni-ux</span></span>
-        <span class="r-contact-item"><span>ameosh18.github.io/portfolio-react</span></span>
+        <a href="https://www.linkedin.com/in/ameyakulkarni-ux" target="_blank" rel="noopener" class="r-contact-item"><span>linkedin.com/in/ameyakulkarni-ux</span></a>
+        <a href="https://ameosh18.github.io/portfolio-react" target="_blank" rel="noopener" class="r-contact-item"><span>ameosh18.github.io/portfolio-react</span></a>
       </div>
     </div>
 
