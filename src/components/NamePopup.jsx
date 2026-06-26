@@ -122,28 +122,40 @@ export default function NamePopup({ show, onClose }) {
                 />
               </div>
 
-              <p className="name-popup-desktop-hint" aria-hidden="true">
-                For the full experience, visit on desktop
-              </p>
-
-              <div className="name-popup-footer">
-                <div className="name-popup-footer-left">
+              {/* Desktop: form controls */}
+              <div className="name-popup-form-controls">
+                <div className="name-popup-footer">
+                  <div className="name-popup-footer-left">
+                    <button
+                      ref={skipRef}
+                      className="name-popup-skip"
+                      onClick={handleSkip}
+                    >
+                      Skip for now
+                    </button>
+                    <span className="name-popup-disclaimer">Stored for this session only</span>
+                  </div>
                   <button
-                    ref={skipRef}
-                    className="name-popup-skip"
-                    onClick={handleSkip}
+                    ref={submitBtnRef}
+                    className={`name-popup-btn${!canSubmit ? ' name-popup-btn--disabled' : ''}`}
+                    onClick={handleSubmit}
+                    aria-disabled={!canSubmit}
                   >
-                    Skip for now
+                    Step Inside →
                   </button>
-                  <span className="name-popup-disclaimer">Stored for this session only</span>
                 </div>
+              </div>
+
+              {/* Mobile: desktop nudge + dismiss */}
+              <div className="name-popup-mobile-cta">
+                <p className="name-popup-mobile-hint">
+                  The name input and cursor personalisation only work on desktop. Open this on your laptop for the full experience.
+                </p>
                 <button
-                  ref={submitBtnRef}
-                  className={`name-popup-btn${!canSubmit ? ' name-popup-btn--disabled' : ''}`}
-                  onClick={handleSubmit}
-                  aria-disabled={!canSubmit}
+                  className="name-popup-btn"
+                  onClick={handleSkip}
                 >
-                  Step Inside →
+                  Got it →
                 </button>
               </div>
             </div>
