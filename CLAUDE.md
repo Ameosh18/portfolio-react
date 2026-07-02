@@ -864,16 +864,18 @@ Each navigable section must have an `id` matching the nav entry (e.g. `id="cs-ov
 
 ### 16e. Feedback Prompt (Simple mode only)
 
-**What:** A card at the bottom of the page asking viewers for feedback. Visible only in Simple mode. Hidden in Detailed mode via CSS (`html:not(.is-simple) .case-study-feedback { display: none }`).
+**What:** A card at the bottom of the page asking viewers for feedback, with a "View Detailed Version" CTA. Visible only in Simple mode. Hidden in Detailed mode via CSS (`html:not(.is-simple) .case-study-feedback { display: none }`).
 
 **Component:** `src/components/CaseStudyFeedbackPrompt.jsx`
 
-**Wiring:** Place at the end of the page content, after all sections:
-```jsx
-<CaseStudyFeedbackPrompt />
-```
+**Access-gated CTA behaviour (same rule for every case study):** Clicking "View Detailed Version" must go through the same OTP access gate as the `CaseStudyToggle` "Detailed" pill, not switch modes directly:
+- If `accessStatus === 'unlocked'`, switch straight to Detailed mode (`setMode(false)` from `useCaseMode()`) and smooth-scroll to top.
+- Otherwise, call `onRequestAccess()` to open `CaseStudyPasswordGate` — never flip to Detailed mode unlocked or bypass the gate.
 
-No props required.
+**Wiring:** Place at the end of the page content, after all sections. Pass the same `accessStatus` / `onRequestAccess` props used by `CaseStudyToggle`:
+```jsx
+<CaseStudyFeedbackPrompt accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
+```
 
 ---
 
@@ -968,6 +970,6 @@ useEffect(() => {
   {/* Design work sections (each with <SnapshotNotice /> below screen-container) */}
 
   <CaseStudyToggle accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
-  <CaseStudyFeedbackPrompt />
+  <CaseStudyFeedbackPrompt accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
 </div>
 ```
