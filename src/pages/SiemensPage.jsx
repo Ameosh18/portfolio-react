@@ -678,7 +678,7 @@ export default function SiemensPage() {
         </div>
       </section>
 
-      <CaseStudyFeedbackPrompt />
+      <CaseStudyFeedbackPrompt accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
 
       {/* 12. NEXT CASE STUDY */}
       <section className="next-case">

@@ -912,7 +912,7 @@ export default function DigiSensePage() {
       </section>
 
       {/* FEEDBACK PROMPT - SIMPLE MODE ONLY */}
-      <CaseStudyFeedbackPrompt />
+      <CaseStudyFeedbackPrompt accessStatus={access.status} onRequestAccess={() => setShowGate(true)} />
 
       {/* NEXT CASE STUDY */}
       <section className="next-case">

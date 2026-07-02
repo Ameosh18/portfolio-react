@@ -49,14 +49,6 @@ const WORKFLOW_STEPS = [
   },
 ]
 
-const STACK_GROUPS = [
-  { category: 'Research Intelligence',  tools: ['Claude', 'ChatGPT', 'Perplexity'] },
-  { category: 'Systems and Mapping',    tools: ['Miro', 'FigJam'] },
-  { category: 'Validation Layer',       tools: ['Maze', 'UserTesting'] },
-  { category: 'Documentation Flow',     tools: ['Notion AI'] },
-  { category: 'Prototype Operations',   tools: ['Figma AI', 'Framer'] },
-]
-
 const METRICS = [
   { value: '+40%',       label: 'Workflow acceleration' },
   { value: '3x',        label: 'Exploration range' },
@@ -244,40 +236,6 @@ export default function MyProcessPage() {
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
-
-        {/* ── INFRASTRUCTURE / STACK ── */}
-        <section className="section mp-stack" aria-labelledby="mp-stack-heading">
-          <div className="container">
-            <div className="mp-section-head reveal">
-              <span className="eyebrow">Workflow Layer</span>
-              <h2 id="mp-stack-heading" className="section-title">
-                The operational stack<br />behind the process.
-              </h2>
-            </div>
-
-            <div className="mp-stack-grid">
-              {STACK_GROUPS.map((group, i) => (
-                <div
-                  key={group.category}
-                  className="mp-stack-card bp-card reveal"
-                  style={{ transitionDelay: `${i * 0.07}s` }}
-                >
-                  <div className="card-head">
-                    <span>{group.category}</span>
-                  </div>
-                  <ul className="mp-stack-tools" aria-label={`Tools: ${group.category}`}>
-                    {group.tools.map(tool => (
-                      <li key={tool} className="mp-stack-tool">
-                        <span className="mp-dot" aria-hidden="true" />
-                        {tool}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

@@ -152,7 +152,7 @@ export default function Homepage() {
               <div className="hero-visual reveal">
                 {/* Character image */}
                 <img
-                  src="/portfolio-react/hero.png"
+                  src={`${import.meta.env.BASE_URL}hero.png`}
                   alt="Ameya Kulkarni 3D character"
                   className="hero-char-img"
                 />

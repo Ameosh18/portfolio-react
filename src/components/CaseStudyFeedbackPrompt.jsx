@@ -1,26 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
+import { useCaseMode } from '../context/CaseModeContext'
 
-export default function CaseStudyFeedbackPrompt() {
-  const [isSimple, setIsSimple] = useState(false)
-
-  useEffect(() => {
-    const checkSimpleMode = () => {
-      const isSimpleMode = document.documentElement.classList.contains('is-simple')
-      setIsSimple(isSimpleMode)
-    }
-
-    checkSimpleMode()
-
-    const observer = new MutationObserver(checkSimpleMode)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-
-    return () => observer.disconnect()
-  }, [])
+export default function CaseStudyFeedbackPrompt({ accessStatus, onRequestAccess }) {
+  const isSimple = useCaseStudyMode()
+  const { setMode } = useCaseMode()
 
   const handleSwitchToDetailed = () => {
-    document.documentElement.classList.remove('is-simple')
-    localStorage.setItem('cs-view-mode', 'detailed')
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (accessStatus === 'unlocked') {
+      setMode(false)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      onRequestAccess?.()
+    }
   }
 
   if (!isSimple) return null
