@@ -297,50 +297,6 @@
   .mp-wf-num { padding-top: 0; }
 }
 
-/* ── STACK / INFRASTRUCTURE ────────────────────────────────────────────────── */
-.mp-stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.mp-stack-tools {
-  list-style: none;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.mp-stack-tool {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(15px, 1.3vw, 18px);
-  color: var(--text);
-  letter-spacing: -0.01em;
-  transition: color 0.2s var(--ease);
-}
-
-.mp-stack-tool:first-child { color: var(--text); }
-
-.mp-stack-card:hover .mp-stack-tool { color: var(--text-muted); }
-.mp-stack-card:hover .mp-stack-tool:first-child { color: var(--text); }
-
-.mp-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-  opacity: 0.6;
-}
-
-@media (max-width: 768px) { .mp-stack-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .mp-stack-grid { grid-template-columns: 1fr; } }
-
 /* ── METRICS ───────────────────────────────────────────────────────────────── */
 .mp-metrics-grid {
   display: grid;
