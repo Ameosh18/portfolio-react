@@ -2454,6 +2454,8 @@ html.is-simple .cs-page .design-work {
   line-height: 1.65;
   color: var(--text-muted);
   margin: 0 0 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .cs-gate-form {
