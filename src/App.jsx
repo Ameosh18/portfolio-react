@@ -41,7 +41,7 @@ function AppContent() {
 export default function App() {
   return (
     <NameProvider>
-      <BrowserRouter basename="/portfolio-react/">
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ClickSpark
           sparkColor='#D5FF40'
           sparkSize={12}
