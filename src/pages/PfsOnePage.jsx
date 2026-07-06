@@ -37,6 +37,7 @@ const FLOW_DATA = {
   flow_03: {
     label: 'D3 ,  Landing Page (Deployment Lifecycle)',
     title: 'Flow 03 ,  Topology Landing Page',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-37&embed-host=share',
     decision: 'Designed a card-based landing page where each Deployment Environment surfaces live status, topology versions, active editors, and modification history ,  before the administrator enters the topology workspace.',
     annotations: [
       { num: '1', label: 'Deployment Environment Cards', text: 'Each card shows live status, version history, and active editors at a glance. Administrators see the health of their entire deployment before they open a single topology ,  reducing the risk of entering a workspace blind.' },
