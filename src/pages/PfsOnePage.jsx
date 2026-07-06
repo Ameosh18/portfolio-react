@@ -242,6 +242,17 @@ export default function PfsOnePage() {
               <span className="hero-meta-label">Studio</span>
               <span className="hero-meta-value">Ogee Studio</span>
             </div>
+            <div className="hero-meta-item">
+              <span className="hero-meta-label">Status</span>
+              <a
+                href="https://www.netscout.com/product/packet-flow-switches-and-taps/ngenius-pfs-fabric-manager"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-meta-value hero-meta-link"
+              >
+                Live Product <span className="arrow-external" aria-hidden="true">↗︎</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="hero-image bp-frame">

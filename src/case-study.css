@@ -422,6 +422,27 @@
   color: var(--text);
 }
 
+.cs-page .hero-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cs-page .hero-meta-link:hover {
+  color: var(--accent);
+}
+
+.cs-page .hero-meta-link:hover .arrow-external {
+  transform: translate(2px, -2px);
+}
+
+.cs-page .hero-meta-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 
 /* ── BUSINESS CONTEXT ── */
 .business-context {
