@@ -48,6 +48,7 @@ const FLOW_DATA = {
   flow_04: {
     label: 'D4.2 ,  Primary Flow: Editing an Existing Topology',
     title: 'Flow 04 ,  Primary Topology Editing Flow',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-41&embed-host=share',
     decision: 'Designed an editing model where the moment an administrator begins editing a published topology, a new version is automatically created. The published version remains live and untouched until the administrator chooses to push.',
     annotations: [
       { num: '1', label: 'Version Creation on Edit', text: 'The moment an administrator begins editing a published topology, a new version is automatically created. The published version remains live and untouched. Editing and deploying are structurally separated ,  not just conceptually.' },
