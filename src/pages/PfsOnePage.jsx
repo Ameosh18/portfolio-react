@@ -59,6 +59,7 @@ const FLOW_DATA = {
   flow_05: {
     label: 'D6 ,  Publish Now',
     title: 'Flow 05 ,  Publish & Validate',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-46&embed-host=share',
     decision: 'Designed a multi-stage publish flow ,  Validate → Pre-commit → Commit → Finalise ,  with real-time progress visibility, per-topology error surfacing, and a bulk publish option for administrators managing multiple topologies simultaneously.',
     annotations: [
       { num: '1', label: 'Staged vs Live State', text: 'Unpublished connections are black. Published connections are green. Disabled connections are grey. Three states. Three colours. No ambiguity about what is live on the network at any moment ,  because ambiguity in this context is operationally dangerous.' },
