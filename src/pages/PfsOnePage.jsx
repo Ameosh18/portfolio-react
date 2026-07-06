@@ -15,6 +15,7 @@ const FLOW_DATA = {
   flow_01: {
     label: 'D1 ,  Page Elements & Access to Lifecycles',
     title: 'Flow 01 ,  Lifecycle Navigation & Role-Based Access',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-35&embed-host=share',
     decision: 'Designed a primary navigation bar ,  Configure, Deploy, Monitor ,  where visible lifecycles are determined by user role at login. A Network Operator sees only Monitor. A Switch Configuration Manager sees Configure and Deploy. A Service Administrator sees everything.',
     annotations: [
       { num: '1', label: 'Lifecycle Bar', text: 'Configure · Deploy · Monitor are not tabs ,  they are distinct operational contexts. Switching lifecycle changes the entire left panel, toolbar, and workspace state. Navigation here is a workflow mirror, not a feature menu.' },
@@ -25,6 +26,7 @@ const FLOW_DATA = {
   flow_02: {
     label: 'D2 ,  Perspectives (Deployment LC)',
     title: 'Flow 02 ,  Perspective-Based Left Panel',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-36&embed-host=share',
     decision: 'Built a perspective-switching system ,  Location, Logical, Filter, Template ,  that allows administrators to reorganise the same resource hierarchy through the lens most relevant to their current task.',
     annotations: [
       { num: '1', label: 'Perspective Selector', text: 'Four perspectives reorganise the same resources through different cognitive lenses. This isn\'t filtering. It\'s giving administrators the ability to think about their network differently depending on the task at hand.' },
@@ -163,10 +165,20 @@ export default function PfsOnePage() {
         <div className="artifact-modal-inner">
           <div className="artifact-modal-image">
             <span className="artifact-modal-image-label">{flow?.label}</span>
-            <div className="artifact-modal-image-placeholder">
-              <span>{flow?.title}</span>
-              <p>Wireframe image ,  add PDF export here</p>
-            </div>
+            {flow?.embedUrl ? (
+              <iframe
+                key={activeFlow}
+                className="artifact-modal-figma-embed"
+                src={flow.embedUrl}
+                title={flow.title}
+                allowFullScreen
+              />
+            ) : (
+              <div className="artifact-modal-image-placeholder">
+                <span>{flow?.title}</span>
+                <p>Wireframe image ,  add PDF export here</p>
+              </div>
+            )}
           </div>
           <div className="artifact-modal-annotations">
             <button
