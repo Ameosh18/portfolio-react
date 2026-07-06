@@ -426,12 +426,9 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  color: var(--accent);
   text-decoration: none;
   transition: color 0.2s ease;
-}
-
-.cs-page .hero-meta-link:hover {
-  color: var(--accent);
 }
 
 .cs-page .hero-meta-link:hover .arrow-external {
