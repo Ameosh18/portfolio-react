@@ -194,17 +194,15 @@ export default function PfsOnePage() {
             </button>
             <h3 className="artifact-modal-title">{flow?.title}</h3>
             <p className="artifact-modal-decision">{flow?.decision}</p>
-            <div>
-              {flow?.annotations?.map((a) => (
-                <div className="annotation-item" key={a.num}>
-                  <div className="annotation-item-header">
-                    <span className="annotation-badge">{a.num}</span>
-                    <span className="annotation-label">{a.label}</span>
-                  </div>
-                  <p className="annotation-text">{a.text}</p>
+            {flow?.annotations?.map((a) => (
+              <div className="annotation-item" key={a.num}>
+                <div className="annotation-item-header">
+                  <span className="annotation-badge">{a.num}</span>
+                  <span className="annotation-label">{a.label}</span>
                 </div>
-              ))}
-            </div>
+                <p className="annotation-text">{a.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
