@@ -70,6 +70,7 @@ const FLOW_DATA = {
   flow_06: {
     label: 'D7 ,  Left Panel Interactions',
     title: 'Flow 06 ,  Left Panel Interactions',
+    embedUrl: 'https://embed.figma.com/design/aiUiIn0Bh6abXnbfsfMetG/Netsccout_PFS_one_-designs?node-id=7-47&embed-host=share',
     decision: 'Designed a contextual hover-action system where every resource in the left panel surfaces relevant actions ,  Configure, Enable/Disable, Focus In, Monitor, Remove ,  exactly where the administrator\'s attention already is.',
     annotations: [
       { num: '1', label: 'Hover Action Menus', text: 'Every resource surfaces a contextual action menu on hover ,  Configure, Enable/Disable, Focus In, Monitor, Remove. Actions are available exactly where the administrator\'s attention already is ,  no secondary navigation required.' },
