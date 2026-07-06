@@ -10,7 +10,7 @@ import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import { useCaseMode } from '../context/CaseModeContext'
-import heroImg from '../../pfs.png'
+import heroImg from '/pfs.png'
 
 const FLOW_DATA = {
   flow_01: {

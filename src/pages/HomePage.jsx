@@ -4,7 +4,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
 import digisenseHero from '/digisense_hero_image.png';
-import pfsOneHero from '../../pfs.png';
+import pfsOneHero from '/pfs.png';
 import '../style-2026.css';
 
 const DIGISENSE_IMG = digisenseHero;

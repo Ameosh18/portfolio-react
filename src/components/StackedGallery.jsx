@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "motion/react"
 import DigiSenseHero from "../../digisense_hero_image.png"
-import PfsOneHero from "../../pfs.png"
+import PfsOneHero from "/pfs.png"
 
 
 // ── Reactive breakpoint (handles orientation change) ───────────────────────
