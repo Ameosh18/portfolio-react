@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "motion/react"
 import DigiSenseHero from "../../digisense_hero_image.png"
+import PfsOneHero from "../../pfs.png"
 
 
 // ── Reactive breakpoint (handles orientation change) ───────────────────────
@@ -79,8 +80,8 @@ export const projects = [
     category: "Enterprise Network",
     summary: "Unified network visibility platform for global data centres",
     year: "2024",
-    image: null,
-    gradient: "linear-gradient(140deg, #0a0f1e 0%, #1a2a5e 60%, #0a1628 100%)",
+    image: PfsOneHero,
+    gradient: null,
     href: "/pfsone",
   },
   {

@@ -4,9 +4,11 @@ import LoadingScreen from '../components/LoadingScreen';
 import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
 import digisenseHero from '/digisense_hero_image.png';
+import pfsOneHero from '../../pfs.png';
 import '../style-2026.css';
 
 const DIGISENSE_IMG = digisenseHero;
+const PFSONE_IMG = pfsOneHero;
 
 const CLIENTS = [
   { name: 'Globant',                         role: 'Senior UX Designer',          period: 'Aug 2020 – Present', tag: 'Enterprise · IoT · Fintech', logo: `${import.meta.env.BASE_URL}Globant.png` },
@@ -244,7 +246,7 @@ export default function Homepage() {
               </Link>
               <Link to="/pfsone" className="work-card reveal">
                 <div className="work-card-media">
-                  <div className="ph"><span>NETSCOUT PFS ONE</span></div>
+                  <img src={PFSONE_IMG} alt="NETSCOUT PFS ONE deployment lifecycle interface" />
                   <span className="work-card-index">02</span>
                   <span className="work-card-domain">Enterprise · Network</span>
                 </div>

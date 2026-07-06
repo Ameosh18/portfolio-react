@@ -10,6 +10,7 @@ import CaseStudyTimer from '../components/CaseStudyTimer'
 import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import { useCaseMode } from '../context/CaseModeContext'
+import heroImg from '../../pfs.png'
 
 const FLOW_DATA = {
   flow_01: {
@@ -82,6 +83,7 @@ const FLOW_DATA = {
 
 export default function PfsOnePage() {
   const [activeFlow, setActiveFlow] = useState(null)
+  const [imgError, setImgError] = useState(false)
   const isSimple = useCaseStudyMode()
   const { setMode } = useCaseMode()
   const access = useCaseStudyAccess('pfsone')
@@ -260,9 +262,17 @@ export default function PfsOnePage() {
           <span className="tick tr" aria-hidden="true" />
           <span className="tick bl" aria-hidden="true" />
           <span className="tick br" aria-hidden="true" />
-          <div className="hero-image-placeholder">
-            <span>PFS ONE</span>
-          </div>
+          {imgError ? (
+            <div className="hero-image-placeholder">
+              <span>PFS ONE</span>
+            </div>
+          ) : (
+            <img
+              src={heroImg}
+              alt="PFS ONE deployment lifecycle interface"
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
         <div className="scroll-hint" aria-hidden="true">
           <span className="scroll-hint-label">Scroll to explore</span>
