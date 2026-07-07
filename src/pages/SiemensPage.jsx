@@ -492,7 +492,7 @@ export default function SiemensPage() {
               <div className="screen-figma-embed screen-figma-embed--tall">
                 <LazyFigmaEmbed
                   title="Left-Panel Filter System · Siemens Xcelerator"
-                  src="https://embed.figma.com/design/31vMKT9OsteA4Tc4YKrVoW/SXMP_Bench?node-id=40000044-3839&embed-host=share&hide-ui=1"
+                  src="https://embed.figma.com/design/h2warKuCGYxWK7sFqNV2FB/Siemens-Product-Finder?node-id=1-939&embed-host=share&hide-ui=1"
                 />
               </div>
             </div>
