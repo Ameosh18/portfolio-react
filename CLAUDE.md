@@ -10,6 +10,11 @@ Follow every rule here unless the user explicitly overrides it in conversation.
 Personal portfolio for **Ameya Kulkarni**, Lead UX Designer (10+ years).
 Built with React + Vite, deployed to GitHub Pages at `/portfolio-react/`.
 
+**Canonical public URL:** `ameyadoesux.in`. This is the link to use in resumes, cover
+letters, LinkedIn, and any outbound/application material. The underlying GitHub Pages
+deployment target (`ameosh18.github.io/portfolio-react/`) is a build/hosting detail, not
+the public-facing link. Do not swap these when generating resume or cover letter content.
+
 **Stack:** React 18, React Router 6, Framer Motion (`motion/react`), plain CSS (no CSS-in-JS).
 
 **Key files:**
