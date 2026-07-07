@@ -120,6 +120,17 @@ export default function SiemensPage() {
               <span className="hero-meta-label">Studio</span>
               <span className="hero-meta-value">Globant , Siemens DX</span>
             </div>
+            <div className="hero-meta-item">
+              <span className="hero-meta-label">Status</span>
+              <a
+                href="https://www.siemens.com/en-us/products/?ecosystemView=true&industry=Additive+manufacturing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-meta-value hero-meta-link"
+              >
+                Live Product <span className="arrow-external" aria-hidden="true">↗︎</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="scroll-hint" aria-hidden="true">
