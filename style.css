@@ -402,7 +402,7 @@ body.menu-open #site-nav {
 
 .mobile-menu-links li {
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px dashed var(--border);
 }
 
 .mobile-menu-links li:last-child {
