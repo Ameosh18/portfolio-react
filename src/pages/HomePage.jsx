@@ -5,6 +5,7 @@ import NamePopup from '../components/NamePopup';
 import { useName } from '../context/NameContext';
 import digisenseHero from '/digisense_hero_image.png';
 import pfsOneHero from '/pfs.png';
+import ameyaSticker from '/ameya-sticker.png';
 import '../style-2026.css';
 
 const DIGISENSE_IMG = digisenseHero;
@@ -303,9 +304,12 @@ export default function Homepage() {
             <div className="about-frame bp-frame reveal">
               <Ticks />
               <div className="about-grid">
-                <div>
-                  <span className="eyebrow a-eyebrow">About Me</span>
-                  <h2 className="a-title">Problem solver. System builder. Team player.</h2>
+                <div className="a-heading-row">
+                  <img src={ameyaSticker} alt="Illustrated sticker portrait of Ameya Kulkarni" className="a-sticker" />
+                  <div>
+                    <span className="eyebrow a-eyebrow">About Me</span>
+                    <h2 className="a-title">Problem solver. System builder. Team player.</h2>
+                  </div>
                 </div>
                 <div>
                   <p className="a-bio">With 10+ years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
