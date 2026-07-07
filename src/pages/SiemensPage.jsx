@@ -489,8 +489,11 @@ export default function SiemensPage() {
             <p className="screen-problem reveal">Users arriving at the Xcelerator Marketplace industry pages faced an undifferentiated list of solutions with no way to filter by what they actually cared about. The only navigation available was to go back up and try a different path. Most didn't. They left.</p>
             <div className="screen-container reveal">
               <span className="screen-label">Work 02 · Left-Panel Filter · Shipped to production</span>
-              <div className="screen-placeholder">
-                <span>Left-Panel Filter System</span>
+              <div className="screen-figma-embed screen-figma-embed--tall">
+                <LazyFigmaEmbed
+                  title="Left-Panel Filter System · Siemens Xcelerator"
+                  src="https://embed.figma.com/design/31vMKT9OsteA4Tc4YKrVoW/SXMP_Bench?node-id=40000044-3839&embed-host=share&hide-ui=1"
+                />
               </div>
             </div>
             <SnapshotNotice />

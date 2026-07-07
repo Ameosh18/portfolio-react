@@ -2297,6 +2297,13 @@ html.is-simple .cs-page .design-work {
   .cs-siemens .screen-figma-embed { padding-bottom: 75%; }
 }
 
+.cs-siemens .screen-figma-embed--tall {
+  padding-bottom: 90%;
+}
+@media (max-width: 480px) {
+  .cs-siemens .screen-figma-embed--tall { padding-bottom: 130%; }
+}
+
 .cs-digisense .section-figma-embed {
   position: relative;
   width: 100%;
