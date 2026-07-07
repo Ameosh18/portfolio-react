@@ -2768,6 +2768,25 @@ html.is-simple .cs-page .design-work {
   }
 }
 
+/* Touch devices: dropping the animated backdrop-filter blur avoids a known
+   WebKit GPU-process crash on iOS when it stacks on top of an already
+   compositing-heavy case study page (reveal animations, sticky nav, cursor). */
+@media (pointer: coarse) {
+  .cs-gate-backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.88);
+  }
+  .cs-gate-modal {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(17, 17, 17, 0.98);
+  }
+  [data-theme="light"] .cs-gate-modal {
+    background: rgba(255, 255, 255, 0.98);
+  }
+}
+
 /* Light theme overrides */
 [data-theme="light"] .cs-gate-modal {
   background: rgba(255, 255, 255, 0.94);
