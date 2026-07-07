@@ -2297,6 +2297,39 @@ html.is-simple .cs-page .design-work {
   .cs-siemens .screen-figma-embed { padding-bottom: 75%; }
 }
 
+/* Figma embed click-to-load trigger */
+.figma-embed-trigger {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+.figma-embed-trigger:hover,
+.figma-embed-trigger:focus-visible {
+  background: var(--surface-2);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.figma-embed-trigger-icon {
+  opacity: 0.7;
+}
+.figma-embed-trigger-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 .cs-siemens .screen-figma-embed--tall {
   padding-bottom: 90%;
 }
