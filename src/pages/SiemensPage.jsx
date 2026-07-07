@@ -11,12 +11,14 @@ import { useCaseStudyMode } from '../hooks/useCaseStudyMode'
 import { useCaseStudyAccess } from '../hooks/useCaseStudyAccess'
 import { useCaseMode } from '../context/CaseModeContext'
 import LazyFigmaEmbed from '../components/LazyFigmaEmbed'
+import heroImg from '/siemens.png'
 
 export default function SiemensPage() {
   const isSimple = useCaseStudyMode()
   const { setMode } = useCaseMode()
   const access = useCaseStudyAccess('siemens')
   const [showGate, setShowGate] = useState(false)
+  const [imgError, setImgError] = useState(false)
 
   const revealObserverRef = useRef(null)
 
@@ -147,9 +149,17 @@ export default function SiemensPage() {
           <span className="tick tr" aria-hidden="true" />
           <span className="tick bl" aria-hidden="true" />
           <span className="tick br" aria-hidden="true" />
-          <div className="hero-image-placeholder">
-            <span>Siemens Xcelerator</span>
-          </div>
+          {imgError ? (
+            <div className="hero-image-placeholder">
+              <span>Siemens Xcelerator</span>
+            </div>
+          ) : (
+            <img
+              src={heroImg}
+              alt="Siemens Xcelerator Marketplace interface"
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
       </section>
 

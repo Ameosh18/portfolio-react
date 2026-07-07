@@ -10,6 +10,7 @@ import {
 } from "motion/react"
 import DigiSenseHero from "../../digisense_hero_image.png"
 import PfsOneHero from "/pfs.png"
+import SiemensHero from "/siemens.png"
 
 
 // ── Reactive breakpoint (handles orientation change) ───────────────────────
@@ -91,8 +92,8 @@ export const projects = [
     category: "Enterprise · B2B Marketplace",
     summary: "UX & IA assessment of Xcelerator Marketplace to reduce drop-off from industry pages, and a left-panel filter system that shipped to production.",
     year: "2024",
-    image: null,
-    gradient: "linear-gradient(140deg, #050d1a 0%, #0a1f4a 60%, #021028 100%)",
+    image: SiemensHero,
+    gradient: null,
     href: "/siemens",
   },
   {
