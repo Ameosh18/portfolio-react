@@ -624,7 +624,7 @@ ul { list-style: none; }
 .about-grid .a-eyebrow { margin-bottom: 18px; }
 .about-grid .a-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.06; letter-spacing: -0.02em; }
 .a-heading-row { display: flex; align-items: flex-start; gap: clamp(16px, 2.2vw, 28px); }
-.a-sticker { flex: none; width: clamp(64px, 7vw, 96px); height: auto; transform: rotate(-6deg); filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45)); }
+.a-sticker { flex: none; width: clamp(64px, 7vw, 96px); height: auto; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45)); }
 .about-grid .a-bio { color: var(--text-muted); font-size: 16px; line-height: 1.75; overflow-wrap: break-word; word-break: break-word; }
 .about-grid .a-bio b { color: var(--text); font-weight: 600; }
 .about-cta-row { margin-top: 26px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
