@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../style-2026.css'
 import '../about.css'
@@ -59,8 +59,11 @@ const VALUES = [
   'Decisions without data are guesses. I prefer signals.',
 ]
 
+const HERO_PHOTO_SRC = `${import.meta.env.BASE_URL}ameya-about-photo.jpg`
+
 export default function AboutPage() {
   const rootRef = useRef(null)
+  const [photoError, setPhotoError] = useState(false)
 
   useEffect(() => {
     document.title = 'About Me - Ameya Kulkarni'
@@ -115,22 +118,39 @@ export default function AboutPage() {
                 <p className="ab-hero-sub">Lead UX Designer. Available for new opportunities.</p>
               </div>
 
-              <aside className="ab-identity bp-card reveal" aria-label="Identity overview">
-                <div className="card-head">
-                  <span>Identity</span>
+              <div className="ab-hero-right reveal">
+                <div className="ab-hero-photo bp-frame">
+                  <Ticks />
+                  {photoError ? (
+                    <div className="ab-hero-photo-placeholder">
+                      <span>Ameya Kulkarni</span>
+                    </div>
+                  ) : (
+                    <img
+                      src={HERO_PHOTO_SRC}
+                      alt="Portrait of Ameya Kulkarni"
+                      onError={() => setPhotoError(true)}
+                    />
+                  )}
                 </div>
-                <ul className="ab-id-list">
-                  {IDENTITY.map(({ key, val, pulse }) => (
-                    <li key={key} className="ab-id-row">
-                      <span className="ab-id-key">{key}</span>
-                      <span className="ab-id-val">
-                        {pulse && <span className="ab-pulse" aria-hidden="true" />}
-                        {val}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
+
+                <aside className="ab-identity bp-card" aria-label="Identity overview">
+                  <div className="card-head">
+                    <span>Identity</span>
+                  </div>
+                  <ul className="ab-id-list">
+                    {IDENTITY.map(({ key, val, pulse }) => (
+                      <li key={key} className="ab-id-row">
+                        <span className="ab-id-key">{key}</span>
+                        <span className="ab-id-val">
+                          {pulse && <span className="ab-pulse" aria-hidden="true" />}
+                          {val}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              </div>
 
             </div>
           </div>
