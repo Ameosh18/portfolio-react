@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      // Restore path redirected by 404.html
+      (function() {
+        var p = window.location.search.slice(1).split('&').reduce(function(q, s) {
+          var kv = s.split('='); q[decodeURIComponent(kv[0])] = decodeURIComponent(kv.slice(1).join('=').replace(/~and~/g, '&')); return q;
+        }, {});
+        if (p.p !== undefined) {
+          var path = '/' + p.p.replace(/~and~/g, '&');
+          var search = p.q ? '?' + p.q.replace(/~and~/g, '&') : '';
+          var base = window.location.pathname.replace(/\/$/, '');
+          window.history.replaceState(null, null, base + path + search + window.location.hash);
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/portfolio-react/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ameya Kulkarni - Lead UX Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <script type="module" crossorigin src="/portfolio-react/assets/index-DNWuVb2E.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio-react/assets/index-a-oe62KS.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
