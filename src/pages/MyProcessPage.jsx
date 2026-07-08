@@ -15,6 +15,8 @@ const Ticks = () => (
   </>
 )
 
+const WAVE_HEIGHTS = [35, 60, 25, 75, 45, 90, 30, 55, 70, 40, 85, 50, 65, 30, 80, 45, 60, 35, 70, 40]
+
 const SIGNALS = [
   { key: 'Research',    val: 'Synthesized' },
   { key: 'Exploration', val: 'Multi-directional' },
@@ -197,9 +199,24 @@ export default function MyProcessPage() {
                     ))}
                   </ul>
                   <p className="mp-signals-note">Human judgment remains central.</p>
+                  <div className="mp-signal-wave" aria-hidden="true">
+                    {WAVE_HEIGHTS.map((h, i) => (
+                      <span key={i} style={{ '--wave-h': `${h}%`, animationDelay: `${i * 0.06}s` }} />
+                    ))}
+                  </div>
                 </aside>
               </div>
 
+            </div>
+
+            <div className="scroll-hint" aria-hidden="true">
+              <span className="scroll-hint-label">Scroll to explore</span>
+              <svg className="scroll-hint-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none">
+                <rect x="6.5" y="0" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+                <rect x="6.5" y="5" width="3" height="3" rx="1.5" fill="currentColor" opacity="0.6"/>
+                <rect x="6.5" y="10" width="3" height="3" rx="1.5" fill="currentColor"/>
+                <path d="M1 15L8 22L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
           </div>
         </section>

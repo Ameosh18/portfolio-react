@@ -157,6 +157,35 @@
   text-transform: uppercase;
 }
 
+/* Subtle live-signal waveform strip */
+.mp-signal-wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+  margin-top: 18px;
+}
+
+.mp-signal-wave span {
+  flex: 1;
+  min-width: 2px;
+  max-width: 6px;
+  height: 15%;
+  background: var(--accent);
+  opacity: 0.35;
+  border-radius: 1px;
+  animation: mp-wave-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes mp-wave-pulse {
+  0%, 100% { height: 15%; opacity: 0.25; }
+  50%      { height: var(--wave-h); opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-signal-wave span { animation: none; height: var(--wave-h); opacity: 0.35; }
+}
+
 /* ── PHILOSOPHY CALLOUT ────────────────────────────────────────────────────── */
 .mp-philosophy {
   padding-block: clamp(48px, 7vw, 96px);
