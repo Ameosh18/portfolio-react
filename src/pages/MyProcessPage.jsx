@@ -217,6 +217,14 @@ export default function MyProcessPage() {
           <div className="container">
             <div className="mp-philosophy-block bp-frame reveal">
               <Ticks />
+              <div className="mp-philosophy-graphic-wrap">
+                <img
+                  src={`${import.meta.env.BASE_URL}callout.jpg`}
+                  alt=""
+                  aria-hidden="true"
+                  className="mp-philosophy-graphic"
+                />
+              </div>
               <p className="mp-philosophy-line">AI accelerates exploration.</p>
               <p className="mp-philosophy-line dim">It does not own the decision.</p>
             </div>
