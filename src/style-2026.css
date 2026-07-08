@@ -215,7 +215,7 @@ ul { list-style: none; }
 .nav-links { display: flex; align-items: center; gap: 6px; }
 .nav-links a {
   font-size: 14px; color: var(--text-muted);
-  padding: 9px 14px; border-radius: 8px;
+  padding: 9px 14px; border-radius: 999px;
   transition: color .2s var(--ease), background .2s var(--ease);
 }
 .nav-links a:hover { color: var(--text); }
