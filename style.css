@@ -272,6 +272,7 @@ nav {
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
+  margin-left: 16px;
   background: var(--accent);
   color: var(--accent-ink);
   border-radius: 100px;
