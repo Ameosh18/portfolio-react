@@ -116,6 +116,20 @@ export default function AboutPage() {
                   operationally, not just visually.
                 </p>
                 <p className="ab-hero-sub">Lead UX Designer. Available for new opportunities.</p>
+
+                <aside className="ab-identity" aria-label="Identity overview">
+                  <ul className="ab-id-list">
+                    {IDENTITY.map(({ key, val, pulse }) => (
+                      <li key={key} className="ab-id-row">
+                        <span className="ab-id-key">{key}</span>
+                        <span className="ab-id-val">
+                          {pulse && <span className="ab-pulse" aria-hidden="true" />}
+                          {val}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
               </div>
 
               <div className="ab-hero-right reveal">
@@ -133,23 +147,6 @@ export default function AboutPage() {
                     />
                   )}
                 </div>
-
-                <aside className="ab-identity bp-card" aria-label="Identity overview">
-                  <div className="card-head">
-                    <span>Identity</span>
-                  </div>
-                  <ul className="ab-id-list">
-                    {IDENTITY.map(({ key, val, pulse }) => (
-                      <li key={key} className="ab-id-row">
-                        <span className="ab-id-key">{key}</span>
-                        <span className="ab-id-val">
-                          {pulse && <span className="ab-pulse" aria-hidden="true" />}
-                          {val}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </aside>
               </div>
 
             </div>

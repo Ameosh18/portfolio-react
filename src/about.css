@@ -45,11 +45,9 @@
   line-height: 1.8;
 }
 
-/* ── HERO RIGHT (photo + identity card) ───────────────────────────────────── */
+/* ── HERO RIGHT (photo) ────────────────────────────────────────────────────── */
 .ab-hero-right {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  display: block;
 }
 
 .ab-hero-photo {
@@ -90,42 +88,54 @@
   .ab-hero-right { order: -1; max-width: 380px; margin: 0 auto; width: 100%; }
 }
 @media (max-width: 768px) { .ab-hero-grid { gap: 28px; } }
-@media (max-width: 480px) { .ab-hero-right { max-width: 300px; gap: 20px; } }
+@media (max-width: 480px) { .ab-hero-right { max-width: 300px; } }
 
-/* ── IDENTITY CARD ─────────────────────────────────────────────────────────── */
+/* ── IDENTITY (horizontal meta row) ───────────────────────────────────────── */
+.ab-identity {
+  margin-top: clamp(28px, 3vw, 40px);
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
 .ab-id-list {
   list-style: none;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 40px;
+  max-width: 420px;
 }
 
 .ab-id-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px dashed var(--border-soft);
+  flex-direction: column;
+  gap: 6px;
 }
-.ab-id-row:last-child { border-bottom: none; }
 
 .ab-id-key {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-dim);
-  flex: 1;
 }
 
 .ab-id-val {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .ab-id-list { gap: 18px 28px; }
+}
+@media (max-width: 480px) {
+  .ab-identity { margin-top: 24px; padding-top: 22px; }
+  .ab-id-list { gap: 16px 24px; }
 }
 
 .ab-pulse {
