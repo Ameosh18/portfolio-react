@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../style-2026.css'
 import '../about.css'
+import symbiosisLogo from '/symbiosis-logo.png'
 
 const FONTS_HREF =
   'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap'
@@ -346,6 +347,13 @@ export default function AboutPage() {
                   style={{ transitionDelay: `${i * 0.08}s` }}
                 >
                   <Ticks />
+                  {i === 0 && (
+                    <img
+                      src={symbiosisLogo}
+                      alt="Symbiosis Institute of Design logo"
+                      className="ab-edu-sticker"
+                    />
+                  )}
                   <span className="ab-edu-num" aria-hidden="true">{edu.num}</span>
                   <h3 className="ab-edu-title">{edu.title}</h3>
                   <p className="ab-edu-desc">{edu.desc}</p>
