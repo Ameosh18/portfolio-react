@@ -170,18 +170,10 @@ export default function MyProcessPage() {
                   AI supports synthesis, exploration, and validation<br />
                   while product judgment remains human-led.
                 </p>
-              </div>
 
-              <div className="mp-hero-right reveal">
-                <img
-                  src={`${import.meta.env.BASE_URL}heroprocess.png`}
-                  alt="Abstract diagram of many branching exploration paths converging into one confident, highlighted decision"
-                  className="mp-hero-visual"
-                />
-
-                <aside className="mp-signals bp-card" aria-label="Process signals overview">
-                  <div className="card-head">
-                    <span>Process Signals</span>
+                <div className="mp-signals" aria-label="Process signals overview">
+                  <div className="mp-signals-head">
+                    <span className="mp-signals-label">Process Signals</span>
                     <span className="mp-signals-status">
                       <span className="mp-pulse" aria-hidden="true" />
                       Active
@@ -190,14 +182,20 @@ export default function MyProcessPage() {
                   <ul className="mp-signals-list">
                     {SIGNALS.map(({ key, val }) => (
                       <li key={key} className="mp-signal-row">
-                        <span className="mp-signal-dot" aria-hidden="true" />
                         <span className="mp-signal-key">{key}</span>
                         <span className="mp-signal-val">{val}</span>
                       </li>
                     ))}
                   </ul>
-                  <p className="mp-signals-note">Human judgment remains central.</p>
-                </aside>
+                </div>
+              </div>
+
+              <div className="mp-hero-right reveal">
+                <img
+                  src={`${import.meta.env.BASE_URL}heroprocess.png`}
+                  alt="Abstract diagram of many branching exploration paths converging into one confident, highlighted decision"
+                  className="mp-hero-visual"
+                />
               </div>
 
             </div>
