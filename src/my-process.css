@@ -50,6 +50,25 @@
 }
 @media (max-width: 768px) { .mp-hero-grid { gap: 28px; } }
 
+/* ── HERO RIGHT (visual + signals card) ───────────────────────────────────── */
+.mp-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mp-hero-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 1024px) {
+  .mp-hero-right { max-width: 420px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 480px) { .mp-hero-right { max-width: 320px; gap: 20px; } }
+
 /* ── SIGNALS PANEL ─────────────────────────────────────────────────────────── */
 /* .bp-card provides: surface bg, border, radius, padding */
 

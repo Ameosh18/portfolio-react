@@ -172,25 +172,33 @@ export default function MyProcessPage() {
                 </p>
               </div>
 
-              <aside className="mp-signals bp-card reveal" aria-label="Process signals overview">
-                <div className="card-head">
-                  <span>Process Signals</span>
-                  <span className="mp-signals-status">
-                    <span className="mp-pulse" aria-hidden="true" />
-                    Active
-                  </span>
-                </div>
-                <ul className="mp-signals-list">
-                  {SIGNALS.map(({ key, val }) => (
-                    <li key={key} className="mp-signal-row">
-                      <span className="mp-signal-dot" aria-hidden="true" />
-                      <span className="mp-signal-key">{key}</span>
-                      <span className="mp-signal-val">{val}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mp-signals-note">Human judgment remains central.</p>
-              </aside>
+              <div className="mp-hero-right reveal">
+                <img
+                  src={`${import.meta.env.BASE_URL}heroprocess.png`}
+                  alt="Abstract diagram of many branching exploration paths converging into one confident, highlighted decision"
+                  className="mp-hero-visual"
+                />
+
+                <aside className="mp-signals bp-card" aria-label="Process signals overview">
+                  <div className="card-head">
+                    <span>Process Signals</span>
+                    <span className="mp-signals-status">
+                      <span className="mp-pulse" aria-hidden="true" />
+                      Active
+                    </span>
+                  </div>
+                  <ul className="mp-signals-list">
+                    {SIGNALS.map(({ key, val }) => (
+                      <li key={key} className="mp-signal-row">
+                        <span className="mp-signal-dot" aria-hidden="true" />
+                        <span className="mp-signal-key">{key}</span>
+                        <span className="mp-signal-val">{val}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mp-signals-note">Human judgment remains central.</p>
+                </aside>
+              </div>
 
             </div>
           </div>
