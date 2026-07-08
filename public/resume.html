@@ -255,6 +255,16 @@
       opacity: 0.6;
     }
 
+    /* Forces this entry to start page 2, with breathing room at the top */
+    .r-exp-entry--page2 {
+      break-before: page;
+      page-break-before: always;
+      padding-top: 26mm;
+    }
+    .r-exp-entry--page2::before {
+      top: calc(26mm + 2px);
+    }
+
     .r-exp-header {
       display: flex;
       justify-content: space-between;
@@ -538,7 +548,7 @@
       </article>
 
       <!-- 4 -->
-      <article class="r-exp-entry">
+      <article class="r-exp-entry r-exp-entry--page2">
         <div class="r-exp-header">
           <h3 class="r-exp-role">Senior Interaction Designer</h3>
           <span class="r-exp-period">Feb 2019 – Oct 2019 · Pune, India</span>
