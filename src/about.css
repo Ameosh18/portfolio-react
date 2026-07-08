@@ -355,6 +355,7 @@
 }
 
 .ab-edu-block {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -364,6 +365,21 @@
 .ab-edu-block:hover {
   border-color: rgba(var(--accent-rgb), 0.35);
   box-shadow: 0 4px 24px rgba(var(--accent-rgb), 0.04);
+}
+
+.ab-edu-sticker {
+  position: absolute;
+  top: -18px;
+  right: -14px;
+  width: clamp(56px, 6vw, 76px);
+  height: auto;
+  transform: rotate(9deg);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+  transition: transform 0.3s var(--ease);
+}
+.ab-edu-block:hover .ab-edu-sticker {
+  transform: rotate(9deg) scale(1.05);
 }
 
 .ab-edu-num {
@@ -403,6 +419,10 @@
 
 @media (max-width: 768px) {
   .ab-edu-list { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .ab-edu-sticker { top: -14px; right: -8px; width: 48px; }
 }
 
 /* ── METRICS ───────────────────────────────────────────────────────────────── */
