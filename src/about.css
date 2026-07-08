@@ -231,6 +231,180 @@
   .ab-exp-num { padding-top: 0; }
 }
 
+/* ── WORK EXPERIENCE ───────────────────────────────────────────────────────── */
+.ab-work-list {
+  list-style: none;
+  margin: 0;
+  position: relative;
+}
+
+.ab-work-list::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 31px;
+  width: 1px;
+  background: var(--border-soft);
+  z-index: 0;
+}
+
+.ab-work-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 32px;
+  padding-block: clamp(32px, 4vw, 44px);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.ab-work-item:first-child { padding-top: 0; }
+.ab-work-item:last-child { border-bottom: none; }
+
+.ab-work-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(24px, 2.6vw, 34px);
+  color: var(--accent);
+  line-height: 1;
+  padding-top: 4px;
+  background: var(--bg);
+}
+
+.ab-work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.ab-work-role {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(19px, 2vw, 24px);
+  letter-spacing: -0.015em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.ab-work-period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.ab-work-company {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.ab-work-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 680px;
+}
+
+.ab-work-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 16px);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.ab-work-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .ab-work-item { gap: 24px; }
+}
+@media (max-width: 768px) {
+  .ab-work-item { grid-template-columns: 44px 1fr; gap: 18px; padding-block: 28px; }
+  .ab-work-num { font-size: 22px; }
+  .ab-work-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+@media (max-width: 480px) {
+  .ab-work-item { grid-template-columns: 1fr; gap: 10px; }
+  .ab-work-num { padding-top: 0; }
+  .ab-work-list::before { display: none; }
+}
+
+/* ── EDUCATION ─────────────────────────────────────────────────────────────── */
+.ab-edu-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ab-edu-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 32px);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.ab-edu-block:hover {
+  border-color: rgba(var(--accent-rgb), 0.35);
+  box-shadow: 0 4px 24px rgba(var(--accent-rgb), 0.04);
+}
+
+.ab-edu-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.ab-edu-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(17px, 1.6vw, 20px);
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.ab-edu-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.ab-edu-period {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+@media (max-width: 768px) {
+  .ab-edu-list { grid-template-columns: 1fr; gap: 16px; }
+}
+
 /* ── METRICS ───────────────────────────────────────────────────────────────── */
 .ab-metrics-grid {
   display: grid;
