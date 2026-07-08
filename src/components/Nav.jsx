@@ -23,7 +23,7 @@ function fireConfetti(rect) {
 function triggerDownload() {
   const a = document.createElement('a')
   a.href = RESUME_URL
-  a.download = 'Ameya_Kulkarni_Resume.pdf'
+  a.download = 'Ameya_Kulkarni_UX_Resume.pdf'
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)
@@ -41,7 +41,7 @@ function triggerMobileDownload() {
       const url = URL.createObjectURL(blob)
       const a   = document.createElement('a')
       a.href     = url
-      a.download = 'Ameya_Kulkarni_Resume.pdf'
+      a.download = 'Ameya_Kulkarni_UX_Resume.pdf'
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
