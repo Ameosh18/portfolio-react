@@ -241,7 +241,15 @@ export default function MyProcessPage() {
                   style={{ transitionDelay: `${i * 0.08}s` }}
                 >
                   <Ticks />
-                  <span className="mp-wf-num" aria-hidden="true">{step.num}</span>
+                  <div className="mp-wf-icon-col">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${step.num}.png`}
+                      alt=""
+                      aria-hidden="true"
+                      className="mp-wf-icon"
+                    />
+                    <span className="mp-wf-num" aria-hidden="true">{step.num}</span>
+                  </div>
                   <div className="mp-wf-body">
                     <h3 className="mp-wf-title">{step.title}</h3>
                     <p className="mp-wf-desc">{step.desc}</p>
