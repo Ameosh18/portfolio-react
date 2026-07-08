@@ -118,9 +118,8 @@
 .mp-signals-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px 40px;
-  max-width: 420px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 32px;
 }
 
 .mp-signal-row {
@@ -142,6 +141,15 @@
   font-size: 13px;
   letter-spacing: 0.02em;
   color: var(--accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .mp-signal-val { white-space: normal; }
+}
+
+@media (max-width: 1024px) {
+  .mp-signals-list { grid-template-columns: repeat(2, 1fr); max-width: 420px; }
 }
 
 @media (max-width: 480px) {
