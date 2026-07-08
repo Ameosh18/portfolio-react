@@ -194,9 +194,9 @@
   height: 100%;
   object-fit: cover;
   object-position: center right;
-  opacity: 0.4;
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 55%, rgba(0, 0, 0, 0.1) 95%);
-  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 55%, rgba(0, 0, 0, 0.1) 95%);
+  opacity: 1;
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
 }
 
 [data-theme="light"] .mp-philosophy-graphic-wrap {
