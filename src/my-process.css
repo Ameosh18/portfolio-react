@@ -415,6 +415,13 @@
 @media (max-width: 480px) { .mp-metrics-grid { grid-template-columns: 1fr 1fr; } }
 
 /* ── FUTURE THINKING ───────────────────────────────────────────────────────── */
+.mp-future-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.62fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
 .mp-future-inner { max-width: 780px; }
 .mp-future-inner .section-title { margin-top: 16px; }
 
@@ -433,6 +440,21 @@
   line-height: 1.55;
   letter-spacing: -0.01em;
 }
+
+.mp-future-visual { display: block; }
+
+.mp-future-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 1024px) {
+  .mp-future-grid { grid-template-columns: 1fr; gap: 40px; }
+  .mp-future-visual { max-width: 420px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 480px) { .mp-future-visual { max-width: 320px; } }
 
 /* ── CTA ───────────────────────────────────────────────────────────────────── */
 .mp-cta-inner {

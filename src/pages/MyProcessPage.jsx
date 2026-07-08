@@ -293,15 +293,24 @@ export default function MyProcessPage() {
         {/* ── FUTURE THINKING ── */}
         <section className="section mp-future" aria-labelledby="mp-future-heading">
           <div className="container">
-            <div className="mp-future-inner reveal">
-              <span className="eyebrow">Future Direction</span>
-              <h2 id="mp-future-heading" className="section-title">
-                Designing systems<br />for adaptive product ecosystems.
-              </h2>
-              <div className="mp-future-copy">
-                <p>The future is not faster production.</p>
-                <p>It is better decisions, clearer systems,</p>
-                <p>and more adaptive workflows.</p>
+            <div className="mp-future-grid">
+              <div className="mp-future-inner reveal">
+                <span className="eyebrow">Future Direction</span>
+                <h2 id="mp-future-heading" className="section-title">
+                  Designing systems<br />for adaptive product ecosystems.
+                </h2>
+                <div className="mp-future-copy">
+                  <p>The future is not faster production.</p>
+                  <p>It is better decisions, clearer systems,</p>
+                  <p>and more adaptive workflows.</p>
+                </div>
+              </div>
+              <div className="mp-future-visual reveal">
+                <img
+                  src={`${import.meta.env.BASE_URL}FD.png`}
+                  alt="Hexagonal network diagram of interconnected system nodes, with one adaptive pathway highlighted in lime, representing a product ecosystem reconfiguring itself"
+                  className="mp-future-illustration"
+                />
               </div>
             </div>
           </div>
