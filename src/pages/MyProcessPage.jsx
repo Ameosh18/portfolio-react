@@ -15,8 +15,6 @@ const Ticks = () => (
   </>
 )
 
-const WAVE_HEIGHTS = [35, 60, 25, 75, 45, 90, 30, 55, 70, 40, 85, 50, 65, 30, 80, 45, 60, 35, 70, 40]
-
 const SIGNALS = [
   { key: 'Research',    val: 'Synthesized' },
   { key: 'Exploration', val: 'Multi-directional' },
@@ -199,11 +197,6 @@ export default function MyProcessPage() {
                     ))}
                   </ul>
                   <p className="mp-signals-note">Human judgment remains central.</p>
-                  <div className="mp-signal-wave" aria-hidden="true">
-                    {WAVE_HEIGHTS.map((h, i) => (
-                      <span key={i} style={{ '--wave-h': `${h}%`, animationDelay: `${i * 0.06}s` }} />
-                    ))}
-                  </div>
                 </aside>
               </div>
 
