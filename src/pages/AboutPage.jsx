@@ -347,7 +347,7 @@ export default function AboutPage() {
                   style={{ transitionDelay: `${i * 0.08}s` }}
                 >
                   <Ticks />
-                  {i === 0 && (
+                  {(i === 0 || i === 1) && (
                     <img
                       src={symbiosisLogo}
                       alt="Symbiosis Institute of Design logo"
