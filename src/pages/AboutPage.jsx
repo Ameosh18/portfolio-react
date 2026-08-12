@@ -17,7 +17,7 @@ const Ticks = () => (
 )
 
 const IDENTITY = [
-  { key: 'Role',       val: 'Lead UX Designer' },
+  { key: 'Role',       val: 'Senior UX Designer' },
   { key: 'Experience', val: '10+ Years' },
   { key: 'Focus',      val: 'B2B SaaS · Fintech · AI' },
   { key: 'Status',     val: 'Available', pulse: true },
@@ -42,7 +42,7 @@ const EXPERTISE_BLOCKS = [
   {
     num: '04',
     title: 'AI-Augmented Workflows',
-    desc: 'Synthesis, exploration, and validation. Judgment stays human.',
+    desc: '10 years of UX practice, now accelerated by Claude, ChatGPT, and AI design tooling. Faster synthesis, richer exploration, tighter iteration. Judgment stays mine.',
     link: { to: '/my-process', label: 'See full process' },
   },
 ]
@@ -146,6 +146,7 @@ const VALUES = [
   'I design for the people using it, not the people reviewing it.',
   'Systems thinking first. Visual execution second.',
   'Decisions without data are guesses. I prefer signals.',
+  'AI amplifies good thinking. It does not replace it.',
 ]
 
 const HERO_PHOTO_SRC = `${import.meta.env.BASE_URL}ameya-about-photo.jpg`
@@ -200,11 +201,11 @@ export default function AboutPage() {
                   systems that move people.
                 </h1>
                 <p className="ab-hero-lead">
-                  Enterprise B2B SaaS, fintech, emerging AI workflows.<br />
+                  Enterprise B2B SaaS, fintech, and AI-native product workflows.<br />
                   Across all of it, the constant has been design that holds up<br />
                   operationally, not just visually.
                 </p>
-                <p className="ab-hero-sub">Lead UX Designer. Available for new opportunities.</p>
+                <p className="ab-hero-sub">Senior UX Designer, AI-Fluent. Available for new opportunities.</p>
 
                 <aside className="ab-identity" aria-label="Identity overview">
                   <ul className="ab-id-list">
