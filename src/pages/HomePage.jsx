@@ -80,7 +80,7 @@ export default function Homepage() {
     const pre2 = Object.assign(document.createElement('link'), { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' });
     const css = Object.assign(document.createElement('link'), { id: 'home-2026-fonts', rel: 'stylesheet', href: FONTS_HREF });
     document.head.append(pre1, pre2, css);
-    document.title = 'Ameya Kulkarni - Lead UX Designer';
+    document.title = 'Ameya Kulkarni - Senior UX Designer · AI-Fluent';
   }, []);
 
   // Scroll reveal
@@ -142,10 +142,10 @@ export default function Homepage() {
               <Ticks />
 
               <div className="hero-copy reveal">
-                <span className="eyebrow">Lead UX Designer</span>
-                <h1>I design where systems thinking, UX strategy,<br />and AI workflows meet.</h1>
-                <p className="hero-sub"><span>10+ years in fintech, IoT, and SaaS</span> · <span>I build systems, lead teams, and solve problems that matter.</span></p>
-                <p className="hero-about">I design in the messy, high-stakes domains: fintech, IoT, and enterprise infrastructure. 10+ years making complex products feel clear, and shipping things that move metrics.</p>
+                <span className="eyebrow">Senior UX Designer · AI-Fluent</span>
+                <h1>10 years of UX. Now moving faster<br />with AI workflows that actually ship.</h1>
+                <p className="hero-sub"><span>Deep roots in fintech, IoT, and enterprise SaaS</span> · <span>Now using AI to research faster, design smarter, and ship better.</span></p>
+                <p className="hero-about">A decade of UX in high-stakes domains: fintech, IoT, and enterprise infrastructure. Today I bring that same rigour to AI-assisted workflows, using Claude, ChatGPT, and AI design tooling to research faster, explore more, and ship products that move metrics.</p>
                 <div className="hero-ctas">
                   <Link to="/work" className="btn btn-primary">View All Work <span className="arrow">→</span></Link>
                   <span className="status-pill hero-avail"><span className="dot" />Open to opportunities</span>
@@ -163,8 +163,8 @@ export default function Homepage() {
                 <div className="hero-cards">
                   <article className="bp-card">
                     <div className="card-head"><span>Design Stack</span><span className="dot" /></div>
-                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Maze</span></div>
-                    <div className="disc-row"><span className="k">Method</span><span className="v">Lean UX · Agile</span></div>
+                    <div className="disc-row"><span className="k">Tools</span><span className="v">Figma · Claude · v0</span></div>
+                    <div className="disc-row"><span className="k">Method</span><span className="v">Lean UX · AI-Assisted</span></div>
                     <div className="disc-row"><span className="k">Output</span><span className="v">End-to-End</span></div>
                   </article>
                   <article className="bp-card">
@@ -273,7 +273,7 @@ export default function Homepage() {
             <div className="process-head reveal">
               <span className="eyebrow">My Practice</span>
               <h2 className="section-title">How I approach<br />design work today.</h2>
-              <p className="lead">A process built for complexity, speed, and precision. Where AI compounds judgement at every stage, not just the screens.</p>
+              <p className="lead">A process built on 10 years of hard-won UX practice, now accelerated by AI at every stage. The judgement is mine. The speed is AI.</p>
             </div>
 
             <div className="process-frame bp-frame reveal">
@@ -312,7 +312,7 @@ export default function Homepage() {
                   </div>
                 </div>
                 <div>
-                  <p className="a-bio">With 10+ years across enterprise B2B SaaS, fintech, and emerging AI workflows, I specialise in UX strategy and design systems that drive measurable outcomes. I've shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
+                  <p className="a-bio">10+ years as a Senior UX Designer across enterprise B2B SaaS, fintech, and IoT. In the age of AI, I have woven AI tooling into my core practice: faster synthesis, richer exploration, tighter iteration cycles. Same rigour. Bigger output. I have shipped <b>4+ design systems</b>, led cross-functional teams of <b>8+</b>, and consistently delivered <b>35%+ engagement lifts</b> through strategic design decisions.</p>
                   <div className="about-cta-row">
                     <Link to="/about" className="btn btn-ghost">Read Full Story <span className="arrow">&#x2192;</span></Link>
                   </div>
@@ -326,8 +326,8 @@ export default function Homepage() {
         <section className="section contact" id="contact">
           <div className="container">
             <span className="eyebrow reveal">Get in Touch</span>
-            <h2 className="section-title reveal" style={{ marginTop: '16px' }}>I can help your team move faster and ship better products.</h2>
-            <p className="contact-sub reveal">Whether you need someone to build a design system, lead design strategy across teams, or design in complex domains, I've done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
+            <h2 className="section-title reveal" style={{ marginTop: '16px' }}>10 years of UX experience. AI-era speed. Ready to help your team ship better.</h2>
+            <p className="contact-sub reveal">Whether you need a senior designer who can lead strategy, build design systems, or bring AI-assisted workflows into your team's process, I have done this before and I know what works. Here's what you get: faster design-to-dev cycles, design systems that teams actually adopt, and products that move metrics.</p>
             <div className="contact-links reveal">
               <a href="mailto:ameosh18@gmail.com" className="contact-link">
                 <span className="c-k">Email</span><span className="c-v">ameosh18@gmail.com</span><span className="c-arrow">↗︎</span>
