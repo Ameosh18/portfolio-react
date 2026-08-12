@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ameyadoesux.in/sitemap.xml
