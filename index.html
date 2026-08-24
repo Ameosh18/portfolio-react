@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      // Restore path redirected by 404.html
+      (function() {
+        var p = window.location.search.slice(1).split('&').reduce(function(q, s) {
+          var kv = s.split('='); q[decodeURIComponent(kv[0])] = decodeURIComponent(kv.slice(1).join('=').replace(/~and~/g, '&')); return q;
+        }, {});
+        if (p.p !== undefined) {
+          var path = '/' + p.p.replace(/~and~/g, '&');
+          var search = p.q ? '?' + p.q.replace(/~and~/g, '&') : '';
+          var base = window.location.pathname.replace(/\/$/, '');
+          window.history.replaceState(null, null, base + path + search + window.location.hash);
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/portfolio-react/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ameya Kulkarni - Senior UX Designer · AI-Fluent</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Ameya Kulkarni is a Senior UX Designer with 10+ years in fintech, IoT, and enterprise SaaS, now working AI-assisted workflows into every stage of the design process." />
+    <meta name="author" content="Ameya Kulkarni" />
+    <link rel="canonical" href="https://ameyadoesux.in/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ameyadoesux.in/" />
+    <meta property="og:title" content="Ameya Kulkarni - Senior UX Designer · AI-Fluent" />
+    <meta property="og:description" content="10+ years in fintech, IoT, and enterprise SaaS. Now using AI to research faster, design smarter, and ship better products." />
+    <meta property="og:image" content="https://ameyadoesux.in/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ameya Kulkarni, Lead UX Designer. Portfolio at ameyadoesux.in" />
+    <meta property="og:site_name" content="Ameya Kulkarni" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ameya Kulkarni - Senior UX Designer · AI-Fluent" />
+    <meta name="twitter:description" content="10+ years in fintech, IoT, and enterprise SaaS. Now using AI to research faster, design smarter, and ship better." />
+    <meta name="twitter:image" content="https://ameyadoesux.in/og.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <script type="module" crossorigin src="/portfolio-react/assets/index-Bk8_5YPw.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio-react/assets/index-a-oe62KS.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
