@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" fill="none">
+  <!-- Globant wordmark — white -->
+  <text
+    x="0" y="40"
+    fill="#ffffff"
+    font-family="'Arial Rounded MT Bold', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="700"
+    font-size="34"
+    letter-spacing="-0.5"
+  >globant</text>
+  <!-- Lime chevron/arrow mark -->
+  <path d="M178 8 L200 28 L178 48" stroke="#9AC31C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
